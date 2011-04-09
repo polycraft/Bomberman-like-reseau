@@ -1,0 +1,3 @@
+GraphicEngin:
+	-Ajouter la gestions des buffers
+	-Optimisations des scenes static (fusionner les données des objets)
