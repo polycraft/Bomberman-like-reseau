@@ -10,8 +10,8 @@ namespace Engine
 {
     typedef enum
     {
-        Static,
-        Dynamique
+        TS_Static,
+        TS_Dynamique
     } typeScene;
 
     class Scene
@@ -28,7 +28,7 @@ namespace Engine
             /**
             Ajoute un objet
             **/
-            void addObject(Object object);
+            void addObject(Object *object);
         private:
 
             /**

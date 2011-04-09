@@ -21,7 +21,7 @@ void Scene::update()
 /**
 Ajoute un objet
 **/
-void Scene::addObject(Object object)
+void Scene::addObject(Object *object)
 {
 
 }
