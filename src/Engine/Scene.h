@@ -17,7 +17,7 @@ namespace Engine
     class Scene
     {
         public:
-            Scene(typeScene type);
+            Scene(typeScene type,unsigned int nbObject=50);
             virtual ~Scene();
 
             /**
@@ -34,7 +34,7 @@ namespace Engine
             /**
             Liste des objets à gérer
             **/
-            vector<Object> object;
+            vector<Object*>* object;
 
             /**
             Type de scène

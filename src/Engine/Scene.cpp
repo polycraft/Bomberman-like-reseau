@@ -1,21 +1,30 @@
+#include <vector>
+
 #include "Scene.h"
 #include "Object.h"
 
 using namespace Engine;
 
-Scene::Scene(typeScene type)
+Scene::Scene(typeScene type,unsigned int nbObject)
 {
-    //ctor
+    this->type=type;
+    object= new vector<Object*>(nbObject);
 }
 
 Scene::~Scene()
 {
-    //dtor
+    //todo Libérer chaque objet
+    delete object;
 }
 
 void Scene::update()
 {
+    vector<Object*>::iterator it;
 
+    for ( it=object->begin() ; it < object->end(); it++ )
+    {
+        (*it)->update();
+    }
 }
 
 /**
@@ -23,5 +32,5 @@ Ajoute un objet
 **/
 void Scene::addObject(Object *object)
 {
-
+    this->object->push_back(object);
 }
