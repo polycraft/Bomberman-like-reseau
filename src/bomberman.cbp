@@ -45,6 +45,8 @@
 		<Unit filename="Engine/ObjectData.h" />
 		<Unit filename="Engine/ObjectMovable.cpp" />
 		<Unit filename="Engine/ObjectMovable.h" />
+		<Unit filename="Engine/OpenGL2.cpp" />
+		<Unit filename="Engine/OpenGL2.h" />
 		<Unit filename="Engine/Scene.cpp" />
 		<Unit filename="Engine/Scene.h" />
 		<Extensions>
