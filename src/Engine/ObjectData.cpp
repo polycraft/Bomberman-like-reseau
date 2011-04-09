@@ -1,13 +1,14 @@
 #include "ObjectData.h"
 
-using namespace Engine;
-
-ObjectData::ObjectData()
+namespace Engine
 {
-    //ctor
-}
+    ObjectData::ObjectData()
+    {
+        //ctor
+    }
 
-ObjectData::~ObjectData()
-{
-    //dtor
+    ObjectData::~ObjectData()
+    {
+        //dtor
+    }
 }

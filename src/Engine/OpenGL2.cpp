@@ -1,11 +1,14 @@
 #include "OpenGL2.h"
 
-OpenGL2::OpenGL2()
+namespace Engine
 {
-    //ctor
-}
+    OpenGL2::OpenGL2()
+    {
+        //ctor
+    }
 
-OpenGL2::~OpenGL2()
-{
-    //dtor
+    OpenGL2::~OpenGL2()
+    {
+        //dtor
+    }
 }

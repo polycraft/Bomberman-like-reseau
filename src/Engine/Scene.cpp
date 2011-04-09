@@ -3,34 +3,32 @@
 #include "Scene.h"
 #include "Object.h"
 
-using namespace Engine;
-
-Scene::Scene(typeScene type,unsigned int nbObject)
+namespace Engine
 {
-    this->type=type;
-    object= new vector<Object*>(nbObject);
-}
-
-Scene::~Scene()
-{
-    //todo Libérer chaque objet
-    delete object;
-}
-
-void Scene::update()
-{
-    vector<Object*>::iterator it;
-
-    for ( it=object->begin() ; it < object->end(); it++ )
+    Scene::Scene(typeScene type,unsigned int nbObject)
     {
-        (*it)->update();
+        this->type=type;
+        object= new vector<Object*>(nbObject);
     }
-}
 
-/**
-Ajoute un objet
-**/
-void Scene::addObject(Object *object)
-{
-    this->object->push_back(object);
+    Scene::~Scene()
+    {
+        //todo Libérer chaque objet
+        delete object;
+    }
+
+    void Scene::update()
+    {
+        vector<Object*>::iterator it;
+
+        for ( it=object->begin() ; it < object->end(); it++ )
+        {
+            (*it)->update();
+        }
+    }
+
+    void Scene::addObject(Object *object)
+    {
+        this->object->push_back(object);
+    }
 }

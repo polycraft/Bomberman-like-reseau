@@ -1,18 +1,19 @@
 #include "Camera.h"
 
-using namespace Engine;
-
-Camera::Camera()
+namespace Engine
 {
-    //ctor
-}
+    Camera::Camera()
+    {
+        //ctor
+    }
 
-Camera::~Camera()
-{
-    //dtor
-}
+    Camera::~Camera()
+    {
+        //dtor
+    }
 
-void Camera::update()
-{
+    void Camera::update()
+    {
 
+    }
 }

@@ -1,23 +1,24 @@
 #include "ObjectMovable.h"
 
-using namespace Engine;
-
-ObjectMovable::ObjectMovable()
+namespace Engine
 {
-    //ctor
-}
+    ObjectMovable::ObjectMovable()
+    {
+        //ctor
+    }
 
-ObjectMovable::~ObjectMovable()
-{
-    //dtor
-}
+    ObjectMovable::~ObjectMovable()
+    {
+        //dtor
+    }
 
-void ObjectMovable::rotate(double x,double y,double z)
-{
+    void ObjectMovable::rotate(double x,double y,double z)
+    {
 
-}
+    }
 
-void ObjectMovable::translation(double x,double y,double z)
-{
+    void ObjectMovable::translation(double x,double y,double z)
+    {
 
+    }
 }

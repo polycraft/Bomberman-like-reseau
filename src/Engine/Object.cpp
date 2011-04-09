@@ -1,23 +1,24 @@
 #include "Object.h"
 
-using namespace Engine;
-
-Object::Object()
+namespace Engine
 {
-    //ctor
-}
+    Object::Object()
+    {
+        //ctor
+    }
 
-Object::~Object()
-{
-    //dtor
-}
+    Object::~Object()
+    {
+        //dtor
+    }
 
-void Object::scale(double x,double y,double z)
-{
+    void Object::scale(double x,double y,double z)
+    {
 
-}
+    }
 
-void Object::update()
-{
+    void Object::update()
+    {
 
+    }
 }
