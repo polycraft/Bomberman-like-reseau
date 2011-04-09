@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1302365719 source:/home/bastien/developpement/projet/bomberman/src/Engine/Scene.cpp
+	"Scene.h"
+	"Object.h"
+
+1302365442 /home/bastien/developpement/projet/bomberman/src/Engine/Scene.h
+	<vector>
+	"Object.h"
+
+1302364816 source:/home/bastien/developpement/projet/bomberman/src/Engine/Camera.cpp
+	"Camera.h"
+
+1302366259 /home/bastien/developpement/projet/bomberman/src/Engine/Camera.h
+	"ObjectMovable.h"
+
+1302365686 source:/home/bastien/developpement/projet/bomberman/src/Engine/GraphicEngine.cpp
+	"GraphicEngine.h"
+	"Scene.h"
+	"Camera.h"
+	"Object.h"
+
+1302365731 /home/bastien/developpement/projet/bomberman/src/Engine/GraphicEngine.h
+	<vector>
+	"Scene.h"
+	"Camera.h"
+
+1302366253 /home/bastien/developpement/projet/bomberman/src/Engine/Object.h
+	"ObjectMovable.h"
+
+1302365432 source:/home/bastien/developpement/projet/bomberman/src/Engine/Object.cpp
+	"Object.h"
+
+1302366160 /home/bastien/developpement/projet/bomberman/src/Engine/ObjectMovable.h
+

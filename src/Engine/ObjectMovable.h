@@ -1,0 +1,31 @@
+#ifndef OBJECTMOVABLE_H
+#define OBJECTMOVABLE_H
+
+namespace Engine
+{
+    class ObjectMovable
+    {
+        public:
+            virtual ~ObjectMovable();
+
+            /**
+            Réalise une rotation sur l'objet
+            **/
+            void rotate(double x,double y,double z);
+
+            /**
+            Réalise une translation sur l'objet
+            **/
+            void translation(double x,double y,double z);
+        protected:
+            ObjectMovable();//Classe abstraite
+        private:
+            double x;
+            double rotateX;
+            double y;
+            double rotateY;
+            double z;
+            double rotateZ;
+    };
+}
+#endif // OBJECTMOVABLE_H
