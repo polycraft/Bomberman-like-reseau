@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Engine/GraphicEngine.cpp" />
+		<Unit filename="Engine/GraphicEngine.h" />
+		<Unit filename="Engine/Scene.cpp" />
+		<Unit filename="Engine/Scene.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
