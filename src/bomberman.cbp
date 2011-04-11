@@ -35,20 +35,30 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Engine/Camera.cpp" />
-		<Unit filename="Engine/Camera.h" />
-		<Unit filename="Engine/GraphicEngine.cpp" />
-		<Unit filename="Engine/GraphicEngine.h" />
-		<Unit filename="Engine/Object.cpp" />
-		<Unit filename="Engine/Object.h" />
-		<Unit filename="Engine/ObjectData.cpp" />
-		<Unit filename="Engine/ObjectData.h" />
-		<Unit filename="Engine/ObjectMovable.cpp" />
-		<Unit filename="Engine/ObjectMovable.h" />
-		<Unit filename="Engine/OpenGL2.cpp" />
-		<Unit filename="Engine/OpenGL2.h" />
-		<Unit filename="Engine/Scene.cpp" />
-		<Unit filename="Engine/Scene.h" />
+		<Unit filename="Engine/EventEngine/EventEngine.cpp" />
+		<Unit filename="Engine/EventEngine/EventEngine.h" />
+		<Unit filename="Engine/EventEngine/IEventListener.h" />
+		<Unit filename="Engine/Exception/ExceptionNoLoader.cpp" />
+		<Unit filename="Engine/Exception/ExceptionNoLoader.h" />
+		<Unit filename="Engine/GraphicEngine/Camera.cpp" />
+		<Unit filename="Engine/GraphicEngine/Camera.h" />
+		<Unit filename="Engine/GraphicEngine/GraphicEngine.cpp" />
+		<Unit filename="Engine/GraphicEngine/GraphicEngine.h" />
+		<Unit filename="Engine/GraphicEngine/Object.cpp" />
+		<Unit filename="Engine/GraphicEngine/Object.h" />
+		<Unit filename="Engine/GraphicEngine/ObjectData.cpp" />
+		<Unit filename="Engine/GraphicEngine/ObjectData.h" />
+		<Unit filename="Engine/GraphicEngine/ObjectMovable.cpp" />
+		<Unit filename="Engine/GraphicEngine/ObjectMovable.h" />
+		<Unit filename="Engine/GraphicEngine/OpenGL2.cpp" />
+		<Unit filename="Engine/GraphicEngine/OpenGL2.h" />
+		<Unit filename="Engine/GraphicEngine/Scene.cpp" />
+		<Unit filename="Engine/GraphicEngine/Scene.h" />
+		<Unit filename="Engine/Loader/Loader.h" />
+		<Unit filename="Engine/ManagerRessource.cpp" />
+		<Unit filename="Engine/ManagerRessource.h" />
+		<Unit filename="Engine/Ressource.h" />
+		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
