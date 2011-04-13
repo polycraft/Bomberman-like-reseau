@@ -59,7 +59,6 @@ class ManagerRessource
         **/
         static ManagerRessource *getInstance();
 };
-//Initialisation de l'instance
-ManagerRessource *ManagerRessource::instance = NULL;
+
 }
 #endif // MANAGERRESSOURCE_H

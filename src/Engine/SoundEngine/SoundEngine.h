@@ -84,7 +84,6 @@ class SoundEngine
         **/
         FMOD_CHANNELGROUP *getChannelGroup();
 };
-//Initialisation de l'instance
-SoundEngine *SoundEngine::instance = NULL;
+
 }
 #endif // SOUNDENGINE_H

@@ -3,6 +3,9 @@
 
 namespace Engine
 {
+//Initialisation de l'instance
+SoundEngine *SoundEngine::instance = NULL;
+
 SoundEngine::SoundEngine(unsigned int nbChannel)
 {
     //Initialise fmod

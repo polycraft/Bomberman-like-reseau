@@ -11,6 +11,9 @@ using namespace std;
 
 namespace Engine
 {
+    //Initialisation de l'instance
+    ManagerRessource *ManagerRessource::instance = NULL;
+
     ManagerRessource::ManagerRessource()
     {
         //ctor
