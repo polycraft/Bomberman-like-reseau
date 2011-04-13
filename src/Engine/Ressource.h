@@ -10,7 +10,7 @@ class Ressource
 {
     public:
         virtual ~Ressource() {}
-    private:
+    protected:
         Ressource() {}
 };
 }
