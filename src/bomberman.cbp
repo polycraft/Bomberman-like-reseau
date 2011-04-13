@@ -17,6 +17,7 @@
 				<Linker>
 					<Add library="SDL" />
 					<Add library="GL" />
+					<Add library="fmodex64-4.34.00" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -58,6 +59,10 @@
 		<Unit filename="Engine/ManagerRessource.cpp" />
 		<Unit filename="Engine/ManagerRessource.h" />
 		<Unit filename="Engine/Ressource.h" />
+		<Unit filename="Engine/Sound.cpp" />
+		<Unit filename="Engine/Sound.h" />
+		<Unit filename="Engine/SoundEngine/SoundEngine.cpp" />
+		<Unit filename="Engine/SoundEngine/SoundEngine.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
