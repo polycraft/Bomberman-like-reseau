@@ -64,6 +64,7 @@
 		<Unit filename="Engine/SoundEngine/SoundEngine.cpp" />
 		<Unit filename="Engine/SoundEngine/SoundEngine.h" />
 		<Unit filename="Engine/test/testEngineSound.cpp" />
+		<Unit filename="Engine/test/testEngineSound.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
