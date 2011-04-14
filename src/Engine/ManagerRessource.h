@@ -28,12 +28,12 @@ class ManagerRessource
         /**
         Ajoute un chargeur pour une extension
         **/
-        static void addLoader(string &extension,Loader *loader);
+        static void addLoader(string extension,Loader *loader);
 
         /**
         Récupère une ressource. Si la ressource n'existe pas elle est créé
         **/
-        static Ressource& getRessource(string &names)throw(ExceptionNoLoader);
+        static Ressource* getRessource(string names)throw(ExceptionNoLoader);
 
         /**
         Libere une ressource en utilisant sont loader

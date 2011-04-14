@@ -3,7 +3,11 @@
 #include <string>
 #include <map>
 
+//Les Loaders
 #include "Loader/Loader.h"
+#include "Loader/LoaderMusic.h"
+#include "Loader/LoaderSample.h"
+
 #include "Ressource.h"
 #include "Exception/ExceptionNoLoader.h"
 #include "Exception/ExceptionNoRessource.h"
@@ -31,7 +35,7 @@ namespace Engine
         //TODO Libérer les loader et les ressources
     }
 
-    void ManagerRessource::addLoader(string &extension,Loader *loader)
+    void ManagerRessource::addLoader(string extension,Loader *loader)
     {
         //Récupération du manager
         ManagerRessource *manager=getInstance();
@@ -53,7 +57,7 @@ namespace Engine
         getLoader(names)->free(ressource);
     }
 
-    Ressource& ManagerRessource::getRessource(string &names)throw(ExceptionNoLoader)
+    Ressource* ManagerRessource::getRessource(string names)throw(ExceptionNoLoader)
     {
         //Récupération du manager
         ManagerRessource *manager=getInstance();
@@ -62,10 +66,10 @@ namespace Engine
         if(manager->ressource->find(names)==manager->ressource->end())
         {
             //Charges et enregistre la ressource avec le bon loader et la retourne
-            return *( (*(manager->ressource))[names]=getLoader(names)->load(names) );
+            return (*(manager->ressource))[names]=getLoader(names)->load(names);
         }
         //Retourne la ressource qui est déjà chargé
-        return *( (*(manager->ressource))[names] );
+        return (*(manager->ressource))[names] ;
     }
 
     ManagerRessource* ManagerRessource::getInstance()
