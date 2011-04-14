@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Loader.h"
+#include "LoaderSound.h"
 #include "../Ressource.h"
 #include "../Exception/ExceptionNoFileFound.h"
 
@@ -10,7 +11,7 @@ using namespace std;
 
 namespace Engine
 {
-class LoaderSample : public Loader
+class LoaderSample : public LoaderSound
 {
     public:
         LoaderSample();
