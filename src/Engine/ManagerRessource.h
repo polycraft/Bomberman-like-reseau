@@ -70,6 +70,11 @@ class ManagerRessource
         Récupere le loader suivant le fichier
         **/
         static Loader* getLoader(string &name) throw(ExceptionNoLoader);
+
+        /**
+        Ajoute un chargeur pour une extension
+        **/
+        void _addLoader(string extension,Loader *loader);
 };
 
 }

@@ -21,12 +21,16 @@ namespace Engine
 
     ManagerRessource::ManagerRessource()
     {
+        //Initialisation des contenneurs
+        loader=new map<string,Loader*>();
+        ressource= new map<string,Ressource*>();
+
         //Loader sonore
         Loader *loaderMusic=new LoaderMusic();
         Loader *loaderSample=new LoaderSample();
 
-        addLoader("mp3",loaderMusic);
-        addLoader("waw",loaderSample);
+        _addLoader("mp3",loaderMusic);
+        _addLoader("waw",loaderSample);
     }
 
     ManagerRessource::~ManagerRessource()
@@ -41,7 +45,13 @@ namespace Engine
         ManagerRessource *manager=getInstance();
 
         //Ajoute ou remplace le loader suivant l'extension
-        (*(manager->loader))[extension]=loader;
+        manager->_addLoader(extension,loader);
+    }
+
+    void ManagerRessource::_addLoader(string extension,Loader *loader)
+    {
+        //Ajoute ou remplace le loader suivant l'extension
+        (*(this->loader))[extension]=loader;
     }
 
     void ManagerRessource::freeRessource(string &names,Ressource &ressource)throw(ExceptionNoLoader,ExceptionNoRessource)
