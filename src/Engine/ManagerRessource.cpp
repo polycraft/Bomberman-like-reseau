@@ -17,12 +17,18 @@ namespace Engine
 
     ManagerRessource::ManagerRessource()
     {
-        //ctor
+        //Loader sonore
+        Loader *loaderMusic=new LoaderMusic();
+        Loader *loaderSample=new LoaderSample();
+
+        addLoader("mp3",loaderMusic);
+        addLoader("waw",loaderSample);
     }
 
     ManagerRessource::~ManagerRessource()
     {
         //dtor
+        //TODO Libérer les loader et les ressources
     }
 
     void ManagerRessource::addLoader(string &extension,Loader *loader)
