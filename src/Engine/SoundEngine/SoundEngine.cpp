@@ -1,5 +1,7 @@
 #include "SoundEngine.h"
 #include <fmodex/fmod.h>
+#include "../Sound.h"
+#include "../Ressource.h"
 
 namespace Engine
 {
@@ -34,14 +36,24 @@ FMOD_SYSTEM *SoundEngine::getSystem()
     return system;
 }
 
+void SoundEngine::playSound(Ressource &sound) throw(ExceptionBadRessource)
+{
+    FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, Ressource::getRessource<Sound>(sound)->getData(), 0, NULL);
+}
+
+void SoundEngine::playSound(FMOD_CHANNELINDEX channel,Ressource &sound)throw(ExceptionBadRessource)
+{
+    FMOD_System_PlaySound(system, channel, Ressource::getRessource<Sound>(sound)->getData(), 0, NULL);
+}
+
 void SoundEngine::playSound(Sound &sound)
 {
-    FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, sound.getSound(), 0, NULL);
+    FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, sound.getData(), 0, NULL);
 }
 
 void SoundEngine::playSound(FMOD_CHANNELINDEX channel,Sound &sound)
 {
-    FMOD_System_PlaySound(system, channel, sound.getSound(), 0, NULL);
+    FMOD_System_PlaySound(system, channel, sound.getData(), 0, NULL);
 }
 
 FMOD_CHANNEL *SoundEngine::getChannel(unsigned int idChannel)

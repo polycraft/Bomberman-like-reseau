@@ -30,6 +30,16 @@ class SoundEngine
         /**
         Joue un son
         **/
+        void playSound(Ressource &sound) throw(ExceptionBadRessource);
+
+        /**
+        Joue un son sur un chanel
+        **/
+        void playSound(FMOD_CHANNELINDEX channel,Ressource &sound) throw(ExceptionBadRessource);
+
+        /**
+        Joue un son
+        **/
         void playSound(Sound &sound);
 
         /**

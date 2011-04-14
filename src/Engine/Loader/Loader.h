@@ -19,8 +19,13 @@ class Loader
         **/
         virtual Ressource *load(string &name)=0;
 
+        /**
+        Libere une ressource
+        **/
+        virtual void free(Ressource &ressource) throw(ExceptionBadRessource) =0 ;
+
         virtual ~Loader(){};
-    private:
+    protected:
         Loader(){};//Classe abstraite
 };
 }

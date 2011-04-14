@@ -6,6 +6,8 @@
 
 #include "Loader/Loader.h"
 #include "Ressource.h"
+#include "Exception/ExceptionNoLoader.h"
+#include "Exception/ExceptionNoRessource.h"
 
 //Macro permettant d'obtenir la ressource de son type
 //Utilisation ManagerRessource_getRessource("mon_model.obj",Model)
@@ -31,7 +33,12 @@ class ManagerRessource
         /**
         Récupère une ressource. Si la ressource n'existe pas elle est créé
         **/
-        static Ressource& getRessource(string &names);
+        static Ressource& getRessource(string &names)throw(ExceptionNoLoader);
+
+        /**
+        Libere une ressource en utilisant sont loader
+        **/
+        static void freeRessource(string &names,Ressource &ressource)throw(ExceptionNoLoader,ExceptionNoRessource);
 
         virtual ~ManagerRessource();
     private:
@@ -58,6 +65,11 @@ class ManagerRessource
         Récupère l'instance de la classe
         **/
         static ManagerRessource *getInstance();
+
+        /**
+        Récupere le loader suivant le fichier
+        **/
+        static Loader* getLoader(string &name) throw(ExceptionNoLoader);
 };
 
 }

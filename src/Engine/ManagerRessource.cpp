@@ -6,6 +6,7 @@
 #include "Loader/Loader.h"
 #include "Ressource.h"
 #include "Exception/ExceptionNoLoader.h"
+#include "Exception/ExceptionNoRessource.h"
 
 using namespace std;
 
@@ -33,7 +34,7 @@ namespace Engine
         (*(manager->loader))[extension]=loader;
     }
 
-    Ressource& ManagerRessource::getRessource(string &names)
+    void ManagerRessource::freeRessource(string &names,Ressource &ressource)throw(ExceptionNoLoader,ExceptionNoRessource)
     {
         //Récupération du manager
         ManagerRessource *manager=getInstance();
@@ -41,16 +42,21 @@ namespace Engine
         //Ressource non chargé
         if(manager->ressource->find(names)==manager->ressource->end())
         {
-            //Récupère l'extension du fichier pour choisir le bon loader
-            string extension = names.substr(names.find_last_of(".")+1);
+            throw ExceptionNoRessource();
+        }
+        getLoader(names)->free(ressource);
+    }
 
-            if(manager->loader->find(extension)==manager->loader->end())
-            {
-                throw ExceptionNoLoader();
-            }
+    Ressource& ManagerRessource::getRessource(string &names)throw(ExceptionNoLoader)
+    {
+        //Récupération du manager
+        ManagerRessource *manager=getInstance();
 
+        //Ressource non chargé
+        if(manager->ressource->find(names)==manager->ressource->end())
+        {
             //Charges et enregistre la ressource avec le bon loader et la retourne
-            return *( (*(manager->ressource))[names]=(*(manager->loader))[extension]->load(names) );
+            return *( (*(manager->ressource))[names]=getLoader(names)->load(names) );
         }
         //Retourne la ressource qui est déjà chargé
         return *( (*(manager->ressource))[names] );
@@ -63,5 +69,20 @@ namespace Engine
             instance=new ManagerRessource();
         }
         return instance;
+    }
+
+    Loader* ManagerRessource::getLoader(string &name) throw(ExceptionNoLoader)
+    {
+        //Récupération du manager
+        ManagerRessource *manager=getInstance();
+
+        //Récupère l'extension du fichier pour choisir le bon loader
+        string extension = name.substr(name.find_last_of(".")+1);
+
+        if(manager->loader->find(extension)==manager->loader->end())
+        {
+            throw ExceptionNoLoader();
+        }
+        return (*(manager->loader))[extension];
     }
 }
