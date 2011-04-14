@@ -30,7 +30,7 @@ namespace Engine
         Loader *loaderSample=new LoaderSample();
 
         _addLoader("mp3",loaderMusic);
-        _addLoader("waw",loaderSample);
+        _addLoader("wav",loaderSample);
     }
 
     ManagerRessource::~ManagerRessource()
