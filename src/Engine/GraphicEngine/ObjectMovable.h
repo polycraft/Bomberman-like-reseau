@@ -20,11 +20,11 @@ namespace Engine
         protected:
             ObjectMovable();//Classe abstraite
         private:
-            double x;
+            double transX;
             double rotateX;
-            double y;
+            double transY;
             double rotateY;
-            double z;
+            double transZ;
             double rotateZ;
     };
 }

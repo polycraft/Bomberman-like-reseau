@@ -9,12 +9,26 @@ namespace Engine
     {
         public:
             Camera();
+			//Avec initialisation donné
+			Camera(double x, double y, double z, double ciblex, double cibley, double ciblez, double dirx, double diry, double dirz);
             virtual ~Camera();
 
             /**
             Place la caméra dans l'affichage
             **/
             void update();
+
+		private:
+			double X;
+			double Y;
+			double Z;
+			double cibleX;
+			double cibleY;
+			double cibleZ;
+			double dirX;
+			double dirY;
+			double dirZ;
+
     };
 }
 
