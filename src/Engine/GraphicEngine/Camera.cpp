@@ -53,5 +53,12 @@ namespace Engine
     {
 		//affichage camera
 		gluLookAt(X,Y,Z,cibleX,cibleY,cibleZ,dirX,dirY,dirZ);
+
+		//modification de la matrice
+		glTranslated(this.transx,this.depy,this.depz);
+		glRotated(this.orientX,1,0,0);
+		glRotated(this.orientY,0,1,0);
+		glRotated(this.orientZ,0,0,1);
+
     }
 }
