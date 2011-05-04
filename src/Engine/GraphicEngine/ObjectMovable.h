@@ -19,7 +19,7 @@ namespace Engine
             void translation(double x,double y,double z);
         protected:
             ObjectMovable();//Classe abstraite
-        private:
+        protected:
             double transX;
             double rotateX;
             double transY;
