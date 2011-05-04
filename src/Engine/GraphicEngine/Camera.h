@@ -1,7 +1,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-
+#include <windows.h>
 #include "ObjectMovable.h"
+#include <SDL/SDL.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 namespace Engine
 {

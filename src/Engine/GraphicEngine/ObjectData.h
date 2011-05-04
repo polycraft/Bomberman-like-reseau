@@ -10,9 +10,9 @@ namespace Engine
             virtual ~ObjectData();
         protected:
         private:
-            double point[];
-            double indice[];
-            double texture[];
+            double* point;
+            double* indice;
+            double* texture;
     };
 }
 #endif // OBJECTDATA_H

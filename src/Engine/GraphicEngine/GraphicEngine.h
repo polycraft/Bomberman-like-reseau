@@ -1,10 +1,14 @@
 #ifndef GRAPHICENGINE_H
 #define GRAPHICENGINE_H
-
+#include <windows.h>
 #include <vector>
 #include <string>
 #include "Scene.h"
 #include "Camera.h"
+#include <SDL/SDL.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <string.h>
 
 using namespace std;
 

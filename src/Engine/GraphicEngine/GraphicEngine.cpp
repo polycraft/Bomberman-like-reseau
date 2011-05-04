@@ -1,7 +1,4 @@
-#include <SDL/SDL.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <string.h>
+
 
 #include "GraphicEngine.h"
 #include "Scene.h"
@@ -12,10 +9,20 @@ namespace Engine
 {
     GraphicEngine::GraphicEngine(string name,unsigned int w, unsigned int h,unsigned int nbCamera,unsigned int nbScene)
     {
+
         SDL_Init(SDL_INIT_VIDEO);
+		atexit(SDL_Quit);
 
         SDL_WM_SetCaption(name.c_str(),NULL);
         SDL_SetVideoMode(w, h, 32, SDL_OPENGL);
+
+		//D'autre options
+		/*glMatrixMode( GL_PROJECTION );
+		glLoadIdentity();
+		gluPerspective(70,(double)640/480,1,1000);
+		glEnable(GL_DEPTH_TEST);
+		SDL_WM_GrabInput(SDL_GRAB_ON);
+		SDL_ShowCursor(SDL_DISABLE);*/
 
         camera = new vector<Camera*>(nbCamera);
         scene = new vector<Scene*>(nbScene);
