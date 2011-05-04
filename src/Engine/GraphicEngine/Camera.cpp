@@ -20,11 +20,11 @@ namespace Engine
 		
 		//ObjectMOvable Init
 		transX=transY=transZ=0;
-		orientX=orientY=orientZ=0;
+		rotateX=rotateY=rotateZ=0;
 
     }
 
-	Camera(double x, double y, double z, double ciblex, double cibley, double ciblez, double dirx, double diry, double dirz)
+	Camera::Camera(double x, double y, double z, double ciblex, double cibley, double ciblez, double dirx, double diry, double dirz)
 	{
 		//Position de depart de la camera
         X= x;
@@ -41,7 +41,7 @@ namespace Engine
 		
 		//ObjectMOvable Init
 		transX=transY=transZ=0;
-		orientX=orientY=orientZ=0;
+		rotateX=rotateY=rotateZ=0;
 	}
 
     Camera::~Camera()
