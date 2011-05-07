@@ -23,7 +23,7 @@ namespace Engine
             /**
             Place la caméra dans l'affichage
             **/
-            void update();
+            void draw();
 
 		private:
 			double X;
@@ -35,7 +35,6 @@ namespace Engine
 			double dirX;
 			double dirY;
 			double dirZ;
-
     };
 }
 

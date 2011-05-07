@@ -49,7 +49,7 @@ namespace Engine
         //dtor
     }
 
-    void Camera::update()
+    void Camera::draw()
     {
 		//affichage camera
 		gluLookAt(X,Y,Z,cibleX,cibleY,cibleZ,dirX,dirY,dirZ);

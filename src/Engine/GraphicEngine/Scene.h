@@ -23,7 +23,7 @@ namespace Engine
             /**
             Met à jours l'affichage
             **/
-            void update();
+            void draw();
 
             /**
             Ajoute un objet

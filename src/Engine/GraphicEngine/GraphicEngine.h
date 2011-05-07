@@ -48,8 +48,8 @@ namespace Engine
             /**
             Met à jour l'affichage
             **/
-            void update(Camera *camera);
-            void update(unsigned int idCamera=0);
+            void draw(Camera *camera);
+            void draw(unsigned int idCamera=0);
         private:
             /**
             Liste des caméras à gérer

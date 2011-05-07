@@ -1,8 +1,21 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include "../util/windows.h"
+#ifdef WINDOWS
+  #include <windows.h>
+#endif
+
 #include "ObjectMovable.h"
 #include "ObjectData.h"
+#include "Meshe.h"
+
+#include <iostream>
+#include <string>
+#include <SDL/SDL.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <string.h>
 
 namespace Engine
 {
@@ -19,18 +32,19 @@ namespace Engine
             /**
             Met à jours l'affichage
             **/
-            void update();
+            void draw();
 
             /**
             Attache l'objet à des données d'un objet
             **/
-            void attach(ObjectData data);
+            void attach(Meshe* data);
+
         private:
             double xScale;
             double yScale;
             double zScale;
 
-            ObjectData* data;
+            Meshe* data;
     };
 }
 

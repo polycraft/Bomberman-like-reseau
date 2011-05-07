@@ -67,22 +67,33 @@ namespace Engine
         scene->addObject(object);
     }
 
-    void GraphicEngine::update(Camera *camera)
+    void GraphicEngine::draw(Camera *camera)
     {
-        //Mise à jours de la caméra
-        camera->update();
+		//on vide les buffer
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		//donne le type de matrice a utiliser
+		glMatrixMode( GL_MODELVIEW );
+		//charge la matrice identité
+		glLoadIdentity( );
+		
+		//Mise à jours de la caméra
+        camera->draw();
 
         //Mise à jours des scenes
         vector<Scene*>::iterator it;
 
         for ( it=scene->begin() ; it < scene->end(); it++ )
         {
-            (*it)->update();
+            (*it)->draw();
         }
+		//signale la fin du traçage
+		glFlush(); 
+		//actualise l'image
+		SDL_GL_SwapBuffers();
     }
 
-    void GraphicEngine::update(unsigned int idCamera)
+    void GraphicEngine::draw(unsigned int idCamera)
     {
-        this->update((*camera)[idCamera]);
+        this->draw((*camera)[idCamera]);
     }
 }//namespace Engine

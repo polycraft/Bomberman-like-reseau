@@ -17,13 +17,13 @@ namespace Engine
         delete object;
     }
 
-    void Scene::update()
+    void Scene::draw()
     {
         vector<Object*>::iterator it;
 
         for ( it=object->begin() ; it < object->end(); it++ )
         {
-            (*it)->update();
+			(*it)->draw();
         }
     }
 
