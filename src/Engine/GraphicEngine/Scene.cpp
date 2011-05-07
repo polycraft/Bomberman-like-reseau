@@ -8,20 +8,18 @@ namespace Engine
     Scene::Scene(typeScene type,unsigned int nbObject)
     {
         this->type=type;
-        object= new vector<Object*>(nbObject);
+        //object=vector<Object*>;
     }
 
     Scene::~Scene()
     {
         //todo Libérer chaque objet
-        delete object;
     }
 
     void Scene::draw()
     {
         vector<Object*>::iterator it;
-
-        for ( it=object->begin() ; it < object->end(); it++ )
+       for ( it=object.begin() ; it < object.end(); it++ )
         {
 			(*it)->draw();
         }
@@ -29,6 +27,6 @@ namespace Engine
 
     void Scene::addObject(Object *object)
     {
-        this->object->push_back(object);
+        this->object.push_back(object);
     }
 }

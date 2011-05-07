@@ -24,42 +24,40 @@ namespace Engine
 		SDL_WM_GrabInput(SDL_GRAB_ON);
 		SDL_ShowCursor(SDL_DISABLE);*/
 
-        camera = new vector<Camera*>(nbCamera);
-        scene = new vector<Scene*>(nbScene);
+        //camera =vector<Camera*>;
+       // scene = vector<Scene*>;
 
         /**
         Ajout d'une scene par defaut
         **/
-        scene->push_back(new Scene(TS_Static));
+        this->scene.push_back(new Scene(TS_Static));
     }
 
     GraphicEngine::~GraphicEngine()
     {
         //TODO libérer chaque scene et caméra
-        delete camera;
-        delete scene;
         SDL_Quit();
     }
 
     unsigned int GraphicEngine::addCamera(Camera *camera)
     {
-        this->camera->push_back(camera);
+        this->camera.push_back(camera);
 
         //Retourne l'id de la nouvelle camera
-        return this->camera->size()-1;
+        return this->camera.size()-1;
     }
 
     unsigned int GraphicEngine::addScene(Scene *scene)
     {
-        this->scene->push_back(scene);
+        this->scene.push_back(scene);
 
         //Retourne l'id de la nouvelle scene
-        return this->scene->size()-1;
+        return this->scene.size()-1;
     }
 
     void GraphicEngine::addSceneObject(Object *object,unsigned idScene)
     {
-        (*scene)[idScene]->addObject(object);
+        this->scene[idScene]->addObject(object);
     }
 
     void GraphicEngine::addSceneObject(Object *object,Scene *scene)
@@ -79,13 +77,23 @@ namespace Engine
 		//Mise à jours de la caméra
         camera->draw();
 
+			glBegin(GL_LINES);
+			glColor3ub(0,0,255);
+			glVertex3d(0,0,0);
+			glVertex3d(4,0,0);
+			glColor3ub(0,255,0);
+			glVertex3d(0,0,0);
+			glVertex3d(0,4,0);
+			glEnd();
         //Mise à jours des scenes
         vector<Scene*>::iterator it;
 
-        for ( it=scene->begin() ; it < scene->end(); it++ )
+        for ( it=scene.begin() ; it < scene.end(); it++ )
         {
             (*it)->draw();
         }
+
+
 		//signale la fin du traçage
 		glFlush(); 
 		//actualise l'image
@@ -94,6 +102,6 @@ namespace Engine
 
     void GraphicEngine::draw(unsigned int idCamera)
     {
-        this->draw((*camera)[idCamera]);
+        this->draw(this->camera[idCamera]);
     }
 }//namespace Engine

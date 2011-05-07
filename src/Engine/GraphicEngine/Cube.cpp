@@ -9,7 +9,7 @@ namespace Engine
 		this->nbPoint = 24;
 		
 		//creation des tableaux temporaires
-		/*double tempPoint[24] = {
+		double tempPoint[24] = {
 		x-height, y+height, z-height,
 		x-height, y-height, z-height,
 		x-height, y+height, z+height,
@@ -41,7 +41,7 @@ namespace Engine
 		for(int i = 0;i<this->nbIndice;i++)
 		{
 			this->indice[i] = tempIndice[i];
-		}*/
+		}
 
 	}
 

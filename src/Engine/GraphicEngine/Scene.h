@@ -34,7 +34,7 @@ namespace Engine
             /**
             Liste des objets à gérer
             **/
-            vector<Object*>* object;
+            vector<Object*> object;
 
             /**
             Type de scène

@@ -54,12 +54,12 @@ namespace Engine
             /**
             Liste des caméras à gérer
             **/
-            vector<Camera*>* camera;
+            vector<Camera*> camera;
 
             /**
             Liste des caméras à gérer
             **/
-            vector<Scene*>* scene;
+            vector<Scene*> scene;
     };
 }
 #endif // GRAPHICENGINE_H
