@@ -1,7 +1,13 @@
 #ifndef GRAPHICENGINE_H
 #define GRAPHICENGINE_H
-#include <windows.h>
+
+#include "../util/windows.h"
+#ifdef WINDOWS
+  #include <windows.h>
+#endif
+
 #include <vector>
+#include <iostream>
 #include <string>
 #include "Scene.h"
 #include "Camera.h"

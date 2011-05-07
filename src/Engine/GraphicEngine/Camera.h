@@ -1,6 +1,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-#include <windows.h>
+
+#include "../util/windows.h"
+#ifdef WINDOWS
+  #include <windows.h>
+#endif
 #include "ObjectMovable.h"
 #include <SDL/SDL.h>
 #include <GL/gl.h>
