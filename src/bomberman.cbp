@@ -17,7 +17,8 @@
 				<Linker>
 					<Add library="SDL" />
 					<Add library="GL" />
-					<Add library="fmodex64-4.34.00" />
+					<Add library="/usr/local/lib/libfmodex-4.34.02.so" />
+					<Add library="GLU" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -39,14 +40,31 @@
 		<Unit filename="Engine/EventEngine/EventEngine.cpp" />
 		<Unit filename="Engine/EventEngine/EventEngine.h" />
 		<Unit filename="Engine/EventEngine/IEventListener.h" />
+		<Unit filename="Engine/Exception/Exception.h" />
 		<Unit filename="Engine/Exception/ExceptionBadRessource.cpp" />
 		<Unit filename="Engine/Exception/ExceptionBadRessource.h" />
+		<Unit filename="Engine/Exception/ExceptionConnect.cpp" />
+		<Unit filename="Engine/Exception/ExceptionConnect.h" />
+		<Unit filename="Engine/Exception/ExceptionInvalidSocket.cpp" />
+		<Unit filename="Engine/Exception/ExceptionInvalidSocket.h" />
+		<Unit filename="Engine/Exception/ExceptionListen.cpp" />
+		<Unit filename="Engine/Exception/ExceptionListen.h" />
+		<Unit filename="Engine/Exception/ExceptionMutex.cpp" />
+		<Unit filename="Engine/Exception/ExceptionMutex.h" />
 		<Unit filename="Engine/Exception/ExceptionNoFileFound.cpp" />
 		<Unit filename="Engine/Exception/ExceptionNoFileFound.h" />
 		<Unit filename="Engine/Exception/ExceptionNoLoader.cpp" />
 		<Unit filename="Engine/Exception/ExceptionNoLoader.h" />
 		<Unit filename="Engine/Exception/ExceptionNoRessource.cpp" />
 		<Unit filename="Engine/Exception/ExceptionNoRessource.h" />
+		<Unit filename="Engine/Exception/ExceptionRecv.cpp" />
+		<Unit filename="Engine/Exception/ExceptionRecv.h" />
+		<Unit filename="Engine/Exception/ExceptionSelect.cpp" />
+		<Unit filename="Engine/Exception/ExceptionSelect.h" />
+		<Unit filename="Engine/Exception/ExceptionSend.cpp" />
+		<Unit filename="Engine/Exception/ExceptionSend.h" />
+		<Unit filename="Engine/Exception/ExceptionUnknowHost.cpp" />
+		<Unit filename="Engine/Exception/ExceptionUnknowHost.h" />
 		<Unit filename="Engine/GraphicEngine/Camera.cpp" />
 		<Unit filename="Engine/GraphicEngine/Camera.h" />
 		<Unit filename="Engine/GraphicEngine/GraphicEngine.cpp" />
@@ -70,6 +88,10 @@
 		<Unit filename="Engine/Loader/LoaderSound.h" />
 		<Unit filename="Engine/ManagerRessource.cpp" />
 		<Unit filename="Engine/ManagerRessource.h" />
+		<Unit filename="Engine/NetworkEngine/IObserverSocketAccept.h" />
+		<Unit filename="Engine/NetworkEngine/IObserverSocketRecv.h" />
+		<Unit filename="Engine/NetworkEngine/Socket.cpp" />
+		<Unit filename="Engine/NetworkEngine/Socket.h" />
 		<Unit filename="Engine/Ressource.cpp" />
 		<Unit filename="Engine/Ressource.h" />
 		<Unit filename="Engine/Sound.cpp" />
@@ -78,6 +100,9 @@
 		<Unit filename="Engine/SoundEngine/SoundEngine.h" />
 		<Unit filename="Engine/test/testEngineSound.cpp" />
 		<Unit filename="Engine/test/testEngineSound.h" />
+		<Unit filename="Engine/util/Threadable.cpp" />
+		<Unit filename="Engine/util/Threadable.h" />
+		<Unit filename="Engine/util/windows.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
