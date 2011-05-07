@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Object.h"
+#include "ObjectMovable.h"
 
 using namespace std;
 
@@ -14,10 +15,11 @@ namespace Engine
         TS_Dynamique
     } typeScene;
 
-    class Scene
+    class Scene : public ObjectMovable
     {
         public:
             Scene(typeScene type,unsigned int nbObject=50);
+
             virtual ~Scene();
 
             /**
@@ -45,6 +47,8 @@ namespace Engine
             Visibilité ( visible par defaut )
             **/
 			bool visible;
+
+
 
     };
 }
