@@ -2,12 +2,12 @@
 
 namespace Engine
 {
-ExceptionBadRessource::ExceptionBadRessource()
+ExceptionBadRessource::ExceptionBadRessource() throw()
 {
     //ctor
 }
 
-ExceptionBadRessource::~ExceptionBadRessource()
+ExceptionBadRessource::~ExceptionBadRessource() throw()
 {
     //dtor
 }

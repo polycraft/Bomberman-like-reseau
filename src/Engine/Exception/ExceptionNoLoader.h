@@ -2,7 +2,6 @@
 #define EXCEPTIONNOLOADER_H
 
 #include <exception>
-#include <string>
 
 namespace Engine
 {

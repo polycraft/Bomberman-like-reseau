@@ -1,0 +1,252 @@
+#ifndef SOCKET_H
+#define SOCKET_H
+
+#include <string>
+#include <vector>
+#include "../util/Threadable.h"
+
+namespace Engine
+{
+    class Socket;
+}
+
+#include "IObserverSocketAccept.h"
+#include "IObserverSocketRecv.h"
+
+#include "../util/windows.h"
+#ifdef WINDOWS /* si vous êtes sous Windows */
+
+#include <winsock2.h>
+
+#elif defined (linux) /* si vous êtes sous Linux */
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h> /* close */
+#include <netdb.h> /* gethostbyname */
+#define INVALID_SOCKET -1
+#define SOCKET_ERROR -1
+#define closesocket(s) close(s)
+typedef int SOCKET;
+typedef struct sockaddr_in SOCKADDR_IN;
+typedef struct sockaddr SOCKADDR;
+typedef struct in_addr IN_ADDR;
+
+#else /* sinon vous êtes sur une plateforme non supportée */
+
+#error not defined for this platform
+
+#endif
+
+using namespace std;
+
+
+namespace Engine
+{
+typedef enum
+{
+    TCP,
+    UDP
+} ETypeProtocole;
+
+typedef enum
+{
+    Server,
+    Client
+} ETypeConnection;
+
+/**
+Gestion des sockets
+**/
+class Socket : public Threadable
+{
+    public:
+        /**
+        Constructeur
+        Initialise le type de connexion
+        **/
+        Socket(char *address,unsigned int port,ETypeProtocole protocole=TCP,ETypeConnection connection=Client);
+
+        /**
+        Destructeur
+        Deconnecte le socket
+        **/
+        virtual ~Socket();
+
+        /**
+        Démare le thread de la socket
+        **/
+        void runThread(bool *close);
+
+        /**
+        Vérifie si la connexion est établit
+        **/
+        bool hasConnect();
+
+        /**
+        Retourne la taille du buffer de reception
+        **/
+        unsigned int getSizeBufferRecv();
+
+        /**
+        Modifie la taille du buffer de reception
+        **/
+        void setSizeBufferRecv(unsigned int val);
+
+        /**
+        Retourne la taille du buffer de reception
+        **/
+        unsigned int getSizeBufferSend();
+
+        /**
+        Modifie la taille du buffer de reception
+        **/
+        void setSizeBufferSend(unsigned int val);
+
+        /**
+        Envoie une donnéee
+        **/
+        void sendData(const char *data,unsigned int size);
+        void sendData(string &data);
+
+        /**
+        Reçoit une chaine
+        **/
+        void recvData();
+
+        /**
+        #Gestion des observables
+        **/
+            /**
+            Ajoute un Observateur de l'action recevoir
+            **/
+            void addObserverRecv(IObserverSocketRecv* observer);
+
+            /**
+            Ajoute un Observateur de l'action accept
+            **/
+            void addObserverAccept(IObserverSocketAccept* observer);
+
+            /**
+            Notifie tous les observateurs de l'action recevoir
+            **/
+            void notifyRecv(char*);
+
+            /**
+            Notifie tous les observateurs de l'action Accept
+            **/
+            void notifyAccept(Socket *);
+
+        /**
+        #Fin gestion des observables
+        **/
+
+    private:
+        /**
+        #Gestion des sockets
+        **/
+            /**
+            Crée une socket à partir d'une autre socket
+            **/
+            Socket(SOCKET sock,ETypeConnection connection);
+
+            /**
+            Identifiant de socket
+            **/
+            SOCKET sock;
+            /**
+            Etat de la connexion
+            **/
+            bool isConnect;
+
+            /**
+            Etat de la configuration
+            **/
+            bool isConfig;
+
+            /**
+            Buffer de reception
+            **/
+            char *bufferRecv;
+
+            /**
+            Buffer de d'emission
+            **/
+            char *bufferSend;
+
+            /**
+            Taille du buffer de reception
+            **/
+            unsigned int sizeBufferRecv;
+
+            /**
+            Taille du buffer d'emission
+            **/
+            unsigned int sizeBufferSend;
+
+            /**
+            Information avec la machine connecté
+            **/
+            SOCKADDR_IN infoConnection;
+
+            /**
+            Type de connexion
+            **/
+            ETypeConnection connection;
+
+            /**
+            Type de protocole
+            **/
+            ETypeProtocole protocole;
+        /**
+        #Fin gestion des sockets
+        **/
+
+        /**
+        #Gestion des observables
+        **/
+            /**
+            Observeur de l'action recevoir
+            **/
+            vector<IObserverSocketRecv*> observerRecv;
+
+            /**
+            Observateur de l'action accept
+            **/
+            vector<IObserverSocketAccept*> observerAccept;
+        /**
+        #Fin gestion des observables
+        **/
+
+        #ifdef WINDOWS
+            /**
+            #Gestionnaire de socket windows
+            **/
+                /**
+                Initialise le gestionnaire de socket
+                **/
+                static void init();
+
+                /**
+                Ferme le gestionnaire de socket
+                **/
+                static void end();
+
+                /**
+                Etat du gestionnaire de socket
+                **/
+                static bool isInit;
+                /**
+                Nombre de socket créé
+                **/
+                static unsigned int nbSocket;
+            /**
+            #Fin gestionnaire de socket windows
+            **/
+        #endif
+
+};
+}
+#endif // SOCKET_H
