@@ -1,13 +1,10 @@
 #ifndef WINDOWS_H
 #define WINDOWS_H
 
-
-class windows
-{
-    public:
-        windows() {}
-    protected:
-    private:
-};
+#ifdef WIN32
+ #define WINDOWS
+#elif WIN64
+ #define WINDOWS
+#endif
 
 #endif // WINDOWS_H
