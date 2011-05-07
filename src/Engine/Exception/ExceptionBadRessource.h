@@ -6,14 +6,12 @@
 
 namespace Engine
 {
-class ExceptionBadRessource
+class ExceptionBadRessource : public std::exception
 {
     public:
-        ExceptionBadRessource();
-        virtual ~ExceptionBadRessource();
+        ExceptionBadRessource()throw();
+        virtual ~ExceptionBadRessource()throw();
         virtual const char* what() const throw();
-    protected:
-    private:
 };
 }
 #endif // EXCEPTIONBADRESSOURCE_H
