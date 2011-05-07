@@ -40,6 +40,12 @@ namespace Engine
             Type de scène
             **/
             typeScene type;
+
+			            /**
+            Visibilité ( visible par defaut )
+            **/
+			bool visible;
+
     };
 }
 #endif // SCENE_H

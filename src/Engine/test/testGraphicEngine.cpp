@@ -15,8 +15,9 @@ int testGraphicEngine()
 	
 	engine.addSceneObject(objet1,scene);
 
+	
 
-	engine.draw(camera);
+
 
 	
 	int continuer = 1;
@@ -32,6 +33,8 @@ int testGraphicEngine()
 				continuer = 0;
 				break;
 		}
+		engine.draw(camera);
+		objet1->translation(0,0,0);
 	}
 	return 0;
 }

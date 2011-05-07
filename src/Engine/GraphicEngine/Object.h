@@ -43,7 +43,14 @@ namespace Engine
             double xScale;
             double yScale;
             double zScale;
+			/**
+            Visibilité ( visible par defaut )
+            **/
+			bool visible;
 
+			/**
+            Les Datas
+            **/
             Meshe* data;
     };
 }

@@ -20,12 +20,14 @@ namespace Engine
         protected:
             ObjectMovable();//Classe abstraite
         protected:
+
             double transX;
             double rotateX;
             double transY;
             double rotateY;
             double transZ;
             double rotateZ;
+
     };
 }
 #endif // OBJECTMOVABLE_H

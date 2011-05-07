@@ -31,7 +31,7 @@ namespace Engine
 
 		//crée les tableaux
 		this->point = new GLfloat[24];
-		this->indice = new GLuint[36];
+		indice = new GLuint[36];
 
 		//puis enregistre
 		for(int i = 0;i<this->nbPoint;i++)

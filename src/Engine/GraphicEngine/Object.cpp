@@ -4,7 +4,7 @@ namespace Engine
 {
     Object::Object()
     {
-        //ctor
+        this->visible = true;
     }
 
     Object::~Object()
@@ -19,7 +19,15 @@ namespace Engine
 
     void Object::draw()
     {
+		//Translation / rotations de l'objet
+		glPushMatrix();
+		glTranslated(transX,transY,transZ);
+		glRotated(rotateX,1,0,0);
+		glRotated(rotateY,0,1,0);
+		glRotated(rotateZ,0,0,1);
+
 		//on prepare le traçage des triangles
+
 		glEnableClientState( GL_VERTEX_ARRAY );
 
 		glVertexPointer( 3, GL_FLOAT, 0, this->data->point );
@@ -28,6 +36,8 @@ namespace Engine
 		glDrawElements( GL_TRIANGLES, this->data->nbIndice , GL_UNSIGNED_INT, data->indice );
 
 		glDisableClientState( GL_VERTEX_ARRAY );
+
+		glPopMatrix();
     }
 
 	void Object::attach(Meshe* data)

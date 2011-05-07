@@ -4,7 +4,8 @@ namespace Engine
 {
     ObjectMovable::ObjectMovable()
     {
-        //ctor
+		transX=transY=transZ=rotateX=rotateY=rotateZ=0;
+		//ctor
     }
 
     ObjectMovable::~ObjectMovable()
@@ -14,11 +15,15 @@ namespace Engine
 
     void ObjectMovable::rotate(double x,double y,double z)
     {
-
+		rotateX += x;
+		rotateY += y;
+		rotateZ += z;
     }
 
     void ObjectMovable::translation(double x,double y,double z)
     {
-
+		transX += x;
+		transY += y;
+		transZ += z;
     }
 }

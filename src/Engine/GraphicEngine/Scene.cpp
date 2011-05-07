@@ -8,6 +8,7 @@ namespace Engine
     Scene::Scene(typeScene type,unsigned int nbObject)
     {
         this->type=type;
+		this->visible = true;
         //object=vector<Object*>;
     }
 
