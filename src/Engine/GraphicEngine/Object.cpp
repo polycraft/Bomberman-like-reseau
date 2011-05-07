@@ -22,10 +22,10 @@ namespace Engine
 		//on prepare le traçage des triangles
 		glEnableClientState( GL_VERTEX_ARRAY );
 
-		glVertexPointer( 3, GL_FLOAT, 0, data->point );
+		glVertexPointer( 3, GL_FLOAT, 0, this->data->point );
 
 
-		glDrawElements( GL_TRIANGLES, data->nbIndice , GL_UNSIGNED_INT, data->indice );
+		glDrawElements( GL_TRIANGLES, this->data->nbIndice , GL_UNSIGNED_INT, data->indice );
 
 		glDisableClientState( GL_VERTEX_ARRAY );
     }
