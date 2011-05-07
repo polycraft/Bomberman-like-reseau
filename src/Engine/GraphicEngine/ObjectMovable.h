@@ -17,6 +17,16 @@ namespace Engine
             Réalise une translation sur l'objet
             **/
             void translation(double x,double y,double z);
+
+            /**
+            Enregistre les coordonnées precise de l'objet
+            **/
+			void setCoordonnes(double x,double y,double z);
+            /**
+            Enregistre l'angle
+            **/
+			void setRotation(double x,double y,double z);
+
         protected:
             ObjectMovable();//Classe abstraite
         protected:

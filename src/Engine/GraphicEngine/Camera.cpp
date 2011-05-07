@@ -52,13 +52,14 @@ namespace Engine
     void Camera::draw()
     {
 		//affichage camera
+
 		gluLookAt(X,Y,Z,cibleX,cibleY,cibleZ,dirX,dirY,dirZ);
 
 		//modification de la matrice
-		glTranslated(transX,transY,transZ);
+		/*glTranslated(transX,transY,transZ);
 		glRotated(rotateX,1,0,0);
 		glRotated(rotateY,0,1,0);
-		glRotated(rotateZ,0,0,1);
+		glRotated(rotateZ,0,0,1);*/
 
     }
 }

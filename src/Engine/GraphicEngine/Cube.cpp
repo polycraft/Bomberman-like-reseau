@@ -4,7 +4,9 @@ namespace Engine
 	Cube::Cube(double height)
 	{
 		double x,y,z;
-		x=y=z=0;
+		x=0;
+		y=0;
+		z=0;
 		this->nbIndice = 36;
 		this->nbPoint = 24;
 		

@@ -16,6 +16,11 @@ namespace Engine
         SDL_WM_SetCaption(name.c_str(),NULL);
         SDL_SetVideoMode(w, h, 32, SDL_OPENGL);
 
+		//definition du mode de prjection
+		glMatrixMode( GL_PROJECTION );
+		glLoadIdentity();
+		gluPerspective(70,(double)w/h,1,1000);
+		glEnable(GL_DEPTH_TEST);
 		//D'autre options
 		/*glMatrixMode( GL_PROJECTION );
 		glLoadIdentity();
@@ -73,6 +78,7 @@ namespace Engine
 		glMatrixMode( GL_MODELVIEW );
 		//charge la matrice identité
 		glLoadIdentity( );
+
 		
 		//Mise à jours de la caméra
         camera->draw();

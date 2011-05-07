@@ -26,4 +26,18 @@ namespace Engine
 		transY += y;
 		transZ += z;
     }
+
+	void ObjectMovable::setRotation(double x,double y,double z)
+	{
+		rotateX = x;
+		rotateY = y;
+		rotateZ = z;
+	}
+
+		void ObjectMovable::setCoordonnes(double x,double y,double z)
+	{
+		transX = x;
+		transY = y;
+		transZ = z;
+	}
 }
