@@ -17,7 +17,22 @@ Threadable::~Threadable()
             pthread_exit(NULL);
             throw ExceptionMutex();
         }
+        hasRun=false;
     }
+}
+
+void Threadable::stop()
+{
+    vector<Thread*>::iterator it = threads.begin();
+    while(threads.size()!=0)
+    {
+        Threadable::join(*(threads.begin()));
+    }
+    /*for (vector<Thread*>::iterator it = threads.begin(); it!=threads.end(); ++it)
+    {
+        if(*it!=NULL)
+            Threadable::join(*it);
+    }*/
 }
 
 Thread *Threadable::run(bool* stop)
@@ -41,7 +56,7 @@ Thread *Threadable::run(bool* stop)
 
     pthread_create (t, NULL, Threadable::entryPoint, (void*)thread);
 
-
+    threads.push_back(thread);
 
     return thread;
 }
@@ -50,6 +65,17 @@ void* Threadable::entryPoint(void* arg)
 {
     Thread *t=(Thread*)arg;
     t->instance->runThread(t->stop);
+
+    vector<Thread*>::iterator it;
+
+    for (it = t->instance->threads.begin(); it!=t->instance->threads.end(); ++it)
+    {
+        if(*it==t)
+        {
+            t->instance->threads.erase(it);
+            break;
+        }
+    }
 
     delete t->t;
     delete t;
@@ -73,9 +99,51 @@ void Threadable::V()
     }
 }
 
+void Threadable::initMutex(pthread_mutex_t &mutex)
+{
+    if (pthread_mutex_init(&(mutex), NULL))
+    {
+        pthread_exit(NULL);
+        throw ExceptionMutex();
+    }
+}
+
+void Threadable::stopMutex(pthread_mutex_t &mutex)
+{
+
+    if (pthread_mutex_destroy(&(mutex)))
+    {
+        pthread_exit(NULL);
+        throw ExceptionMutex();
+    }
+}
+
+
+void Threadable::P(pthread_mutex_t &mutex)
+{
+    if (pthread_mutex_lock(&(mutex)))
+    {
+        pthread_exit(NULL);
+        throw ExceptionMutex();
+    }
+}
+
+void Threadable::V(pthread_mutex_t &mutex)
+{
+    if (pthread_mutex_unlock(&(mutex)))
+    {
+        pthread_exit(NULL);
+        throw ExceptionMutex();
+    }
+}
+
 void Threadable::join(struct Thread* t)
 {
-    pthread_join( *(t->t), NULL);
+    if(t!=NULL)
+    {
+        pthread_join( *(t->t), NULL);
+    }
 }
 }
+
 

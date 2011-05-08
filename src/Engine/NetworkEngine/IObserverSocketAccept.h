@@ -12,8 +12,8 @@ namespace Engine
 class IObserverSocketAccept
 {
     public:
-        virtual void update(Socket*)=0;
-        virtual ~IObserverSocketAccept()=0;
+        virtual void updateAccept(Socket*)=0;
+        virtual ~IObserverSocketAccept(){};
     protected:
     private:
 };
