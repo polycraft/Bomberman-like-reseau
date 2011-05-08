@@ -67,8 +67,12 @@
 		<Unit filename="Engine/Exception/ExceptionUnknowHost.h" />
 		<Unit filename="Engine/GraphicEngine/Camera.cpp" />
 		<Unit filename="Engine/GraphicEngine/Camera.h" />
+		<Unit filename="Engine/GraphicEngine/Cube.cpp" />
+		<Unit filename="Engine/GraphicEngine/Cube.h" />
 		<Unit filename="Engine/GraphicEngine/GraphicEngine.cpp" />
 		<Unit filename="Engine/GraphicEngine/GraphicEngine.h" />
+		<Unit filename="Engine/GraphicEngine/Meshe.cpp" />
+		<Unit filename="Engine/GraphicEngine/Meshe.h" />
 		<Unit filename="Engine/GraphicEngine/Object.cpp" />
 		<Unit filename="Engine/GraphicEngine/Object.h" />
 		<Unit filename="Engine/GraphicEngine/ObjectData.cpp" />
@@ -100,6 +104,8 @@
 		<Unit filename="Engine/SoundEngine/SoundEngine.h" />
 		<Unit filename="Engine/test/testEngineSound.cpp" />
 		<Unit filename="Engine/test/testEngineSound.h" />
+		<Unit filename="Engine/test/testGraphicEngine.cpp" />
+		<Unit filename="Engine/test/testGraphicEngine.h" />
 		<Unit filename="Engine/util/Threadable.cpp" />
 		<Unit filename="Engine/util/Threadable.h" />
 		<Unit filename="Engine/util/windows.h" />
