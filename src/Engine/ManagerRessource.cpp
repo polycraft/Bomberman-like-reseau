@@ -8,6 +8,7 @@
 #include "Loader/LoaderMusic.h"
 #include "Loader/LoaderSample.h"
 #include "Loader/LoaderTexture.h"
+#include "Loader/LoaderObject.h"
 
 #include "Ressource.h"
 #include "Exception/ExceptionNoLoader.h"
@@ -38,6 +39,10 @@ namespace Engine
 		_addLoader("bmp",loaderTexture);
 		_addLoader("jpg",loaderTexture);
 		_addLoader("png",loaderTexture);
+
+		//loader Objet
+		Loader *loaderObject=new LoaderObject();
+		_addLoader("obj",loaderObject);
     }
 
     ManagerRessource::~ManagerRessource()

@@ -2,6 +2,11 @@
 
 namespace Engine
 {
+	Meshe::Meshe()
+	{
+
+	}
+
 	Meshe::Meshe(Texture* texture)
 	{
 		this->noTexture = texture->getTexture();
@@ -15,7 +20,18 @@ namespace Engine
 
 	Meshe::~Meshe()
 	{
+
+	}
+
+	void Meshe::setTexture(Texture* texture)
+	{
+		this->noTexture = texture->getTexture();
 	}
 	
+		void Meshe::setTexture(Ressource* texture)
+	{
+		 Texture *temp = Ressource::getRessource<Texture>(*texture);
+		 this->noTexture = temp->getTexture();
+	}
 
 }

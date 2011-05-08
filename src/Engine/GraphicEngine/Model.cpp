@@ -2,12 +2,7 @@
 
 namespace Engine
 {
-	Model::Model(vector<double> point, vector<double> texture, vector<int> indice, Ressource *noTexture):  Meshe(noTexture)
-	{
-		this->construireModel(point,texture,indice);
-	}
-
-	Model::Model(vector<double> point, vector<double> texture, vector<int> indice, Texture *noTexture):  Meshe(noTexture)
+	Model::Model(string &name, vector<double> point, vector<double> texture, vector<int> indice) : Ressource(name)
 	{
 		this->construireModel(point,texture,indice);
 	}
@@ -41,5 +36,5 @@ namespace Engine
 			this->texture[i] = texture[i];
 		}
 	}
-	}
+	
 }

@@ -20,9 +20,14 @@ namespace Engine
     {
 		friend class Object; //pour eviter des getter setter
         public:
+			Meshe();//pour les Model dont la texture est appliqué apres
             Meshe(Texture* texture);
 			Meshe(Ressource* texture);
-            virtual ~Meshe();
+			virtual ~Meshe();
+			//pour changer les textures
+			void setTexture(Texture* texture);
+			void setTexture(Ressource* texture);
+
 
         protected:
             GLfloat* point;
@@ -31,6 +36,8 @@ namespace Engine
 			int nbIndice;
             GLfloat* texture;
 			int nbTexture;
+
+			//no de sa texture
 			GLuint noTexture;
 
 

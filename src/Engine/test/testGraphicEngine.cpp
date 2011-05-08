@@ -2,7 +2,7 @@
 using namespace Engine;
 int testGraphicEngine()
 {
-	GraphicEngine engine("TestGraphicEngine",400, 400,1,1);
+	GraphicEngine engine("TestGraphicEngine",800, 600,1,1);
 	Camera *camera = new Camera(6, 0, 6, 0, 0, 0, 0, 0, 1);
 	engine.addCamera(camera);
 
@@ -16,6 +16,10 @@ int testGraphicEngine()
 
 	//
 
+	//test de model
+	Ressource *object[1];
+	object[0] =  ManagerRessource::getRessource("src/ressource/object/bomberman.obj");
+	//
 
 	Object *objet1= new Object();
 	objet1->attach(new Cube(1,texture[0]));
@@ -23,14 +27,19 @@ int testGraphicEngine()
 	Object *objet2= new Object();
 	objet2->attach(new Cube(2, texture[0]));
 
-	
+	Object *objet3 = new Object();
+	objet3->attach(object[0], texture[0]);
+	objet3->setScale(0.05,0.05,0.05);
+	objet3->rotate(0,0,45);
+
 	engine.addSceneObject(objet1,scene1);
 	engine.addSceneObject(objet2,scene1);
+	engine.addSceneObject(objet3,scene1);
 
 	
 
-	objet1->translation(0,2,0);
-	objet2->translation(0,-2,0);
+	objet1->translation(-2,2,0);
+	objet2->translation(-5,-2,0);
 	
 	int continuer = 1;
 	SDL_Event event;
@@ -48,10 +57,10 @@ int testGraphicEngine()
 				switch (event.key.keysym.sym)
 				{
 					case SDLK_UP: 
-					objet1->translation(-0.1,0,0);
+					objet3->translation(-0.1,0,0);
 					break;
 					case SDLK_DOWN: 
-					objet1->translation(0.1,0,0);
+					objet3->translation(0.1,0,0);
 					break;
 					case SDLK_LEFT: 
 					scene1->translation(0,-0.1,0);

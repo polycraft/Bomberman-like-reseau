@@ -4,6 +4,9 @@ namespace Engine
 {
     Object::Object()
     {
+		xScale = 1;
+		yScale = 1;
+		zScale = 1;
         this->visible = true;
     }
 
@@ -12,19 +15,32 @@ namespace Engine
         //dtor
     }
 
+    void Object::setScale(double x,double y,double z)
+    {
+		    xScale = x;
+            yScale = y;
+            zScale = y;
+    }
+
     void Object::scale(double x,double y,double z)
     {
-
+		xScale += x;
+        yScale += y;
+        zScale += z;
     }
 
     void Object::draw()
     {
-		//Translation / rotations de l'objet
+		//Nouveau Repere
 		glPushMatrix();
+		//scaling / Translation / rotations de l'objet
+
 		glTranslated(transX,transY,transZ);
 		glRotated(rotateX,1,0,0);
 		glRotated(rotateY,0,1,0);
 		glRotated(rotateZ,0,0,1);
+		glScalef( xScale, yScale, zScale );
+
 
 		//La couleur Ambiante de l'objet est mise au BLANC ( sinon vert par defaut)
 		glColor3ub(255,255,255);
@@ -47,12 +63,26 @@ namespace Engine
 		glDisableClientState( GL_VERTEX_ARRAY );
 		//on arrete le traçage de texture
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
+		//Nouveau Repere detruit
 		glPopMatrix();
     }
 
 	void Object::attach(Meshe* data)
 	{
 		this->data = data;
+	}
+
+	void Object::attach(Ressource* model, Texture* texture)
+	{
+		Meshe *temp = Ressource::getRessource<Model>(*model);
+		this->data = temp;
+		this->data->setTexture(texture);
+	}
+
+	void Object::attach(Ressource* model, Ressource* texture)
+	{
+		Meshe *temp = Ressource::getRessource<Model>(*model);
+		this->data = temp;
+		this->data->setTexture(texture);
 	}
 }

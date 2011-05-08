@@ -3,13 +3,13 @@
 #include "Meshe.h"
 #include <vector>
 
+
 namespace Engine
 {
-    class Model : public Meshe
+    class Model : public Meshe ,public Ressource
     {
         public:
-            Model(vector<double> point, vector<double> texture, vector<int> indice, Ressource *noTexture);
-			Model(vector<double> point, vector<double> texture, vector<int> indice, Texture *noTexture);
+            Model(string &name, vector<double> point, vector<double> texture, vector<int> indice);
             ~Model();
 		private:
 			void construireModel(vector<double> point, vector<double> texture, vector<int> indice);

@@ -9,7 +9,7 @@
 #include "ObjectMovable.h"
 #include "ObjectData.h"
 #include "Meshe.h"
-
+#include "Model.h"
 #include <iostream>
 #include <string>
 #include <SDL/SDL.h>
@@ -25,9 +25,14 @@ namespace Engine
             Object();
             virtual ~Object();
             /**
-            Redimensionne l'objet
+            Redimensionne l'objet => donne sa taille
             **/
-            void scale(double x,double y,double z);
+            void setScale(double x,double y,double z);
+
+			/**
+            Redimensionne l'objet => bouge sa taille
+            **/
+			 void scale(double x,double y,double z);
 
             /**
             Met à jours l'affichage
@@ -35,9 +40,14 @@ namespace Engine
             void draw();
 
             /**
-            Attache l'objet à des données d'un objet
+            Attache l'objet à des données d'un objet (meshe)
             **/
             void attach(Meshe* data);
+            /**
+            Attache l'objet à une ressource ( un model ) / donne sa texture
+            **/
+			void attach(Ressource* model, Texture* texture);
+			void attach(Ressource* model, Ressource* texture);
 
         private:
             double xScale;
