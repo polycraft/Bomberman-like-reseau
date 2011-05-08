@@ -9,11 +9,19 @@ int testGraphicEngine()
 	Scene *scene1 = new Scene(Engine::TS_Static);
 	engine.addScene(scene1);
 
+	//test de texture
+	Ressource *texture[2];
+	texture[0] = ManagerRessource::getRessource("src/ressource/texture/test.jpg");
+	//texture[1] = ManagerRessource::getRessource("src/ressource/texture/durt_01.jpg");
+
+	//
+
+
 	Object *objet1= new Object();
-	objet1->attach(new Cube(1));
+	objet1->attach(new Cube(1,texture[0]));
 
 	Object *objet2= new Object();
-	objet2->attach(new Cube(2));
+	objet2->attach(new Cube(2, texture[0]));
 
 	
 	engine.addSceneObject(objet1,scene1);

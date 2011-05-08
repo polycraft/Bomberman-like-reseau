@@ -26,6 +26,9 @@ namespace Engine
 		glRotated(rotateY,0,1,0);
 		glRotated(rotateZ,0,0,1);
 
+		//La couleur Ambiante de l'objet est mise au BLANC ( sinon vert par defaut)
+		glColor3ub(255,255,255);
+
 		//Texture a appliquer
 		glBindTexture(GL_TEXTURE_2D,this->data->noTexture);
 
