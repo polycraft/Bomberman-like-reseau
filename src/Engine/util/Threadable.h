@@ -6,26 +6,30 @@
 
 namespace Engine
 {
+    struct Thread;
 class Threadable
 {
     public:
         Threadable();
         virtual ~Threadable();
-        pthread_t &run(bool* stop);
+        struct Thread *run(bool* stop);
         static void *entryPoint(void*);
+        static void join(struct Thread*);
     protected:
         void P();
         void V();
         virtual void runThread(bool *stop)=0;
+        bool hasRun;
     private:
         pthread_mutex_t mutex;
 };
 
-struct Thread
+typedef struct Thread
 {
     bool* stop;
     Threadable *instance;
-};
+    pthread_t *t;
+} Thread;
 }
 
 #endif // THREADABLE_H
