@@ -106,6 +106,10 @@
 		<Unit filename="Engine/test/testEngineSound.h" />
 		<Unit filename="Engine/test/testGraphicEngine.cpp" />
 		<Unit filename="Engine/test/testGraphicEngine.h" />
+		<Unit filename="Engine/test/testSocket.cpp" />
+		<Unit filename="Engine/test/testSocket.h" />
+		<Unit filename="Engine/test/testThreadable.cpp" />
+		<Unit filename="Engine/test/testThreadable.h" />
 		<Unit filename="Engine/util/Threadable.cpp" />
 		<Unit filename="Engine/util/Threadable.h" />
 		<Unit filename="Engine/util/windows.h" />
