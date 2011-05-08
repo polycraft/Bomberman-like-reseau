@@ -6,8 +6,8 @@ namespace Engine
 class IObserverSocketRecv
 {
     public:
-        virtual void update(char*)=0;
-        virtual ~IObserverSocketRecv()=0;
+        virtual void updateRecv(Socket *,const char*,int size)=0;
+        virtual ~IObserverSocketRecv(){};
     protected:
     private:
 };

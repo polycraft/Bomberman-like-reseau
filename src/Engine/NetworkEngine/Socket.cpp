@@ -2,10 +2,39 @@
 #include <stdlib.h>
 
 #include "../Exception/Exception.h"
+#include <iostream>
 
 namespace Engine
 {
-Socket::Socket(char *address,unsigned int port,ETypeProtocole protocole,ETypeConnection connection)
+Socket::Socket(const char *address,unsigned int port,ETypeProtocole protocole,ETypeConnection connection)
+{
+    initSocket(address,port,protocole,connection);
+
+    initMutex(mutex1);
+}
+
+Socket::Socket(unsigned int port,ETypeProtocole protocole)
+{
+    initSocket(NULL,port,protocole,TC_Server);
+
+    initMutex(mutex1);
+}
+
+Socket::Socket(SOCKET sock,SOCKADDR_IN csin,ETypeConnection connection)
+{
+    this->sock=sock;
+    this->connection=connection;
+    this->protocole=TP_TCP;
+    this->infoConnection=csin;
+
+    this->isConnect=true;
+
+    initBuffer();
+
+    initMutex(mutex1);
+}
+
+void Socket::initSocket(const char *address,unsigned int port,ETypeProtocole protocole,ETypeConnection connection)
 {
 #ifdef WINDOWS
     Socket::init();
@@ -18,10 +47,10 @@ Socket::Socket(char *address,unsigned int port,ETypeProtocole protocole,ETypeCon
 
     switch(protocole)
     {
-    case TCP:
+    case TP_TCP:
         this->sock=socket(AF_INET, SOCK_STREAM, 0);
         break;
-    case UDP:
+    case TP_UDP:
         this->sock=socket(AF_INET, SOCK_DGRAM, 0);
         break;
     }
@@ -37,7 +66,7 @@ Socket::Socket(char *address,unsigned int port,ETypeProtocole protocole,ETypeCon
 
     switch(connection)
     {
-    case Server:
+    case TC_Server:
         infoConnection.sin_addr.s_addr = htonl(INADDR_ANY);
 
         if(bind(sock,(SOCKADDR *) &infoConnection, sizeof infoConnection) == SOCKET_ERROR)
@@ -45,7 +74,7 @@ Socket::Socket(char *address,unsigned int port,ETypeProtocole protocole,ETypeCon
             throw ExceptionListen();
         }
 
-        if(protocole==TCP)
+        if(protocole==TP_TCP)
         {
             if(listen(sock, 20) == SOCKET_ERROR)
             {
@@ -53,7 +82,7 @@ Socket::Socket(char *address,unsigned int port,ETypeProtocole protocole,ETypeCon
             }
         }
         break;
-    case Client:
+    case TC_Client:
         struct hostent *hostinfo;
         hostinfo = gethostbyname(address);
 
@@ -73,37 +102,35 @@ Socket::Socket(char *address,unsigned int port,ETypeProtocole protocole,ETypeCon
 
     this->isConnect=true;
 
-
-    this->sizeBufferSend=1024;
-    this->sizeBufferRecv=1024;
-    this->bufferRecv=(char*)malloc(sizeof(char)*this->sizeBufferRecv);
-    this->bufferSend=(char*)malloc(sizeof(char)*this->sizeBufferSend);
-
-    this->observerRecv=vector<IObserverSocketRecv*>(10);
-    this->observerAccept=vector<IObserverSocketAccept*>(10);
+    initBuffer();
 }
 
-Socket::Socket(SOCKET sock,ETypeConnection connection)
+void Socket::initBuffer()
 {
-    this->sock=sock;
-    this->connection=connection;
-    this->protocole=TCP;
-
-    this->isConnect=true;
-
-
     this->sizeBufferSend=1024;
     this->sizeBufferRecv=1024;
     this->bufferRecv=(char*)malloc(sizeof(char)*this->sizeBufferRecv);
     this->bufferSend=(char*)malloc(sizeof(char)*this->sizeBufferSend);
 
-    this->observerRecv=vector<IObserverSocketRecv*>(10);
-    this->observerAccept=vector<IObserverSocketAccept*>(10);
+    this->observerRecv=vector<IObserverSocketRecv*>();
+    this->observerAccept=vector<IObserverSocketAccept*>();
 }
 
 Socket::~Socket()
 {
+    stop();
     closesocket(sock);
+
+    sock=-1;
+
+    stopMutex(mutex1);
+
+P();
+    free(this->bufferRecv);
+    free(this->bufferSend);
+    this->bufferSend=NULL;
+    this->bufferRecv=NULL;
+V();
 
 #ifdef WINDOWS
     Socket::end();
@@ -113,13 +140,19 @@ Socket::~Socket()
 void Socket::runThread(bool *close)
 {
     fd_set rdfs;
+    struct timeval tv;
 
-    while(*close!=true)
+
+
+    while(*close!=true && sock!=-1)
     {
+        tv.tv_sec = 1;
+        tv.tv_usec = 0;
+
         FD_ZERO(&rdfs);
         FD_SET(sock, &rdfs);
 
-        if(select(sock + 1, &rdfs, NULL, NULL, NULL) == -1)
+        if(select(sock + 1, &rdfs, NULL, NULL, &tv) == -1)
         {
             throw ExceptionSelect();
         }
@@ -128,7 +161,7 @@ void Socket::runThread(bool *close)
         if(FD_ISSET(sock, &rdfs))
         {
             //Nouvelle connexion
-            if(this->connection==Server && this->protocole==TCP)
+            if(this->connection==TC_Server && this->protocole==TP_TCP)
             {
                 SOCKADDR_IN csin = { 0 };
                 size_t sinsize = sizeof csin;
@@ -138,7 +171,7 @@ void Socket::runThread(bool *close)
                 {
                     continue;
                 }
-                notifyAccept(new Socket(csock,Client));
+                notifyAccept(new Socket(csock,csin,TC_Client));
             }
             else
             {
@@ -177,14 +210,17 @@ void Socket::setSizeBufferSend(unsigned int val)
 
 void Socket::sendData(const char *data,unsigned int size)
 {
-    if(protocole==TCP)
+    if(protocole==TP_TCP)
     {
+        P();
         if(send(sock, data, size, 0) < 0)
         {
+            V();
             throw ExceptionSend();
         }
+        V();
     }
-    else if(protocole==UDP)
+    else if(protocole==TP_UDP)
     {
         //à faire si necessaire
     }
@@ -196,20 +232,21 @@ void Socket::sendData(string &data)
 
 void Socket::recvData()
 {
-    if(protocole==TCP)
+    if(protocole==TP_TCP)
     {
         int n = 0;
 
+        P();
         if((n = recv(sock, bufferRecv, sizeBufferRecv - 1, 0)) < 0)
         {
+            V();
             throw ExceptionRecv();
         }
+        V();
 
-        bufferRecv[n] = 0;
-
-        this->notifyRecv(bufferRecv);
+        this->notifyRecv(bufferRecv,n);
     }
-    else if(protocole==UDP)
+    else if(protocole==TP_UDP)
     {
         //à faire si necessaire
     }
@@ -225,19 +262,60 @@ void Socket::addObserverAccept(IObserverSocketAccept* observer)
     this->observerAccept.push_back(observer);
 }
 
-void Socket::notifyRecv(char* s)
+void Socket::removeObserverRecv(IObserverSocketRecv* observer)
 {
     for (vector<IObserverSocketRecv*>::iterator it = observerRecv.begin(); it!=observerRecv.end(); ++it)
     {
-        (*it)->update(s);
+        if(*it==observer)
+        {
+            observerRecvSupr.push_back(it);
+            break;
+        }
     }
+}
+
+void Socket::removeObserverAccept(IObserverSocketAccept* observer)
+{
+    for (vector<IObserverSocketAccept*>::iterator it = observerAccept.begin(); it!=observerAccept.end(); ++it)
+    {
+        if(*it==observer)
+        {
+            observerAccept.erase(it);
+            break;
+        }
+    }
+}
+
+void Socket::notifyRecv(char* s,int size)
+{
+    P(mutex1);
+
+    for (vector<IObserverSocketRecv*>::iterator it = observerRecv.begin(); it!=observerRecv.end(); ++it)
+    {
+        std::cout << observerRecv.size() <<std::endl;
+        if(*it!=NULL)
+        {
+            (*it)->updateRecv(this,s,size);
+        }
+    }
+
+    vector<vector<IObserverSocketRecv*>::iterator>::iterator it = observerRecvSupr.begin();
+    while(observerRecvSupr.size()!=0)
+    {
+        it=observerRecvSupr.begin();
+        observerRecvSupr.erase(it);
+    }
+    V(mutex1);
 }
 
 void Socket::notifyAccept(Socket *s)
 {
     for (vector<IObserverSocketAccept*>::iterator it = observerAccept.begin(); it!=observerAccept.end(); ++it)
     {
-        (*it)->update(s);
+        if(*it!=NULL)
+        {
+            (*it)->updateAccept(s);
+        }
     }
 }
 
@@ -272,3 +350,4 @@ static void end()
 #endif
 
 }
+

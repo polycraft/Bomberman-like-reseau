@@ -47,14 +47,14 @@ namespace Engine
 {
 typedef enum
 {
-    TCP,
-    UDP
+    TP_TCP,
+    TP_UDP
 } ETypeProtocole;
 
 typedef enum
 {
-    Server,
-    Client
+    TC_Server,
+    TC_Client
 } ETypeConnection;
 
 /**
@@ -67,7 +67,13 @@ class Socket : public Threadable
         Constructeur
         Initialise le type de connexion
         **/
-        Socket(char *address,unsigned int port,ETypeProtocole protocole=TCP,ETypeConnection connection=Client);
+        Socket(const char *address,unsigned int port,ETypeProtocole protocole=TP_TCP,ETypeConnection connection=TC_Client);
+
+        /**
+        Constructeur
+        Initialise un serveur
+        **/
+        Socket(unsigned int port,ETypeProtocole protocole);
 
         /**
         Destructeur
@@ -130,9 +136,19 @@ class Socket : public Threadable
             void addObserverAccept(IObserverSocketAccept* observer);
 
             /**
+            Retire l'observateur
+            **/
+            void removeObserverRecv(IObserverSocketRecv* observer);
+
+            /**
+            Retire l'observateur
+            **/
+            void removeObserverAccept(IObserverSocketAccept* observer);
+
+            /**
             Notifie tous les observateurs de l'action recevoir
             **/
-            void notifyRecv(char*);
+            void notifyRecv(char*,int size);
 
             /**
             Notifie tous les observateurs de l'action Accept
@@ -150,7 +166,17 @@ class Socket : public Threadable
             /**
             Crée une socket à partir d'une autre socket
             **/
-            Socket(SOCKET sock,ETypeConnection connection);
+            Socket(SOCKET sock,SOCKADDR_IN csin,ETypeConnection connection);
+
+            /**
+            Initialise la socket
+            **/
+            void initSocket(const char *address,unsigned int port,ETypeProtocole protocole=TP_TCP,ETypeConnection connection=TC_Client);
+
+            /**
+            Initialise la mémoire des buffers
+            **/
+            void initBuffer();
 
             /**
             Identifiant de socket
@@ -204,6 +230,8 @@ class Socket : public Threadable
         #Fin gestion des sockets
         **/
 
+        pthread_mutex_t mutex1;
+
         /**
         #Gestion des observables
         **/
@@ -211,6 +239,8 @@ class Socket : public Threadable
             Observeur de l'action recevoir
             **/
             vector<IObserverSocketRecv*> observerRecv;
+
+            vector<vector<IObserverSocketRecv*>::iterator> observerRecvSupr;
 
             /**
             Observateur de l'action accept
