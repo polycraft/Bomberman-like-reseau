@@ -35,7 +35,7 @@ namespace Engine
             /**
             Tableau des écouteurs
             **/
-            vector<IEventListener*> *listener;
+            vector<IEventListener*> listener;
 
             /**
             Status des événements

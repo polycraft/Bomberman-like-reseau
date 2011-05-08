@@ -8,14 +8,14 @@ namespace Engine
 {
     EventEngine::EventEngine(unsigned int nbListener)
     {
-        listener=new vector<IEventListener*>(nbListener);
+        //listener=new vector<IEventListener*>(nbListener);
         event.keyState= map<SDLKey,bool>();
     }
 
     EventEngine::~EventEngine()
     {
         //Todo libérer les listeners
-        delete listener;
+        //delete listener;
     }
 
     void EventEngine::update()
@@ -39,7 +39,7 @@ namespace Engine
     {
         vector<IEventListener*>::iterator it;
 
-        for ( it=listener->begin() ; it < listener->end(); it++ )
+        for ( it=listener.begin() ; it < listener.end(); it++ )
         {
             (*it)->executeAction(event);
         }
@@ -47,6 +47,6 @@ namespace Engine
 
     void EventEngine::addListener(IEventListener *listener)
     {
-        this->listener->push_back(listener);
+        this->listener.push_back(listener);
     }
 }
