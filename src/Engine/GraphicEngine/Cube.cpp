@@ -1,13 +1,13 @@
 #include "Cube.h"
 namespace Engine
 {
-	Cube::Cube(double height,Ressource *texture) : Meshe(texture)
+	Cube::Cube(double height,Ressource *noTexture) : Meshe(noTexture)
 	{
 
 		this->construireCube(height);
 	}
 
-	Cube::Cube(double height,Texture *texture) : Meshe(texture)
+	Cube::Cube(double height,Texture *noTexture) : Meshe(noTexture)
 	{
 
 		this->construireCube(height);
@@ -24,8 +24,9 @@ namespace Engine
 		x=0;
 		y=0;
 		z=height/2;
-		this->nbIndice = 36;
+
 		this->nbPoint = 24;
+		this->nbIndice = 36;
 		this->nbTexture = 36;
 
 
