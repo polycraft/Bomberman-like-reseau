@@ -5,38 +5,54 @@ namespace Engine
 {
 Threadable::Threadable()
 {
-    //ctor
+    hasRun=false;
 }
 
 Threadable::~Threadable()
 {
-    if (pthread_mutex_destroy(&(mutex)))
+    if(hasRun)
     {
-        pthread_exit(NULL);
-        throw ExceptionMutex();
+        if (pthread_mutex_destroy(&(mutex)))
+        {
+            pthread_exit(NULL);
+            throw ExceptionMutex();
+        }
     }
 }
 
-pthread_t &Threadable::run(bool* stop)
+Thread *Threadable::run(bool* stop)
 {
-    pthread_t threads;
-    Thread thread= {stop,this};
+    Thread *thread=new Thread;
+    thread->instance=this;
+    thread->stop=stop;
 
-    if (pthread_mutex_init(&(mutex), NULL))
+    if(!hasRun)
     {
-        pthread_exit(NULL);
-        throw ExceptionMutex();
+        hasRun=true;
+        if (pthread_mutex_init(&(mutex), NULL))
+        {
+            pthread_exit(NULL);
+            throw ExceptionMutex();
+        }
     }
 
-    pthread_create (&threads, NULL, Threadable::entryPoint, (void*)&thread);
+    pthread_t *t=new pthread_t;
+    thread->t=t;
 
-    return threads;
+    pthread_create (t, NULL, Threadable::entryPoint, (void*)thread);
+
+
+
+    return thread;
 }
 
 void* Threadable::entryPoint(void* arg)
 {
-    struct Thread *t=(struct Thread*)arg;
+    Thread *t=(Thread*)arg;
     t->instance->runThread(t->stop);
+
+    delete t->t;
+    delete t;
 }
 
 void Threadable::P()
@@ -55,6 +71,11 @@ void Threadable::V()
         pthread_exit(NULL);
         throw ExceptionMutex();
     }
+}
+
+void Threadable::join(struct Thread* t)
+{
+    pthread_join( *(t->t), NULL);
 }
 }
 
