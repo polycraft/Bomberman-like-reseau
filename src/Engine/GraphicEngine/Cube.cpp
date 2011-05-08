@@ -1,15 +1,35 @@
 #include "Cube.h"
 namespace Engine
 {
-	Cube::Cube(double height)
+	Cube::Cube(double height,Ressource *texture) : Meshe(texture)
+	{
+
+		this->construireCube(height);
+	}
+
+	Cube::Cube(double height,Texture *texture) : Meshe(texture)
+	{
+
+		this->construireCube(height);
+	}
+
+
+	Cube::~Cube()
+	{
+	}
+
+	void Cube::construireCube(double height)
 	{
 		double x,y,z;
 		x=0;
 		y=0;
-		z=0;
+		z=height/2;
 		this->nbIndice = 36;
 		this->nbPoint = 24;
-		
+		this->nbTexture = 16;
+
+
+
 		//creation des tableaux temporaires
 		double tempPoint[24] = {
 		x-height, y+height, z-height,
@@ -31,9 +51,21 @@ namespace Engine
 		2,3,4,4,3,5
 		};
 
+		double tempTexture[16] = {
+		1,0,
+		0,0,
+		1,1,
+		0,1,
+		1,0,
+		0,0,
+		1,1,
+		1,0
+		};
+
 		//crée les tableaux
 		this->point = new GLfloat[24];
-		indice = new GLuint[36];
+		this->indice = new GLuint[36];
+		this->texture = new GLfloat[16];
 
 		//puis enregistre
 		for(int i = 0;i<this->nbPoint;i++)
@@ -44,13 +76,10 @@ namespace Engine
 		{
 			this->indice[i] = tempIndice[i];
 		}
-
+		for(int i = 0;i<this->nbTexture;i++)
+		{
+			this->texture[i] = tempTexture[i];
+		}
 	}
-
-
-	Cube::~Cube()
-	{
-	}
-
 
 }

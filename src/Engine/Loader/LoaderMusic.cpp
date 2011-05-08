@@ -27,5 +27,6 @@ Ressource * LoaderMusic::load(string &name) throw(ExceptionNoFileFound)
 
 	return new Sound(name,music);
 }
+
 }
 

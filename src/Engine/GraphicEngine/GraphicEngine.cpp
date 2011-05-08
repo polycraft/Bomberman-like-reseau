@@ -20,7 +20,10 @@ namespace Engine
 		glMatrixMode( GL_PROJECTION );
 		glLoadIdentity();
 		gluPerspective(70,(double)w/h,1,1000);
+
+		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_DEPTH_TEST);
+
 		//D'autre options
 		/*glMatrixMode( GL_PROJECTION );
 		glLoadIdentity();

@@ -11,14 +11,17 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <string.h>
+#include "../Ressource.h"
+#include "../Texture.h"
 
 namespace Engine
 {
     class Meshe
     {
-		friend class Object;
+		friend class Object; //pour eviter des getter setter
         public:
-            Meshe();
+            Meshe(Texture* texture);
+			Meshe(Ressource* texture);
             virtual ~Meshe();
 
         protected:
@@ -26,8 +29,9 @@ namespace Engine
 			int nbPoint;
             GLuint* indice;
 			int nbIndice;
-            double* texture;
+            GLfloat* texture;
 			int nbTexture;
+			GLuint noTexture;
 
 
     };

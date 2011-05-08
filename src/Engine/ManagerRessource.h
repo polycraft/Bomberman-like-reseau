@@ -52,13 +52,13 @@ class ManagerRessource
         Tableau des chargeurs.
         Chaque chargeur est identifié par une extension
         **/
-        map<string,Loader*> *loader;
+        map<string,Loader*> loader;
 
         /**
         Tableau des ressources déjà chargé
         Chaque ressource est identifié par un nom de fichier
         **/
-        map<string,Ressource*> *ressource;
+        map<string,Ressource*> ressource;
         ManagerRessource();//singleton privé
 
         /**

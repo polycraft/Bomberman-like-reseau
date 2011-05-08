@@ -7,6 +7,7 @@
 #include "Loader/Loader.h"
 #include "Loader/LoaderMusic.h"
 #include "Loader/LoaderSample.h"
+#include "Loader/LoaderTexture.h"
 
 #include "Ressource.h"
 #include "Exception/ExceptionNoLoader.h"
@@ -22,8 +23,8 @@ namespace Engine
     ManagerRessource::ManagerRessource()
     {
         //Initialisation des contenneurs
-        loader=new map<string,Loader*>();
-        ressource= new map<string,Ressource*>();
+        //loader=new map<string,Loader*>();
+        //ressource= new map<string,Ressource*>();
 
         //Loader sonore
         Loader *loaderMusic=new LoaderMusic();
@@ -31,6 +32,12 @@ namespace Engine
 
         _addLoader("mp3",loaderMusic);
         _addLoader("wav",loaderSample);
+
+		//Loader Texture
+		Loader *loaderTexture=new LoaderTexture();
+		_addLoader("bmp",loaderTexture);
+		_addLoader("jpg",loaderTexture);
+		_addLoader("png",loaderTexture);
     }
 
     ManagerRessource::~ManagerRessource()
@@ -51,7 +58,7 @@ namespace Engine
     void ManagerRessource::_addLoader(string extension,Loader *loader)
     {
         //Ajoute ou remplace le loader suivant l'extension
-        (*(this->loader))[extension]=loader;
+        (this->loader)[extension]=loader;
     }
 
     void ManagerRessource::freeRessource(string &names,Ressource &ressource)throw(ExceptionNoLoader,ExceptionNoRessource)
@@ -60,7 +67,7 @@ namespace Engine
         ManagerRessource *manager=getInstance();
 
         //Ressource non chargé
-        if(manager->ressource->find(names)==manager->ressource->end())
+        if(manager->ressource.find(names)==manager->ressource.end())
         {
             throw ExceptionNoRessource();
         }
@@ -73,13 +80,13 @@ namespace Engine
         ManagerRessource *manager=getInstance();
 
         //Ressource non chargé
-        if(manager->ressource->find(names)==manager->ressource->end())
+        if(manager->ressource.find(names)==manager->ressource.end())
         {
             //Charges et enregistre la ressource avec le bon loader et la retourne
-            return (*(manager->ressource))[names]=getLoader(names)->load(names);
+            return (manager->ressource)[names]=getLoader(names)->load(names);
         }
         //Retourne la ressource qui est déjà chargé
-        return (*(manager->ressource))[names] ;
+        return (manager->ressource)[names] ;
     }
 
     ManagerRessource* ManagerRessource::getInstance()
@@ -99,10 +106,10 @@ namespace Engine
         //Récupère l'extension du fichier pour choisir le bon loader
         string extension = name.substr(name.find_last_of(".")+1);
 
-        if(manager->loader->find(extension)==manager->loader->end())
+        if(manager->loader.find(extension)==manager->loader.end())
         {
             throw ExceptionNoLoader();
         }
-        return (*(manager->loader))[extension];
+        return (manager->loader)[extension];
     }
 }
