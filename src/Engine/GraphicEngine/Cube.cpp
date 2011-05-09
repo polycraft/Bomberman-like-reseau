@@ -27,7 +27,7 @@ namespace Engine
 
 		this->nbPoint = 24;
 		this->nbIndice = 36;
-		this->nbTexture = 36;
+		this->nbTexture = 48;
 
 
 
@@ -52,7 +52,7 @@ namespace Engine
 		2,3,4,4,3,5
 		};
 
-		double tempTexture[36] = {
+		double tempTexture[48] = {
 		1,0,
 		0,0,
 		1,1,
@@ -70,13 +70,19 @@ namespace Engine
 		0,1,
 		1,0,
 		0,0,
-		1,1
+		1,1,
+		1,0,
+		0,0,
+		1,1,
+		0,1,
+		1,0,
+		0,0
 		};
 
 		//crée les tableaux
 		this->point = new GLfloat[24];
 		this->indice = new GLuint[36];
-		this->texture = new GLfloat[36];
+		this->texture = new GLfloat[48];
 
 		//puis enregistre
 		for(int i = 0;i<this->nbPoint;i++)

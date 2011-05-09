@@ -9,7 +9,7 @@
 #include "ObjectMovable.h"
 #include "ObjectData.h"
 #include "Meshe.h"
-#include "Model.h"
+#include "../Model.h"
 #include <iostream>
 #include <string>
 #include <SDL/SDL.h>

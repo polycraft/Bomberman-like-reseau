@@ -12,7 +12,7 @@ namespace Engine
 	{
 	}
 
-	Ressource* Engine::LoaderTexture::load(string &name) throw(ExceptionNoFileFound)
+	Ressource* LoaderTexture::load(string &name) throw(ExceptionNoFileFound)
 	{
 		
 		GLuint texture = loadTexture(const_cast<char*>(name.c_str()));
