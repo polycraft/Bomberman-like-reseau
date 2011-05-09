@@ -1,6 +1,6 @@
 #ifndef MODEL_H
 #define MODEL_H
-#include "Meshe.h"
+#include "GraphicEngine\Meshe.h"
 #include <vector>
 
 
