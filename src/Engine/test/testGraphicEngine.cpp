@@ -17,9 +17,9 @@ int testGraphicEngine()
 	//
 
 	//test de model
-	Ressource *object[2];
-	object[0] =  ManagerRessource::getRessource("src/ressource/object/bomberman.obj");
-	object[1] =  ManagerRessource::getRessource("src/ressource/object/cube2.obj");
+	Ressource *object[1];
+	//object[0] =  ManagerRessource::getRessource("src/ressource/object/bomberman.obj");
+	object[0] =  ManagerRessource::getRessource("src/ressource/object/cube3.obj");
 	//
 
 	Object *objet1= new Object();
@@ -34,9 +34,9 @@ int testGraphicEngine()
 	objet3->rotate(0,0,45);
 
 	Object *objet4 = new Object();
-	objet4->attach(object[1], texture[1]);
+	objet4->attach(object[0], texture[0]);
 	objet4->setScale(0.2,0.2,0.2);
-	objet4->rotate(0,0,45);
+	//objet4->rotate(0,0,45);
 
 	engine.addSceneObject(objet1,scene1);
 	engine.addSceneObject(objet2,scene1);
