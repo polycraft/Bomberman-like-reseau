@@ -7,6 +7,8 @@
   #include <windows.h>
 #endif
 
+#include <map>
+#include <stdlib.h>
 #include <fstream>
 #include <sstream>
 #include <string>

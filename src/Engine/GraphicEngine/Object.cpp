@@ -48,15 +48,16 @@ namespace Engine
 		//Texture a appliquer
 		glBindTexture(GL_TEXTURE_2D,this->data->noTexture);
 
-		//Prepare la pose de la texture
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		//donne le tableau des points
+		glVertexPointer( 3, GL_FLOAT, 0, this->data->point );
+
 		//on prepare le traçage des points
 		glEnableClientState( GL_VERTEX_ARRAY );
 
 		//donne le tableau des textures
 		glTexCoordPointer(2, GL_FLOAT, 0, this->data->texture);
-		//donne le tableau des points
-		glVertexPointer( 3, GL_FLOAT, 0, this->data->point );
+		//Prepare la pose de la texture
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 		glDrawElements( GL_TRIANGLES, this->data->nbIndice , GL_UNSIGNED_INT, data->indice );
 		//on arrete le traçage
