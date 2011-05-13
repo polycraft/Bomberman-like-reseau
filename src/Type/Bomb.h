@@ -2,7 +2,7 @@
 #define BOMB_H
 
 #include "Type.h"
-#include "../Timer.h"
+#include "../Engine/util/Timer.h"
 
 class Bomb : public Type
 {

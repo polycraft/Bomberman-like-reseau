@@ -24,7 +24,7 @@ public:
 	virtual ~Type();
 	virtual EType getType();
 
-}
+};
 
 
 
