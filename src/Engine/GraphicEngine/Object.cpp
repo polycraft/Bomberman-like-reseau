@@ -8,6 +8,7 @@ namespace Engine
 		yScale = 1;
 		zScale = 1;
         this->visible = true;
+        this->alive=true;
     }
 
     Object::~Object()
@@ -29,8 +30,13 @@ namespace Engine
         zScale += z;
     }
 
-    void Object::draw()
+    bool Object::draw()
     {
+        if(!alive)
+        {
+            return false;
+        }
+
 		//Nouveau Repere
 		glPushMatrix();
 		//scaling / Translation / rotations de l'objet
@@ -71,6 +77,8 @@ namespace Engine
 		glDisable(GL_ALPHA_TEST);
 		//Nouveau Repere detruit
 		glPopMatrix();
+
+		return true;
     }
 
 	void Object::attach(Meshe* data)
@@ -95,6 +103,11 @@ namespace Engine
 	void Object::moveTexture()
 	{
 		this->data->moveTexture();
+	}
+
+	void Object::destroy()
+	{
+	    this->alive=false;
 	}
 
 }

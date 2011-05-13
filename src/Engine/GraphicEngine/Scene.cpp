@@ -28,10 +28,19 @@ namespace Engine
 		glRotated(rotateZ,0,0,1);
 
 		//Construction des objets de la scene
-        vector<Object*>::iterator it;
-       for ( it=object.begin() ; it < object.end(); it++ )
+        vector<Object*>::iterator it=object.begin();
+        while(it < object.end())
         {
-			(*it)->draw();
+            if(!((*it)->draw()))
+            {
+                //Destruction de l'objet
+                delete *it;
+                it=object.erase(it);
+            }
+            else
+            {
+                it++;
+            }
         }
 
 	   glPopMatrix();
