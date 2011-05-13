@@ -1,13 +1,20 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include <vector>
+
 #include "Type.h"
+#include <vector>
+#include "Engine\GraphicEngine\Scene.h"
 
 enum EGameType{
 	StaticBloc,
 	BreakableBloc
 };
+
+struct SCoordinate
+{
+
+}
 
 class Map
 {
@@ -15,11 +22,11 @@ class Map
 public:
 	Map(EGametype gameType, int width, int lenght);
 	~Map();
-	void addBOmberman(Bomberman bomberman);
-	void addObject(Type type, int x, int y);
-	void addSpawn(int id);
+	void addBomberman(Bomberman bomberman);
+	void addObject(Type object, int x, int y);
+	void addSpawn(SCoordinate spawn);
 	Scene getScene(int scene);
-	coordinate getSpawn(int id);
+	SCoordinate getSpawn(int id);
 	int getWidth();
 	int getLength();
 	Type operator[] (int index);
@@ -28,8 +35,9 @@ private:
 	int gameType;
 	int width;
 	int length;
-	vector<coordinate> spawn;
-	Type map[][];
+	vector<Scene*> scene;
+	vector<SCoordinate> spawn;
+	Type **map;
 
 };
 

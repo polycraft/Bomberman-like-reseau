@@ -14,26 +14,28 @@ Map::~Map()
 {
 }
 
-void Map::addBOmberman(Bomberman bomberman)
+void Map::addBomberman(Bomberman bomberman)
 {
 }
 
-void Map::addObject(Type type, int x, int y)
+void Map::addObject(Type object, int x, int y)
 {
-	this->map[i][j] = type;
+	this->map[x][y] = object;
 }
 
-void Map::addSpawn(int id)
+void Map::addSpawn(SCoordinate spawn)
 {
-
+	this->spawn.push_back(spawn);
 }
 
 Scene Map::getScene(int scene)
 {
+	return this->scene[scene];
 }
 
-coordinate Map::getSpawn(int id)
+SCoordinate Map::getSpawn(int id)
 {
+	return this->spawn[id];
 }
 
 int Map::getWidth()
@@ -48,5 +50,5 @@ int Map::getLength()
 
 Type Map::operator[](int index)
 {
-	return map[][];
+	return map[index];
 }
