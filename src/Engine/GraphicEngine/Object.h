@@ -49,6 +49,9 @@ namespace Engine
 			void attach(Ressource* model, Texture* texture);
 			void attach(Ressource* model, Ressource* texture);
 
+			//Pour les textures animées:
+			void moveTexture();
+
         private:
             double xScale;
             double yScale;
