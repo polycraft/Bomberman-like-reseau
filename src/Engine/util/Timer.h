@@ -17,7 +17,7 @@ struct SObserverTimer
 class Timer
 {
     public:
-        Timer* getTimer();
+        static Timer* getTimer();
         void addListener(IObserverTimer*,int delay);
         void addListenerOnce(IObserverTimer*,int delay);
         void update();

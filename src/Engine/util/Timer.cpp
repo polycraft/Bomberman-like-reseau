@@ -57,10 +57,13 @@ void Timer::update()
     while(it<listener.end())
     {
         sObserver=*it;
-        if(sObserver->start+sObserver->delay >= SDL_GetTicks())
+
+        if(sObserver->start+sObserver->delay <= SDL_GetTicks())
         {
             sObserver->observer->updateTimer();
+            sObserver->start=SDL_GetTicks();
         }
+        it++;
     }
 
     //On vérifie les listeners qui doivent etre appellé qu'une seul fois
@@ -68,10 +71,14 @@ void Timer::update()
     while(it<listenerOnce.end())
     {
         sObserver=*it;
-        if(sObserver->start+sObserver->delay >= SDL_GetTicks())
+        if(sObserver->start+sObserver->delay <= SDL_GetTicks())
         {
             sObserver->observer->updateTimer();
             it=listenerOnce.erase(it);
+        }
+        else
+        {
+            it++;
         }
     }
 }
