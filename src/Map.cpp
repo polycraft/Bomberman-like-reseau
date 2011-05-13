@@ -7,7 +7,13 @@ Map::Map(EGameType gameType, int width, int lenght)
 	this->gameType = gameType;
 	this->width = width;
 	this->length = lenght;
-	this->map = new Type[this->widt, this->length];
+	Type **temp = new Type*[this->width];
+	for(int i=0; i<this->width;i++)
+	{
+		temp[i]= new Type[this->length];
+	}
+
+	this->map = &temp;
 }
 
 Map::~Map()
@@ -30,7 +36,7 @@ void Map::addSpawn(SCoordinate spawn)
 
 Scene Map::getScene(int scene)
 {
-	return this->scene.push_back(scene);
+	return this->scene->push_back(scene);
 }
 
 SCoordinate Map::getSpawn(int id)

@@ -9,8 +9,8 @@ int gameType;
 
 
 
-#include "Loader.h";
-#include "../Exception/Exception.h"
+#include "../Engine/Loader/Loader.h";
+#include "../Engine/Exception/Exception.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
