@@ -31,6 +31,11 @@ namespace Engine
             Ajoute un écouteur
             **/
             void addListener(IEventListener *listener);
+
+            /**
+            Retire un écouteur
+            **/
+            void removeListener(IEventListener *listener);
         private:
             /**
             Tableau des écouteurs

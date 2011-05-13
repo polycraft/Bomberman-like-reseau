@@ -49,4 +49,18 @@ namespace Engine
     {
         this->listener.push_back(listener);
     }
+
+    void removeListener(IEventListener *listener)
+    {
+        vector<IEventListener*>::iterator it;
+
+        for ( it=this->listener.begin() ; it < this->listener.end(); it++ )
+        {
+            if(listener==*it)
+            {
+                this->listener.erase(it);
+                return;
+            }
+        }
+    }
 }
