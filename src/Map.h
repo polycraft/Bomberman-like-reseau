@@ -1,26 +1,30 @@
 #ifndef MAP_H
 #define MAP_H
 
-
-#include "Type.h"
+#include "Type/Bomberman.h"
+#include "Type/Type.h"
 #include <vector>
-#include "Engine\GraphicEngine\Scene.h"
+#include "Engine/GraphicEngine/Scene.h"
+
+
+using namespace Engine;
 
 enum EGameType{
-	StaticBloc,
-	BreakableBloc
+	Classic,
+	CaptureTheFlag
 };
 
-struct SCoordinate
+typedef struct SCoordinate
 {
-
-}
+	int x;
+	int y;
+} SCoordinate;
 
 class Map
 {
 
 public:
-	Map(EGametype gameType, int width, int lenght);
+	Map(EGameType gameType, int width, int lenght);
 	~Map();
 	void addBomberman(Bomberman bomberman);
 	void addObject(Type object, int x, int y);

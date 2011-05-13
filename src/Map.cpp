@@ -2,7 +2,7 @@
 
 
 
-Map::Map(EGametype gameType, int width, int lenght)
+Map::Map(EGameType gameType, int width, int lenght)
 {
 	this->gameType = gameType;
 	this->width = width;
