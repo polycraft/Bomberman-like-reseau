@@ -9,6 +9,7 @@
 #include "Loader/LoaderSample.h"
 #include "Loader/LoaderTexture.h"
 #include "Loader/LoaderObject.h"
+#include "../Loader/LoaderMap.h"
 
 #include "Ressource.h"
 #include "Exception/ExceptionNoLoader.h"
@@ -43,6 +44,10 @@ namespace Engine
 		//loader Objet
 		Loader *loaderObject=new LoaderObject();
 		_addLoader("obj",loaderObject);
+
+		//loaderMap
+		Loader *loaderMap=new LoaderMap();
+		_addLoader("map",loaderMap);
     }
 
     ManagerRessource::~ManagerRessource()

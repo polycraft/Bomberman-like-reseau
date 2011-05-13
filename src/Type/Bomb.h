@@ -3,8 +3,10 @@
 
 #include "Type.h"
 #include "../Engine/util/Timer.h"
+#include "../Engine/util/IObserverTimer.h"
+using namespace Engine;
 
-class Bomb : public Type
+class Bomb : public Type, IObserverTimer
 {
 
 public:

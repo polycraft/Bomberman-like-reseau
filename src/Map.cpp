@@ -7,7 +7,7 @@ Map::Map(EGameType gameType, int width, int lenght)
 	this->gameType = gameType;
 	this->width = width;
 	this->length = lenght;
-	this->map = new Type[this->width, this->length];
+	this->map = new Type[this->widt, this->length];
 }
 
 Map::~Map()
@@ -18,7 +18,7 @@ void Map::addBomberman(Bomberman bomberman)
 {
 }
 
-void Map::addObject(Type object, int x, int y)
+void Map::addObject(Type* object, int x, int y)
 {
 	this->map[x][y] = object;
 }
@@ -30,7 +30,7 @@ void Map::addSpawn(SCoordinate spawn)
 
 Scene Map::getScene(int scene)
 {
-	return this->scene[scene];
+	return this->scene.push_back(scene);
 }
 
 SCoordinate Map::getSpawn(int id)
@@ -48,7 +48,7 @@ int Map::getLength()
 	return this->length;
 }
 
-Type Map::operator[](int index)
+Type** Map::operator[](int index)
 {
 	return map[index];
 }

@@ -27,13 +27,13 @@ public:
 	Map(EGameType gameType, int width, int lenght);
 	~Map();
 	void addBomberman(Bomberman bomberman);
-	void addObject(Type object, int x, int y);
+	void addObject(Type* object, int x, int y);
 	void addSpawn(SCoordinate spawn);
 	Scene getScene(int scene);
 	SCoordinate getSpawn(int id);
 	int getWidth();
 	int getLength();
-	Type operator[] (int index);
+	Type** operator[] (int index);
 
 private:
 	int gameType;
