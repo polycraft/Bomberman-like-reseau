@@ -11,7 +11,9 @@ Explosion::~Explosion()
 
 }
 
+
 EType Explosion::getType()
 {
 	return T_Explosion;
 }
+

@@ -22,7 +22,7 @@ class Type : public Object
 public:
 	Type();
 	virtual ~Type();
-	virtual EType getType();
+	virtual EType getType()=0;
 
 };
 
