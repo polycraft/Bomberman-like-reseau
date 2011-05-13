@@ -1,6 +1,9 @@
 #ifndef IEVENTLISTENER_H
 #define IEVENTLISTENER_H
 
+#include <map>
+#include <SDL/SDL.h>
+
 namespace Engine
 {
     typedef struct
