@@ -5,7 +5,7 @@ CollisionDetector::CollisionDetector(Map* map):map(map)
 
 }
 
-virtual CollisionDetector::~CollisionDetector()
+CollisionDetector::~CollisionDetector()
 {
 
 }

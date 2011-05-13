@@ -37,7 +37,7 @@ namespace Engine
             /**
             Met à jours l'affichage
             **/
-            void draw();
+            bool draw();
 
             /**
             Attache l'objet à des données d'un objet (meshe)
@@ -52,6 +52,11 @@ namespace Engine
 			//Pour les textures animées:
 			void moveTexture();
 
+			/**
+			Change l'état de l'objet
+			**/
+			void destroy();
+
         private:
             double xScale;
             double yScale;
@@ -65,7 +70,11 @@ namespace Engine
             Les Datas
             **/
             Meshe* data;
-			
+
+            /**
+            Etat de l'objet (à détruire)
+            **/
+            bool alive;
     };
 }
 
