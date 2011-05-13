@@ -1,7 +1,8 @@
 #ifndef COLLISIONDETECTOR_H
 #define COLLISIONDETECTOR_H
 
-#include <map>
+#include "Map.h"
+#include "Type/Type.h"
 
 namespace Engine
 {
