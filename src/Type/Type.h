@@ -9,7 +9,7 @@ using namespace Engine;
 
 enum EType
 {
-	T_StaticBLoc,
+	T_StaticBloc,
 	T_BreakableBloc,
 	T_Bomberman,
 	T_Bomb,
