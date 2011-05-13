@@ -3,7 +3,7 @@ using namespace Engine;
 int testEventEngine()
 {
 	///////////
-	GraphicEngine engine("TestEventEngine",400, 400,1,1);
+	/*GraphicEngine engine("TestEventEngine",400, 400,1,1);
 	Camera *camera = new Camera(6, 0, 6, 0, 0, 0, 0, 0, 1);
 	engine.addCamera(camera);
 	Scene *scene1 = new Scene(Engine::TS_Static);
@@ -35,7 +35,7 @@ int testEventEngine()
 		}
 
 		engine.draw(camera);
-		
+
 	}
-	return 0;
+	return 0;*/
 }
