@@ -28,6 +28,8 @@ namespace Engine
 			void setTexture(Texture* texture);
 			void setTexture(Ressource* texture);
 
+			void moveTexture();
+
 
         protected:
             GLfloat* point;
@@ -36,6 +38,13 @@ namespace Engine
 			int nbIndice;
             GLfloat* texture;
 			int nbTexture;
+
+			//seulement pour les textures animées:
+			double *textureAnim;
+			int tailleTextureAnim;
+			int cycleTexture;
+
+			bool hasTransparentTexture;
 
 			//no de sa texture
 			GLuint noTexture;

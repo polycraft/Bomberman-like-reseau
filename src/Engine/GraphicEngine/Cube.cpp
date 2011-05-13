@@ -20,6 +20,7 @@ namespace Engine
 
 	void Cube::construireCube(double height)
 	{
+		this->hasTransparentTexture = false;
 		double x,y,z;
 		x=0;
 		y=0;
@@ -28,29 +29,6 @@ namespace Engine
 		this->nbPoint = 72;
 		this->nbIndice = 36;
 		this->nbTexture = 48;
-
-
-
-		//creation des tableaux temporaires
-		/*double tempPoint[24] = {
-		x-height, y+height, z-height,
-		x-height, y-height, z-height,
-		x-height, y+height, z+height,
-		x-height, y-height, z+height,
-		x+height, y+height, z+height,
-		x+height, y-height, z+height,
-		x+height, y+height, z-height,
-		x+height, y-height, z-height
-		};*/
-
-		/*int tempIndice[36] = {
-		0,1,2,2,1,3,
-		4,5,6,6,5,7,
-		3,1,5,5,1,7,
-		0,2,6,6,2,4,
-		6,7,0,0,7,1,
-		2,3,4,4,3,5
-		};*/
 
 		double tempPoint[72] = {
 		// face de devant
@@ -137,50 +115,6 @@ namespace Engine
 		1, 0,      
 		1, 1
 		};
-
-		/*double tempTexture[] = {
-		1.0, 0.0,
-		1.0, 1.0,
-		0.0, 1.0,
-		0.0, 1.0,
-		0.0, 0.0,
-		1.0, 0.0,
-		
-		0.0, 0.0,
-		1.0, 0.0,
-		1.0, 1.0,
-		1.0, 1.0,
-		0.0, 1.0,
-		0.0, 0.0,
-
-		0.0, 0.0,
-		1.0, 0.0,
-		1.0, 1.0,
-		1.0, 1.0,
-		0.0, 1.0,
-		0.0, 0.0,
-
-		0.0, 0.0,
-		1.0, 0.0,
-		1.0, 1.0,
-		1.0, 1.0,
-		0.0, 1.0,
-		0.0, 0.0,
-
-		0.0, 0.0,
-		1.0, 0.0,
-		1.0, 1.0,
-		1.0, 1.0,
-		0.0, 1.0,
-		0.0, 0.0,
-
-		0.0, 0.0,
-		1.0, 0.0,
-		1.0, 1.0,
-		1.0, 1.0,
-		0.0, 1.0,
-		0.0, 0.0
-		};*/
 
 		//crée les tableaux
 		this->point = new GLfloat[72];

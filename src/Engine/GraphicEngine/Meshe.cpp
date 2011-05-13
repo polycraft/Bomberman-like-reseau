@@ -34,4 +34,16 @@ namespace Engine
 		 this->noTexture = temp->getTexture();
 	}
 
+		void Meshe::moveTexture()
+		{
+			if(cycleTexture < 2) cycleTexture += 1;
+			else cycleTexture = 0;
+
+			for(int i = 0;i<this->nbTexture;i++)
+			{
+				this->texture[i] = this->textureAnim[i+nbTexture*cycleTexture];
+			}
+
+
+		}
 }

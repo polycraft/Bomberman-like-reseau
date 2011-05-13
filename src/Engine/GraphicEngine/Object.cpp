@@ -45,6 +45,9 @@ namespace Engine
 		//La couleur Ambiante de l'objet est mise au BLANC ( sinon vert par defaut)
 		glColor3ub(255,255,255);
 
+		glEnable(GL_ALPHA_TEST);
+		glAlphaFunc(GL_GREATER, 0.0f);
+
 		//Texture a appliquer
 		glBindTexture(GL_TEXTURE_2D,this->data->noTexture);
 
@@ -64,6 +67,8 @@ namespace Engine
 		glDisableClientState( GL_VERTEX_ARRAY );
 		//on arrete le traçage de texture
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glDisable(GL_ALPHA_TEST);
 		//Nouveau Repere detruit
 		glPopMatrix();
     }
@@ -86,4 +91,10 @@ namespace Engine
 		this->data = temp;
 		this->data->setTexture(texture);
 	}
+
+	void Object::moveTexture()
+	{
+		this->data->moveTexture();
+	}
+
 }
