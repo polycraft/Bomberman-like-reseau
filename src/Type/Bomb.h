@@ -19,7 +19,7 @@ private:
 	int speed;
 	int power;
 
-}
+};
 
 
 
