@@ -41,7 +41,7 @@ private:
 	int length;
 	vector<Scene*> scene;
 	vector<SCoordinate> spawn;
-	Type **map;
+	Type ***map;
 
 };
 
