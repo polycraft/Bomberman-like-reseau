@@ -8,7 +8,7 @@
 #include "../Type/BreakableBloc.h"
 #include "../Type/StaticBloc.h"
 #include "../Type/Type.h"
-#include "../Engine/Loader/Loader.h";
+#include "../Engine/Loader/Loader.h"
 #include "../Engine/Exception/Exception.h"
 #include "../Map.h"
 #include <iostream>

@@ -33,7 +33,7 @@ public:
 	SCoordinate getSpawn(int id);
 	int getWidth();
 	int getLength();
-	Type** operator[] (int index);
+	Type* get(int x,int y);
 
 private:
 	int gameType;

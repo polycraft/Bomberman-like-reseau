@@ -57,7 +57,7 @@ int Map::getLength()
 	return this->length;
 }
 
-Type** Map::operator[](int index)
+Type* Map::get(int x,int y)
 {
-	return map[index];
+	return map[x][y];
 }

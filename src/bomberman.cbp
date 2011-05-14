@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-w" />
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
@@ -38,6 +39,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="CollisionDetector.cpp" />
+		<Unit filename="CollisionDetector.h" />
 		<Unit filename="Engine/EventEngine/EventEngine.cpp" />
 		<Unit filename="Engine/EventEngine/EventEngine.h" />
 		<Unit filename="Engine/EventEngine/IEventListener.h" />
@@ -123,12 +126,32 @@
 		<Unit filename="Engine/test/testSocket.h" />
 		<Unit filename="Engine/test/testThreadable.cpp" />
 		<Unit filename="Engine/test/testThreadable.h" />
+		<Unit filename="Engine/test/testTimer.cpp" />
+		<Unit filename="Engine/test/testTimer.h" />
 		<Unit filename="Engine/util/IObserverTimer.h" />
 		<Unit filename="Engine/util/Threadable.cpp" />
 		<Unit filename="Engine/util/Threadable.h" />
 		<Unit filename="Engine/util/Timer.cpp" />
 		<Unit filename="Engine/util/Timer.h" />
 		<Unit filename="Engine/util/windows.h" />
+		<Unit filename="GameType/GameType.cpp" />
+		<Unit filename="GameType/GameType.h" />
+		<Unit filename="Loader/LoaderMap.cpp" />
+		<Unit filename="Loader/LoaderMap.h" />
+		<Unit filename="Map.cpp" />
+		<Unit filename="Map.h" />
+		<Unit filename="Type/Bomb.cpp" />
+		<Unit filename="Type/Bomb.h" />
+		<Unit filename="Type/Bomberman.cpp" />
+		<Unit filename="Type/Bomberman.h" />
+		<Unit filename="Type/BreakableBloc.cpp" />
+		<Unit filename="Type/BreakableBloc.h" />
+		<Unit filename="Type/Explosion.cpp" />
+		<Unit filename="Type/Explosion.h" />
+		<Unit filename="Type/StaticBloc.cpp" />
+		<Unit filename="Type/StaticBloc.h" />
+		<Unit filename="Type/Type.cpp" />
+		<Unit filename="Type/Type.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

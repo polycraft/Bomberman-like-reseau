@@ -79,6 +79,7 @@ void* Threadable::entryPoint(void* arg)
 
     delete t->t;
     delete t;
+	return NULL;
 }
 
 void Threadable::P()
