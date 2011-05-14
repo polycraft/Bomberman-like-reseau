@@ -29,14 +29,17 @@ void Map::addObject(Type* object, int x, int y)
 	this->map[x][y] = object;
 }
 
-void Map::addSpawn(SCoordinate spawn)
+void Map::addSpawn(int x, int y)
 {
-	this->spawn.push_back(spawn);
+	SCoordinate temp;
+	temp.x=x;
+	temp.y=y;
+	this->spawn.push_back(temp);
 }
 
-Scene Map::getScene(int scene)
+Scene* Map::getScene(int scene)
 {
-	return this->scene->push_back(scene);
+	return this->scene[scene];
 }
 
 SCoordinate Map::getSpawn(int id)

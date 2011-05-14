@@ -15,7 +15,7 @@ namespace Engine
 	{
 		struct SHeader header;
 		
-		ifstream mapFile(name, ios::in | ios::binary);
+		ifstream mapFile(name.c_str(), ios::in | ios::binary);
 		if(!mapFile)
 		{ 
 			throw new ExceptionNoFileFound();
@@ -31,24 +31,24 @@ namespace Engine
 
 		Map *map=new Map(header.gameType ,header.width,header.height);
 
-		for( int i=0; i< header.width*header.gameType;i++)
+		for( int i=0; i< header.width*header.height;i++)
 		{
 			switch(element[i])
 			{
 				case 'a':
-					map->addObject(new StaticBloc, i/header.width+1, i%header.width );
+					map->addObject(new StaticBloc(), i/header.width+1, i%header.width );
 					break;
 				case 'b':
-					map->addObject(new BreakableBloc, i/header.width+1, i%header.width);
+					map->addObject(new BreakableBloc(), i/header.width+1, i%header.width);
 				break;
 				case 'c':
-					map->addSpawn(c, i/header.width+1, i%header.width);
+					map->addSpawn(i/header.width+1, i%header.width);
 				break;
 
 			}
 		}
 		
-		Coordinate c={5,5};
+		SCoordinate c={5,5};
 
 
 		return map;
