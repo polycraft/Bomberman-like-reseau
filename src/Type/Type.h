@@ -13,7 +13,8 @@ enum EType
 	T_BreakableBloc,
 	T_Bomberman,
 	T_Bomb,
-	T_Explosion
+	T_Explosion,
+	T_Bonus
 };
 
 class Type : public Object

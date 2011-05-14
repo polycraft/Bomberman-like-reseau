@@ -14,7 +14,7 @@ ECollision CollisionDetector::detect(EType type,int x,int y)
 {
     if(type==T_Bomberman)
     {
-        switch(map[x][y]->getType())
+        switch(map->get(x,y)->getType())
         {
             case T_Bomb:
             case T_BreakableBloc:
@@ -30,7 +30,7 @@ ECollision CollisionDetector::detect(EType type,int x,int y)
     }
     else if(type==T_Explosion)
     {
-        switch(map[x][y]->getType())
+        switch(map->get(x,y)->getType())
         {
             case T_Bomb:
                 return C_Explose;

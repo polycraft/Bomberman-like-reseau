@@ -5,3 +5,7 @@ GameType::GameType()
 
 }
 
+GameType::~GameType()
+{
+
+}

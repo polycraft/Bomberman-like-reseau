@@ -4,3 +4,8 @@ Type::Type()
 {
 
 }
+
+Type::~Type()
+{
+
+}

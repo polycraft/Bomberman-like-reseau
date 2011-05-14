@@ -11,6 +11,11 @@ Bomb::Bomb(int idOwner, int time, int speed, int power)
 
 }
 
+Bomb::~Bomb()
+{
+
+}
+
 
 void Bomb::updateTimer()
 {
