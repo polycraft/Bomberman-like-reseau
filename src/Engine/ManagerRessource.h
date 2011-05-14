@@ -35,6 +35,30 @@ class ManagerRessource
         **/
         static Ressource* getRessource(string names)throw(ExceptionNoLoader);
 
+        template<class T> static  T* getRessource(string names)throw(ExceptionNoLoader,ExceptionBadRessource)
+        {
+            //Récupération du manager
+            ManagerRessource *manager=getInstance();
+
+            Ressource *tmp;
+
+            //Ressource non chargé
+            if(manager->ressource.find(names)==manager->ressource.end())
+            {
+                //Charges et enregistre la ressource avec le bon loader et la retourne
+                tmp=(manager->ressource)[names]=getLoader(names)->load(names);
+            }
+            else
+            {
+                tmp=(manager->ressource)[names] ;
+            }
+
+
+            //Retourne la ressource qui est déjà chargé
+            return Ressource::getRessource<T>(*tmp);
+        }
+
+
         /**
         Libere une ressource en utilisant sont loader
         **/

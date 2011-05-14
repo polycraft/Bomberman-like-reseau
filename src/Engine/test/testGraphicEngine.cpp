@@ -1,4 +1,5 @@
 #include "testGraphicEngine.h"
+#include "../Model.h"
 using namespace Engine;
 int testGraphicEngine()
 {
@@ -23,7 +24,7 @@ int testGraphicEngine()
 
 	//test de model
 	Ressource *object[2];
-	object[0] =  ManagerRessource::getRessource("src/ressource/object/bomberman.obj");
+	object[0] =  ManagerRessource::getRessource<Model>("src/ressource/object/bomberman.obj");
 	object[1] =  ManagerRessource::getRessource("src/ressource/object/bomb.obj");
 
 	Object *testFire= new Object();
@@ -61,8 +62,8 @@ int testGraphicEngine()
 	//engine.addSceneObject(objet4,scene1);
 
 
-	
-	
+
+
 	int continuer = 1;
 	SDL_Event event;
 	while (continuer)
@@ -78,35 +79,35 @@ int testGraphicEngine()
 			case SDL_KEYDOWN :
 				switch (event.key.keysym.sym)
 				{
-					case SDLK_UP: 
+					case SDLK_UP:
 					//objet3->translation(-0.1,0,0);
 						testFire->rotate(0,2,0);
 					break;
-					case SDLK_DOWN: 
+					case SDLK_DOWN:
 					//objet3->translation(0.1,0,0);
 					testFire->rotate(0,-2,0);
 					testFire->moveTexture();
 					break;
-					case SDLK_LEFT: 
+					case SDLK_LEFT:
 					//scene1->translation(0,-0.1,0);
 					testFire->rotate(0,0,2);
 					break;
-					case SDLK_RIGHT: 
+					case SDLK_RIGHT:
 					testFire->rotate(0,0,-2);
 					break;
-					case SDLK_F1: 
+					case SDLK_F1:
 					testFire->scale(0,0.1,0);
 					break;
-					case SDLK_F2: 
+					case SDLK_F2:
 					testFire->scale(0,-0.1,0);
 					break;
-					case SDLK_SPACE: 
+					case SDLK_SPACE:
 						testFire->moveTexture();
 					break;
 				}
 		}
 		engine.draw(camera);
-		
+
 	}
 	return 0;
 }
