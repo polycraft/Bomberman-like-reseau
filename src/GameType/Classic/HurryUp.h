@@ -2,9 +2,9 @@
 #define HURRYUP_H
 
 #include "../Phase.h"
+#include "Running.h"
 
-
-class HurryUp : public Phase
+class HurryUp : public Running
 {
 
 public:
