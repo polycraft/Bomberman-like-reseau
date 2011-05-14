@@ -50,7 +50,7 @@ namespace Engine
         this->listener.push_back(listener);
     }
 
-    void removeListener(IEventListener *listener)
+    void EventEngine::removeListener(IEventListener *listener)
     {
         vector<IEventListener*>::iterator it;
 

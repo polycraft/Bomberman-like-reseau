@@ -1,4 +1,5 @@
 #include "LoaderMap.h"
+#include "../Type/StaticBloc.h"
 
 
 namespace Engine
@@ -14,10 +15,10 @@ namespace Engine
 	Ressource* LoaderMap::load(string &name) throw(ExceptionNoFileFound)
 	{
 		struct SHeader header;
-		
+
 		ifstream mapFile(name.c_str(), ios::in | ios::binary);
 		if(!mapFile)
-		{ 
+		{
 			throw new ExceptionNoFileFound();
 		}
 		//lit la taille de la map
@@ -44,12 +45,8 @@ namespace Engine
 				case 'c':
 					map->addSpawn(i/header.width+1, i%header.width);
 				break;
-
 			}
 		}
-		
-		SCoordinate c={5,5};
-
 
 		return map;
 	}

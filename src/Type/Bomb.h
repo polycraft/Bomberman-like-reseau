@@ -1,6 +1,6 @@
 #ifndef BOMB_H
 #define BOMB_H
-
+class GameType;
 #include "Type.h"
 #include "../Engine/util/Timer.h"
 #include "../Engine/util/IObserverTimer.h"
@@ -8,7 +8,7 @@
 
 //using namespace Engine;
 
-class Bomb : public Type, IObserverTimer
+class Bomb : public Type, public IObserverTimer
 {
 
 public:
