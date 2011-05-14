@@ -4,7 +4,9 @@
 #include "Type.h"
 #include "../Engine/util/Timer.h"
 #include "../Engine/util/IObserverTimer.h"
-using namespace Engine;
+#include "../GameType/GameType.h"
+
+//using namespace Engine;
 
 class Bomb : public Type, IObserverTimer
 {
@@ -17,7 +19,8 @@ public:
 
 private:
 	int idOwner;
-	GameType gameType;
+
+	GameType* gameType;
 	int speed;
 	int power;
 
@@ -25,4 +28,4 @@ private:
 
 
 
-#endif // BOMBERMAN_H
+#endif // BOMB_H

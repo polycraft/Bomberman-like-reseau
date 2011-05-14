@@ -20,7 +20,7 @@ typedef struct SCoordinate
 	int y;
 } SCoordinate;
 
-class Map
+class Map : public Ressource
 {
 
 public:
@@ -28,8 +28,8 @@ public:
 	~Map();
 	void addBomberman(Bomberman bomberman);
 	void addObject(Type* object, int x, int y);
-	void addSpawn(SCoordinate spawn);
-	Scene getScene(int scene);
+	void addSpawn(int x, int y);
+	Scene* getScene(int scene);
 	SCoordinate getSpawn(int id);
 	int getWidth();
 	int getLength();
