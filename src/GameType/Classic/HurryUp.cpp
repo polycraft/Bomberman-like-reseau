@@ -2,6 +2,7 @@
 
 HurryUp::HurryUp(CollisionDetector collision)  : Phase(collision)
 {
+
 }
 
 HurryUp::~HurryUp()
