@@ -1,7 +1,7 @@
 #include "Running.h"
 
 
-Running::Running(CollisionDetector collision)  : Phase(collision)
+Running::Running(CollisionDetector *collision)  : Phase(collision)
 {
 }
 

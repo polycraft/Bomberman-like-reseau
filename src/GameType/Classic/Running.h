@@ -8,12 +8,12 @@ class Running : public Phase
 {
 
 public:
-	Running(CollisionDetector collision);
+	Running(CollisionDetector *collision);
 	virtual ~Running();
 	void init();
 	void run();
 	void updateTimer();
-	
+
 private:
 
 };

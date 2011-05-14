@@ -1,7 +1,7 @@
 #include "Phase.h"
 
 
-Phase::Phase(CollisionDetector collision)
+Phase::Phase(CollisionDetector *collision)
 {
 }
 
@@ -25,6 +25,6 @@ void Phase::updateAction()
 {
 }
 
-void Phase::setCollisionDetector(CollisionDetector collision)
+void Phase::setCollisionDetector(CollisionDetector *collision)
 {
 }

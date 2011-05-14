@@ -8,16 +8,16 @@ class Phase : public IEventListener
 {
 
 public:
-	Phase(CollisionDetector collision);
+	Phase(CollisionDetector *collision);
 	virtual ~Phase();
 	virtual void init();
 	virtual void run();
 	virtual void fin( int phase);
 	void updateAction();
-	void setCollisionDetector(CollisionDetector collision);
-	
+	void setCollisionDetector(CollisionDetector *collision);
+
 private:
-	CollisionDetector collision;
+	CollisionDetector *collision;
 };
 
 

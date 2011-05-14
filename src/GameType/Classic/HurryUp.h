@@ -8,11 +8,11 @@ class HurryUp : public Running
 {
 
 public:
-	HurryUp(CollisionDetector collision);
+	HurryUp(CollisionDetector *collision);
 	virtual ~HurryUp();
 	void run();
 	void updateTimer();
-	
+
 private:
 
 };

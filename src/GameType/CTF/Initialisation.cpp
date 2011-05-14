@@ -1,7 +1,7 @@
 #include "Initialisation.h"
 
 
-Initialisation::Initialisation(CollisionDetector collision)  : Phase(collision)
+Initialisation::Initialisation(CollisionDetector *collision)  : Phase(collision)
 {
 }
 

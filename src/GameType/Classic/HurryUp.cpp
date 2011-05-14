@@ -1,6 +1,6 @@
 #include "HurryUp.h"
 
-HurryUp::HurryUp(CollisionDetector collision) : Running(collision)
+HurryUp::HurryUp(CollisionDetector *collision) : Running(collision)
 {
 }
 

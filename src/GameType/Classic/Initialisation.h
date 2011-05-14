@@ -8,11 +8,11 @@ class Initialisation : public Phase
 {
 
 public:
-	Initialisation(CollisionDetector collision);
+	Initialisation(CollisionDetector *collision);
 	virtual ~Initialisation();
 	void init();
 	void run();
-	
+
 private:
 
 };
