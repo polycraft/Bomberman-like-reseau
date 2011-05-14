@@ -3,12 +3,13 @@
 
 #include "Type.h"
 
-class BreakableBloc : Type
+class BreakableBloc : public Type
 {
 
 public:
 	BreakableBloc();
 	~BreakableBloc();
+	EType getType();
 
 private:
 

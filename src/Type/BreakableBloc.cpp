@@ -9,3 +9,8 @@ BreakableBloc::~BreakableBloc()
 {
 
 }
+
+EType BreakableBloc::getType()
+{
+	return T_BreakableBloc;
+}

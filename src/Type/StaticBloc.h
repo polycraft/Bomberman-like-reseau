@@ -3,12 +3,13 @@
 
 #include "Type.h"
 
-class StaticBloc : Type
+class StaticBloc : public Type
 {
 
 public:
 	StaticBloc();
 	~StaticBloc();
+	EType getType();
 
 private:
 

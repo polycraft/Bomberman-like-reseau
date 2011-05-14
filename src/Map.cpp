@@ -2,18 +2,18 @@
 
 
 
-Map::Map(EGameType gameType, int width, int lenght)
+Map::Map(string &name, EGameType gameType, int width, int lenght)  : Ressource(name)
 {
 	this->gameType = gameType;
 	this->width = width;
 	this->length = lenght;
-	Type **temp = new Type*[this->width];
+	Type ***temp = new Type**[this->width];
 	for(int i=0; i<this->width;i++)
 	{
-		temp[i]= new Type[this->length];
+		temp[i]= new Type*[this->length];
 	}
 
-	this->map = &temp;
+	this->map = temp;
 }
 
 Map::~Map()

@@ -14,7 +14,7 @@ Bomb::Bomb(int idOwner, int time, int speed, int power)
 
 void Bomb::updateTimer()
 {
-	this->gameType->explose(this,speed,power);
+	this->gameType->explode(this,speed,power);
 }
 
 

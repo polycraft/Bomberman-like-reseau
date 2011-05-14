@@ -5,7 +5,7 @@
 #include "Type/Type.h"
 #include <vector>
 #include "Engine/GraphicEngine/Scene.h"
-
+#include "Engine/Ressource.h"
 
 using namespace Engine;
 
@@ -24,7 +24,7 @@ class Map : public Ressource
 {
 
 public:
-	Map(EGameType gameType, int width, int lenght);
+	Map(string &name, EGameType gameType, int width, int lenght);
 	~Map();
 	void addBomberman(Bomberman bomberman);
 	void addObject(Type* object, int x, int y);

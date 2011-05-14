@@ -1,6 +1,6 @@
 #ifndef GAMETYPE_H
 #define GAMETYPE_H
-
+class Bomb;
 #include "../Type/Bomb.h"
 
 class GameType
@@ -9,7 +9,7 @@ class GameType
 public:
 	GameType();
 	virtual ~GameType();
-	virtual void explode(Bomb bomb,int speed,int power);
+	virtual void explode(Bomb* bomb,int speed,int power);
 	
 	
 private:

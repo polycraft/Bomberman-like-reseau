@@ -30,7 +30,7 @@ namespace Engine
 		mapFile.close();
 
 
-		Map *map=new Map(header.gameType ,header.width,header.height);
+		Map *map=new Map(name, header.gameType ,header.width,header.height);
 
 		for( int i=0; i< header.width*header.height;i++)
 		{
