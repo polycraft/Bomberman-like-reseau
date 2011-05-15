@@ -34,10 +34,40 @@ namespace Engine
 		rotateZ = z;
 	}
 
-		void ObjectMovable::setCoordonnes(double x,double y,double z)
+    void ObjectMovable::setCoordonnes(double x,double y,double z)
 	{
 		transX = x;
 		transY = y;
 		transZ = z;
 	}
+
+	double ObjectMovable::getTransX()
+	{
+	    return transX;
+	}
+
+    double ObjectMovable::getTransY()
+	{
+	    return transY;
+	}
+
+    double ObjectMovable::getTransZ()
+	{
+	    return transZ;
+	}
+
+    double ObjectMovable::getRotateX()
+    {
+        return rotateX;
+    }
+
+    double ObjectMovable::getRotateY()
+    {
+        return rotateX;
+    }
+
+    double ObjectMovable::getRotateZ()
+    {
+        return rotateX;
+    }
 }

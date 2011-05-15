@@ -27,6 +27,21 @@ namespace Engine
             **/
 			void setRotation(double x,double y,double z);
 
+			/**
+			Getter coordonnée
+			**/
+			double getTransX();
+			double getTransY();
+			double getTransZ();
+
+			/**
+			Getter rotation
+			**/
+			double getRotateX();
+			double getRotateY();
+			double getRotateZ();
+
+
         protected:
             ObjectMovable();//Classe abstraite
         protected:
