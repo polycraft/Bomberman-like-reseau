@@ -4,7 +4,7 @@ namespace GameTypeSpace
 {
 	namespace ClassicSpace
 	{
-		Running::Running(GameType *gameType,CollisionDetector *collision)  : Phase(gameType,collision)
+		Running::Running(GameType *gameType,CollisionDetector *collision)  : Phase(collision)
 		{
 		}
 

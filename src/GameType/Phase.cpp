@@ -1,7 +1,7 @@
 #include "Phase.h"
 
 
-Phase::Phase(GameType *gameType,CollisionDetector *collision):gameType(gameType)
+Phase::Phase(CollisionDetector *collision)
 {
     setCollisionDetector(collision);
 }

@@ -2,6 +2,7 @@
 #define INITIALISATION_H
 
 #include "../Phase.h"
+#include "Classic.h"
 
 namespace GameTypeSpace
 {
@@ -11,13 +12,13 @@ namespace GameTypeSpace
 		{
 
 		public:
-			Initialisation(GameType *gameType,CollisionDetector *collision);
+			Initialisation(GameTypeSpace::Classic *gameType,CollisionDetector *collision);
 			virtual ~Initialisation();
 			void init();
 			void run();
             void executeAction(const Engine::stateEvent &event);
 		private:
-
+            Classic *gameType;
 		};
 	}
 }
