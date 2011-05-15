@@ -2,9 +2,9 @@
 
 namespace GameTypeSpace
 {
-	namespace Classic
+	namespace ClassicSpace
 	{
-		HurryUp::HurryUp(CollisionDetector *collision) : Running(collision)
+		HurryUp::HurryUp(GameType *gameType,CollisionDetector *collision)  : Running(gameType,collision)
 		{
 		}
 
@@ -19,6 +19,11 @@ namespace GameTypeSpace
 
 		void HurryUp::updateTimer()
 		{
+		}
+
+		void HurryUp::executeAction(const Engine::stateEvent &event)
+		{
+
 		}
 	}
 }
