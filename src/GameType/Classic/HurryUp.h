@@ -1,23 +1,21 @@
 #ifndef HURRYUP_H
 #define HURRYUP_H
 
-#include "../Phase.h"
 #include "Running.h"
 
 namespace GameTypeSpace
 {
-	using namespace Classic;
-	namespace Classic
+	namespace ClassicSpace
 	{
 		class HurryUp : public Running
 		{
 
 		public:
-			HurryUp(CollisionDetector *collision);
+			HurryUp(GameType *gameType,CollisionDetector *collision);
 			virtual ~HurryUp();
 			void run();
 			void updateTimer();
-
+            void executeAction(const Engine::stateEvent &event);
 		private:
 
 		};

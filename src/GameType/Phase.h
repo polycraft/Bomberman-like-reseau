@@ -3,23 +3,36 @@
 
 #include "../CollisionDetector.h"
 #include "../Engine/EventEngine/IEventListener.h"
+#include "GameType.h"
 
 using namespace Engine;
+
+typedef enum EEtat
+{
+    E_Init,
+    E_Run
+} EEtat;
 
 class Phase : public IEventListener
 {
 
 public:
-	Phase(CollisionDetector *collision);
+	Phase(GameType *gameType,CollisionDetector *collision);
 	virtual ~Phase(){};
 	virtual void init()=0;
 	virtual void run()=0;
-	virtual void end( int phase);
-	virtual void updateAction()=0;
+	void end( int next=1);
+	void nextEtat();
+	virtual void executeAction(const Engine::stateEvent &event)=0;
 	void setCollisionDetector(CollisionDetector *collision);
 
+    int update();
+protected:
+    GameType *gameType;
 private:
 	CollisionDetector *collision;
+	EEtat etat;
+	int next;
 };
 
 

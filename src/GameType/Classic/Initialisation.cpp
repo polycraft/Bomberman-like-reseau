@@ -2,9 +2,9 @@
 
 namespace GameTypeSpace
 {
-	namespace Classic
+	namespace ClassicSpace
 	{
-		Initialisation::Initialisation(CollisionDetector *collision)  : Phase(collision)
+		Initialisation::Initialisation(GameType *gameType,CollisionDetector *collision)  : Phase(gameType,collision)
 		{
 		}
 
@@ -18,6 +18,11 @@ namespace GameTypeSpace
 
 		void Initialisation::run()
 		{
+		}
+
+		void Initialisation::executeAction(const Engine::stateEvent &event)
+		{
+
 		}
 	}
 }

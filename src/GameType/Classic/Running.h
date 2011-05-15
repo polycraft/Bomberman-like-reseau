@@ -5,18 +5,18 @@
 
 namespace GameTypeSpace
 {
-	namespace Classic
+	namespace ClassicSpace
 	{
 		class Running : public Phase
 		{
 
 		public:
-			Running(CollisionDetector *collision);
+			Running(GameType *gameType,CollisionDetector *collision);
 			virtual ~Running();
 			void init();
 			virtual void run();
 			virtual void updateTimer();
-
+            void executeAction(const Engine::stateEvent &event);
 		private:
 
 		};

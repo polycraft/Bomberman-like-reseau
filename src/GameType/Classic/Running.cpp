@@ -2,9 +2,9 @@
 
 namespace GameTypeSpace
 {
-	namespace Classic
+	namespace ClassicSpace
 	{
-		Running::Running(CollisionDetector *collision)  : Phase(collision)
+		Running::Running(GameType *gameType,CollisionDetector *collision)  : Phase(gameType,collision)
 		{
 		}
 
@@ -22,6 +22,11 @@ namespace GameTypeSpace
 
 		void Running::updateTimer()
 		{
+		}
+
+		void Running::executeAction(const Engine::stateEvent &event)
+		{
+
 		}
 	}
 }
