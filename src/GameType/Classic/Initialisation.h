@@ -3,19 +3,24 @@
 
 #include "../Phase.h"
 
-
-class Initialisation : public Phase
+namespace GameTypeSpace
 {
+	namespace Classic
+	{
+		class Initialisation : public Phase
+		{
 
-public:
-	Initialisation(CollisionDetector *collision);
-	virtual ~Initialisation();
-	void init();
-	void run();
+		public:
+			Initialisation(CollisionDetector *collision);
+			virtual ~Initialisation();
+			void init();
+			void run();
 
-private:
+		private:
 
-};
+		};
+	}
+}
 
 
 

@@ -1,23 +1,28 @@
 #include "Running.h"
 
-
-Running::Running(CollisionDetector *collision)  : Phase(collision)
+namespace GameTypeSpace
 {
-}
+	namespace CTF
+	{
+		Running::Running(CollisionDetector *collision)  : Phase(collision)
+		{
+		}
 
-Running::~Running()
-{
-}
+		Running::~Running()
+		{
+		}
 
-void Running::init()
-{
-}
+		void Running::init()
+		{
+		}
 
-void Running::run()
-{
-}
+		void Running::run()
+		{
+		}
 
-void Running::updateTimer()
-{
+		void Running::updateTimer()
+		{
+		}
+	}
 }
 

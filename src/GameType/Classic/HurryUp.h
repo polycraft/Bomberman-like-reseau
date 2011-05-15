@@ -4,18 +4,25 @@
 #include "../Phase.h"
 #include "Running.h"
 
-class HurryUp : public Running
+namespace GameTypeSpace
 {
+	using namespace Classic;
+	namespace Classic
+	{
+		class HurryUp : public Running
+		{
 
-public:
-	HurryUp(CollisionDetector *collision);
-	virtual ~HurryUp();
-	void run();
-	void updateTimer();
+		public:
+			HurryUp(CollisionDetector *collision);
+			virtual ~HurryUp();
+			void run();
+			void updateTimer();
 
-private:
+		private:
 
-};
+		};
+	}
+}
 
 
 

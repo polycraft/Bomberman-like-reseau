@@ -1,18 +1,23 @@
 #include "Initialisation.h"
 
-
-Initialisation::Initialisation(CollisionDetector *collision)  : Phase(collision)
+namespace GameTypeSpace
 {
-}
+	namespace Classic
+	{
+		Initialisation::Initialisation(CollisionDetector *collision)  : Phase(collision)
+		{
+		}
 
-Initialisation::~Initialisation()
-{
-}
+		Initialisation::~Initialisation()
+		{
+		}
 
-void Initialisation::init()
-{
-}
+		void Initialisation::init()
+		{
+		}
 
-void Initialisation::run()
-{
+		void Initialisation::run()
+		{
+		}
+	}
 }

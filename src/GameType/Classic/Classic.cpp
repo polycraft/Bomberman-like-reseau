@@ -1,18 +1,21 @@
 #include "Classic.h"
 
-Classic::Classic(CollisionDetector collision)
+namespace GameTypeSpace
 {
-}
+	Classic::Classic(CollisionDetector collision)
+	{
+	}
 
-Classic::~Classic()
-{
-}
+	Classic::~Classic()
+	{
+	}
 
 
-void Classic::nextPhase(int phase)
-{
-}
+	void Classic::nextPhase(int phase)
+	{
+	}
 
-void Classic::explode(Bomb* bomb,int speed,int power)
-{
+	void Classic::explode(Bomb* bomb,int speed,int power)
+	{
+	}
 }

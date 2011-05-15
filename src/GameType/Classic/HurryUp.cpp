@@ -1,17 +1,24 @@
 #include "HurryUp.h"
 
-HurryUp::HurryUp(CollisionDetector *collision) : Running(collision)
+namespace GameTypeSpace
 {
-}
+	namespace Classic
+	{
+		HurryUp::HurryUp(CollisionDetector *collision) : Running(collision)
+		{
+		}
 
-HurryUp::~HurryUp()
-{
-}
+		HurryUp::~HurryUp()
+		{
+		}
 
-void HurryUp::run()
-{
-}
 
-void HurryUp::updateTimer()
-{
+		void HurryUp::run()
+		{
+		}
+
+		void HurryUp::updateTimer()
+		{
+		}
+	}
 }

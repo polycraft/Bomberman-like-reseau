@@ -4,20 +4,23 @@
 #include "../GameType.h"
 #include "../../CollisionDetector.h"
 
-class Classic : public GameType
+namespace GameTypeSpace
 {
+	class Classic : public GameType
+	{
 
-public:
-	Classic(CollisionDetector collision);
-	virtual ~Classic();
-	void nextPhase(int phase);
-	virtual void explode(Bomb* bomb,int speed,int power);
+	public:
+		Classic(CollisionDetector collision);
+		virtual ~Classic();
+		void nextPhase(int phase);
+		virtual void explode(Bomb* bomb,int speed,int power);
 	
 	
-private:
-	int partTime;
+	private:
+		int partTime;
 
-};
+	};
+}
 
 
 
