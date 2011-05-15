@@ -46,8 +46,7 @@ namespace Engine
 
 			bool hasTransparentTexture;
 
-			//no de sa texture
-			GLuint noTexture;
+
 
 
     };

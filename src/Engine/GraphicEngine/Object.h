@@ -57,6 +57,9 @@ namespace Engine
 			**/
 			void destroy();
 
+			void setTexture(Texture* noTexture);
+			void setTexture(Ressource* noTexture);
+
         private:
             double xScale;
             double yScale;
@@ -66,15 +69,21 @@ namespace Engine
             **/
 			bool visible;
 
-			/**
-            Les Datas
-            **/
-            Meshe* data;
+
 
             /**
             Etat de l'objet (à détruire)
             **/
             bool alive;
+
+			/**
+            Les Datas
+            **/
+            Meshe* data;
+			
+			//no de sa texture
+			GLuint noTexture;
+
     };
 }
 

@@ -7,8 +7,7 @@ namespace Engine
     class Cube : public Meshe
     {
         public:
-            Cube(double height,Ressource *noTexture);
-			Cube(double height,Texture *noTexture);
+            Cube(double height);
             ~Cube();
 		private:
 			void construireCube(double height);
