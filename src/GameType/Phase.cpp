@@ -5,9 +5,7 @@ Phase::Phase(CollisionDetector *collision)
 {
 }
 
-Phase::~Phase()
-{
-}
+
 
 void Phase::init()
 {
