@@ -5,13 +5,22 @@
 #include "Type/Type.h"
 #include <vector>
 #include "Engine/GraphicEngine/Scene.h"
+#include "Engine/MainEngine.h"
 #include "Engine/Ressource.h"
+#include "Engine/ManagerRessource.h"
+#include "Type/StaticBloc.h"
 
 using namespace Engine;
 
+enum EScene{
+	T_World=0,
+	T_Map=1,
+	T_Dyn=2
+};
+
 enum EGameType{
-	Classic,
-	CaptureTheFlag
+	T_Classic,
+	T_CaptureTheFlag
 };
 
 typedef struct SCoordinate
@@ -29,19 +38,22 @@ public:
 	void addBomberman(Bomberman bomberman);
 	void addObject(Type* object, int x, int y);
 	void addSpawn(int x, int y);
-	Scene* getScene(int scene);
+	Scene* getScene(EScene scene);
 	SCoordinate getSpawn(int id);
 	int getWidth();
 	int getLength();
 	Type* get(int x,int y);
+	void setEngine(MainEngine* engine);
+	void buildScenes();
 
 private:
 	int gameType;
 	int width;
-	int length;
+	int height;
 	vector<Scene*> scene;
 	vector<SCoordinate> spawn;
 	Type ***map;
+	MainEngine* engine;
 
 };
 
