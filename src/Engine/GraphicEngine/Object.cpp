@@ -51,11 +51,11 @@ namespace Engine
 		//La couleur Ambiante de l'objet est mise au BLANC ( sinon vert par defaut)
 		glColor3ub(255,255,255);
 
-		glEnable(GL_ALPHA_TEST);
-		glAlphaFunc(GL_GREATER, 0.0f);
+		//glEnable(GL_ALPHA_TEST);
+		//glAlphaFunc(GL_GREATER, 0.0f);
 
 		//Texture a appliquer
-		glBindTexture(GL_TEXTURE_2D,this->data->noTexture);
+		glBindTexture(GL_TEXTURE_2D,this->noTexture);
 
 		//donne le tableau des points
 		glVertexPointer( 3, GL_FLOAT, 0, this->data->point );
@@ -90,14 +90,14 @@ namespace Engine
 	{
 		Meshe *temp = Ressource::getRessource<Model>(*model);
 		this->data = temp;
-		this->data->setTexture(texture);
+		this->setTexture(texture);
 	}
 
 	void Object::attach(Ressource* model, Ressource* texture)
 	{
 		Meshe *temp = Ressource::getRessource<Model>(*model);
 		this->data = temp;
-		this->data->setTexture(texture);
+		this->setTexture(texture);
 	}
 
 	void Object::moveTexture()
@@ -110,4 +110,14 @@ namespace Engine
 	    this->alive=false;
 	}
 
+	void Object::setTexture(Texture* texture)
+	{
+		this->noTexture= texture->getTexture();
+	}
+
+	void Object::setTexture(Ressource* texture)
+	{
+		Texture *temp = Ressource::getRessource<Texture>(*texture);
+		this->noTexture = temp->getTexture();
+	}
 }

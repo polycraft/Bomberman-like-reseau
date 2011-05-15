@@ -7,8 +7,7 @@ namespace Engine
     class Fire : public Meshe
     {
         public:
-            Fire(Ressource *noTexture);
-			Fire(Texture *noTexture);
+            Fire();
             ~Fire();
 		private:
 			void buildFire();

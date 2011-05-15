@@ -92,16 +92,19 @@ void Map::buildScenes()
 			{
 				StaticBloc *temp1 = new StaticBloc();
 				temp1->setCoordonnes(j*10+x0,i*10+y0,z1);
+				temp1->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/dirt.jpg"));
 				this->scene[T_World]->addObject(temp1);
 			}
 			else if((j==0) || j==width+2-1)
 			{
 				StaticBloc *temp1 = new StaticBloc();
 				temp1->setCoordonnes(j*10+x0,i*10+y0,z1);
+				temp1->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/dirt.jpg"));
 				this->scene[T_World]->addObject(temp1);
 			}
 			StaticBloc *temp0 = new StaticBloc();
 			temp0->setCoordonnes(j*10+x0,i*10+y0,z0);
+			temp0->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/dirt.jpg"));
 			this->scene[T_World]->addObject(temp0);
 		}
 	}
@@ -125,7 +128,7 @@ void Map::buildScenes()
 					case T_StaticBloc:
 						StaticBloc *temp = new StaticBloc();
 						temp->setCoordonnes(j*10+x1,i*10+y1,z1);
-						temp->getData()->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/dirt.jpg"));
+						temp->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/box.jpg"));
 						this->scene[T_Map]->addObject(temp);
 						break;
 				}

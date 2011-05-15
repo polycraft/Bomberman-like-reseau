@@ -2,20 +2,12 @@
 
 namespace Engine
 {
-	Fire::Fire(Ressource *noTexture) : Meshe(noTexture)
+	Fire::Fire()
 	{
 
 		this->buildFire();
 		this->cycleTexture = 0;
 	}
-
-	Fire::Fire(Texture *noTexture) : Meshe(noTexture)
-	{
-
-		this->buildFire();
-		this->cycleTexture = 0;
-	}
-
 
 	Fire::~Fire()
 	{
