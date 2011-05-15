@@ -4,6 +4,7 @@
 #include "../Engine/GraphicEngine/Object.h"
 #include "../Engine/ManagerRessource.h"
 #include "../Engine/Ressource.h"
+#include "../Engine/GraphicEngine/Cube.h"
 
 using namespace Engine;
 
