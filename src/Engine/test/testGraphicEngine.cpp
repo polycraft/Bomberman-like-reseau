@@ -28,17 +28,17 @@ int testGraphicEngine()
 	object[1] =  ManagerRessource::getRessource("src/ressource/object/bomb.obj");
 
 	Object *testFire= new Object();
-	testFire->attach(new Fire(texture[4]));
+	testFire->attach(new Fire());
 	//feuTest->setScale(0,0,0);
 	testFire->setCoordonnes(0,0,0);
 
 	Object *objet1= new Object();
-	objet1->attach(new Cube(1,texture[0]));
+	objet1->attach(new Cube(1));
 	objet1->setScale(2,10,10);
 	objet1->setCoordonnes(-8,0,0);
 
 	Object *objet2= new Object();
-	objet2->attach(new Cube(2, texture[2]));
+	objet2->attach(new Cube(2));
 	objet2->setScale(2,2,2);
 	objet2->setCoordonnes(0,6,0);
 
