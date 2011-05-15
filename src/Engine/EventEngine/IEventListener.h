@@ -17,9 +17,10 @@ namespace Engine
     **/
     class IEventListener
     {
-        public:
-            IEventListener(){};
-            virtual ~IEventListener()=0;
+        protected:
+			IEventListener(){};
+		public:
+			virtual ~IEventListener(){};
 
             /**
             Execute les actions suivant les événements

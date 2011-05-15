@@ -11,7 +11,7 @@ class Phase : public IEventListener
 
 public:
 	Phase(CollisionDetector *collision);
-	virtual ~Phase()=0;
+	virtual ~Phase(){};
 	virtual void init();
 	virtual void run();
 	virtual void fin( int phase);
