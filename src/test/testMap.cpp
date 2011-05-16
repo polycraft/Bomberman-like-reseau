@@ -14,8 +14,8 @@ int testMap()
 
 			Texture *texture = ManagerRessource::getRessource<Texture>("src/ressource/texture/cube.png");
 	GLuint notext= texture->getTexture();
-
-	Engine::Camera *camera = new Engine::Camera(100, 100, 80, 0, 0, 0, 0, 0, 1);
+	double place = 50;
+	Engine::Camera *camera = new Engine::Camera(place, -50, 80, place, place, 0, 0, 0, 1);
 	engine->getGengine()->addCamera(camera);
 
 	Map *map = ManagerRessource::getRessource<Map>("src/ressource/map/test.map");
@@ -56,8 +56,8 @@ void creerMap(string name)
 	struct SHeader test;
 
 	test.gameType= T_Classic;
-	test.height = 5;
-	test.width = 5;
+	test.height = 14;
+	test.width = 8;
 
 	
 	ofstream mapFile(name.c_str(), ios::out | ios::binary);
@@ -68,12 +68,21 @@ void creerMap(string name)
 
 	mapFile.write((char *) &test, sizeof(struct SHeader));
 	//cree le tableau de map
-	char element[25] = {
-	'a', '0', '0' , '0' , 'b',
-	'0', 'a', 'a' , 'b' , 'a',
-	'0', 'b', 'a' , '0' , 'a',
-	'0', 'b', 'b' , '0' , 'a',
-	'0', '0', 'b' , '0' , '0'
+	char element[112] = {
+	'a', '0', '0' , '0' ,'a', 'b', '0' , '0' ,
+	'0', '0', 'a' , '0' ,'0', '0', 'a' , '0' ,
+	'0', 'a', 'b' , 'a' ,'0', '0', 'a' , '0' ,
+	'0', 'b', 'b' , 'b' ,'b', 'b', '0' , '0' ,
+	'0', 'a', 'b' , 'a' ,'b', '0', '0' , '0' ,
+	'0', 'b', '0' , '0' ,'0', 'b', 'b' , '0' ,
+	'0', 'a', '0' , '0' ,'0', 'a', 'b' , '0' ,
+	'0', '0', '0' , '0' ,'0', '0', '0' , '0' ,
+	'0', '0', 'b' , '0' ,'0', '0', 'b' , '0' ,
+	'0', '0', '0' , '0' ,'a', '0', '0' , '0' ,
+	'0', '0', '0' , '0' ,'a', '0', '0' , '0' ,
+	'0', '0', 'b' , '0' ,'0', '0', 'b' , '0' ,
+	'0', '0', '0' , 'b' ,'b', 'b', '0' , '0' ,
+	'0', '0', '0' , '0' ,'0', '0', '0' , '0' 
 	};
 	
 

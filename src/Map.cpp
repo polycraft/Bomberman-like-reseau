@@ -7,17 +7,24 @@ Map::Map(string &name, EGameType gameType, int width, int height)  : Ressource(n
 	this->gameType = gameType;
 	this->width = width;
 	this->height = height;
-	Type ***temp = new Type**[this->height];
-	for(int i=0; i<this->height;i++)
+	Type ***temp = new Type**[this->width];
+	for(int x=0; x<this->width;x++)
 	{
-		temp[i]= new Type*[this->width];
-		for(int j=0;j<height;j++)
+		temp[x]= new Type*[this->height];
+		for(int y=0;y<height;y++)
 		{
-			temp[i][j] = NULL;
+			temp[x][y] = NULL;
 		}
 	}
 
 	this->map = temp;
+
+		//Scene World
+	this->scene.push_back(new Scene(Engine::TS_Static));
+	//Scene Map
+	this->scene.push_back(new Scene(Engine::TS_Static));
+	//Scene dynamique
+	this->scene.push_back(new Scene(Engine::TS_Dynamique));
 }
 
 Map::~Map()
@@ -28,9 +35,16 @@ void Map::addBomberman(Bomberman bomberman)
 {
 }
 
-void Map::addObject(Type* object, int x, int y)
+void Map::addObject(Type* object, int x, int y,EScene scene)
 {
+	double x1,y1,z1;
+	x1=15;
+	y1=15;
+	z1=5;
+
 	this->map[x][y] = object;
+	object->setCoordonnes(x*10+x1,y*10+y1,z1);
+	this->scene[scene]->addObject(object);
 }
 
 void Map::addSpawn(int x, int y)
@@ -72,75 +86,51 @@ void Map::setEngine(MainEngine *engine)
 	buildScenes();
 	this->engine->getGengine()->addScene(this->scene[T_World]);
 	this->engine->getGengine()->addScene(this->scene[T_Map]);
+	this->engine->getGengine()->addScene(this->scene[T_Dyn]);
 
 
 }
 
 void Map::buildScenes()
 {
-	//Scene World
-	this->scene.push_back(new Scene(Engine::TS_Static));
+
+
+
 	double x0,y0,z0;
 	x0=y0=5;
 	z0=-5;
 	double z1=z0+10;//repere des bords
-	for(int i=0; i< height+2; i++)
+	for(int x=0; x< width+2; x++)
 	{
-		for(int j=0; j<width+2; j++)
+		for(int y=0; y<height+2; y++)
 		{
-			if(i==0 || i==height+2-1)
+			if(x==0 || x==width+2-1)
 			{
 				StaticBloc *temp1 = new StaticBloc();
-				temp1->setCoordonnes(j*10+x0,i*10+y0,z1);
-				temp1->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/dirt.jpg"));
+				temp1->setCoordonnes(x*10+x0,y*10+y0,z1);
+				temp1->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/wall.jpg"));
 				this->scene[T_World]->addObject(temp1);
 			}
-			else if((j==0) || j==width+2-1)
+			else if((y==0) || y==height+2-1 )
 			{
 				StaticBloc *temp1 = new StaticBloc();
-				temp1->setCoordonnes(j*10+x0,i*10+y0,z1);
-				temp1->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/dirt.jpg"));
+				temp1->setCoordonnes(x*10+x0,y*10+y0,z1);
+				temp1->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/wall.jpg"));
 				this->scene[T_World]->addObject(temp1);
 			}
 			StaticBloc *temp0 = new StaticBloc();
-			temp0->setCoordonnes(j*10+x0,i*10+y0,z0);
-			temp0->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/dirt.jpg"));
+			temp0->setCoordonnes(x*10+x0,y*10+y0,z0);
+			temp0->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/grass.jpg"));
 			this->scene[T_World]->addObject(temp0);
 		}
 	}
+	//skybox test 
 
-
-
-	//Scene Map
-	this->map[0][1];
-	this->scene.push_back(new Scene(Engine::TS_Static));
-	double x1=x0+10;
-	double y1=y0+10;
-	
-	for(int i=0; i<height;i++)
-	{
-		for(int j=0; j<width; j++)
-		{
-			if(this->map[i][j] != NULL)
-			{
-				switch(this->map[i][j]->getType())
-				{
-					case T_StaticBloc:
-						StaticBloc *temp = new StaticBloc();
-						temp->setCoordonnes(j*10+x1,i*10+y1,z1);
-						temp->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/box.jpg"));
-						this->scene[T_Map]->addObject(temp);
-						break;
-				}
-			}
-		}
-	}
-
-
-	//Scene dynamique
-	this->scene.push_back(new Scene(Engine::TS_Dynamique));
-
-
+	StaticBloc *skybox = new StaticBloc();
+	skybox->setCoordonnes(0,0,0);
+	skybox->scale(100,100,100);
+	skybox->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/sky.jpg"));
+	this->scene[T_World]->addObject(skybox);
 
 
 

@@ -9,6 +9,7 @@
 #include "Engine/Ressource.h"
 #include "Engine/ManagerRessource.h"
 #include "Type/StaticBloc.h"
+#include "Type\BreakableBloc.h"
 
 using namespace Engine;
 
@@ -36,7 +37,7 @@ public:
 	Map(string &name, EGameType gameType, int width, int lenght);
 	~Map();
 	void addBomberman(Bomberman bomberman);
-	void addObject(Type* object, int x, int y);
+	void addObject(Type* object, int x, int y, EScene scene);
 	void addSpawn(int x, int y);
 	Scene* getScene(EScene scene);
 	SCoordinate getSpawn(int id);

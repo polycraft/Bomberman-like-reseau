@@ -12,7 +12,7 @@ public:
 	EType getType();
 
 private:
-	static Cube* bloc;
+	static Cube* staticBloc;
 };
 
 

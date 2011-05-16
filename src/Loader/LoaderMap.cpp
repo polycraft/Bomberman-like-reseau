@@ -31,19 +31,39 @@ namespace Engine
 
 
 		Map *map=new Map(name, header.gameType ,header.width,header.height);
+		
+		///////////////
+		char** temp = new char*[header.width];
+		for(int x=0; x<header.width;x++)
+		{
+			temp[x]= new char[header.height];
+			for(int y=0;y<header.height;y++)
+			{
+				temp[x][y] = '0';
+			}
+		}
+
+		////////
+
+
+
 
 		for( int i=0; i< header.width*header.height;i++)
 		{
+
 			switch(element[i])
 			{
+				
 				case 'a':
-					map->addObject(new StaticBloc(), i/header.width+1, i%header.width );
+					map->addObject(new StaticBloc(), i%(header.width), header.height - i/(header.width)-1, T_Map );
+					temp[i%(header.width)][header.height - i/(header.width)-1]='a';
 					break;
 				case 'b':
-					map->addObject(new BreakableBloc(), i/header.width+1, i%header.width);
+					map->addObject(new BreakableBloc(), i%(header.width), header.height - i/(header.width)-1, T_Dyn);
+					temp[i%(header.width)][header.height - i/(header.width)-1]='b';
 				break;
 				case 'c':
-					map->addSpawn(i/header.width+1, i%header.width);
+					map->addSpawn(i%(header.width), header.height - i/(header.width)-1);
 				break;
 			}
 		}

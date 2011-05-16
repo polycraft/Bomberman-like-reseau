@@ -1,16 +1,17 @@
 #include "StaticBloc.h"
 
-Cube* StaticBloc::bloc = NULL;
-
+Cube* StaticBloc::staticBloc = NULL;
 
 StaticBloc::StaticBloc()
 {
 
-	if(StaticBloc::bloc==NULL)
+	if(StaticBloc::staticBloc==NULL)
 	{
-		StaticBloc::bloc = new Cube(1,ManagerRessource::getRessource<Texture>("src/ressource/texture/box.jpg"));
+		StaticBloc::staticBloc = new Cube(1);
 	}
-	this->attach(bloc);
+	this->attach(staticBloc);
+
+	this->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/wall2.jpg"));
 }
 
 StaticBloc::~StaticBloc()

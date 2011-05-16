@@ -12,6 +12,7 @@ public:
 	EType getType();
 
 private:
+	static Cube* Breakbloc;
 
 
 };
