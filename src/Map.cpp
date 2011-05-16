@@ -31,8 +31,15 @@ Map::~Map()
 {
 }
 
-void Map::addBomberman(Bomberman bomberman)
+void Map::addBomberman(Bomberman *bomberman,SCoordinate coord)
 {
+	double x1,y1,z1;
+	x1=15;
+	y1=15;
+	z1=5;
+
+	bomberman->setCoordonnes(coord.x*10+x1,coord.y*10+y1,z1);
+	this->scene[T_Dyn]->addObject(bomberman);
 }
 
 void Map::addObject(Type* object, int x, int y,EScene scene)
@@ -57,7 +64,7 @@ void Map::addSpawn(int x, int y)
 
 Scene* Map::getScene(EScene scene)
 {
-	return this->scene[scene];
+    return this->scene[scene];
 }
 
 SCoordinate Map::getSpawn(int id)
@@ -124,7 +131,7 @@ void Map::buildScenes()
 			this->scene[T_World]->addObject(temp0);
 		}
 	}
-	//skybox test 
+	//skybox test
 
 	StaticBloc *skybox = new StaticBloc();
 	skybox->setCoordonnes(0,0,0);

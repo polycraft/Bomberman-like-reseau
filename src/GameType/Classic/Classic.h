@@ -4,6 +4,8 @@
 #include "../GameType.h"
 #include "../../CollisionDetector.h"
 #include "../Phase.h"
+#include "../../Engine/NetworkEngine/IObserverSocketRecv.h"
+#include "../../Engine/EventEngine/IEventListener.h"
 
 namespace GameTypeSpace
 {
@@ -19,7 +21,7 @@ namespace GameTypeSpace
 	    };
 	}
 
-	class Classic : public GameType
+	class Classic : public GameType, public Engine::IObserverSocketRecv,public Engine::IEventListener
 	{
 
 	public:
@@ -33,6 +35,9 @@ namespace GameTypeSpace
 		vector<Bomberman*>& getPlayerNetwork();
 
         Phase* getPhase(ClassicSpace::EPhase phase);
+
+        void executeAction(Engine::stateEvent &event);
+        void updateRecv(Socket *,const char*,int size);
 	private:
 		int partTime;
 		CollisionDetector *collision;

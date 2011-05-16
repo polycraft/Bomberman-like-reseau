@@ -2,6 +2,7 @@
 #define GAME_H
 #include "Engine/util/IObserverTimer.h"
 #include "Map.h"
+#include "Engine/MainEngine.h"
 
 class Game : public Engine::IObserverTimer
 {
@@ -13,8 +14,11 @@ class Game : public Engine::IObserverTimer
         void updateTimer();
 
         Map *getMap();
+        MainEngine* getEngine();
     protected:
     private:
+    Map *map;
+    MainEngine* engine;
 };
 
 #endif // GAME_H

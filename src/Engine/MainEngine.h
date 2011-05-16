@@ -2,6 +2,7 @@
 #define ENGINE_H
 
 #include "GraphicEngine/GraphicEngine.h"
+#include "EventEngine/EventEngine.h"
 
 namespace Engine
 {
@@ -11,10 +12,11 @@ namespace Engine
 		MainEngine();
 		~MainEngine();
 		GraphicEngine* getGengine();
-
+        EventEngine* getEventEngine();
+        bool run(Camera *camera);
 	private:
 		GraphicEngine *Gengine;
-
+        EventEngine *eventEngine;
 
 	};
 }

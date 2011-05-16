@@ -4,6 +4,8 @@
 Phase::Phase(CollisionDetector *collision)
 {
     setCollisionDetector(collision);
+    this->etat=E_Init;
+    this->next=0;
 }
 
 
@@ -16,7 +18,7 @@ void Phase::end( int next)
 
 int Phase::update()
 {
-    switch(etat)
+    switch(this->etat)
     {
         case E_Init:
             this->init();

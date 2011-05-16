@@ -6,10 +6,9 @@ using namespace std;
 
 namespace Engine
 {
-    EventEngine::EventEngine(unsigned int nbListener)
+    EventEngine::EventEngine()
     {
-        //listener=new vector<IEventListener*>(nbListener);
-        event.keyState= map<SDLKey,bool>();
+
     }
 
     EventEngine::~EventEngine()
@@ -18,9 +17,13 @@ namespace Engine
         //delete listener;
     }
 
-    void EventEngine::update()
+    bool EventEngine::update()
     {
         while ( SDL_PollEvent(&(event.event) )) {
+            if(event.event.type==SDL_QUIT)
+            {
+                return false;
+            }
             switch(event.event.type)
             {
                 case SDL_KEYDOWN:
@@ -32,7 +35,9 @@ namespace Engine
             }
         }
 
-        callListener();
+            callListener();
+
+        return true;
     }
 
     void EventEngine::callListener()

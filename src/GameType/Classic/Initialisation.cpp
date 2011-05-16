@@ -24,24 +24,23 @@ namespace GameTypeSpace
 		    Map *map=gameType->getGame()->getMap();
 
 		    //Création du bomberman
-		    SCoordinate coord=map->getSpawn(0);
-		    Bomberman *bomber=new Bomberman(0,map->getSpawn(0));
+		    Bomberman *bomber=new Bomberman(0);
 		    this->gameType->setPlayer(bomber);
-		    map->addBomberman(bomber);
+		    map->addBomberman(bomber,map->getSpawn(0));
 
-            bomber=new Bomberman(1,map->getSpawn(1));
+            bomber=new Bomberman(1);
 		    this->gameType->getPlayerNetwork().push_back(bomber);
-		    map->addBomberman(bomber);
+		    map->addBomberman(bomber,map->getSpawn(1));
 
 		    end(P_Next);
 		}
 
-		void Initialisation::executeAction(const Engine::stateEvent &event)
+		void Initialisation::executeAction(Engine::stateEvent &event)
 		{
 
 		}
 
-		void Initialisation::updateRecv(Socket *,const char*,int size)
+		void Initialisation::updateRecv(Socket *socket,const char*s,int size)
 		{
 
 		}

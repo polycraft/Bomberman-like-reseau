@@ -8,6 +8,7 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/bomberman" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -100,6 +101,8 @@
 		<Unit filename="Engine/Loader/LoaderSound.h" />
 		<Unit filename="Engine/Loader/LoaderTexture.cpp" />
 		<Unit filename="Engine/Loader/LoaderTexture.h" />
+		<Unit filename="Engine/MainEngine.cpp" />
+		<Unit filename="Engine/MainEngine.h" />
 		<Unit filename="Engine/ManagerRessource.cpp" />
 		<Unit filename="Engine/ManagerRessource.h" />
 		<Unit filename="Engine/Model.cpp" />
@@ -122,6 +125,8 @@
 		<Unit filename="Engine/test/testEventEngine.h" />
 		<Unit filename="Engine/test/testGraphicEngine.cpp" />
 		<Unit filename="Engine/test/testGraphicEngine.h" />
+		<Unit filename="Engine/test/testMapLoader.cpp" />
+		<Unit filename="Engine/test/testMapLoader.h" />
 		<Unit filename="Engine/test/testSocket.cpp" />
 		<Unit filename="Engine/test/testSocket.h" />
 		<Unit filename="Engine/test/testThreadable.cpp" />
@@ -134,8 +139,22 @@
 		<Unit filename="Engine/util/Timer.cpp" />
 		<Unit filename="Engine/util/Timer.h" />
 		<Unit filename="Engine/util/windows.h" />
+		<Unit filename="Game.cpp" />
+		<Unit filename="Game.h" />
+		<Unit filename="GameType/Classic/Classic.cpp" />
+		<Unit filename="GameType/Classic/Classic.h" />
+		<Unit filename="GameType/Classic/HurryUp.cpp" />
+		<Unit filename="GameType/Classic/HurryUp.h" />
+		<Unit filename="GameType/Classic/Initialisation.cpp" />
+		<Unit filename="GameType/Classic/Initialisation.h" />
+		<Unit filename="GameType/Classic/PhaseClassic.cpp" />
+		<Unit filename="GameType/Classic/PhaseClassic.h" />
+		<Unit filename="GameType/Classic/Running.cpp" />
+		<Unit filename="GameType/Classic/Running.h" />
 		<Unit filename="GameType/GameType.cpp" />
 		<Unit filename="GameType/GameType.h" />
+		<Unit filename="GameType/Phase.cpp" />
+		<Unit filename="GameType/Phase.h" />
 		<Unit filename="Loader/LoaderMap.cpp" />
 		<Unit filename="Loader/LoaderMap.h" />
 		<Unit filename="Map.cpp" />
@@ -144,6 +163,8 @@
 		<Unit filename="Type/Bomb.h" />
 		<Unit filename="Type/Bomberman.cpp" />
 		<Unit filename="Type/Bomberman.h" />
+		<Unit filename="Type/Bonus.cpp" />
+		<Unit filename="Type/Bonus.h" />
 		<Unit filename="Type/BreakableBloc.cpp" />
 		<Unit filename="Type/BreakableBloc.h" />
 		<Unit filename="Type/Explosion.cpp" />
@@ -153,6 +174,8 @@
 		<Unit filename="Type/Type.cpp" />
 		<Unit filename="Type/Type.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="test/testMap.cpp" />
+		<Unit filename="test/testMap.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

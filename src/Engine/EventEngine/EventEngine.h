@@ -14,13 +14,13 @@ namespace Engine
     class EventEngine
     {
         public:
-            EventEngine(unsigned int nbListener=5);
+            EventEngine();
             virtual ~EventEngine();
 
             /**
             Met à jours les evenements
             **/
-            void update();
+            bool update();
 
             /**
             Appel les écouteurs d'evenements

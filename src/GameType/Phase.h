@@ -9,6 +9,8 @@ using namespace Engine;
 
 typedef enum EEtat
 {
+    E_Current=0,
+    E_Next=1,
     E_Init,
     E_Run
 } EEtat;
@@ -23,7 +25,7 @@ public:
 	virtual void run()=0;
 	void end( int next=1);
 	void nextEtat();
-	virtual void executeAction(const Engine::stateEvent &event)=0;
+	virtual void executeAction(Engine::stateEvent &event)=0;
 	void setCollisionDetector(CollisionDetector *collision);
 
     int update();

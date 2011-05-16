@@ -16,7 +16,7 @@ namespace GameTypeSpace
 			virtual ~Initialisation();
 			void init();
 			void run();
-            void executeAction(const Engine::stateEvent &event);
+            void executeAction(Engine::stateEvent &event);
             virtual void updateRecv(Socket *,const char*,int size);
 		};
 	}

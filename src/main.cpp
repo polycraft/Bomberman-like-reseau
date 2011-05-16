@@ -2,14 +2,19 @@
 #include "Engine/test/testGraphicEngine.h"
 #include "Engine/test/testThreadable.h"
 #include "Engine/test/testSocket.h"
-#include "Engine/test/testMapLoader.h"
+#include "test/testMap.h"
+
+#include "Game.h"
 
 int main(int argc, char* argv[])
 {
     //testEngineSound();
-   // testGraphicEngine();
-		testMapLoader();
+    //testGraphicEngine();
+    //testMapLoader();
     //testThreadable();
-   // testSocket();
-	return 0;
+    // testSocket();
+    //testMap();
+    Game();
+
+    return 0;
 }

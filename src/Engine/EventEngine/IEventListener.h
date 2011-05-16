@@ -25,7 +25,7 @@ namespace Engine
             /**
             Execute les actions suivant les événements
             **/
-            virtual void executeAction(const stateEvent &event)=0;
+            virtual void executeAction(stateEvent &event)=0;
         protected:
         private:
     };

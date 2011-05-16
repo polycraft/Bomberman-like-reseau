@@ -14,9 +14,11 @@ namespace GameTypeSpace
 
 	    collision=new CollisionDetector(game->getMap());
 
-	    phase[P_Initialisation]=new Initialisation(this,collision);
-	    phase[P_Running]=new Running(this,collision);
-	    phase[P_HurryUp]=new HurryUp(this,collision);
+	    phase[P_Initialisation-2]=new Initialisation(this,collision);
+	    phase[P_Running-2]=new Running(this,collision);
+	    phase[P_HurryUp-2]=new HurryUp(this,collision);
+
+	    this->game->getEngine()->getEventEngine()->addListener(this);
 	}
 
 	Classic::~Classic()
@@ -30,6 +32,7 @@ namespace GameTypeSpace
 
 	void Classic::update()
 	{
+	    Phase* t=getPhase(phaseCurrent);
         EPhase nextPhase=static_cast<EPhase>(getPhase(phaseCurrent)->update());
         int tmp;
         switch(nextPhase)
@@ -71,14 +74,24 @@ namespace GameTypeSpace
         switch(phase)
         {
             case P_Current:
-                return this->phase[phaseCurrent];
+                return this->phase[phaseCurrent-2];
             break;
             case P_Next:
-                return this->phase[phaseCurrent+1];
+                return this->phase[phaseCurrent+1-2];
             break;
             default:
                 return this->phase[phase-2];
             break;
         }
+    }
+
+    void Classic::executeAction(Engine::stateEvent &event)
+    {
+        this->phase[phaseCurrent-2]->executeAction(event);
+    }
+
+    void Classic::updateRecv(Socket *socket,const char*s,int size)
+    {
+        dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,s,size);
     }
 }
