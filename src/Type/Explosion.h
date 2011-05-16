@@ -5,7 +5,7 @@
 
 enum EExplose
 {
-	T_Emiter,
+	T_Emitter,
 	T_Left,
 	T_Right,
 	T_Up,
@@ -17,15 +17,14 @@ class Explosion : public Type
 {
 
 public:
-	Explosion(int id, int speed, int power, EExplose type);
+	Explosion(EExplose type);
 	~Explosion();
 	EType getType();
 	void updateTimer();
 
+	void changeExplose(EExplose typeExplose);
+
 private:
-	int id;
-	int speed;
-	int power;
 	EExplose typeExplosion;
 
 
