@@ -40,6 +40,8 @@ namespace Engine
 		_addLoader("bmp",loaderTexture);
 		_addLoader("jpg",loaderTexture);
 		_addLoader("png",loaderTexture);
+		_addLoader("tga",loaderTexture);
+		_addLoader("dds",loaderTexture);
 
 		//loader Objet
 		Loader *loaderObject=new LoaderObject();
