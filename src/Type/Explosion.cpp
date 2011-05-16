@@ -13,23 +13,25 @@ Explosion::Explosion(EExplose type)
 		case T_Left:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
 		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+			this->setRotation(0,180,0);
 		break;
 
 		case T_Right:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
 		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+			this->setRotation(0,180,0);
 		break;
 
 		case T_Up:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
 		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
-			this->setRotation(0,0,90);
+			this->setRotation(0,180,90);
 		break;
 
 		case T_Down:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
 		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
-			this->setRotation(0,0,90);
+			this->setRotation(0,180,90);
 		break;
 
 		case T_End:
