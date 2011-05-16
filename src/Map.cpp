@@ -77,7 +77,7 @@ int Map::getWidth()
 	return this->width;
 }
 
-int Map::getLength()
+int Map::getHeight()
 {
 	return this->height;
 }
@@ -131,12 +131,15 @@ void Map::buildScenes()
 			this->scene[T_World]->addObject(temp0);
 		}
 	}
-	//skybox test
 
-	StaticBloc *skybox = new StaticBloc();
-	skybox->setCoordonnes(0,0,0);
-	skybox->scale(100,100,100);
-	skybox->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/sky.jpg"));
+
+		
+	//skybox test 
+
+	Object *skybox= new Object();
+	skybox->attach(ManagerRessource::getRessource<Model>("src/ressource/object/skybox.obj"),ManagerRessource::getRessource<Texture>("src/ressource/texture/skybox2.jpg"));
+	skybox->setCoordonnes((width*10)/2,(height*10)/2,0);
+	skybox->scale(200,200,200);
 	this->scene[T_World]->addObject(skybox);
 
 

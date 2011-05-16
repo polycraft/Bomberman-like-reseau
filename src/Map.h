@@ -42,7 +42,7 @@ public:
 	Scene* getScene(EScene scene);
 	SCoordinate getSpawn(int id);
 	int getWidth();
-	int getLength();
+	int getHeight();
 	Type* get(int x,int y);
 	void setEngine(MainEngine* engine);
 	void buildScenes();
