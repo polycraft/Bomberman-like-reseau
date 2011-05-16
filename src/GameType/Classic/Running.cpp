@@ -28,14 +28,22 @@ namespace GameTypeSpace
 
 		void Running::executeAction(Engine::stateEvent &event)
 		{
-            eventMove(event);
-		}
-
-		void Running::eventMove(Engine::stateEvent &event)
-		{
-		    		    double tmpX=this->gameType->getPlayer()->getTransX();
+		    double tmpX=this->gameType->getPlayer()->getTransX();
 		    double tmpY=this->gameType->getPlayer()->getTransY();
 
+            eventMove(event,tmpX,tmpY);
+
+            if(event.keyState[SDLK_SPACE])
+            {
+                int x=tmpX;x=x/10-1;
+                int y=tmpY;y=y/10-1;
+
+                this->gameType->getGame()->getMap()->addObject(new Bomb(this->gameType->getPlayer()->getId(), 2, 2, 2),x,y,T_Dyn);
+            }
+		}
+
+		void Running::eventMove(Engine::stateEvent &event,double tmpX,double tmpY)
+		{
 		    double vitesse=0.1;
 		    double distance=3.75;
 
@@ -54,7 +62,10 @@ namespace GameTypeSpace
                 point[2]=point[2]/10-1;
                 point[3]=point[3]/10-1;
 
-                if(collision->detect(T_Bomberman,point[0],point[2])!=C_Block && collision->detect(T_Bomberman,point[0],point[3])!=C_Block)
+                int position=tmpX;
+                position=position/10-1;
+
+                if(position==point[0] || collision->detect(T_Bomberman,point[0],point[2])!=C_Block && collision->detect(T_Bomberman,point[0],point[3])!=C_Block)
                 {
                     this->gameType->getPlayer()->translation(-vitesse,0,0);
                 }
@@ -68,7 +79,11 @@ namespace GameTypeSpace
                 point[1]=point[1]/10-1;
                 point[2]=point[2]/10-1;
                 point[3]=point[3]/10-1;
-                if(collision->detect(T_Bomberman,point[1],point[2])!=C_Block && collision->detect(T_Bomberman,point[1],point[3])!=C_Block)
+
+                int position=tmpX;
+                position=position/10-1;
+
+                if(position==point[1] || collision->detect(T_Bomberman,point[1],point[2])!=C_Block && collision->detect(T_Bomberman,point[1],point[3])!=C_Block)
                 {
                     this->gameType->getPlayer()->translation(vitesse,0,0);
                 }
@@ -80,7 +95,11 @@ namespace GameTypeSpace
                 point[0]=point[0]/10-1;
                 point[1]=point[1]/10-1;
                 point[3]=point[3]/10-1;
-                if(collision->detect(T_Bomberman,point[0],point[3])!=C_Block && collision->detect(T_Bomberman,point[1],point[3])!=C_Block)
+
+                int position=tmpY;
+                position=position/10-1;
+
+                if(position==point[3] || collision->detect(T_Bomberman,point[0],point[3])!=C_Block && collision->detect(T_Bomberman,point[1],point[3])!=C_Block)
                 {
                     this->gameType->getPlayer()->translation(0,vitesse,0);
                 }
@@ -95,7 +114,10 @@ namespace GameTypeSpace
                 point[1]=point[1]/10-1;
                 point[2]=point[2]/10-1;
 
-                if(collision->detect(T_Bomberman,point[0],point[2])!=C_Block && collision->detect(T_Bomberman,point[1],point[2])!=C_Block)
+                int position=tmpY;
+                position=position/10-1;
+
+                if(position==point[2] || collision->detect(T_Bomberman,point[0],point[2])!=C_Block && collision->detect(T_Bomberman,point[1],point[2])!=C_Block)
                 {
                     this->gameType->getPlayer()->translation(0,-vitesse,0);
                 }

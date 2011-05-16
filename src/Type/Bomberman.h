@@ -11,6 +11,7 @@ public:
 	Bomberman(int id);
 	~Bomberman();
 	EType getType();
+	int getId();
 
 private:
 	int id;

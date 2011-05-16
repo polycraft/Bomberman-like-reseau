@@ -16,3 +16,8 @@ EType Bomberman::getType()
 {
 	return T_Bomberman;
 }
+
+int Bomberman::getId()
+{
+    return id;
+}

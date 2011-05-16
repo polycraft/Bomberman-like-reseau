@@ -60,6 +60,8 @@ namespace Engine
 			void setTexture(Texture* noTexture);
 			void setTexture(Ressource* noTexture);
 
+			void setVisible(bool visible);
+
         private:
             double xScale;
             double yScale;
@@ -80,7 +82,7 @@ namespace Engine
             Les Datas
             **/
             Meshe* data;
-			
+
 			//no de sa texture
 			GLuint noTexture;
 

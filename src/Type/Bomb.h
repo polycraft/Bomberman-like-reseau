@@ -15,7 +15,7 @@ public:
 	Bomb(int idOwner, int time, int speed, int power);
 	~Bomb();
 	EType getType();
-	void updateTimer();
+	void updateTimer(unsigned int);
 
 private:
 	int idOwner;

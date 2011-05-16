@@ -36,6 +36,10 @@ namespace Engine
         {
             return false;
         }
+        if(!visible)
+        {
+            return true;
+        }
 
 		//Nouveau Repere
 		glPushMatrix();
@@ -119,5 +123,10 @@ namespace Engine
 	{
 		Texture *temp = Ressource::getRessource<Texture>(*texture);
 		this->noTexture = temp->getTexture();
+	}
+
+	void Object::setVisible(bool visible)
+	{
+	    this->visible=visible;
 	}
 }

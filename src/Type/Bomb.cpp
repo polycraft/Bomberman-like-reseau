@@ -17,7 +17,7 @@ Bomb::~Bomb()
 }
 
 
-void Bomb::updateTimer()
+void Bomb::updateTimer(unsigned int delay)
 {
 	this->gameType->explode(this,speed,power);
 }
