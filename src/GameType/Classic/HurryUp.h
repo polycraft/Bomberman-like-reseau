@@ -11,11 +11,10 @@ namespace GameTypeSpace
 		{
 
 		public:
-			HurryUp(GameType *gameType,CollisionDetector *collision);
+			HurryUp(GameTypeSpace::Classic *gameType,CollisionDetector *collision);
 			virtual ~HurryUp();
 			void run();
 			void updateTimer();
-            void executeAction(const Engine::stateEvent &event);
 		private:
 
 		};

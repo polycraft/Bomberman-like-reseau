@@ -24,6 +24,9 @@ int Phase::update()
         case E_Run:
             this->run();
         break;
+        default:
+            this->end(1);
+        break;
     }
     return next;
 }

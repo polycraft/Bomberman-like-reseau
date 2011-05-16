@@ -1,14 +1,14 @@
 #ifndef INITIALISATION_H
 #define INITIALISATION_H
 
-#include "../Phase.h"
+#include "PhaseClassic.h"
 #include "Classic.h"
 
 namespace GameTypeSpace
 {
 	namespace ClassicSpace
 	{
-		class Initialisation : public Phase
+		class Initialisation : public PhaseClassic
 		{
 
 		public:
@@ -17,8 +17,7 @@ namespace GameTypeSpace
 			void init();
 			void run();
             void executeAction(const Engine::stateEvent &event);
-		private:
-            Classic *gameType;
+            virtual void updateRecv(Socket *,const char*,int size);
 		};
 	}
 }

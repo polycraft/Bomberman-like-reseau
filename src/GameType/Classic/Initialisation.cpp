@@ -6,7 +6,7 @@ namespace GameTypeSpace
 {
 	namespace ClassicSpace
 	{
-		Initialisation::Initialisation(GameTypeSpace::Classic *gameType,CollisionDetector *collision)  : gameType(gameType),Phase(collision)
+		Initialisation::Initialisation(GameTypeSpace::Classic *gameType,CollisionDetector *collision)  : PhaseClassic(gameType,collision)
 		{
 		}
 
@@ -32,9 +32,16 @@ namespace GameTypeSpace
             bomber=new Bomberman(1,map->getSpawn(1));
 		    this->gameType->getPlayerNetwork().push_back(bomber);
 		    map->addBomberman(bomber);
+
+		    end(P_Next);
 		}
 
 		void Initialisation::executeAction(const Engine::stateEvent &event)
+		{
+
+		}
+
+		void Initialisation::updateRecv(Socket *,const char*,int size)
 		{
 
 		}
