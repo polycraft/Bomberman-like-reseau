@@ -36,7 +36,7 @@ void Map::addBomberman(Bomberman *bomberman,SCoordinate coord)
 	double x1,y1,z1;
 	x1=15;
 	y1=15;
-	z1=5;
+	z1=0;
 
 	bomberman->setCoordonnes(coord.x*10+x1,coord.y*10+y1,z1);
 	this->scene[T_Dyn]->addObject(bomberman);
@@ -133,8 +133,8 @@ void Map::buildScenes()
 	}
 
 
-		
-	//skybox test 
+
+	//skybox test
 
 	Object *skybox= new Object();
 	skybox->attach(ManagerRessource::getRessource<Model>("src/ressource/object/skybox.obj"),ManagerRessource::getRessource<Texture>("src/ressource/texture/skybox2.jpg"));

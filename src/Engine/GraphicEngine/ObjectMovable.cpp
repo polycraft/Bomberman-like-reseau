@@ -56,6 +56,21 @@ namespace Engine
 	    return transZ;
 	}
 
+    void ObjectMovable::setTransX(double x)
+	{
+	    transX=x;
+	}
+
+    void ObjectMovable::setTransY(double y)
+	{
+	    transY=y;
+	}
+
+    void ObjectMovable::setTransZ(double z)
+	{
+	    transZ=z;
+	}
+
     double ObjectMovable::getRotateX()
     {
         return rotateX;

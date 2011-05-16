@@ -35,6 +35,14 @@ namespace Engine
 			double getTransZ();
 
 			/**
+			Setter coordonnée
+			**/
+			void setTransX(double x);
+			void setTransY(double y);
+			void setTransZ(double z);
+
+
+			/**
 			Getter rotation
 			**/
 			double getRotateX();
