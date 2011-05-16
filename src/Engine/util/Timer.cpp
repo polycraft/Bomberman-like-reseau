@@ -60,7 +60,7 @@ void Timer::update()
 
         if(sObserver->start+sObserver->delay <= SDL_GetTicks())
         {
-            sObserver->observer->updateTimer();
+            sObserver->observer->updateTimer(sObserver->delay);
             sObserver->start=SDL_GetTicks();
         }
         it++;
@@ -73,7 +73,7 @@ void Timer::update()
         sObserver=*it;
         if(sObserver->start+sObserver->delay <= SDL_GetTicks())
         {
-            sObserver->observer->updateTimer();
+            sObserver->observer->updateTimer(sObserver->delay);
             it=listenerOnce.erase(it);
         }
         else

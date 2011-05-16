@@ -17,7 +17,7 @@ namespace GameTypeSpace
 		{
 		}
 
-		void HurryUp::updateTimer()
+		void HurryUp::updateTimer(unsigned int delay)
 		{
 		}
 	}

@@ -15,7 +15,7 @@ class TestTimer : public IObserverTimer
     {
         compteur=0;
     }
-    void updateTimer()
+    void updateTimer(unsigned int delay)
     {
         compteur++;
         cout << s << " called " << compteur << "times" << endl;

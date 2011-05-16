@@ -29,8 +29,10 @@ public:
 	void setCollisionDetector(CollisionDetector *collision);
 
     int update();
+protected:
+    CollisionDetector *collision;
+
 private:
-	CollisionDetector *collision;
 	EEtat etat;
 	int next;
 };

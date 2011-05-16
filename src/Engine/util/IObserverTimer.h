@@ -7,7 +7,7 @@ namespace Engine
 class IObserverTimer
 {
     public:
-        virtual void updateTimer()=0;
+        virtual void updateTimer(unsigned int delay)=0;
         virtual ~IObserverTimer() {}
     protected:
     private:

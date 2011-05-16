@@ -22,18 +22,25 @@ namespace GameTypeSpace
 
 		}
 
-		void Running::updateTimer()
+		void Running::updateTimer(unsigned int delay)
 		{
 		}
 
 		void Running::executeAction(Engine::stateEvent &event)
 		{
-            if(event.keyState[SDLK_LEFT])
+		    int tmpX=this->gameType->getPlayer()->getTransX();
+		    int tmpY=this->gameType->getPlayer()->getTransY();
+		    int width=this->gameType->getGame()->getMap()->getWidth();
+		    int height=this->gameType->getGame()->getMap()->getLength();
+
+
+
+            if(event.keyState[SDLK_LEFT] && collision->detect(T_Bomberman,(tmpX-0.5)/width,tmpY/height)!=C_Block)
             {
                 this->gameType->getPlayer()->translation(-0.5,0,0);
                 this->gameType->getPlayer()->setRotation(0,0,180);
             }
-            if(event.keyState[SDLK_RIGHT])
+            if(event.keyState[SDLK_RIGHT] && tmpX+5+5<width*10)
             {
                 this->gameType->getPlayer()->translation(0.5,0,0);
                 this->gameType->getPlayer()->setRotation(0,0,0);

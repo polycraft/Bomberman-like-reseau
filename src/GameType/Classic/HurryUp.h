@@ -14,7 +14,7 @@ namespace GameTypeSpace
 			HurryUp(GameTypeSpace::Classic *gameType,CollisionDetector *collision);
 			virtual ~HurryUp();
 			void run();
-			void updateTimer();
+			void updateTimer(unsigned int delay);
 		private:
 
 		};

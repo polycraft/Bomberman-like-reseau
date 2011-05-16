@@ -15,7 +15,7 @@ namespace GameTypeSpace
 			virtual ~Running();
 			void init();
 			virtual void run();
-			virtual void updateTimer();
+			virtual void updateTimer(unsigned int delay);
 			void executeAction(Engine::stateEvent &event);
 			virtual void updateRecv(Socket *,const char*,int size);
 

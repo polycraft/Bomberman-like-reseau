@@ -11,7 +11,7 @@ class Game : public Engine::IObserverTimer
         virtual ~Game();
 
         void run();
-        void updateTimer();
+        void updateTimer(unsigned int delay);
 
         Map *getMap();
         MainEngine* getEngine();

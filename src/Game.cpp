@@ -27,7 +27,7 @@ Game::~Game()
     //dtor
 }
 
-void Game::updateTimer()
+void Game::updateTimer(unsigned int delay)
 {
 
 }
