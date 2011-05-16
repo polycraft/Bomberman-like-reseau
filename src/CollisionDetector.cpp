@@ -12,6 +12,9 @@ CollisionDetector::~CollisionDetector()
 
 ECollision CollisionDetector::detect(EType type,int x,int y)
 {
+    if(x<0 || x>map->getWidth() || y<0 || y>map->getHeight())
+        return C_Block;
+
     Type *object=map->get(x,y);
     if(object!=NULL)
     {
