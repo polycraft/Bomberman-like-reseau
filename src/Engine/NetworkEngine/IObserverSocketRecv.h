@@ -3,6 +3,13 @@
 
 namespace Engine
 {
+    class IObserverSocketRecv;
+}
+
+#include "Socket.h"
+
+namespace Engine
+{
 class IObserverSocketRecv
 {
     public:
