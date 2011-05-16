@@ -18,7 +18,8 @@ namespace GameTypeSpace
 			virtual void updateTimer(unsigned int delay);
 			void executeAction(Engine::stateEvent &event);
 			virtual void updateRecv(Socket *,const char*,int size);
-
+        private:
+            void eventMove(Engine::stateEvent &event);
 		};
 	}
 }

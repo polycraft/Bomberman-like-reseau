@@ -28,7 +28,12 @@ namespace GameTypeSpace
 
 		void Running::executeAction(Engine::stateEvent &event)
 		{
-		    double tmpX=this->gameType->getPlayer()->getTransX();
+            eventMove(event);
+		}
+
+		void Running::eventMove(Engine::stateEvent &event)
+		{
+		    		    double tmpX=this->gameType->getPlayer()->getTransX();
 		    double tmpY=this->gameType->getPlayer()->getTransY();
 
 		    double vitesse=0.1;
