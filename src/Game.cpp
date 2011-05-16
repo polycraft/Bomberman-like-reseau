@@ -5,12 +5,11 @@
 Game::Game()
 {
     engine =  new MainEngine();
+	map = ManagerRessource::getRessource<Map>("src/ressource/map/test.map");
 
-    double place = 100;
-	Engine::Camera *camera = new Engine::Camera(place, 0, 150, place, 100, 0, 0, 0, 1);
+	Engine::Camera *camera = new Engine::Camera(map->getWidth()*10/2, 0, 150, map->getWidth()*10/2, map->getHeight()*10, 0, 0, 0, 1);
 	engine->getGengine()->addCamera(camera);
 
-	map = ManagerRessource::getRessource<Map>("src/ressource/map/test.map");
 
 	map->setEngine(engine);
 
