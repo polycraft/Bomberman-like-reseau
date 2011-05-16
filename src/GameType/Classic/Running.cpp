@@ -4,7 +4,7 @@ namespace GameTypeSpace
 {
 	namespace ClassicSpace
 	{
-		Running::Running(GameType *gameType,CollisionDetector *collision)  : Phase(gameType,collision)
+		Running::Running(GameTypeSpace::Classic *gameType,CollisionDetector *collision)  : PhaseClassic(gameType,collision)
 		{
 		}
 
@@ -25,6 +25,11 @@ namespace GameTypeSpace
 		}
 
 		void Running::executeAction(const Engine::stateEvent &event)
+		{
+
+		}
+
+		void Running::updateRecv(Socket *,const char*,int size)
 		{
 
 		}

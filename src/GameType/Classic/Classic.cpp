@@ -56,6 +56,11 @@ namespace GameTypeSpace
 	    return player;
 	}
 
+	void Classic::setPlayer(Bomberman* bomber)
+	{
+	    player=bomber;
+	}
+
     vector<Bomberman*>& Classic::getPlayerNetwork()
     {
         return playerNetwork;

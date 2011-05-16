@@ -29,6 +29,7 @@ namespace GameTypeSpace
 		virtual void explode(Bomb* bomb,int speed,int power);
 
 		Bomberman* getPlayer();
+		void setPlayer(Bomberman*);
 		vector<Bomberman*>& getPlayerNetwork();
 
         Phase* getPhase(ClassicSpace::EPhase phase);

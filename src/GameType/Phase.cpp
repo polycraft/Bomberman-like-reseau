@@ -1,7 +1,7 @@
 #include "Phase.h"
 
 
-Phase::Phase(GameType *gameType,CollisionDetector *collision):gameType(gameType)
+Phase::Phase(CollisionDetector *collision)
 {
     setCollisionDetector(collision);
 }
@@ -23,6 +23,9 @@ int Phase::update()
         break;
         case E_Run:
             this->run();
+        break;
+        default:
+            this->end(1);
         break;
     }
     return next;

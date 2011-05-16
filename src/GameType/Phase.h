@@ -17,7 +17,7 @@ class Phase : public IEventListener
 {
 
 public:
-	Phase(GameType *gameType,CollisionDetector *collision);
+	Phase(CollisionDetector *collision);
 	virtual ~Phase(){};
 	virtual void init()=0;
 	virtual void run()=0;
@@ -27,8 +27,6 @@ public:
 	void setCollisionDetector(CollisionDetector *collision);
 
     int update();
-protected:
-    GameType *gameType;
 private:
 	CollisionDetector *collision;
 	EEtat etat;

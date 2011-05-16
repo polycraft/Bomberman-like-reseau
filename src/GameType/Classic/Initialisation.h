@@ -1,23 +1,23 @@
 #ifndef INITIALISATION_H
 #define INITIALISATION_H
 
-#include "../Phase.h"
+#include "PhaseClassic.h"
+#include "Classic.h"
 
 namespace GameTypeSpace
 {
 	namespace ClassicSpace
 	{
-		class Initialisation : public Phase
+		class Initialisation : public PhaseClassic
 		{
 
 		public:
-			Initialisation(GameType *gameType,CollisionDetector *collision);
+			Initialisation(GameTypeSpace::Classic *gameType,CollisionDetector *collision);
 			virtual ~Initialisation();
 			void init();
 			void run();
             void executeAction(const Engine::stateEvent &event);
-		private:
-
+            virtual void updateRecv(Socket *,const char*,int size);
 		};
 	}
 }
