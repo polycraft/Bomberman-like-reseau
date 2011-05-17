@@ -63,7 +63,7 @@ void ManagerExplosion::updateTimer(unsigned int delay)
 	else
 	{
 		Timer::getTimer()->removeListener(this,1000);
-		this->gameType->destroyManagerExplose(this);
+		this->gameType->destroyManagerExplosion(this);
 
 	}
 
