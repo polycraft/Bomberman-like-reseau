@@ -2,6 +2,7 @@
 #define TIMER_H
 
 #include <vector>
+#include <set>
 #include "IObserverTimer.h"
 using namespace std;
 namespace Engine
@@ -32,8 +33,8 @@ class Timer
         Timer();
         struct SObserverTimer* createSObserverTime(IObserverTimer* observer,int delay);
         static Timer* instance;
-        vector<struct SObserverTimer*> listener;
-        vector<struct SObserverTimer*> listenerOnce;
+        set<struct SObserverTimer*> listener;
+        set<struct SObserverTimer*> listenerOnce;
         static unsigned int last_time;
         static unsigned int ellapsed_time;
 };

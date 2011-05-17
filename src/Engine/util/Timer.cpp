@@ -40,21 +40,34 @@ void Timer::addListener(IObserverTimer* observer,int delay)
 {
     struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
 
-    listener.push_back(sObserver);
+    listener.insert(sObserver);
 }
 
 void Timer::addListenerOnce(IObserverTimer* observer,int delay)
 {
     struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
 
-    listenerOnce.push_back(sObserver);
+    listenerOnce.insert(sObserver);
 }
 
 void Timer::removeListener(IObserverTimer*observer,int delay)
 {
-    vector< struct SObserverTimer* >::iterator it=listener.begin();
+    set< struct SObserverTimer* >::iterator it;
     struct SObserverTimer* sObserver=NULL;
+	
+	for(it=this->listener.begin(); it!=listener.end();)
+	{
+		sObserver=*it;
 
+		if(sObserver->observer==observer && sObserver->delay==delay)
+        {
+            listener.erase(it++);
+            return;
+        }
+		it++;
+	}
+
+	/*
     while(it<listener.end())
     {
         sObserver=*it;
@@ -65,15 +78,27 @@ void Timer::removeListener(IObserverTimer*observer,int delay)
             return;
         }
         it++;
-    }
+    }*/
 }
 
 void Timer::removeListenerOnce(IObserverTimer*observer,int delay)
 {
-    vector< struct SObserverTimer* >::iterator it=listenerOnce.begin();
+    set< struct SObserverTimer* >::iterator it=listenerOnce.begin();
     struct SObserverTimer* sObserver=NULL;
 
-    while(it<listenerOnce.end())
+	for(it=this->listener.begin(); it!=listener.end();)
+	{
+		sObserver=*it;
+
+		if(sObserver->observer==observer && sObserver->delay==delay)
+        {
+            listener.erase(it++);
+            return;
+        }
+		it++;
+	}
+
+    /*while(it<listenerOnce.end())
     {
         sObserver=*it;
 
@@ -83,16 +108,30 @@ void Timer::removeListenerOnce(IObserverTimer*observer,int delay)
             return;
         }
         it++;
-    }
+    }*/
 }
 
 void Timer::update()
 {
     //On verifie les listeners
-    vector< struct SObserverTimer* >::iterator it=listener.begin();
+    set< struct SObserverTimer* >::iterator it;
     struct SObserverTimer* sObserver=NULL;
 
-    while(it<listener.end())
+
+
+	for(it=this->listener.begin(); it!=listener.end();)
+	{
+		sObserver=*it;
+
+		if(sObserver->start+sObserver->delay <= SDL_GetTicks())
+        {
+            sObserver->observer->updateTimer(sObserver->delay);
+            sObserver->start=SDL_GetTicks();
+        }
+		it++;
+	}
+
+    /*while(it<listener.end())
     {
         sObserver=*it;
 
@@ -102,11 +141,28 @@ void Timer::update()
             sObserver->start=SDL_GetTicks();
         }
         it++;
-    }
+    }*/
 
     //On vérifie les listeners qui doivent etre appellé qu'une seul fois
-    it=listenerOnce.begin();
-    while(it<listenerOnce.end())
+	int test = listenerOnce.size();
+
+	for(it=this->listenerOnce.begin(); it!=listenerOnce.end();)
+	{
+		sObserver=*it;
+
+		if(sObserver->start+sObserver->delay <= SDL_GetTicks())
+        {
+            sObserver->observer->updateTimer(sObserver->delay);
+            listener.erase(it++);
+        }
+		 else
+        {
+            it++;
+        }
+	}
+
+	/* it=listenerOnce.begin();
+    while(it!=listenerOnce.end())
     {
         sObserver=*it;
         if(sObserver->start+sObserver->delay <= SDL_GetTicks())
@@ -118,7 +174,7 @@ void Timer::update()
         {
             it++;
         }
-    }
+    }*/
 
     //Mise à jours du temps passé
     int tmp=Timer::getTime();
