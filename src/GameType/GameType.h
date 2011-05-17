@@ -3,6 +3,7 @@
 class Bomb;
 #include "../Type/Bomb.h"
 #include "../Game.h"
+#include "../Type/ManagerExplosion.h"
 
 class GameType
 {
@@ -10,8 +11,10 @@ class GameType
 public:
 	GameType(Game *game,int partTime);
 	virtual ~GameType();
-	virtual void explode(Bomb* bomb,int speed,int power)=0;
-    virtual void update()=0;
+	virtual void update()=0;
+    virtual void explode(Bomb* bomb,int speed,int power)=0;
+    virtual void updateExplosion(ManagerExplosion *manager,int power,int x,int y)=0;
+    virtual void destroyManagerExplosion(ManagerExplosion* manager)=0;
     Game* getGame();
 protected:
     Game* game;

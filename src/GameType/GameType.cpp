@@ -10,11 +10,6 @@ GameType::~GameType()
 
 }
 
-void GameType::explode(Bomb* bomb,int speed,int power)
-{
-
-}
-
 Game* GameType::getGame()
 {
     return game;
