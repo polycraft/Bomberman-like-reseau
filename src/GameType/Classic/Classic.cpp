@@ -52,8 +52,11 @@ namespace GameTypeSpace
 
 	void Classic::explode(Bomb* bomb,int speed,int power)
 	{
+
 	    int tmpX=bomb->getTransX();tmpX=tmpX/10-1;
-	    int tmpY=bomb->getTransZ();tmpY=tmpY/10-1;
+	    int tmpY=bomb->getTransY();tmpY=tmpY/10-1;
+
+	    this->game->getMap()->set(NULL,tmpX,tmpY);
 
 	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, T_Emitter, this);
 

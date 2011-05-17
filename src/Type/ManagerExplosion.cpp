@@ -62,14 +62,14 @@ void ManagerExplosion::nextExplose()
 		}
 
 		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),x,y, T_Dyn);
-		
+
 	}
 }
 
 void ManagerExplosion::endExplose()
 {
 	Timer::getTimer()->removeListener(this,500/this->speed);
-	Timer::getTimer()->addListener(this,1000);
+	Timer::getTimer()->addListenerOnce(this,1000);
 }
 
 EExplose ManagerExplosion::getType()
@@ -85,7 +85,6 @@ void ManagerExplosion::updateTimer(unsigned int delay)
 	}
 	else
 	{
-		Timer::getTimer()->removeListener(this,1000);
 		this->gameType->destroyManagerExplosion(this);
 
 	}
