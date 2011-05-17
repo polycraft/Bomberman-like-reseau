@@ -17,6 +17,7 @@ public:
 	EType getType();
 	void updateTimer(unsigned int);
 	int getIdOwner();
+	void explode();
 
 private:
 	int idOwner;

@@ -6,6 +6,7 @@
 #include "../Phase.h"
 #include "../../Engine/NetworkEngine/IObserverSocketRecv.h"
 #include "../../Engine/EventEngine/IEventListener.h"
+#include "../../Type/ManagerExplosion.h"
 
 namespace GameTypeSpace
 {
@@ -28,13 +29,17 @@ namespace GameTypeSpace
 		Classic(Game *game);
 		virtual ~Classic();
 		void update();
-		virtual void explode(Bomb* bomb,int speed,int power);
+
 
 		Bomberman* getPlayer();
 		void setPlayer(Bomberman*);
 		vector<Bomberman*>& getPlayerNetwork();
 
         Phase* getPhase(ClassicSpace::EPhase phase);
+
+        virtual void explode(Bomb* bomb,int speed,int power);
+        void updateExplosion(ManagerExplosion *manager,int power,int x,int y);
+        void destroyManagerExplosion(ManagerExplosion* manager);
 
         void executeAction(Engine::stateEvent &event);
         void updateRecv(Socket *,const char*,int size);

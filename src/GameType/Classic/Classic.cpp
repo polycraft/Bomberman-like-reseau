@@ -4,8 +4,6 @@
 #include "Running.h"
 #include "HurryUp.h"
 
-#include "../../Type/ManagerExplosion.h"
-
 namespace GameTypeSpace
 {
     using namespace ClassicSpace;
@@ -94,13 +92,14 @@ namespace GameTypeSpace
                 y-=power;
             break;
         }
+        Type *object;
         switch(this->collision->detect(T_Explosion,x,y))
         {
             case C_Explose:
-                Type *object=this->game->getMap()->get(x,y);
+                object=this->game->getMap()->get(x,y);
                 if(object->getType()==T_Bomb)
                 {
-                    dynamic_cast<Bomb>(this->game->getMap()->get(x,y))->explode();
+                    dynamic_cast<Bomb*>(this->game->getMap()->get(x,y))->explode();
                 }
                 else if(object->getType()==T_BreakableBloc)
                 {
@@ -122,7 +121,7 @@ namespace GameTypeSpace
         }
 	}
 
-	void destroyManagerExplosion(ManagerExplosion* manager)
+	void Classic::destroyManagerExplosion(ManagerExplosion* manager)
 	{
 	    delete manager;
 	}
