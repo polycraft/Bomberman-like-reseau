@@ -1,6 +1,8 @@
 #ifndef MANAGEREXPLOSION_H
 #define MANAGEREXPLOSION_H
 
+class ManagerExplosion;
+
 #include "Type.h"
 #include "Explosion.h"
 #include "../Map.h"
@@ -20,7 +22,7 @@ class ManagerExplosion : public IObserverTimer
 		EExplose getType();
 		void updateTimer(unsigned int delay);
 		int getID();
-		
+
 	private:
 		int x;
 		int y;
