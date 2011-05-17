@@ -12,6 +12,8 @@ public:
 	~Bomberman();
 	EType getType();
 	int getId();
+	void setRunning();
+	void setPause();
 
 private:
 	int id;

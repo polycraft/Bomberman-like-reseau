@@ -22,6 +22,7 @@ namespace GameTypeSpace
 
 		}
 
+
 		void Running::updateTimer(unsigned int delay)
 		{
 
@@ -45,7 +46,10 @@ namespace GameTypeSpace
 
 		void Running::eventMove(Engine::stateEvent &event,double tmpX,double tmpY)
 		{
-		    double vitesse=0.1;
+			//Met le bomber an position attente
+			this->gameType->getPlayer()->setPause();
+
+		    double vitesse=0.8;
 		    double distance=3.75;
 
             double xMin=(tmpX-vitesse-distance);
@@ -58,6 +62,9 @@ namespace GameTypeSpace
 
             if(event.keyState[SDLK_LEFT])
             {
+				//Met le bomber an position courir
+				this->gameType->getPlayer()->setRunning();
+
                 int point[4]={xMin-0.1,xMax,yMin,yMax};
                 point[0]=point[0]/10-1;
                 point[2]=point[2]/10-1;
@@ -76,6 +83,9 @@ namespace GameTypeSpace
 
             if(event.keyState[SDLK_RIGHT])
             {
+				//Met le bomber an position courir
+				this->gameType->getPlayer()->setRunning();
+
                 int point[4]={xMin,xMax+0.1,yMin,yMax};
                 point[1]=point[1]/10-1;
                 point[2]=point[2]/10-1;
@@ -92,7 +102,10 @@ namespace GameTypeSpace
             }
             if(event.keyState[SDLK_UP])
             {
-                int point[4]={xMin,xMax,yMin,yMax+0.1};
+				//Met le bomber an position courir
+				this->gameType->getPlayer()->setRunning();
+				
+				int point[4]={xMin,xMax,yMin,yMax+0.1};
                 point[0]=point[0]/10-1;
                 point[1]=point[1]/10-1;
                 point[3]=point[3]/10-1;
@@ -110,7 +123,10 @@ namespace GameTypeSpace
             }
             if(event.keyState[SDLK_DOWN])
             {
-                int point[4]={xMin,xMax,yMin-0.1,yMax};
+ 				//Met le bomber an position courir
+				this->gameType->getPlayer()->setRunning();
+				
+				int point[4]={xMin,xMax,yMin-0.1,yMax};
                 point[0]=point[0]/10-1;
                 point[1]=point[1]/10-1;
                 point[2]=point[2]/10-1;
@@ -128,6 +144,7 @@ namespace GameTypeSpace
                     rotate-=90;
                 nbRotate++;
             }
+
 
             if(nbRotate>=1)
                 this->gameType->getPlayer()->setRotation(0,0,rotate/nbRotate);
