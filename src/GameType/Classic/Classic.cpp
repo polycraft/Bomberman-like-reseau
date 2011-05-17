@@ -119,6 +119,14 @@ namespace GameTypeSpace
                 manager->nextExplose();
             break;
         }
+        int tmpX=this->player->getTransX();tmpX=tmpX/10-1;
+        int tmpY=this->player->getTransY();tmpY=tmpY/10-1;
+
+        if(tmpX==x && tmpY==y)
+        {
+            //Mort!
+            this->player->setVisible(false);
+        }
 	}
 
 	void Classic::destroyManagerExplosion(ManagerExplosion* manager)
