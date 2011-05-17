@@ -20,6 +20,9 @@ class Timer
         static Timer* getTimer();
         void addListener(IObserverTimer*,int delay);
         void addListenerOnce(IObserverTimer*,int delay);
+
+        void removeListener(IObserverTimer*,int delay);
+        void removeListenerOnce(IObserverTimer*,int delay);
         void update();
         virtual ~Timer();
     protected:

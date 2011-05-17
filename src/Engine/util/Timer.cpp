@@ -48,6 +48,42 @@ void Timer::addListenerOnce(IObserverTimer* observer,int delay)
     listenerOnce.push_back(sObserver);
 }
 
+void Timer::removeListener(IObserverTimer*observer,int delay)
+{
+    vector< struct SObserverTimer* >::iterator it=listener.begin();
+    struct SObserverTimer* sObserver=NULL;
+
+    while(it<listener.end())
+    {
+        sObserver=*it;
+
+        if(sObserver->observer==observer && sObserver->delay==delay)
+        {
+            it=listener.erase(it);
+            return;
+        }
+        it++;
+    }
+}
+
+void Timer::removeListenerOnce(IObserverTimer*observer,int delay)
+{
+    vector< struct SObserverTimer* >::iterator it=listenerOnce.begin();
+    struct SObserverTimer* sObserver=NULL;
+
+    while(it<listenerOnce.end())
+    {
+        sObserver=*it;
+
+        if(sObserver->observer==observer && sObserver->delay==delay)
+        {
+            it=listenerOnce.erase(it);
+            return;
+        }
+        it++;
+    }
+}
+
 void Timer::update()
 {
     //On verifie les listeners
