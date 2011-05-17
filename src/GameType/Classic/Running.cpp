@@ -24,6 +24,7 @@ namespace GameTypeSpace
 
 		void Running::updateTimer(unsigned int delay)
 		{
+
 		}
 
 		void Running::executeAction(Engine::stateEvent &event)
@@ -38,7 +39,7 @@ namespace GameTypeSpace
                 int x=tmpX;x=x/10-1;
                 int y=tmpY;y=y/10-1;
 
-                this->gameType->getGame()->getMap()->addObject(new Bomb(this->gameType->getPlayer()->getId(), 2, 2, 2),x,y,T_Dyn);
+                this->gameType->getGame()->getMap()->addObject(new Bomb(this->gameType,this->gameType->getPlayer()->getId(), 2000, 2, 2),x,y,T_Dyn);
             }
 		}
 

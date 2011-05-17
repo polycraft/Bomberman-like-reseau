@@ -12,10 +12,11 @@ class Bomb : public Type, public IObserverTimer
 {
 
 public:
-	Bomb(int idOwner, int time, int speed, int power);
+	Bomb(GameType* gameType,int idOwner, int time, int speed, int power);
 	~Bomb();
 	EType getType();
 	void updateTimer(unsigned int);
+	int getIdOwner();
 
 private:
 	int idOwner;
@@ -23,6 +24,7 @@ private:
 	GameType* gameType;
 	int speed;
 	int power;
+	int time;
 
 };
 

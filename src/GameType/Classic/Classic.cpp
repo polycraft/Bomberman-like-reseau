@@ -4,6 +4,8 @@
 #include "Running.h"
 #include "HurryUp.h"
 
+#include "../../Type/ManagerExplosion.h"
+
 namespace GameTypeSpace
 {
     using namespace ClassicSpace;
@@ -52,6 +54,77 @@ namespace GameTypeSpace
 
 	void Classic::explode(Bomb* bomb,int speed,int power)
 	{
+	    int tmpX=bomb->getTransX();tmpX=tmpX/10-1;
+	    int tmpY=bomb->getTransZ();tmpY=tmpY/10-1;
+
+	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, T_Emitter, this);
+
+	    if(collision->detect(T_Explosion,tmpX-1,tmpY)==C_Nothing)
+	    {
+	        new ManagerExplosion(tmpX-1,tmpY,bomb->getIdOwner(), speed, power, T_Left, this);
+	    }
+        if(collision->detect(T_Explosion,tmpX+1,tmpY)==C_Nothing)
+	    {
+	        new ManagerExplosion(tmpX+1,tmpY,bomb->getIdOwner(), speed, power, T_Right, this);
+	    }
+        if(collision->detect(T_Explosion,tmpX,tmpY-1)==C_Nothing)
+	    {
+	        new ManagerExplosion(tmpX,tmpY-1,bomb->getIdOwner(), speed, power, T_Down, this);
+	    }
+        if(collision->detect(T_Explosion,tmpX,tmpY+1)==C_Nothing)
+	    {
+	        new ManagerExplosion(tmpX,tmpY+1,bomb->getIdOwner(), speed, power, T_Up, this);
+	    }
+	}
+
+	void Classic::updateExplosion(ManagerExplosion *manager,int power,int x,int y)
+	{
+        switch(manager->getType())
+        {
+            case T_Left:
+                x-=power;
+                break;
+            case T_Right:
+                x+=power;
+                break;
+            case T_Up:
+                y+=power;
+            break;
+            case T_Down:
+                y-=power;
+            break;
+        }
+        switch(this->collision->detect(T_Explosion,x,y))
+        {
+            case C_Explose:
+                Type *object=this->game->getMap()->get(x,y);
+                if(object->getType()==T_Bomb)
+                {
+                    dynamic_cast<Bomb>(this->game->getMap()->get(x,y))->explode();
+                }
+                else if(object->getType()==T_BreakableBloc)
+                {
+                    this->game->getMap()->set(NULL,x,y);
+                    object->destroy();
+                    //créer bonus
+                }
+                manager->endExplose();
+            break;
+            case C_Kill:
+                //destruction du bonus
+            break;
+            case C_Block:
+                manager->endExplose();
+            break;
+            case C_Nothing:
+                manager->nextExplose();
+            break;
+        }
+	}
+
+	void destroyManagerExplosion(ManagerExplosion* manager)
+	{
+	    delete manager;
 	}
 
 	Bomberman* Classic::getPlayer()
