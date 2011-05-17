@@ -39,8 +39,8 @@ ECollision CollisionDetector::detect(EType type,int x,int y)
             switch(object->getType())
             {
                 case T_Bomb:
-                    return C_Explose;
                 case T_BreakableBloc:
+                    return C_Explose;
                 case T_StaticBloc:
                 case T_Explosion:
                     return C_Block;
