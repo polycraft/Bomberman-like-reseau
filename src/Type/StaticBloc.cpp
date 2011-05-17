@@ -11,7 +11,7 @@ StaticBloc::StaticBloc()
 	}
 	this->attach(staticBloc);
 
-	this->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/wall2.jpg"));
+	this->setTexture(ManagerRessource::getRessource<Texture>("src/ressource/texture/steel2.jpg"));
 }
 
 StaticBloc::~StaticBloc()
