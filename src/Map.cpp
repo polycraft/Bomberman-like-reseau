@@ -87,6 +87,11 @@ Type* Map::get(int x,int y)
 	return map[x][y];
 }
 
+void Map::set(Type* object,int x,int y)
+{
+    map[x][y]=object;
+}
+
 void Map::setEngine(MainEngine *engine)
 {
 	this->engine = engine;

@@ -44,6 +44,7 @@ public:
 	int getWidth();
 	int getHeight();
 	Type* get(int x,int y);
+	void set(Type* object,int x,int y);
 	void setEngine(MainEngine* engine);
 	void buildScenes();
 
