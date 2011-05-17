@@ -15,9 +15,14 @@ Game::Game()
 
 	GameType *gameType=new GameTypeSpace::Classic(this);
 
-	while(engine->run(camera))
+    bool continuer=true;
+
+	while(continuer)
 	{
+        cout << "fps:" << Timer::getTimePerFrame() << endl;
+
         gameType->update();
+        continuer=engine->run(camera);
 	}
 }
 

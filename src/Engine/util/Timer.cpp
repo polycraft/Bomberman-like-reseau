@@ -4,6 +4,8 @@
 namespace Engine
 {
     Timer* Timer::instance=NULL;
+    unsigned int Timer::last_time=Timer::getTime();
+    unsigned int Timer::ellapsed_time=0;
 
 Timer *Timer::getTimer()
 {
@@ -117,5 +119,28 @@ void Timer::update()
             it++;
         }
     }
+
+    //Mise à jours du temps passé
+    int tmp=Timer::getTime();
+    ellapsed_time=tmp-last_time;
+    last_time=tmp;
+
+    if(ellapsed_time<8)
+    {
+        SDL_Delay(8-ellapsed_time);
+        ellapsed_time=8;
+    }
 }
+
+unsigned int Timer::getTime()
+{
+    return SDL_GetTicks();
+}
+
+unsigned int Timer::getTimePerFrame()
+{
+    return ellapsed_time;
+}
+
+
 }

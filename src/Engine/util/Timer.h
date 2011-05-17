@@ -25,6 +25,8 @@ class Timer
         void removeListenerOnce(IObserverTimer*,int delay);
         void update();
         virtual ~Timer();
+        static unsigned int getTime();
+        static unsigned int getTimePerFrame();
     protected:
     private:
         Timer();
@@ -32,6 +34,8 @@ class Timer
         static Timer* instance;
         vector<struct SObserverTimer*> listener;
         vector<struct SObserverTimer*> listenerOnce;
+        static unsigned int last_time;
+        static unsigned int ellapsed_time;
 };
 }
 

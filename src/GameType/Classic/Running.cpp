@@ -49,7 +49,7 @@ namespace GameTypeSpace
 			//Met le bomber an position attente
 			this->gameType->getPlayer()->setPause();
 
-		    double vitesse=0.8;
+		    double vitesse=0.05*Timer::getTimePerFrame();
 		    double distance=3.75;
 
             double xMin=(tmpX-vitesse-distance);
@@ -104,7 +104,7 @@ namespace GameTypeSpace
             {
 				//Met le bomber an position courir
 				this->gameType->getPlayer()->setRunning();
-				
+
 				int point[4]={xMin,xMax,yMin,yMax+0.1};
                 point[0]=point[0]/10-1;
                 point[1]=point[1]/10-1;
@@ -125,7 +125,7 @@ namespace GameTypeSpace
             {
  				//Met le bomber an position courir
 				this->gameType->getPlayer()->setRunning();
-				
+
 				int point[4]={xMin,xMax,yMin-0.1,yMax};
                 point[0]=point[0]/10-1;
                 point[1]=point[1]/10-1;
