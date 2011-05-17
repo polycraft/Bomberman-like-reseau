@@ -9,6 +9,8 @@ ManagerExplosion::ManagerExplosion(int x, int y, int id, int speed, int power, E
 	this->typeExplosion = typeExplose;
 	this->isEnd = false;
 	this->gameType = gametype;
+	this->x=x;
+	this->y=y;
 
 	Timer::getTimer()->addListener(this,500/this->speed);
 
