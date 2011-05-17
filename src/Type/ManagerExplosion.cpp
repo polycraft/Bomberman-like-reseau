@@ -15,10 +15,12 @@ ManagerExplosion::ManagerExplosion(int x, int y, int id, int speed, int power, E
 	if(this->typeExplosion == T_Emitter)
 	{
 		this->listeExplosions.push_back(new Explosion(T_Emitter));
+		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),this->x,this->y, T_Dyn);
 	}
 	else
 	{
 		this->listeExplosions.push_back(new Explosion(T_End));
+		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),this->x,this->y, T_Dyn);
 	}
 
 
@@ -40,6 +42,27 @@ void ManagerExplosion::nextExplose()
 	{
 		this->listeExplosions.back()->changeExplose(this->typeExplosion);
 		this->listeExplosions.push_back(new Explosion(T_End));
+		double x, y;
+		x=this->x;
+		y=this->y;
+		switch(this->typeExplosion)
+		{
+		case T_Left:
+			x-=1;
+			break;
+	    case T_Right:
+			x+=1;
+			break;
+        case T_Up:
+            y+=1;
+			break;
+        case T_Down:
+            y-=1;
+        break;
+		}
+
+		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),x,y, T_Dyn);
+		
 	}
 }
 
