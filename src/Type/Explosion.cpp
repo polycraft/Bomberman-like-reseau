@@ -7,36 +7,36 @@ Explosion::Explosion(EExplose type)
 	{
 	case T_Emitter:
 		this->attach(ManagerRessource::getRessource("src/ressource/object/emitterExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/emitterExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/emitterExplosion.png"));
 		break;
 
 		case T_Left:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 			this->setRotation(0,180,0);
 		break;
 
 		case T_Right:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 			this->setRotation(0,180,0);
 		break;
 
 		case T_Up:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 			this->setRotation(0,180,90);
 		break;
 
 		case T_Down:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 			this->setRotation(0,180,90);
 		break;
 
 		case T_End:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/endExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/endExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/endExplosion.png"));
 		break;
 	}
 }
@@ -60,23 +60,23 @@ void Explosion::changeExplose(EExplose typeExplose)
 	{
 		case T_Left:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 		break;
 
 		case T_Right:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 		break;
 
 		case T_Up:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 			this->setRotation(0,0,90);
 		break;
 
 		case T_Down:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
-		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.jpg"));
+		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 			this->setRotation(0,0,90);
 		break;
 	}
