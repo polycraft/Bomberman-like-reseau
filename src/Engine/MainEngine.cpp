@@ -1,5 +1,5 @@
 #include "MainEngine.h"
-
+#include "util/Timer.h"
 namespace Engine
 {
 	MainEngine::MainEngine()
@@ -25,6 +25,7 @@ namespace Engine
 	{
         bool tmp=this->eventEngine->update();
         this->Gengine->draw(camera);
+        Timer::getTimer()->update();
         return tmp;
 	}
 }
