@@ -56,6 +56,10 @@ namespace GameTypeSpace
 			this->gameType->getPlayer()->setPause();
 
 		    double vitesse=0.05*Timer::getTimePerFrame();
+		    if(vitesse>8)
+		    {
+		        vitesse=8;
+		    }
 		    double distance=3.75;
 
             double xMin=(tmpX-vitesse-distance);
