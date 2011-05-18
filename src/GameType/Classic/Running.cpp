@@ -71,7 +71,7 @@ namespace GameTypeSpace
 				//Met le bomber an position courir
 				this->gameType->getPlayer()->setRunning();
 
-                int point[4]={xMin-0.1,xMax,yMin,yMax};
+                int point[4]={xMin-0.3,xMax,yMin,yMax};
                 point[0]=point[0]/10-1;
                 point[2]=point[2]/10-1;
                 point[3]=point[3]/10-1;
@@ -92,7 +92,7 @@ namespace GameTypeSpace
 				//Met le bomber an position courir
 				this->gameType->getPlayer()->setRunning();
 
-                int point[4]={xMin,xMax+0.1,yMin,yMax};
+                int point[4]={xMin,xMax+0.3,yMin,yMax};
                 point[1]=point[1]/10-1;
                 point[2]=point[2]/10-1;
                 point[3]=point[3]/10-1;
@@ -111,7 +111,7 @@ namespace GameTypeSpace
 				//Met le bomber an position courir
 				this->gameType->getPlayer()->setRunning();
 
-				int point[4]={xMin,xMax,yMin,yMax+0.1};
+				int point[4]={xMin,xMax,yMin,yMax+0.3};
                 point[0]=point[0]/10-1;
                 point[1]=point[1]/10-1;
                 point[3]=point[3]/10-1;
@@ -132,7 +132,7 @@ namespace GameTypeSpace
  				//Met le bomber an position courir
 				this->gameType->getPlayer()->setRunning();
 
-				int point[4]={xMin,xMax,yMin-0.1,yMax};
+				int point[4]={xMin,xMax,yMin-0.3,yMax};
                 point[0]=point[0]/10-1;
                 point[1]=point[1]/10-1;
                 point[2]=point[2]/10-1;
