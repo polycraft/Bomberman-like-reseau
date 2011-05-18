@@ -1,6 +1,7 @@
 #include "Timer.h"
 #include <SDL/SDL.h>
-
+#include <iostream>
+using namespace std;
 namespace Engine
 {
     Timer* Timer::instance=NULL;
@@ -37,14 +38,14 @@ struct SObserverTimer* Timer::createSObserverTime(IObserverTimer* observer,int d
 }
 
 void Timer::addListener(IObserverTimer* observer,int delay)
-{
+{cout << "addListener" << endl;
     struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
 
     listener.insert(sObserver);
 }
 
 void Timer::addListenerOnce(IObserverTimer* observer,int delay)
-{
+{cout << "addListenerOnce" << endl;
     struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
 
     listenerOnce.insert(sObserver);
@@ -52,9 +53,12 @@ void Timer::addListenerOnce(IObserverTimer* observer,int delay)
 
 void Timer::removeListener(IObserverTimer*observer,int delay)
 {
-    set< struct SObserverTimer* >::iterator it;
+    struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
+    listenerRemoved.insert(sObserver);
+
+    /*set< struct SObserverTimer* >::iterator it;
     struct SObserverTimer* sObserver=NULL;
-	
+
 	for(it=this->listener.begin(); it!=listener.end();)
 	{
 		sObserver=*it;
@@ -65,7 +69,7 @@ void Timer::removeListener(IObserverTimer*observer,int delay)
             return;
         }
 		it++;
-	}
+	}*/
 
 	/*
     while(it<listener.end())
@@ -83,20 +87,23 @@ void Timer::removeListener(IObserverTimer*observer,int delay)
 
 void Timer::removeListenerOnce(IObserverTimer*observer,int delay)
 {
-    set< struct SObserverTimer* >::iterator it=listenerOnce.begin();
+    struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
+    listenerOnceRemoved.insert(sObserver);
+
+    /*set< struct SObserverTimer* >::iterator it;
     struct SObserverTimer* sObserver=NULL;
 
-	for(it=this->listener.begin(); it!=listener.end();)
+	for(it=this->listenerOnce.begin(); it!=listenerOnce.end();)
 	{
 		sObserver=*it;
 
 		if(sObserver->observer==observer && sObserver->delay==delay)
         {
-            listener.erase(it++);
+            listenerOnce.erase(it++);
             return;
         }
 		it++;
-	}
+	}*/
 
     /*while(it<listenerOnce.end())
     {
@@ -153,7 +160,7 @@ void Timer::update()
 		if(sObserver->start+sObserver->delay <= SDL_GetTicks())
         {
             sObserver->observer->updateTimer(sObserver->delay);
-            listener.erase(it++);
+            listenerOnce.erase(it++);
         }
 		 else
         {
@@ -175,6 +182,41 @@ void Timer::update()
             it++;
         }
     }*/
+
+    //Suppresion des timers
+    set< struct SObserverTimer* >::iterator itDelete;
+    for(it=this->listenerRemoved.begin(); it!=listenerRemoved.end();)
+	{
+
+		for(itDelete=this->listener.begin(); itDelete!=listener.end();)
+		{
+            sObserver=*itDelete;
+		    if(sObserver->observer==(*it)->observer && sObserver->delay==(*it)->delay)
+		    {
+		        listener.erase(itDelete);
+		        break;
+		    }
+		    itDelete++;
+		}
+		it++;
+	}
+	listenerRemoved.clear();
+
+    for(it=this->listenerOnceRemoved.begin(); it!=listenerOnceRemoved.end();)
+	{
+		for(itDelete=this->listenerOnce.begin(); itDelete!=listenerOnce.end();)
+		{
+		    sObserver=*itDelete;
+		    if(sObserver->observer==(*it)->observer && sObserver->delay==(*it)->delay)
+		    {
+		        listenerOnce.erase(itDelete);
+		        break;
+		    }
+		    itDelete++;
+		}
+		it++;
+	}
+	listenerOnceRemoved.clear();
 
     //Mise à jours du temps passé
     int tmp=Timer::getTime();

@@ -30,6 +30,7 @@ class ManagerExplosion : public IObserverTimer
 		int id;
 		int speed;
 		int power;
+		int powercurrent;
 		EExplose typeExplosion;
 		bool isEnd;
 		GameType *gameType;

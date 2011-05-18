@@ -17,16 +17,20 @@ class Explosion : public Type
 {
 
 public:
-	Explosion(EExplose type);
+	Explosion(EExplose type,int x,int y);
 	~Explosion();
 	EType getType();
 	void updateTimer();
 
 	void changeExplose(EExplose typeExplose);
 
+	int getX();
+	int getY();
+
 private:
 	EExplose typeExplosion;
-
+    int x;
+    int y;
 
 
 };

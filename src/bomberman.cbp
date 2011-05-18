@@ -169,6 +169,8 @@
 		<Unit filename="Type/BreakableBloc.h" />
 		<Unit filename="Type/Explosion.cpp" />
 		<Unit filename="Type/Explosion.h" />
+		<Unit filename="Type/ManagerExplosion.cpp" />
+		<Unit filename="Type/ManagerExplosion.h" />
 		<Unit filename="Type/StaticBloc.cpp" />
 		<Unit filename="Type/StaticBloc.h" />
 		<Unit filename="Type/Type.cpp" />

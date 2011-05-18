@@ -6,6 +6,7 @@ ManagerExplosion::ManagerExplosion(int x, int y, int id, int speed, int power, E
 	this->id = id;
 	this->speed = speed;
 	this->power = power;
+	this->powercurrent=0;
 	this->typeExplosion = typeExplose;
 	this->isEnd = false;
 	this->gameType = gametype;
@@ -16,12 +17,14 @@ ManagerExplosion::ManagerExplosion(int x, int y, int id, int speed, int power, E
 
 	if(this->typeExplosion == T_Emitter)
 	{
-		this->listeExplosions.push_back(new Explosion(T_Emitter));
+	    this->powercurrent=0;
+		this->listeExplosions.push_back(new Explosion(T_Emitter,x,y));
 		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),this->x,this->y, T_Dyn);
 	}
 	else
 	{
-		this->listeExplosions.push_back(new Explosion(T_End));
+	    this->powercurrent=1;
+		this->listeExplosions.push_back(new Explosion(T_End,x,y));
 		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),this->x,this->y, T_Dyn);
 	}
 
@@ -34,6 +37,7 @@ ManagerExplosion::~ManagerExplosion()
 	while(it < this->listeExplosions.end())
 	{
 		(*it)->destroy();
+		this->gameType->getGame()->getMap()->set(NULL,(*it)->getX(),(*it)->getY());
 		it++;
 	}
 }
@@ -42,9 +46,7 @@ void ManagerExplosion::nextExplose()
 {
 	if(this->typeExplosion != T_Emitter)
 	{
-		this->listeExplosions.back()->changeExplose(this->typeExplosion);
-		this->listeExplosions.push_back(new Explosion(T_End));
-		double x, y;
+		int x, y;
 		x=this->x;
 		y=this->y;
 		switch(this->typeExplosion)
@@ -63,13 +65,20 @@ void ManagerExplosion::nextExplose()
         break;
 		}
 
-		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),x,y, T_Dyn);
+		this->listeExplosions.back()->changeExplose(this->typeExplosion);
+		this->listeExplosions.push_back(new Explosion(T_End,x,y));
 
+		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),x,y, T_Dyn);
+	}
+	else
+	{
+	    endExplose();
 	}
 }
 
 void ManagerExplosion::endExplose()
 {
+	this->isEnd=true;
 	Timer::getTimer()->removeListener(this,500/this->speed);
 	Timer::getTimer()->addListenerOnce(this,1000);
 }
@@ -81,14 +90,15 @@ EExplose ManagerExplosion::getType()
 
 void ManagerExplosion::updateTimer(unsigned int delay)
 {
-	if(!this->isEnd)
+	cout << "update Manager" << endl;
+	if(delay == 500/this->speed )
 	{
-		this->gameType->updateExplosion(this,this->power,this->x,this->y);
+		this->gameType->updateExplosion(this,this->powercurrent,this->x,this->y);
+        this->powercurrent++;
 	}
-	else
+	else if(delay==1000)
 	{
 		this->gameType->destroyManagerExplosion(this);
-
 	}
 
 }

@@ -35,12 +35,18 @@ namespace GameTypeSpace
 
             eventMove(event,tmpX,tmpY);
 
-            if(event.keyState[SDLK_SPACE])
-            {
-                int x=tmpX;x=x/10-1;
-                int y=tmpY;y=y/10-1;
+            int x=tmpX;x=x/10-1;
+            int y=tmpY;y=y/10-1;
 
+            if(event.keyState[SDLK_SPACE] && collision->detect(T_Bomberman,x,y)==C_Nothing)
+            {
                 this->gameType->getGame()->getMap()->addObject(new Bomb(this->gameType,this->gameType->getPlayer()->getId(), 2000, 2, 2),x,y,T_Dyn);
+            }
+
+            if(collision->detect(T_Bomberman,x,y)==C_Kill)
+            {
+                //Mort!
+                this->gameType->getPlayer()->setVisible(false);
             }
 		}
 

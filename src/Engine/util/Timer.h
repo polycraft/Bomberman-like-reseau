@@ -35,6 +35,8 @@ class Timer
         static Timer* instance;
         set<struct SObserverTimer*> listener;
         set<struct SObserverTimer*> listenerOnce;
+        set<struct SObserverTimer*> listenerRemoved;
+        set<struct SObserverTimer*> listenerOnceRemoved;
         static unsigned int last_time;
         static unsigned int ellapsed_time;
 };

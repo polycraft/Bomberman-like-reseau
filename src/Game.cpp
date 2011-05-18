@@ -19,7 +19,7 @@ Game::Game()
 
 	while(continuer)
 	{
-        cout << "fps:" << Timer::getTimePerFrame() << endl;
+        //cout << "fps:" << Timer::getTimePerFrame() << endl;
 
         gameType->update();
         continuer=engine->run(camera);

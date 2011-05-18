@@ -80,56 +80,55 @@ namespace GameTypeSpace
 
 	void Classic::updateExplosion(ManagerExplosion *manager,int power,int x,int y)
 	{
-        switch(manager->getType())
-        {
-            case T_Left:
-                x-=power;
+	    if(manager->getType()==T_Emitter)
+	    {
+	        manager->endExplose();
+	    }
+	    else
+	    {
+            switch(manager->getType())
+            {
+                case T_Left:
+                    x-=power;
+                    break;
+                case T_Right:
+                    x+=power;
+                    break;
+                case T_Up:
+                    y+=power;
                 break;
-            case T_Right:
-                x+=power;
+                case T_Down:
+                    y-=power;
                 break;
-            case T_Up:
-                y+=power;
-            break;
-            case T_Down:
-                y-=power;
-            break;
-        }
-        Type *object;
-        switch(this->collision->detect(T_Explosion,x,y))
-        {
-            case C_Explose:
-                object=this->game->getMap()->get(x,y);
-                if(object->getType()==T_Bomb)
-                {
-                    dynamic_cast<Bomb*>(this->game->getMap()->get(x,y))->explode();
-                }
-                else if(object->getType()==T_BreakableBloc)
-                {
-                    this->game->getMap()->set(NULL,x,y);
-                    object->destroy();
-                    //créer bonus
-                }
-                manager->endExplose();
-            break;
-            case C_Kill:
-                //destruction du bonus
-            break;
-            case C_Block:
-                manager->endExplose();
-            break;
-            case C_Nothing:
-                manager->nextExplose();
-            break;
-        }
-        int tmpX=this->player->getTransX();tmpX=tmpX/10-1;
-        int tmpY=this->player->getTransY();tmpY=tmpY/10-1;
-
-        if(tmpX==x && tmpY==y)
-        {
-            //Mort!
-            this->player->setVisible(false);
-        }
+            }
+            Type *object;
+            switch(this->collision->detect(T_Explosion,x,y))
+            {
+                case C_Explose:
+                    object=this->game->getMap()->get(x,y);
+                    if(object->getType()==T_Bomb)
+                    {
+                        dynamic_cast<Bomb*>(this->game->getMap()->get(x,y))->explode();
+                    }
+                    else if(object->getType()==T_BreakableBloc)
+                    {
+                        this->game->getMap()->set(NULL,x,y);
+                        object->destroy();
+                        //créer bonus
+                    }
+                    manager->endExplose();
+                break;
+                case C_Kill:
+                    //destruction du bonus
+                break;
+                case C_Block:
+                    manager->endExplose();
+                break;
+                case C_Nothing:
+                    manager->nextExplose();
+                break;
+            }
+	    }
 	}
 
 	void Classic::destroyManagerExplosion(ManagerExplosion* manager)

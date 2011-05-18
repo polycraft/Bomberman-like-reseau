@@ -1,6 +1,6 @@
 #include "Explosion.h"
 
-Explosion::Explosion(EExplose type)
+Explosion::Explosion(EExplose type,int x,int y):x(x),y(y)
 {
 	this->typeExplosion = type;
 	switch(this->typeExplosion)
@@ -80,4 +80,14 @@ void Explosion::changeExplose(EExplose typeExplose)
 			this->setRotation(0,0,90);
 		break;
 	}
+}
+
+int Explosion::getX()
+{
+    return x;
+}
+
+int Explosion::getY()
+{
+    return y;
 }
