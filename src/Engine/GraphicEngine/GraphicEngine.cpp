@@ -72,6 +72,11 @@ namespace Engine
         scene->addObject(object);
     }
 
+    ManagerText& GraphicEngine::getManagerText()
+    {
+        return text;
+    }
+
     void GraphicEngine::draw(Camera *camera)
     {
 		//on vide les buffer
@@ -93,6 +98,9 @@ namespace Engine
 			glVertex3d(0,0,0);
 			glVertex3d(0,4,0);
 			glEnd();
+
+		text.draw();
+
         //Mise à jours des scenes
         vector<Scene*>::iterator it;
 

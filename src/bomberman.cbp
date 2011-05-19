@@ -15,6 +15,8 @@
 				<Compiler>
 					<Add option="-w" />
 					<Add option="-g" />
+					<Add option="`freetype-config --cflags --libs`" />
+					<Add option="`sdl-config --cflags --libs`" />
 				</Compiler>
 				<Linker>
 					<Add library="SDL" />
@@ -22,6 +24,7 @@
 					<Add library="/usr/local/lib/libfmodex-4.34.02.so" />
 					<Add library="GLU" />
 					<Add library="SDL_image" />
+					<Add library="freetype" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -90,6 +93,12 @@
 		<Unit filename="Engine/GraphicEngine/OpenGL2.h" />
 		<Unit filename="Engine/GraphicEngine/Scene.cpp" />
 		<Unit filename="Engine/GraphicEngine/Scene.h" />
+		<Unit filename="Engine/GraphicEngine/Text/ManagerFont.cpp" />
+		<Unit filename="Engine/GraphicEngine/Text/ManagerFont.h" />
+		<Unit filename="Engine/GraphicEngine/Text/ManagerText.cpp" />
+		<Unit filename="Engine/GraphicEngine/Text/ManagerText.h" />
+		<Unit filename="Engine/GraphicEngine/Text/libText/polices.cpp" />
+		<Unit filename="Engine/GraphicEngine/Text/libText/polices.h" />
 		<Unit filename="Engine/Loader/Loader.h" />
 		<Unit filename="Engine/Loader/LoaderMusic.cpp" />
 		<Unit filename="Engine/Loader/LoaderMusic.h" />
@@ -117,6 +126,8 @@
 		<Unit filename="Engine/Sound.h" />
 		<Unit filename="Engine/SoundEngine/SoundEngine.cpp" />
 		<Unit filename="Engine/SoundEngine/SoundEngine.h" />
+		<Unit filename="Engine/Text.cpp" />
+		<Unit filename="Engine/Text.h" />
 		<Unit filename="Engine/Texture.cpp" />
 		<Unit filename="Engine/Texture.h" />
 		<Unit filename="Engine/test/testEngineSound.cpp" />
@@ -129,6 +140,8 @@
 		<Unit filename="Engine/test/testMapLoader.h" />
 		<Unit filename="Engine/test/testSocket.cpp" />
 		<Unit filename="Engine/test/testSocket.h" />
+		<Unit filename="Engine/test/testText.cpp" />
+		<Unit filename="Engine/test/testText.h" />
 		<Unit filename="Engine/test/testThreadable.cpp" />
 		<Unit filename="Engine/test/testThreadable.h" />
 		<Unit filename="Engine/test/testTimer.cpp" />

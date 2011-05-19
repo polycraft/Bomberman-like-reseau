@@ -16,6 +16,9 @@
 #include <GL/glu.h>
 #include <string.h>
 
+#include "Text/ManagerText.h"
+#include "Text/ManagerFont.h"
+
 using namespace std;
 
 namespace Engine
@@ -45,6 +48,8 @@ namespace Engine
             void addSceneObject(Object *object,unsigned idScene=0);
             void addSceneObject(Object *object,Scene *scene);
 
+            ManagerText& getManagerText();
+
             /**
             Met à jour l'affichage
             **/
@@ -60,6 +65,8 @@ namespace Engine
             Liste des caméras à gérer
             **/
             vector<Scene*> scene;
+
+            ManagerText text;
     };
 }
 #endif // GRAPHICENGINE_H
