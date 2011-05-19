@@ -13,12 +13,12 @@ ManagerExplosion::ManagerExplosion(int x, int y, int id, int speed, int power, G
 	this->nbExploSide= 0;
 
 	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y,id, speed, power, T_Emitter, gametype, this));
-	this->listeExplosionFlare.push_back(new ExplosionFlare(x-1,y,id, speed, power, T_Left, gametype, this));
-	this->listeExplosionFlare.push_back(new ExplosionFlare(x+1,y,id, speed, power, T_Right, gametype, this));
-	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y+1,id, speed, power, T_Up, gametype, this));
-	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y-1,id, speed, power, T_Down, gametype, this));
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y,id, speed, power, T_Left, gametype, this));
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y,id, speed, power, T_Right, gametype, this));
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y,id, speed, power, T_Up, gametype, this));
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y,id, speed, power, T_Down, gametype, this));
 
-	
+
 }
 
 ManagerExplosion::~ManagerExplosion()
@@ -40,8 +40,6 @@ void ManagerExplosion::addAnEnd()
 	{
 		Timer::getTimer()->addListener(this,500);
 	}
-
-
 }
 
 

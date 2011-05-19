@@ -15,7 +15,7 @@ ExplosionFlare::ExplosionFlare(int x, int y, int id, int speed, int power, EExpl
 	this->manager = manager;
 
 	Timer::getTimer()->addListener(this,100/this->speed);
-	
+
 
 	if(this->typeExplosion == T_Emitter)
 	{
@@ -25,10 +25,8 @@ ExplosionFlare::ExplosionFlare(int x, int y, int id, int speed, int power, EExpl
 	}
 	else
 	{
-		
+
 	    this->powercurrent=0;
-		this->listeExplosions.push_back(new Explosion(T_End,x,y));
-		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),this->x,this->y, T_Dyn);
 	}
 
 
@@ -105,11 +103,11 @@ void ExplosionFlare::updateTimer(unsigned int delay)
 
 		this->powercurrent++;
 		this->gameType->updateExplosion(this,this->powercurrent,this->x,this->y);
-		
-		/*if(this->powercurrent >= this->power)
+
+		if(this->powercurrent >= this->power)
 		{
 			endExplose();
-		}*/
+		}
 
 }
 
