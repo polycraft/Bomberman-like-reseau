@@ -38,7 +38,7 @@ namespace GameTypeSpace
             int x=tmpX;x=x/10-1;
             int y=tmpY;y=y/10-1;
 
-            if(event.keyState[SDLK_SPACE] && collision->detect(T_Bomberman,x,y)==C_Nothing)
+            if(event.keyState[SDLK_SPACE] && collision->detect(T_Bomberman,x,y)==C_Nothing && this->gameType->getPlayer()->getProperty<int>(PB_nbBomb)>0)
             {
                 Bomberman* bomber=this->gameType->getPlayer();
                 Bomb* bomb=new Bomb(
@@ -50,6 +50,7 @@ namespace GameTypeSpace
                 this->gameType->getGame()->getMap()->addObject(bomb,x,y,T_Dyn);
 
                 bomber->setProperty<int>(PB_nbBomb,bomber->getProperty<int>(PB_nbBomb)-1);
+
             }
 
             if(collision->detect(T_Bomberman,x,y)==C_Kill)
