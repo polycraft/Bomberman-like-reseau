@@ -1,0 +1,19 @@
+But du jeu:
+Dans le type de jeu classic, le but est de tuer tous ces adversaires à l'aide de bombe.
+
+Pour se déplacer, on utilise les touches :
+z = avancé
+s = réculé
+q = se déplacer à gauche
+d = se déplacer à droite
+espace = pose une bombe
+
+Lors de la phase d'initialisation, chaque joueur est placé de façon aléatoire. La position est décidé par le serveur.
+Une fois tous le monde est pret, un décompte de 3 secondes est effectué. Pendant cette phase, il est impossible de se déplacer et de poser des bombes.
+
+Une fois le décompte fini, la phase de jeu commence.
+Dans ces phase il est possible de se déplacer et tuer ces adversaires à l'aide de bombe. chaque action effectué est envoyé au serveur puis à chaque client.
+
+Durant cette phase, des bonus peuvent apparaitre aléatoirement à la destruction d'un block.
+
+
