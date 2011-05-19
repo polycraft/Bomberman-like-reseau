@@ -11,7 +11,6 @@ namespace Engine
     {
 
         SDL_Init(SDL_INIT_VIDEO);
-		atexit(SDL_Quit);
 
         SDL_WM_SetCaption(name.c_str(),NULL);
         SDL_SetVideoMode(w, h, 32, SDL_OPENGL);
@@ -82,7 +81,7 @@ namespace Engine
 		//charge la matrice identité
 		glLoadIdentity( );
 
-		
+
 		//Mise à jours de la caméra
         camera->draw();
 
@@ -104,7 +103,7 @@ namespace Engine
 
 
 		//signale la fin du traçage
-		glFlush(); 
+		glFlush();
 		//actualise l'image
 		SDL_GL_SwapBuffers();
     }
