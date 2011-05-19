@@ -25,6 +25,16 @@ namespace GameTypeSpace
 
 		    //Création du bomberman
 		    Bomberman *bomber=new Bomberman(0);
+		    bomber->setProperty<int>(PB_bombPower,2);
+		    bomber->setProperty<double>(PB_vitesse,0.05);
+		    bomber->setProperty<int>(PB_nbBomb,2);
+		    bomber->setProperty<int>(PB_nbBombMax,2);
+		    bomber->setProperty<int>(PB_timerBomb,2000);
+		    bomber->setProperty<int>(PB_timerPutBomb,500);
+		    bomber->setProperty<int>(PB_vitesseExplode,2);
+		    bomber->setProperty<int>(PB_life,1);
+
+
 		    this->gameType->setPlayer(bomber);
 		    map->addBomberman(bomber,map->getSpawn(0));
 

@@ -204,6 +204,7 @@ namespace GameTypeSpace
 	void Classic::destroyManagerExplosion(ManagerExplosion* manager)
 	{
 	    delete manager;
+	    player->setProperty<int>(PB_nbBomb,player->getProperty<int>(PB_nbBomb)+1);
 	}
 
 	Bomberman* Classic::getPlayer()

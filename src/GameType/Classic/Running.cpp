@@ -40,7 +40,16 @@ namespace GameTypeSpace
 
             if(event.keyState[SDLK_SPACE] && collision->detect(T_Bomberman,x,y)==C_Nothing)
             {
-                this->gameType->getGame()->getMap()->addObject(new Bomb(this->gameType,this->gameType->getPlayer()->getId(), 2000, 2, 2),x,y,T_Dyn);
+                Bomberman* bomber=this->gameType->getPlayer();
+                Bomb* bomb=new Bomb(
+                                    this->gameType,
+                                    bomber->getProperty<int>(PB_id),
+                                    bomber->getProperty<int>(PB_timerBomb),
+                                    bomber->getProperty<int>(PB_vitesseExplode),
+                                    bomber->getProperty<int>(PB_bombPower));
+                this->gameType->getGame()->getMap()->addObject(bomb,x,y,T_Dyn);
+
+                bomber->setProperty<int>(PB_nbBomb,bomber->getProperty<int>(PB_nbBomb)-1);
             }
 
             if(collision->detect(T_Bomberman,x,y)==C_Kill)
@@ -55,7 +64,7 @@ namespace GameTypeSpace
 			//Met le bomber an position attente
 			this->gameType->getPlayer()->setPause();
 
-		    double vitesse=0.05*Timer::getTimePerFrame();
+		    double vitesse=this->gameType->getPlayer()->getProperty<double>(PB_vitesse)*Timer::getTimePerFrame();
 		    if(vitesse>8)
 		    {
 		        vitesse=8;
