@@ -19,7 +19,8 @@ namespace GameTypeSpace
 	        P_Next=1,
 	        P_Initialisation=2,
 	        P_Running=3,
-	        P_HurryUp=4
+	        P_Dead=4,
+	        P_HurryUp=5
 	    };
 	}
 
@@ -50,7 +51,7 @@ namespace GameTypeSpace
 		ClassicSpace::EPhase phaseCurrent;
 		Bomberman *player;
 		vector<Bomberman*> playerNetwork;
-		Phase *phase[3];
+		Phase *phase[4];
 
 	};
 }

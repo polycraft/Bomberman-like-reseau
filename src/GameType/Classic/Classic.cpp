@@ -3,6 +3,7 @@
 #include "Initialisation.h"
 #include "Running.h"
 #include "HurryUp.h"
+#include "Dead.h"
 
 namespace GameTypeSpace
 {
@@ -16,6 +17,7 @@ namespace GameTypeSpace
 
 	    phase[P_Initialisation-2]=new Initialisation(this,collision);
 	    phase[P_Running-2]=new Running(this,collision);
+	    phase[P_Dead-2]=new Dead(this,collision);
 	    phase[P_HurryUp-2]=new HurryUp(this,collision);
 
 	    this->game->getEngine()->getEventEngine()->addListener(this);
@@ -24,9 +26,9 @@ namespace GameTypeSpace
 	Classic::~Classic()
 	{
 	    delete collision;
-	    delete phase[P_Initialisation];
-	    delete phase[P_Running];
-	    delete phase[P_HurryUp];
+	    delete phase[P_Initialisation-2];
+	    delete phase[P_Running-2];
+	    delete phase[P_HurryUp-2];
 	}
 
 

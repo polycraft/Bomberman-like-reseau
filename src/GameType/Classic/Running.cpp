@@ -46,7 +46,7 @@ namespace GameTypeSpace
             if(collision->detect(T_Bomberman,x,y)==C_Kill)
             {
                 //Mort!
-                this->gameType->getPlayer()->setVisible(false);
+                end(P_Next);
             }
 		}
 
