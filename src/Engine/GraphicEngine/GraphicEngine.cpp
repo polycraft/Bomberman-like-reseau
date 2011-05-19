@@ -13,15 +13,20 @@ namespace Engine
         SDL_Init(SDL_INIT_VIDEO);
 
         SDL_WM_SetCaption(name.c_str(),NULL);
+		//glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+		//glViewport(0, 0, w, h);
+
         SDL_SetVideoMode(w, h, 32, SDL_OPENGL);
 
 		//definition du mode de prjection
 		glMatrixMode( GL_PROJECTION );
 		glLoadIdentity();
-		gluPerspective(70,(double)w/h,1,1000);
+		gluPerspective(80,(double)w/h,1,1000);
 
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_DEPTH_TEST);
+		//glDisable(GL_CULL_FACE);
+		//glDisable(GL_LIGHTING);
 
 		//D'autre options
 		/*glMatrixMode( GL_PROJECTION );
@@ -99,7 +104,8 @@ namespace Engine
 			glVertex3d(0,4,0);
 			glEnd();
 
-		text.draw();
+
+
 
         //Mise à jours des scenes
         vector<Scene*>::iterator it;
@@ -109,7 +115,8 @@ namespace Engine
             (*it)->draw();
         }
 
-
+		//affichage des textes
+		//text.draw();
 		//signale la fin du traçage
 		glFlush();
 		//actualise l'image
