@@ -1,112 +1,53 @@
 #include "ManagerExplosion.h"
 
-
-ManagerExplosion::ManagerExplosion(int x, int y, int id, int speed, int power, EExplose typeExplose, GameType *gametype)
+ManagerExplosion::ManagerExplosion(int x, int y, int id, int speed, int power, GameType *gametype)
 {
-	this->id = id;
-	this->speed = speed;
-	this->power = 2;
-	this->powercurrent=0;
-	this->typeExplosion = typeExplose;
-	this->isEnd = false;
-	this->gameType = gametype;
 	this->x=x;
 	this->y=y;
+	this->id = id;
+	this->speed = speed;
+	this->power = power;
+	this->powercurrent=0;
+	this->gameType = gametype;
+	this->nbEnd = 0; // nb de branches qui ont finis dexploser
+	this->nbExploSide= 0;
 
-	Timer::getTimer()->addListener(this,100/this->speed);
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y,id, speed, power, T_Emitter, gametype, this));
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x-1,y,id, speed, power, T_Left, gametype, this));
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x+1,y,id, speed, power, T_Right, gametype, this));
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y+1,id, speed, power, T_Up, gametype, this));
+	this->listeExplosionFlare.push_back(new ExplosionFlare(x,y-1,id, speed, power, T_Down, gametype, this));
 
-	if(this->typeExplosion == T_Emitter)
-	{
-	    this->powercurrent=0;
-		this->listeExplosions.push_back(new Explosion(T_Emitter,x,y));
-		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),this->x,this->y, T_Dyn);
-	}
-	else
-	{
-	    this->powercurrent=1;
-		/*this->listeExplosions.push_back(new Explosion(T_End,x,y));
-		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),this->x,this->y, T_Dyn);*/
-	}
-
-
+	
 }
 
 ManagerExplosion::~ManagerExplosion()
 {
-	vector<Explosion*>::iterator it=this->listeExplosions.begin();
-	while(it < this->listeExplosions.end())
+	vector<ExplosionFlare*>::iterator it=this->listeExplosionFlare.begin();
+	while(it < this->listeExplosionFlare.end())
 	{
-		(*it)->destroy();
-		this->gameType->getGame()->getMap()->set(NULL,(*it)->getX(),(*it)->getY());
+		delete *it;
 		it++;
 	}
 }
 
-void ManagerExplosion::nextExplose()
+
+
+void ManagerExplosion::addAnEnd()
 {
-	if(this->typeExplosion != T_Emitter)
+	this->nbEnd++;//ajoute une branche qui a fini
+	if( this->nbEnd == 5)
 	{
-		int x, y;
-		x=this->x;
-		y=this->y;
-		switch(this->typeExplosion)
-		{
-		case T_Left:
-			x-=powercurrent;
-			break;
-	    case T_Right:
-			x+=powercurrent;
-			break;
-        case T_Up:
-            y+=powercurrent;
-			break;
-        case T_Down:
-            y-=powercurrent;
-        break;
-		}
-
-		if(this->listeExplosions.size()!=0)
-		{
-		    this->listeExplosions.back()->changeExplose(this->typeExplosion);
-		}
-
-        this->listeExplosions.push_back(new Explosion(T_End,x,y));
-        this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),x,y, T_Dyn);
-
+		Timer::getTimer()->addListener(this,500);
 	}
-	else
-	{
-	    endExplose();
-	}
+
+
 }
 
-void ManagerExplosion::endExplose()
-{
-	this->isEnd=true;
-	Timer::getTimer()->removeListener(this,100/this->speed);
-	Timer::getTimer()->addListenerOnce(this,1000);
-}
-
-EExplose ManagerExplosion::getType()
-{
-	return this->typeExplosion;
-}
 
 void ManagerExplosion::updateTimer(unsigned int delay)
 {
-	if(delay == 100/this->speed )
-	{
-		this->gameType->updateExplosion(this,this->powercurrent,this->x,this->y);
-        this->powercurrent++;
-	}
-	else if(delay==1000)
-	{
-		this->gameType->destroyManagerExplosion(this);
-	}
-
+	Timer::getTimer()->removeListener(this,500);
+	this->gameType->destroyManagerExplosion(this);
 }
 
-int ManagerExplosion::getID()
-{
-	return this->id;
-}

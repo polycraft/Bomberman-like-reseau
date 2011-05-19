@@ -7,6 +7,7 @@
 #include "../../Engine/NetworkEngine/IObserverSocketRecv.h"
 #include "../../Engine/EventEngine/IEventListener.h"
 #include "../../Type/ManagerExplosion.h"
+#include "../../Type/ExplosionFlare.h"
 
 namespace GameTypeSpace
 {
@@ -38,7 +39,7 @@ namespace GameTypeSpace
         Phase* getPhase(ClassicSpace::EPhase phase);
 
         virtual void explode(Bomb* bomb,int speed,int power);
-        void updateExplosion(ManagerExplosion *manager,int power,int x,int y);
+		void updateExplosion(ExplosionFlare *flare,int power,int x,int y);
         void destroyManagerExplosion(ManagerExplosion* manager);
 
         void executeAction(Engine::stateEvent &event);

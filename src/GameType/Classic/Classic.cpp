@@ -58,11 +58,8 @@ namespace GameTypeSpace
 
 	    this->game->getMap()->set(NULL,tmpX,tmpY);
 
-	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, T_Emitter, this);
-	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, T_Left, this);
-	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, T_Right, this);
-	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, T_Down, this);
-	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, T_Up, this);
+	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, this);
+
 
 
 	    /*ECollision tmpCollision;
@@ -149,15 +146,15 @@ namespace GameTypeSpace
 	    }*/
 	}
 
-	void Classic::updateExplosion(ManagerExplosion *manager,int power,int x,int y)
+	void Classic::updateExplosion(ExplosionFlare *flare,int power,int x,int y)
 	{
-	    if(manager->getType()==T_Emitter)
+	    if(flare->getType()==T_Emitter)
 	    {
-	        manager->endExplose();
+	        flare->endExplose();
 	    }
 	    else
 	    {
-            switch(manager->getType())
+            switch(flare->getType())
             {
                 case T_Left:
                     x-=power;
@@ -187,16 +184,16 @@ namespace GameTypeSpace
                         object->destroy();
                         //créer bonus
                     }
-                    manager->endExplose();
+                    flare->endExplose();
                 break;
                 case C_Kill:
                     //destruction du bonus
                 break;
                 case C_Block:
-                    manager->endExplose();
+                    flare->endExplose();
                 break;
                 case C_Nothing:
-                    manager->nextExplose();
+                    flare->nextExplose();
                 break;
             }
 	    }
