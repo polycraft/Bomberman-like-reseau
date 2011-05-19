@@ -9,7 +9,10 @@
 
 #include <ft2build.h>   // GNU freetype font 2
 #include FT_FREETYPE_H
-
+#include "../../../util/windows.h"
+#ifdef WINDOWS
+  #include <windows.h>
+#endif
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <stdarg.h>

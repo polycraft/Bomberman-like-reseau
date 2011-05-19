@@ -1,6 +1,9 @@
 #ifndef MANAGERFONT_H
 #define MANAGERFONT_H
 
+
+
+
 #include <string>
 #include "libText/polices.h"
 #include <set>

@@ -1,6 +1,8 @@
 #ifndef MANAGERTEXT_H
 #define MANAGERTEXT_H
 
+
+
 #include <set>
 #include "ManagerFont.h"
 

@@ -45,14 +45,15 @@ void ManagerFont::draw()
     Text* t;
     for ( it=text.begin() ; it != text.end(); it++ )
     {
-
-        glPushMatrix();
+		glLoadIdentity();
+		//glPushMatrix();
+		
         t=*it;
-        glColor4f(t->r, t->g, t->b, t->a);
+        glColor4ub(t->r, t->g, t->b, t->a);
         glTranslatef(t->x, t->y, t->z);
         glScalef(t->scaleX,t->scaleY,t->scaleZ);
         glRotatef(t->rotateX, 1, 0, 0);
-        glRotatef(t->rotateY, 0, 1, 0);
+		glRotatef(t->rotateY, 0, 1, 0);
         glRotatef(t->rotateZ, 0, 0, 1);
 
         if(t->interLigne>-1)
@@ -69,7 +70,8 @@ void ManagerFont::draw()
                 font->Print3D(t->text.c_str());
             break;
         }
-        glPopMatrix();
+		//glPopMatrix();
+        
     }
 }
 }
