@@ -1,6 +1,7 @@
 #ifndef CLASSIC_H
 #define CLASSIC_H
 
+
 #include "../GameType.h"
 #include "../../CollisionDetector.h"
 #include "../Phase.h"

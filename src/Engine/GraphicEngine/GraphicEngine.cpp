@@ -25,6 +25,13 @@ namespace Engine
 
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_DEPTH_TEST);
+
+		ManagerFont *font = new ManagerFont("src/ressource/font/font.ttf",24);
+		string s("Blablbla");
+		Text frameRate(s,20,0);
+		frameRate.setColor(255,255,255,255);
+		font->addText(&frameRate);
+		this->getManagerText().addFont(font);
 		//glDisable(GL_CULL_FACE);
 		//glDisable(GL_LIGHTING);
 
@@ -116,7 +123,8 @@ namespace Engine
         }
 
 		//affichage des textes
-		//text.draw();
+		text.draw();
+
 		//signale la fin du traçage
 		glFlush();
 		//actualise l'image

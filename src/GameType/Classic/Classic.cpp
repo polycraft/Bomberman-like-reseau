@@ -20,6 +20,8 @@ namespace GameTypeSpace
 	    phase[P_Dead-2]=new Dead(this,collision);
 	    phase[P_HurryUp-2]=new HurryUp(this,collision);
 
+
+
 	    this->game->getEngine()->getEventEngine()->addListener(this);
 	}
 
