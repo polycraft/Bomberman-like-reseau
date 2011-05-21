@@ -37,6 +37,8 @@ namespace GameTypeSpace
 		    bomber->setProperty<int>(PB_timeInvinsible,2000);
 		    bomber->setProperty<bool>(PB_invinsible,false);
 		    bomber->setInvinsible(5000);
+		    bomber->setName("Test");
+		    this->gameType->getFont().addText(bomber->getName());
 
 
 		    this->gameType->setPlayer(bomber);

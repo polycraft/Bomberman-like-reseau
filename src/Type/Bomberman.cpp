@@ -1,12 +1,12 @@
 #include "Bomberman.h"
 #include "../Engine/util/Timer.h"
 
-Bomberman::Bomberman(map<EPropertyBomberman,Property*>& property)
+Bomberman::Bomberman(map<EPropertyBomberman,Property*>& property):name(TT_Text3D)
 {
     this->property=property;
 }
 
-Bomberman::Bomberman(int id)
+Bomberman::Bomberman(int id):name(TT_Text3D)
 {
 	this->property[PB_id]=new Property(id);
 
@@ -76,4 +76,25 @@ void Bomberman::setInvinsible(int time)
 void Bomberman::lostLife(int nb)
 {
     setProperty<int>(PB_life,getProperty<int>(PB_life)-nb);
+}
+
+void Bomberman::setName(string &name)
+{
+    this->name.setText(name);
+}
+
+void Bomberman::setName(char *name)
+{
+    this->name.setText(name);
+}
+
+Text* Bomberman::getName()
+{
+    return &this->name;
+}
+
+void Bomberman::setCoordonnes(double x,double y,double z)
+{
+    ObjectMovable::setCoordonnes(x,y,z);
+    this->name.setCoord(x,y,z+2.5);
 }

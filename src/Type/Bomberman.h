@@ -6,6 +6,7 @@ class Bomberman;
 #include <map>
 #include "Property.h"
 #include "../Engine/util/IObserverTimer.h"
+#include "../Engine/Text.h"
 
 typedef enum EPropertyBomberman
 {
@@ -60,8 +61,14 @@ public:
 	void setInvinsible(int time);
 	void lostLife(int nb=1);
 
+	virtual void setCoordonnes(double x,double y,double z);
+
+    void setName(string &name);
+    void setName(char *name);
+    Text* getName();
 protected:
     map<EPropertyBomberman,Property*> property;
+    Text name;
 };
 
 
