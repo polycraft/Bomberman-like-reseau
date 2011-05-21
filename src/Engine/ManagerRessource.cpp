@@ -46,10 +46,6 @@ namespace Engine
 		//loader Objet
 		Loader *loaderObject=new LoaderObject();
 		_addLoader("obj",loaderObject);
-
-		//loaderMap
-		Loader *loaderMap=new LoaderMap();
-		_addLoader("map",loaderMap);
     }
 
     ManagerRessource::~ManagerRessource()
