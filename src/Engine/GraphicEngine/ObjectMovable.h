@@ -16,12 +16,12 @@ namespace Engine
             /**
             Réalise une translation sur l'objet
             **/
-            void translation(double x,double y,double z);
+            virtual void translation(double x,double y,double z);
 
             /**
             Enregistre les coordonnées precise de l'objet
             **/
-			void setCoordonnes(double x,double y,double z);
+			virtual void setCoordonnes(double x,double y,double z);
             /**
             Enregistre l'angle
             **/
