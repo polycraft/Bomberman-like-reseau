@@ -129,4 +129,9 @@ namespace Engine
 	{
 	    this->visible=visible;
 	}
+
+	bool Object::getVisible()
+	{
+	    return visible;
+	}
 }

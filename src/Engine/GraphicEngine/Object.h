@@ -61,6 +61,7 @@ namespace Engine
 			void setTexture(Ressource* noTexture);
 
 			void setVisible(bool visible);
+			bool getVisible();
 
         private:
             double xScale;
