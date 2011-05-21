@@ -17,7 +17,7 @@ class Text
 {
     friend class ManagerFont;
     public:
-        Text(ETypeText);
+        Text(ETypeText=TT_Text2D);
         Text(std::string &s,ETypeText);
         Text(std::string &s,ETypeText,double x,double y,double z);
         Text(std::string &s,double x,double y);
