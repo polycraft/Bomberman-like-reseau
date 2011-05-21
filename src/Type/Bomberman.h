@@ -5,6 +5,7 @@ class Bomberman;
 #include "../Map.h"
 #include <map>
 #include "Property.h"
+#include "../Engine/util/IObserverTimer.h"
 
 typedef enum EPropertyBomberman
 {
@@ -16,10 +17,13 @@ typedef enum EPropertyBomberman
     PB_timerBomb=5,
     PB_timerPutBomb=6,
     PB_vitesseExplode=7,
-    PB_life=8
+    PB_life=8,
+    PB_canPutBomb=9,
+    PB_invinsible=10,
+    PB_timeInvinsible=11
 } EPropertyBomberman;
 
-class Bomberman : public Type
+class Bomberman : public Type, public IObserverTimer
 {
 
 public:
@@ -50,6 +54,11 @@ public:
 
 	void setRunning();
 	void setPause();
+
+	void updateTimer(unsigned int delay);
+
+	void setInvinsible(int time);
+	void lostLife(int nb=1);
 
 protected:
     map<EPropertyBomberman,Property*> property;

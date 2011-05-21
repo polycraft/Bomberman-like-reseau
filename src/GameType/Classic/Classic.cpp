@@ -52,6 +52,7 @@ namespace GameTypeSpace
                 phaseCurrent=nextPhase;
             break;
         }
+
 	}
 
 	void Classic::explode(Bomb* bomb,int speed,int power)

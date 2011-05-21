@@ -38,7 +38,8 @@ namespace GameTypeSpace
             int x=tmpX;x=x/10-1;
             int y=tmpY;y=y/10-1;
 
-            if(event.keyState[SDLK_SPACE] && collision->detect(T_Bomberman,x,y)==C_Nothing && this->gameType->getPlayer()->getProperty<int>(PB_nbBomb)>0)
+            if(event.keyState[SDLK_SPACE] && collision->detect(T_Bomberman,x,y)==C_Nothing && this->gameType->getPlayer()->getProperty<int>(PB_nbBomb)>0 &&
+               this->gameType->getPlayer()->getProperty<bool>(PB_canPutBomb))
             {
                 Bomberman* bomber=this->gameType->getPlayer();
                 Bomb* bomb=new Bomb(
@@ -50,13 +51,26 @@ namespace GameTypeSpace
                 this->gameType->getGame()->getMap()->addObject(bomb,x,y,T_Dyn);
 
                 bomber->setProperty<int>(PB_nbBomb,bomber->getProperty<int>(PB_nbBomb)-1);
-
+                bomber->setProperty<bool>(PB_canPutBomb,false);
+                Timer::getTimer()->addListenerOnce(bomber,bomber->getProperty<int>(PB_timerPutBomb));
             }
 
-            if(collision->detect(T_Bomberman,x,y)==C_Kill)
+            if(collision->detect(T_Bomberman,x,y)==C_Kill && this->gameType->getPlayer()->getProperty<bool>(PB_invinsible)==false)
             {
+
                 //Mort!
-                end(P_Next);
+                this->gameType->getPlayer()->lostLife();
+
+
+                if(this->gameType->getPlayer()->getProperty<int>(PB_life)<=0)
+                {
+                    end(P_Next);
+                }
+                else
+                {
+                    this->gameType->getPlayer()->setInvinsible(5000);
+                }
+
             }
 		}
 

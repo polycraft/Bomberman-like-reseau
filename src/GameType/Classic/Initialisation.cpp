@@ -30,9 +30,13 @@ namespace GameTypeSpace
 		    bomber->setProperty<int>(PB_nbBomb,2);
 		    bomber->setProperty<int>(PB_nbBombMax,2);
 		    bomber->setProperty<int>(PB_timerBomb,2000);
-		    bomber->setProperty<int>(PB_timerPutBomb,500);
+		    bomber->setProperty<int>(PB_timerPutBomb,200);
 		    bomber->setProperty<int>(PB_vitesseExplode,2);
-		    bomber->setProperty<int>(PB_life,1);
+		    bomber->setProperty<int>(PB_life,2);
+		    bomber->setProperty<bool>(PB_canPutBomb,true);
+		    bomber->setProperty<int>(PB_timeInvinsible,2000);
+		    bomber->setProperty<bool>(PB_invinsible,false);
+		    bomber->setInvinsible(5000);
 
 
 		    this->gameType->setPlayer(bomber);
