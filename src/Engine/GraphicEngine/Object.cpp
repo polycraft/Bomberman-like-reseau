@@ -42,9 +42,21 @@ namespace Engine
             return true;
         }
 
+		if( this->alphaColor < 255)
+		{
+			glEnable (GL_BLEND);
+			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		}
+
+
+				
+
+
 		//Nouveau Repere
 		glPushMatrix();
 		//scaling / Translation / rotations de l'objet
+
+
 
 		glTranslated(transX,transY,transZ);
 		glRotated(rotateX,1,0,0);
@@ -52,12 +64,12 @@ namespace Engine
 		glRotated(rotateZ,0,0,1);
 		glScalef( xScale, yScale, zScale );
 
-
-		//La couleur Ambiante de l'objet est mise au BLANC ( sinon vert par defaut)
-		glColor4ub(255,255,255, this->alphaColor);
-
 		glEnable(GL_ALPHA_TEST);
 		glAlphaFunc(GL_GREATER, 0.0f);
+
+		//La couleur Ambiante de l'objet est mise au BLANC ( sinon vert par defaut)
+		glColor4ub(255,255,255,this->alphaColor);
+
 
 		//Texture a appliquer
 		glBindTexture(GL_TEXTURE_2D,this->noTexture);
@@ -72,6 +84,9 @@ namespace Engine
 		glTexCoordPointer(2, GL_FLOAT, 0, this->data->texture);
 		//Prepare la pose de la texture
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		
+
 
 		glDrawElements( GL_TRIANGLES, this->data->nbIndice , GL_UNSIGNED_INT, data->indice );
 		//on arrete le traçage
