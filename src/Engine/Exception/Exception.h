@@ -29,4 +29,9 @@ Thread/Mutex
 **/
 #include "ExceptionMutex.h"
 
+/**
+Main Engine
+**/
+#include "ExceptionNoEngine.h"
+
 #endif // EXCEPTION_H

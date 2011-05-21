@@ -5,7 +5,7 @@
 
 Game::Game()
 {
-    engine =  new MainEngine();
+    engine =  new MainEngine(Engine_Event|Engine_Graphic);
 	map = ManagerRessource::getRessource<Map>("src/ressource/map/test.map");
 
 	Engine::Camera *camera = new Engine::Camera(map->getWidth()*10/2, 0, 150, map->getWidth()*10/2, map->getHeight()*10, 0, 0, 0, 1);
