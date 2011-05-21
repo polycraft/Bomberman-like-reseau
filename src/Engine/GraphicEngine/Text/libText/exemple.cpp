@@ -14,7 +14,7 @@ bool EscapeRead(void);
    parms.resy = 600;
    parms.colorDepth = 32;
    parms.fov = 80;
-   parms.flags = SDL_OPENGL;
+   parms.flags = SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_OPENGL;
    parms.winName = "fenetre exemple";
 
    InitializeGL(parms);
@@ -60,16 +60,16 @@ bool EscapeRead(void);
 	  float wave = 1.5;
 
       // couleur variable:
-     // glColor4f(1, 0, 1, 1);
+      glColor4f(1, 0, 1, 1);
 
       // position:
-     // glTranslatef(0, 280 + 1 * 100, 0); // (en pixels)
+     glTranslatef(0, 280 + 1 * 100, 0); // (en pixels)
 
       // redimensionnement:
-    //  glScalef(1 + 0.7, wave + 0.7, 0);
+     glScalef(1 + 0.7, wave + 0.7, 0);
 
       // une petite rotation autours de z:
-     // glRotatef(1 * 20 - 10, 0, 0, 1);
+      glRotatef(1 * 20 - 10, 0, 0, 1);
 
       // et voila la fameuse ligne l'affichage:
       // il est possible d'utiliser directement une syntaxe à la "printf"
@@ -77,7 +77,7 @@ bool EscapeRead(void);
 
       glLoadIdentity();
       glColor4f(1, 1, 1, 1);
-      //glTranslatef(0, 100, 0);
+     glTranslatef(0, 100, 0);
 
       // et finalement, voici une ligne d'exemple démontrant la possibilité de revenir
       // à la ligne
@@ -86,9 +86,9 @@ bool EscapeRead(void);
       glLoadIdentity();
 
       glColor4f(1, 0, 0, 1);
-
-      //glScalef(0.1, 0.1, 0.1);
-     // glRotatef(30, 0, 1, 0);
+	  glTranslatef(0, 15 , -10);
+      glScalef(0.1, 0.1, 0.1);
+      glRotatef(30, 0, 1, 0);
 
       // on peut régler la hauteur des sauts de lignes !
       float oldfj = iFont.GetFeedJump();
@@ -151,10 +151,10 @@ int InitializeGL(const ModeParams& mode)
 
    SDL_WM_SetCaption(mode.winName, NULL);
 
-   //glClearDepth(1.0f);
-  // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // correction de perspective lors de la projection des texels
+   glClearDepth(1.0f);
+  glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // correction de perspective lors de la projection des texels
    
-  // glViewport(0, 0, mode.resx, mode.resy);
+  glViewport(0, 0, mode.resx, mode.resy);
      if (NULL == SDL_SetVideoMode(mode.resx, mode.resy, mode.colorDepth, mode.flags))
    {
       printf("surface non initialisée\n");
@@ -164,14 +164,14 @@ int InitializeGL(const ModeParams& mode)
    glLoadIdentity();
 
       gluPerspective(mode.fov, mode.resx / (float)mode.resy, 2.0f, 1024.0f);
-    //  glMatrixMode(GL_MODELVIEW);
-     // glLoadIdentity();
+     glMatrixMode(GL_MODELVIEW);
+      glLoadIdentity();
       gluLookAt(10, 0, 10, 0, 0, 0, 0, 0, 1);
 
 
- //  glMatrixMode(GL_MODELVIEW);
-  // glDisable(GL_CULL_FACE);
-  // glDisable(GL_LIGHTING);
+   glMatrixMode(GL_MODELVIEW);
+   glDisable(GL_CULL_FACE);
+ glDisable(GL_LIGHTING);
    
    return 0;
 }
