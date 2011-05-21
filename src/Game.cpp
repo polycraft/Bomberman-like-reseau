@@ -1,6 +1,7 @@
 #include "Game.h"
 
 #include "GameType/Classic/Classic.h"
+#include <sstream>
 
 Game::Game()
 {
@@ -24,12 +25,19 @@ Game::Game()
 
     bool continuer=true;
 
+    std::stringstream out;
+
 	while(continuer)
 	{
         //cout << "fps:" << Timer::getTimePerFrame() << endl;
 
         gameType->update();
         continuer=engine->run(camera);
+
+        std::stringstream out;
+        out << static_cast<int>(1000/Timer::getTimePerFrame());
+        s=out.str();
+    text.setText(s);
 	}
 }
 
