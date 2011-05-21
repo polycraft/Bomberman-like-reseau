@@ -9,7 +9,7 @@ namespace GameTypeSpace
 {
     using namespace ClassicSpace;
 
-	Classic::Classic(Game *game):GameType(game,10)
+	Classic::Classic(Game *game):GameType(game,10),font("src/ressource/font/font.ttf",24)
 	{
 	    phaseCurrent=P_Initialisation;
 
@@ -20,7 +20,7 @@ namespace GameTypeSpace
 	    phase[P_Dead-2]=new Dead(this,collision);
 	    phase[P_HurryUp-2]=new HurryUp(this,collision);
 
-
+        game->getEngine()->getGengine()->getManagerText().addFont(&font);
 
 	    this->game->getEngine()->getEventEngine()->addListener(this);
 	}
@@ -249,5 +249,10 @@ namespace GameTypeSpace
     void Classic::updateRecv(Socket *socket,const char*s,int size)
     {
         dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,s,size);
+    }
+
+    ManagerFont& Classic::getFont()
+    {
+        return font;
     }
 }

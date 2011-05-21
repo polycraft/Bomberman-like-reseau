@@ -46,6 +46,8 @@ namespace GameTypeSpace
 
         void executeAction(Engine::stateEvent &event);
         void updateRecv(Socket *,const char*,int size);
+
+        ManagerFont& getFont();
 	private:
 		int partTime;
 		CollisionDetector *collision;
@@ -53,7 +55,7 @@ namespace GameTypeSpace
 		Bomberman *player;
 		vector<Bomberman*> playerNetwork;
 		Phase *phase[4];
-
+        ManagerFont font;
 	};
 }
 
