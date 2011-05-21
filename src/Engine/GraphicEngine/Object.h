@@ -59,6 +59,7 @@ namespace Engine
 
 			void setTexture(Texture* noTexture);
 			void setTexture(Ressource* noTexture);
+			void setAlpha(int alpha);
 
 			void setVisible(bool visible);
 			bool getVisible();
@@ -72,7 +73,7 @@ namespace Engine
             **/
 			bool visible;
 
-
+			int alphaColor;
 
             /**
             Etat de l'objet (à détruire)

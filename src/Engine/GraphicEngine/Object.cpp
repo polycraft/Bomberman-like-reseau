@@ -9,6 +9,7 @@ namespace Engine
 		zScale = 1;
         this->visible = true;
         this->alive=true;
+		this->alphaColor=255;
     }
 
     Object::~Object()
@@ -53,10 +54,10 @@ namespace Engine
 
 
 		//La couleur Ambiante de l'objet est mise au BLANC ( sinon vert par defaut)
-		glColor3ub(255,255,255);
+		glColor4ub(255,255,255, this->alphaColor);
 
-		//glEnable(GL_ALPHA_TEST);
-		//glAlphaFunc(GL_GREATER, 0.0f);
+		glEnable(GL_ALPHA_TEST);
+		glAlphaFunc(GL_GREATER, 0.0f);
 
 		//Texture a appliquer
 		glBindTexture(GL_TEXTURE_2D,this->noTexture);
@@ -123,6 +124,11 @@ namespace Engine
 	{
 		Texture *temp = Ressource::getRessource<Texture>(*texture);
 		this->noTexture = temp->getTexture();
+	}
+	
+	void Object::setAlpha(int alpha)
+	{
+		this->alphaColor = alpha;
 	}
 
 	void Object::setVisible(bool visible)
