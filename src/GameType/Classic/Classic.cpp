@@ -11,6 +11,7 @@ namespace GameTypeSpace
 
 	Classic::Classic(Game *game):GameType(game,10),font("src/ressource/font/font.ttf",24)
 	{
+		this->player = NULL;
 	    phaseCurrent=P_Initialisation;
 
 	    collision=new CollisionDetector(game->getMap());
@@ -19,6 +20,8 @@ namespace GameTypeSpace
 	    phase[P_Running-2]=new Running(this,collision);
 	    phase[P_Dead-2]=new Dead(this,collision);
 	    phase[P_HurryUp-2]=new HurryUp(this,collision);
+
+
 
         game->getEngine()->getGengine()->getManagerText().addFont(&font);
 
@@ -212,7 +215,10 @@ namespace GameTypeSpace
 
 	Bomberman* Classic::getPlayer()
 	{
-	    return player;
+		if(this->player != NULL)
+		{
+			return player;
+		}
 	}
 
 	void Classic::setPlayer(Bomberman* bomber)
