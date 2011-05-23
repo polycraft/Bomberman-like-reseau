@@ -53,20 +53,23 @@ Game::Game()
 
 		//Calculs de position du texte
 		double b =(map->getHeight()*10.0);
-		double Y = 	gameType->getPlayer()->getTransY();
-		double X = 	gameType->getPlayer()->getTransX();
-		double H = sqrt(150*150+b*b);
-		double I1 = 150*H/b;
-		double I2 = 150*150/b;
-		text3d.setCoord(X-map->getWidth()*10/2-10,10*H/b-I1*((b-Y)/(b+I2)),-H*(1-(b-Y)/(b+I2)));
-		//
+		if(gameType->getPlayer()!=NULL)
+		{
+            double Y = 	gameType->getPlayer()->getTransY();
+            double X = 	gameType->getPlayer()->getTransX();
+            double H = sqrt(150*150+b*b);
+            double I1 = 150*H/b;
+            double I2 = 150*150/b;
+            text3d.setCoord(X-map->getWidth()*10/2-10,10*H/b-I1*((b-Y)/(b+I2)),-H*(1-(b-Y)/(b+I2)));
+            //
 
-		text3d.setText("Bob");
+            text3d.setText("Bob");
 
-		std::stringstream out;
-        out << static_cast<int>(1000/Timer::getTimePerFrame());
-        s=out.str();
-		text.setText(s);
+            std::stringstream out;
+            out << static_cast<int>(1000/Timer::getTimePerFrame());
+            s=out.str();
+            text.setText(s);
+		}
 	}
 }
 
