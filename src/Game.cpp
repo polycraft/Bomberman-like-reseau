@@ -25,7 +25,8 @@ Game::Game()
 	ManagerFont* font2=new ManagerFont("src/ressource/font/font.ttf",10);
 	double tailleBomber = 10;
 	double test = (map->getHeight()*10.0*10/150);
-	Text text3d(s,0,0,-(map->getHeight()*10.0*10/150)*sqrt(150*150+map->getHeight()*map->getHeight()*100.0)/(map->getHeight()*10.0));
+	string pseudo("Bob");
+	Text text3d(pseudo,0,0,-(map->getHeight()*10.0*10/150)*sqrt(150*150+map->getHeight()*map->getHeight()*100.0)/(map->getHeight()*10.0));
 	///////
 	text.setColor(255,255,255,255);
 	text3d.setColor(255,255,255,255);
@@ -50,18 +51,20 @@ Game::Game()
 
         gameType->update();
         continuer=engine->run(camera);
+		if(gameType->getPlayer() != NULL)
+		{
+			//Calculs de position du texte
+			double b =(map->getHeight()*10.0);
+			double Y = 	gameType->getPlayer()->getTransY();
+			double X = 	gameType->getPlayer()->getTransX();
+			double H = sqrt(150*150+b*b);
+			double I1 = 150*H/b;
+			double I2 = 150*150/b;
+			text3d.setCoord(X-map->getWidth()*10/2-10,10*H/b-I1*((b-Y)/(b+I2)),-H*(1-(b-Y)/(b+I2)));
+			//
 
-		//Calculs de position du texte
-		double b =(map->getHeight()*10.0);
-		double Y = 	gameType->getPlayer()->getTransY();
-		double X = 	gameType->getPlayer()->getTransX();
-		double H = sqrt(150*150+b*b);
-		double I1 = 150*H/b;
-		double I2 = 150*150/b;
-		text3d.setCoord(X-map->getWidth()*10/2-10,10*H/b-I1*((b-Y)/(b+I2)),-H*(1-(b-Y)/(b+I2)));
-		//
-
-		text3d.setText("Bob");
+			
+		}
 
 		std::stringstream out;
         out << static_cast<int>(1000/Timer::getTimePerFrame());
