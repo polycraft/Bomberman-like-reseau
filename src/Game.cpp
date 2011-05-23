@@ -3,10 +3,14 @@
 #include "GameType/Classic/Classic.h"
 #include <sstream>
 #include <cmath>
+#include "Loader/LoaderMap.h"
 
 Game::Game()
 {
     engine =  new MainEngine();
+    Loader *loaderMap=new LoaderMap();
+    ManagerRessource::addLoader("map",loaderMap);
+
 	map = ManagerRessource::getRessource<Map>("src/ressource/map/test.map");
 
 	Engine::Camera *camera = new Engine::Camera(map->getWidth()*10/2, 0, 150, map->getWidth()*10/2, map->getHeight()*10, 0, 0, 0, 1);

@@ -59,6 +59,8 @@
 		<Unit filename="Engine/Exception/ExceptionListen.h" />
 		<Unit filename="Engine/Exception/ExceptionMutex.cpp" />
 		<Unit filename="Engine/Exception/ExceptionMutex.h" />
+		<Unit filename="Engine/Exception/ExceptionNoEngine.cpp" />
+		<Unit filename="Engine/Exception/ExceptionNoEngine.h" />
 		<Unit filename="Engine/Exception/ExceptionNoFileFound.cpp" />
 		<Unit filename="Engine/Exception/ExceptionNoFileFound.h" />
 		<Unit filename="Engine/Exception/ExceptionNoLoader.cpp" />

@@ -32,8 +32,11 @@ namespace Engine
 
 	bool MainEngine::run(Camera *camera)
 	{
-        bool tmp=getEventEngine()->update();
-        getGengine()->draw(camera);
+	    bool tmp=true;
+	    if(eventEngine!=NULL)
+            tmp=getEventEngine()->update();
+        if(Gengine!=NULL)
+            getGengine()->draw(camera);
         Timer::getTimer()->update();
         return tmp;
 	}
