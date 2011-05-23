@@ -63,13 +63,30 @@ Game::Game()
 			text3d.setCoord(X-map->getWidth()*10/2-10,10*H/b-I1*((b-Y)/(b+I2)),-H*(1-(b-Y)/(b+I2)));
 			//
 
+<<<<<<< HEAD
 			
 		}
+=======
+		//Calculs de position du texte
+		double b =(map->getHeight()*10.0);
+		if(gameType->getPlayer()!=NULL)
+		{
+            double Y = 	gameType->getPlayer()->getTransY();
+            double X = 	gameType->getPlayer()->getTransX();
+            double H = sqrt(150*150+b*b);
+            double I1 = 150*H/b;
+            double I2 = 150*150/b;
+            text3d.setCoord(X-map->getWidth()*10/2-10,10*H/b-I1*((b-Y)/(b+I2)),-H*(1-(b-Y)/(b+I2)));
+            //
 
-		std::stringstream out;
-        out << static_cast<int>(1000/Timer::getTimePerFrame());
-        s=out.str();
-		text.setText(s);
+            text3d.setText("Bob");
+>>>>>>> 2d81d8495e0f5e04262de70628c933fee920d717
+
+            std::stringstream out;
+            out << static_cast<int>(1000/Timer::getTimePerFrame());
+            s=out.str();
+            text.setText(s);
+		}
 	}
 }
 
