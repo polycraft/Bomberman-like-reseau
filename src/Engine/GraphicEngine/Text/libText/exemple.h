@@ -1,5 +1,5 @@
 #include "polices.h"
-#include <windows.h>
+
 
 
 #include <GL/gl.h>
