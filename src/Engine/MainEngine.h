@@ -20,7 +20,7 @@ namespace Engine
 		~MainEngine();
 		GraphicEngine* getGengine();
         EventEngine* getEventEngine();
-        bool run(Camera *camera);
+        bool run(Camera *camera=NULL);
 	private:
 		GraphicEngine *Gengine;
         EventEngine *eventEngine;
