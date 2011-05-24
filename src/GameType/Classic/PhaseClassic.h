@@ -14,7 +14,7 @@ namespace GameTypeSpace
         public:
             PhaseClassic(GameTypeSpace::Classic *gameType,CollisionDetector *collision);
             virtual ~PhaseClassic();
-            virtual void updateRecv(Socket *,const char*,int size)=0;
+            virtual void updateRecv(Socket *,Paquet& paquet)=0;
         protected:
             Classic *gameType;
         };

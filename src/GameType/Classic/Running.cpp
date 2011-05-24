@@ -184,7 +184,7 @@ namespace GameTypeSpace
                 this->gameType->getPlayer()->setRotation(0,0,rotate/nbRotate);
 		}
 
-		void Running::updateRecv(Socket *socket,const char*s,int size)
+		void Running::updateRecv(Socket *socket,Paquet& paquet)
 		{
 
 		}

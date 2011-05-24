@@ -252,9 +252,9 @@ namespace GameTypeSpace
         this->phase[phaseCurrent-2]->executeAction(event);
     }
 
-    void Classic::updateRecv(Socket *socket,const char*s,int size)
+    void Classic::updateRecv(Socket *socket,Paquet& paquet)
     {
-        dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,s,size);
+        dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,paquet);
     }
 
     ManagerFont& Classic::getFont()

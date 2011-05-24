@@ -230,6 +230,11 @@ void Socket::sendData(string &data)
     return this->sendData(data.c_str(),data.size());
 }
 
+void Socket::sendData(Paquet &paquet)
+{
+    return this->sendData(paquet.getData(),paquet.getSize());
+}
+
 void Socket::recvData()
 {
     if(protocole==TP_TCP)
@@ -290,12 +295,13 @@ void Socket::notifyRecv(char* s,int size)
 {
     P(mutex1);
 
+    Paquet paquet(s,size);
     for (vector<IObserverSocketRecv*>::iterator it = observerRecv.begin(); it!=observerRecv.end(); ++it)
     {
         std::cout << observerRecv.size() <<std::endl;
         if(*it!=NULL)
         {
-            (*it)->updateRecv(this,s,size);
+            (*it)->updateRecv(this,paquet);
         }
     }
 

@@ -56,7 +56,7 @@ namespace GameTypeSpace
 
 		}
 
-		void Initialisation::updateRecv(Socket *socket,const char*s,int size)
+		void Initialisation::updateRecv(Socket *socket,Paquet& paquet)
 		{
 
 		}

@@ -32,9 +32,9 @@ public:
         threads.push_back(s->run(&(stop[s])));
     }
 
-    void updateRecv(Socket *sock,const char *str,int size)
+    void updateRecv(Socket *sock,Paquet &paquet)
     {
-        string s(str,size);
+        string s(paquet.getData(),paquet.getSize());
 
         cout << "serveur reçu :" << s << endl;
 
@@ -60,7 +60,7 @@ cout << *it << sock << endl;
             if(*it!=sock and *it!=NULL)
             {
                 cout << "send" << endl;
-                (*it)->sendData(str,size);
+                (*it)->sendData(paquet);
             }
         }
     }
@@ -89,9 +89,9 @@ public:
         thread=socket.run(&stop);
     }
 
-    void updateRecv(Socket *sock,const char *str,int size)
+    void updateRecv(Socket *sock,Paquet &paquet)
     {
-        string s(str,size);
+        string s(paquet.getData(),paquet.getSize());
         cout << nom << " reçoit " << s<< endl;
 
         if(s=="quit")

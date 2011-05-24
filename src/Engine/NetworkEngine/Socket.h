@@ -40,6 +40,8 @@ typedef struct in_addr IN_ADDR;
 
 #endif
 
+#include "Paquet.h"
+
 using namespace std;
 
 
@@ -116,6 +118,7 @@ class Socket : public Threadable
         **/
         void sendData(const char *data,unsigned int size);
         void sendData(string &data);
+        void sendData(Paquet &paquet);
 
         /**
         Reçoit une chaine

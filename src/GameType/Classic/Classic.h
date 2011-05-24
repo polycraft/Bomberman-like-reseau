@@ -45,7 +45,7 @@ namespace GameTypeSpace
         void destroyManagerExplosion(ManagerExplosion* manager);
 
         void executeAction(Engine::stateEvent &event);
-        void updateRecv(Socket *,const char*,int size);
+        void updateRecv(Socket *,Paquet& paquet);
 
         ManagerFont& getFont();
 	private:

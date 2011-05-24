@@ -7,13 +7,14 @@ namespace Engine
 }
 
 #include "Socket.h"
+#include "Paquet.h"
 
 namespace Engine
 {
 class IObserverSocketRecv
 {
     public:
-        virtual void updateRecv(Socket *,const char*,int size)=0;
+        virtual void updateRecv(Socket *,Paquet &)=0;
         virtual ~IObserverSocketRecv(){};
     protected:
     private:
