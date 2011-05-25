@@ -7,7 +7,7 @@
 
 Game::Game()
 {
-    engine =  new MainEngine();
+    engine =  new MainEngine(Engine_Graphic|Engine_Event);
     Loader *loaderMap=new LoaderMap();
     ManagerRessource::addLoader("map",loaderMap);
 

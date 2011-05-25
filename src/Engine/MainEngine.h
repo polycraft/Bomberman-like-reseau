@@ -16,7 +16,7 @@ namespace Engine
 	class MainEngine
 	{
 	public:
-		MainEngine(int engine=3);
+		MainEngine(int engine=0);
 		~MainEngine();
 		GraphicEngine* getGengine();
         EventEngine* getEventEngine();
