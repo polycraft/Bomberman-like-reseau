@@ -9,6 +9,7 @@
 #include "../../Engine/EventEngine/IEventListener.h"
 #include "../../Type/ManagerExplosion.h"
 #include "../../Type/ExplosionFlare.h"
+#include "../../Type/Bonus.h"
 
 namespace GameTypeSpace
 {
@@ -43,12 +44,14 @@ namespace GameTypeSpace
         virtual void explode(Bomb* bomb,int speed,int power);
 		void updateExplosion(ExplosionFlare *flare,int power,int x,int y);
         void destroyManagerExplosion(ManagerExplosion* manager);
+		EBonus randomBonus();
 
         void executeAction(Engine::stateEvent &event);
         void updateRecv(Socket *,Paquet& paquet);
 
         ManagerFont& getFont();
 	private:
+		static const int nbBonus=3;
 		int partTime;
 		CollisionDetector *collision;
 		ClassicSpace::EPhase phaseCurrent;

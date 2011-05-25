@@ -24,6 +24,14 @@ Bomberman::~Bomberman()
     {
         delete (*it).second;
     }
+
+	//destruction des bonus
+	set<Bonus*>::iterator it2;
+	for(it2 = this->bonusList.begin() ; it2 != this->bonusList.end() ; it++)
+	{
+		//delete (*it);
+	}
+
 }
 
 EType Bomberman::getType()
@@ -97,4 +105,21 @@ void Bomberman::setCoordonnes(double x,double y,double z)
 {
     ObjectMovable::setCoordonnes(x,y,z);
     this->name.setCoord(x,y,z+2.5);
+}
+
+void Bomberman::addBonus(Bonus *bonus)
+{
+	this->bonusList.insert(bonus);
+}
+
+void Bomberman::remove(Bonus *bonus)
+{
+	set<Bonus*>::iterator it;
+	for(it = this->bonusList.begin() ; it != this->bonusList.end() ; it++)
+	{
+		if((*it) == bonus)
+		{
+			//suppression a voir si besoin
+		}
+	}
 }

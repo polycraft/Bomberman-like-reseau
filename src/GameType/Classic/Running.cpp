@@ -71,6 +71,21 @@ namespace GameTypeSpace
                     this->gameType->getPlayer()->setInvinsible(5000);
                 }
 
+
+            }
+
+			if(collision->detect(T_Bomberman,x,y)==C_Bonus)
+            {
+				Bonus *bonus = dynamic_cast<Bonus*>(this->gameType->getGame()->getMap()->get(x,y));
+				Bomberman *bomber=this->gameType->getPlayer();
+				//Active l'effet du bonus:
+				bonus->getEffect()->enableEffect(bomber);
+                //Ajoute le bonus au bomberman
+				bomber->addBonus(bonus);
+				//fait disparaitre le bonus
+				bonus->setVisible(false);
+
+
             }
 		}
 

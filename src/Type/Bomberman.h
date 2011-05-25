@@ -7,6 +7,7 @@ class Bomberman;
 #include "Property.h"
 #include "../Engine/util/IObserverTimer.h"
 #include "../Engine/Text.h"
+#include "Bonus.h"
 
 typedef enum EPropertyBomberman
 {
@@ -66,9 +67,13 @@ public:
     void setName(string &name);
     void setName(char *name);
     Text* getName();
+
+	void addBonus(Bonus *bonus);
+	void remove(Bonus *bonus);
 protected:
     map<EPropertyBomberman,Property*> property;
     Text name;
+	set<Bonus*> bonusList;
 };
 
 

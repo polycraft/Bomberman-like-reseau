@@ -11,6 +11,7 @@ namespace GameTypeSpace
 
 	Classic::Classic(Game *game):GameType(game,10),font("src/ressource/font/font.ttf",24)
 	{
+		srand ( time(NULL) );
 		this->player = NULL;
 	    phaseCurrent=P_Initialisation;
 
@@ -188,14 +189,18 @@ namespace GameTypeSpace
                     }
                     else if(object->getType()==T_BreakableBloc)
                     {
-                        this->game->getMap()->set(NULL,x,y);
+						//créer bonus=> remplace la caisse
+						this->game->getMap()->addObject(new Bonus(this->randomBonus()),x,y,T_Map);
                         object->destroy();
-                        //créer bonus
+                        
                     }
                     flare->endExplose();
                 break;
                 case C_Kill:
-                    //destruction du bonus
+					object=this->game->getMap()->get(x,y);
+                    this->game->getMap()->set(NULL,x,y);
+					object->destroy();
+					flare->nextExplose();
                 break;
                 case C_Block:
                     flare->endExplose();
@@ -205,6 +210,11 @@ namespace GameTypeSpace
                 break;
             }
 	    }
+	}
+
+	EBonus Classic::randomBonus()
+	{
+		  return (EBonus)(rand() % this->nbBonus);
 	}
 
 	void Classic::destroyManagerExplosion(ManagerExplosion* manager)
