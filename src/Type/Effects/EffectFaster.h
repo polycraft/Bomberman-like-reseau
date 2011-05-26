@@ -1,10 +1,10 @@
-#ifndef EFFECTFASTER
-#define EFFECTFASTER
+#ifndef EFFECTFASTER_H
+#define EFFECTFASTER_H
 
-
+class EffectFaster;
 
 #include "Effect.h"
-
+#include "../Bomberman.h"
 
         class EffectFaster : public Effect
         {
@@ -16,4 +16,5 @@
         };
 
 
-#endif // EFFECTFASTER
+
+#endif // EFFECTFASTER_H

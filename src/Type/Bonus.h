@@ -3,8 +3,8 @@
 
 class Bonus;
 #include "Type.h"
-#include "Effects/Effect.h"
 #include "Effects/EffectFaster.h"
+
 
 
 typedef enum EBonus

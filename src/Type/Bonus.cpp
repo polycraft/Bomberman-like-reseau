@@ -8,7 +8,6 @@ Bonus::Bonus(EBonus bonus)
 		case T_Faster:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bonus.obj"),
 			ManagerRessource::getRessource("src/ressource/texture/bonus/bonusFaster.png"));
-			this->effect = new EffectFaster();
 		break;
 		case T_BombPlus:
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bonus.obj"),

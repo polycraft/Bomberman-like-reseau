@@ -1,13 +1,13 @@
 #ifndef EFFECT_H
 #define EFFECT_H
 
-class Effect;
 
+
+
+class Effect;
 #include "../../Engine/util/IObserverTimer.h"
 #include "../../Engine/util/Timer.h"
 #include "../Bomberman.h"
-
-
 
 
 
@@ -23,6 +23,8 @@ class Effect;
         protected:
 			Bomberman *bomberman;
         };
+
+#else
 
 
 #endif // EFFECT_H
