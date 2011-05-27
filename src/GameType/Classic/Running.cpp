@@ -47,7 +47,7 @@ namespace GameTypeSpace
                                     this->gameType,
                                     bomber->getProperty<int>(PB_id),
                                     bomber->getProperty<int>(PB_timerBomb),
-                                    bomber->getProperty<int>(PB_vitesseExplode),
+                                    bomber->getProperty<int>(PB_speedExplode),
                                     bomber->getProperty<int>(PB_bombPower));
                 this->gameType->getGame()->getMap()->addObject(bomb,x,y,T_Dyn);
 
@@ -56,7 +56,7 @@ namespace GameTypeSpace
                 Timer::getTimer()->addListenerOnce(bomber,bomber->getProperty<int>(PB_timerPutBomb));
             }
 
-            if(collision->detect(T_Bomberman,x,y)==C_Kill && this->gameType->getPlayer()->getProperty<bool>(PB_invinsible)==false)
+            if(collision->detect(T_Bomberman,x,y)==C_Kill && this->gameType->getPlayer()->getProperty<bool>(PB_invincible)==false)
             {
 
                 //Mort!
@@ -69,7 +69,7 @@ namespace GameTypeSpace
                 }
                 else
                 {
-                    this->gameType->getPlayer()->setInvinsible(5000);
+                    this->gameType->getPlayer()->setInvincible(5000);
                 }
 
 
@@ -96,7 +96,7 @@ namespace GameTypeSpace
 			//Met le bomber an position attente
 			this->gameType->getPlayer()->setPause();
 
-		    double vitesse=this->gameType->getPlayer()->getProperty<double>(PB_vitesse)*Timer::getTimePerFrame();
+		    double vitesse=this->gameType->getPlayer()->getProperty<double>(PB_speed)*Timer::getTimePerFrame();
 		    if(vitesse>8)
 		    {
 		        vitesse=8;

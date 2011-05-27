@@ -13,16 +13,16 @@ typedef enum EPropertyBomberman
 {
     PB_id=0,
     PB_bombPower=1,
-    PB_vitesse=2,
+    PB_speed=2,
     PB_nbBomb=3,
     PB_nbBombMax=4,
     PB_timerBomb=5,
     PB_timerPutBomb=6,
-    PB_vitesseExplode=7,
+    PB_speedExplode=7,
     PB_life=8,
     PB_canPutBomb=9,
-    PB_invinsible=10,
-    PB_timeInvinsible=11
+    PB_invincible=10,
+    PB_timeInvincible=11
 } EPropertyBomberman;
 
 class Bomberman : public Type, public IObserverTimer
@@ -59,7 +59,7 @@ public:
 
 	void updateTimer(unsigned int delay);
 
-	void setInvinsible(int time);
+	void setInvincible(int time);
 	void lostLife(int nb=1);
 
 	virtual void setCoordonnes(double x,double y,double z);
