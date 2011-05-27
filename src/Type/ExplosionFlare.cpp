@@ -7,7 +7,7 @@ ExplosionFlare::ExplosionFlare(int x, int y, int id, int speed, int power, EExpl
 	this->y=y;
 	this->id = id;
 	this->speed = speed;
-	this->power = 2;
+	this->power = power;
 	this->powercurrent=0;
 	this->typeExplosion = typeExplose;
 	this->isEnd = false;

@@ -147,6 +147,22 @@ void Map::buildScenes()
 	skybox->scale(200,200,200);
 	this->scene[T_World]->addObject(skybox);
 
+	/*
+		Object *explo= new Object();
+	explo->attach(ManagerRessource::getRessource<Model>("src/ressource/object/bonus.obj"),ManagerRessource::getRessource<Texture>("src/ressource/texture/bonus/bonusFaster.png"));
+	explo->setCoordonnes(5+10*3,5+10*5,0);
+	this->scene[T_Map]->addObject(explo);
+
+	
+	Object *explo1= new Object();
+	explo1->attach(ManagerRessource::getRessource<Model>("src/ressource/object/bodyExplosion.obj"),ManagerRessource::getRessource<Texture>("src/ressource/texture/bodyExplosion.png"));
+	explo1->setCoordonnes(5+10*2,5+10*5,0);
+	this->scene[T_Map]->addObject(explo1);
+
+		Object *explo2= new Object();
+	explo2->attach(ManagerRessource::getRessource<Model>("src/ressource/object/endExplosion.obj"),ManagerRessource::getRessource<Texture>("src/ressource/texture/endExplosion.png"));
+	explo2->setCoordonnes(5+10*1,5+10*5,0);
+	this->scene[T_Map]->addObject(explo2);*/
 
 
 

@@ -28,7 +28,7 @@ namespace GameTypeSpace
 		    bomber->setProperty<int>(PB_bombPower,2);
 		    bomber->setProperty<double>(PB_vitesse,0.05);
 		    bomber->setProperty<int>(PB_nbBomb,2);
-		    bomber->setProperty<int>(PB_nbBombMax,2);
+		   // bomber->setProperty<int>(PB_nbBombMax,2);
 		    bomber->setProperty<int>(PB_timerBomb,2000);
 		    bomber->setProperty<int>(PB_timerPutBomb,200);
 		    bomber->setProperty<int>(PB_vitesseExplode,2);

@@ -2,13 +2,16 @@
 #define BONUS_H
 
 class Bonus;
+#include "Effects/Effect.h"
 #include "Type.h"
-#include "Effects/EffectFaster.h"
+
+
 
 
 
 typedef enum EBonus
 {
+	T_None,
 	T_Faster,
 	T_BombPlus,
 	T_PowerPlus

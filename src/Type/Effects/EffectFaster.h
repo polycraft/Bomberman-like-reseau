@@ -1,10 +1,10 @@
 #ifndef EFFECTFASTER_H
 #define EFFECTFASTER_H
 
-class EffectFaster;
+class Effect;
 
 #include "Effect.h"
-#include "../Bomberman.h"
+
 
         class EffectFaster : public Effect
         {

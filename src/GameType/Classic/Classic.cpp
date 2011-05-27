@@ -190,7 +190,12 @@ namespace GameTypeSpace
                     else if(object->getType()==T_BreakableBloc)
                     {
 						//créer bonus=> remplace la caisse
-						this->game->getMap()->addObject(new Bonus(this->randomBonus()),x,y,T_Map);
+						EBonus random = this->randomBonus();
+						if(random != T_None)
+						{
+								this->game->getMap()->addObject(new Bonus(random),x,y,T_Map);
+						}
+						else this->game->getMap()->set(NULL,x,y);
                         object->destroy();
                         
                     }

@@ -42,6 +42,7 @@ namespace GameTypeSpace
                this->gameType->getPlayer()->getProperty<bool>(PB_canPutBomb))
             {
                 Bomberman* bomber=this->gameType->getPlayer();
+				
                 Bomb* bomb=new Bomb(
                                     this->gameType,
                                     bomber->getProperty<int>(PB_id),
@@ -84,6 +85,7 @@ namespace GameTypeSpace
 				bomber->addBonus(bonus);
 				//fait disparaitre le bonus
 				bonus->setVisible(false);
+				this->gameType->getGame()->getMap()->set(NULL,x,y);
 
 
             }

@@ -51,7 +51,7 @@ namespace GameTypeSpace
 
         ManagerFont& getFont();
 	private:
-		static const int nbBonus=3;
+		static const int nbBonus=4;
 		int partTime;
 		CollisionDetector *collision;
 		ClassicSpace::EPhase phaseCurrent;
