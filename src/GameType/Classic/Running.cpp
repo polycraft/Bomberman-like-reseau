@@ -81,6 +81,8 @@ namespace GameTypeSpace
 				Bomberman *bomber=this->gameType->getPlayer();
 				//Active l'effet du bonus:
 				bonus->getEffect()->enableEffect(bomber);
+				//arrete l'animation du bonus
+				bonus->destroyTimeAnim();
                 //Ajoute le bonus au bomberman
 				bomber->addBonus(bonus);
 				//fait disparaitre le bonus
