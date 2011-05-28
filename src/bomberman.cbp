@@ -13,7 +13,8 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-w" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add option="`freetype-config --cflags --libs`" />
 					<Add option="`sdl-config --cflags --libs`" />
@@ -99,6 +100,8 @@
 		<Unit filename="Engine/GraphicEngine/Text/ManagerFont.h" />
 		<Unit filename="Engine/GraphicEngine/Text/ManagerText.cpp" />
 		<Unit filename="Engine/GraphicEngine/Text/ManagerText.h" />
+		<Unit filename="Engine/GraphicEngine/Text/libText/exemple.cpp" />
+		<Unit filename="Engine/GraphicEngine/Text/libText/exemple.h" />
 		<Unit filename="Engine/GraphicEngine/Text/libText/polices.cpp" />
 		<Unit filename="Engine/GraphicEngine/Text/libText/polices.h" />
 		<Unit filename="Engine/Loader/Loader.h" />
@@ -120,6 +123,8 @@
 		<Unit filename="Engine/Model.h" />
 		<Unit filename="Engine/NetworkEngine/IObserverSocketAccept.h" />
 		<Unit filename="Engine/NetworkEngine/IObserverSocketRecv.h" />
+		<Unit filename="Engine/NetworkEngine/Paquet.cpp" />
+		<Unit filename="Engine/NetworkEngine/Paquet.h" />
 		<Unit filename="Engine/NetworkEngine/Socket.cpp" />
 		<Unit filename="Engine/NetworkEngine/Socket.h" />
 		<Unit filename="Engine/Ressource.cpp" />
@@ -184,6 +189,10 @@
 		<Unit filename="Type/Bonus.h" />
 		<Unit filename="Type/BreakableBloc.cpp" />
 		<Unit filename="Type/BreakableBloc.h" />
+		<Unit filename="Type/Effects/Effect.cpp" />
+		<Unit filename="Type/Effects/Effect.h" />
+		<Unit filename="Type/Effects/EffectFaster.cpp" />
+		<Unit filename="Type/Effects/EffectFaster.h" />
 		<Unit filename="Type/Explosion.cpp" />
 		<Unit filename="Type/Explosion.h" />
 		<Unit filename="Type/ExplosionFlare.cpp" />
@@ -201,6 +210,7 @@
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
