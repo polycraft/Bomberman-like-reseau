@@ -68,91 +68,6 @@ namespace GameTypeSpace
 	    this->game->getMap()->set(NULL,tmpX,tmpY);
 
 	    new ManagerExplosion(tmpX,tmpY,bomb->getIdOwner(), speed, power, this);
-
-
-
-	    /*ECollision tmpCollision;
-	    Type *object;
-
-	    tmpCollision=collision->detect(T_Explosion,tmpX-1,tmpY);
-	    if(tmpCollision==C_Nothing)
-	    {
-	        new ManagerExplosion(tmpX-1,tmpY,bomb->getIdOwner(), speed, power, T_Left, this);
-	    }
-	    else if(tmpCollision==C_Explose)
-	    {
-	        object=this->game->getMap()->get(tmpX-1,tmpY);
-	        if(object->getType()==T_Bomb)
-            {
-                dynamic_cast<Bomb*>(object)->explode();
-            }
-            else if(object->getType()==T_BreakableBloc)
-            {
-                this->game->getMap()->set(NULL,tmpX-1,tmpY);
-                object->destroy();
-                //créer bonus
-            }
-	    }
-
-	    tmpCollision=collision->detect(T_Explosion,tmpX+1,tmpY);
-	    if(tmpCollision==C_Nothing)
-	    {
-	        new ManagerExplosion(tmpX+1,tmpY,bomb->getIdOwner(), speed, power, T_Right, this);
-	    }
-	    else if(tmpCollision==C_Explose)
-	    {
-	        object=this->game->getMap()->get(tmpX+1,tmpY);
-	        if(object->getType()==T_Bomb)
-            {
-                dynamic_cast<Bomb*>(object)->explode();
-            }
-            else if(object->getType()==T_BreakableBloc)
-            {
-                this->game->getMap()->set(NULL,tmpX+1,tmpY);
-                object->destroy();
-                //créer bonus
-            }
-	    }
-
-	    tmpCollision=collision->detect(T_Explosion,tmpX,tmpY-1);
-	    if(tmpCollision==C_Nothing)
-	    {
-	        new ManagerExplosion(tmpX,tmpY-1,bomb->getIdOwner(), speed, power, T_Down, this);
-	    }
-	    else if(tmpCollision==C_Explose)
-	    {
-	        object=this->game->getMap()->get(tmpX,tmpY-1);
-	        if(object->getType()==T_Bomb)
-            {
-                dynamic_cast<Bomb*>(object)->explode();
-            }
-            else if(object->getType()==T_BreakableBloc)
-            {
-                this->game->getMap()->set(NULL,tmpX,tmpY-1);
-                object->destroy();
-                //créer bonus
-            }
-	    }
-
-        tmpCollision=collision->detect(T_Explosion,tmpX,tmpY+1);
-	    if(tmpCollision==C_Nothing)
-	    {
-	        new ManagerExplosion(tmpX,tmpY+1,bomb->getIdOwner(), speed, power, T_Up, this);
-	    }
-	    else if(tmpCollision==C_Explose)
-	    {
-	        object=this->game->getMap()->get(tmpX,tmpY+1);
-	        if(object->getType()==T_Bomb)
-            {
-                dynamic_cast<Bomb*>(object)->explode();
-            }
-            else if(object->getType()==T_BreakableBloc)
-            {
-                this->game->getMap()->set(NULL,tmpX,tmpY+1);
-                object->destroy();
-                //créer bonus
-            }
-	    }*/
 	}
 
 	void Classic::updateExplosion(ExplosionFlare *flare,int power,int x,int y)
@@ -197,7 +112,7 @@ namespace GameTypeSpace
 						}
 						else this->game->getMap()->set(NULL,x,y);
                         object->destroy();
-                        
+
                     }
                     flare->endExplose();
                 break;

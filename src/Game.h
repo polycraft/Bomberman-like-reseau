@@ -3,9 +3,10 @@
 #include "Engine/util/IObserverTimer.h"
 #include "Map.h"
 #include "Engine/MainEngine.h"
+#include "Engine/NetworkEngine/IObserverSocketRecv.h"
 
 
-class Game : public Engine::IObserverTimer
+class Game : public Engine::IObserverTimer, public Engine::IObserverSocketRecv
 {
     public:
         Game();
@@ -16,6 +17,7 @@ class Game : public Engine::IObserverTimer
 
         Map *getMap();
         MainEngine* getEngine();
+        void updateRecv(Socket *,Paquet& paquet);
     protected:
     private:
     Map *map;

@@ -66,7 +66,7 @@ Game::Game()
             text3d.setText("Bob");
 
             std::stringstream out;
-            out << static_cast<int>(1000/Timer::getTimePerFrame());
+            out << static_cast<int>(1000/Timer::getTimer()->getTimePerFrame());
             s=out.str();
             text.setText(s);
 		}
@@ -91,4 +91,9 @@ Map *Game::getMap()
 MainEngine* Game::getEngine()
 {
     return engine;
+}
+
+void Game::updateRecv(Socket *sock,Paquet& paquet)
+{
+
 }

@@ -42,7 +42,7 @@ namespace GameTypeSpace
                this->gameType->getPlayer()->getProperty<bool>(PB_canPutBomb))
             {
                 Bomberman* bomber=this->gameType->getPlayer();
-				
+
                 Bomb* bomb=new Bomb(
                                     this->gameType,
                                     bomber->getProperty<int>(PB_id),
@@ -96,7 +96,7 @@ namespace GameTypeSpace
 			//Met le bomber an position attente
 			this->gameType->getPlayer()->setPause();
 
-		    double vitesse=this->gameType->getPlayer()->getProperty<double>(PB_speed)*Timer::getTimePerFrame();
+		    double vitesse=this->gameType->getPlayer()->getProperty<double>(PB_speed)*Timer::getTimer()->getTimePerFrame();
 		    if(vitesse>8)
 		    {
 		        vitesse=8;

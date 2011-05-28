@@ -5,8 +5,6 @@ using namespace std;
 namespace Engine
 {
     Timer* Timer::instance=NULL;
-    unsigned int Timer::last_time=Timer::getTime();
-    unsigned int Timer::ellapsed_time=0;
 
 Timer *Timer::getTimer()
 {
@@ -19,7 +17,9 @@ Timer *Timer::getTimer()
 
 Timer::Timer()
 {
-
+    delayTime=0;
+    last_time=Timer::getTime();
+    ellapsed_time=0;
 }
 
 Timer::~Timer()
@@ -30,7 +30,7 @@ Timer::~Timer()
 struct SObserverTimer* Timer::createSObserverTime(IObserverTimer* observer,int delay)
 {
     struct SObserverTimer* sObserver=new struct SObserverTimer;
-    sObserver->start=SDL_GetTicks();
+    sObserver->start=getTime();
     sObserver->observer=observer;
     sObserver->delay=delay;
 
@@ -38,14 +38,14 @@ struct SObserverTimer* Timer::createSObserverTime(IObserverTimer* observer,int d
 }
 
 void Timer::addListener(IObserverTimer* observer,int delay)
-{cout << "addListener" << endl;
+{
     struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
 
     listener.insert(sObserver);
 }
 
 void Timer::addListenerOnce(IObserverTimer* observer,int delay)
-{cout << "addListenerOnce" << endl;
+{
     struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
 
     listenerOnce.insert(sObserver);
@@ -55,67 +55,12 @@ void Timer::removeListener(IObserverTimer*observer,int delay)
 {
     struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
     listenerRemoved.insert(sObserver);
-
-    /*set< struct SObserverTimer* >::iterator it;
-    struct SObserverTimer* sObserver=NULL;
-
-	for(it=this->listener.begin(); it!=listener.end();)
-	{
-		sObserver=*it;
-
-		if(sObserver->observer==observer && sObserver->delay==delay)
-        {
-            listener.erase(it++);
-            return;
-        }
-		it++;
-	}*/
-
-	/*
-    while(it<listener.end())
-    {
-        sObserver=*it;
-
-        if(sObserver->observer==observer && sObserver->delay==delay)
-        {
-            it=listener.erase(it);
-            return;
-        }
-        it++;
-    }*/
 }
 
 void Timer::removeListenerOnce(IObserverTimer*observer,int delay)
 {
     struct SObserverTimer* sObserver=createSObserverTime(observer,delay);
     listenerOnceRemoved.insert(sObserver);
-
-    /*set< struct SObserverTimer* >::iterator it;
-    struct SObserverTimer* sObserver=NULL;
-
-	for(it=this->listenerOnce.begin(); it!=listenerOnce.end();)
-	{
-		sObserver=*it;
-
-		if(sObserver->observer==observer && sObserver->delay==delay)
-        {
-            listenerOnce.erase(it++);
-            return;
-        }
-		it++;
-	}*/
-
-    /*while(it<listenerOnce.end())
-    {
-        sObserver=*it;
-
-        if(sObserver->observer==observer && sObserver->delay==delay)
-        {
-            it=listenerOnce.erase(it);
-            return;
-        }
-        it++;
-    }*/
 }
 
 void Timer::update()
@@ -138,18 +83,6 @@ void Timer::update()
 		it++;
 	}
 
-    /*while(it<listener.end())
-    {
-        sObserver=*it;
-
-        if(sObserver->start+sObserver->delay <= SDL_GetTicks())
-        {
-            sObserver->observer->updateTimer(sObserver->delay);
-            sObserver->start=SDL_GetTicks();
-        }
-        it++;
-    }*/
-
     //On vérifie les listeners qui doivent etre appellé qu'une seul fois
 	int test = listenerOnce.size();
 
@@ -167,21 +100,6 @@ void Timer::update()
             it++;
         }
 	}
-
-	/* it=listenerOnce.begin();
-    while(it!=listenerOnce.end())
-    {
-        sObserver=*it;
-        if(sObserver->start+sObserver->delay <= SDL_GetTicks())
-        {
-            sObserver->observer->updateTimer(sObserver->delay);
-            it=listenerOnce.erase(it);
-        }
-        else
-        {
-            it++;
-        }
-    }*/
 
     //Suppresion des timers
     set< struct SObserverTimer* >::iterator itDelete;
@@ -219,7 +137,7 @@ void Timer::update()
 	listenerOnceRemoved.clear();
 
     //Mise à jours du temps passé
-    int tmp=Timer::getTime();
+    int tmp=getTime();
     ellapsed_time=tmp-last_time;
     last_time=tmp;
 
@@ -232,12 +150,17 @@ void Timer::update()
 
 unsigned int Timer::getTime()
 {
-    return SDL_GetTicks();
+    return SDL_GetTicks()+delayTime;
 }
 
 unsigned int Timer::getTimePerFrame()
 {
     return ellapsed_time;
+}
+
+unsigned int Timer::setTime(unsigned int time)
+{
+    delayTime=time;
 }
 
 
