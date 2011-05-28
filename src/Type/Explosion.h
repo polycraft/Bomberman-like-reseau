@@ -22,10 +22,13 @@ public:
 	EType getType();
 	void updateTimer();
 
+
 	void changeExplose(EExplose typeExplose);
 
 	int getX();
 	int getY();
+
+	void destroyTimeAnim(){};
 
 private:
 	EExplose typeExplosion;

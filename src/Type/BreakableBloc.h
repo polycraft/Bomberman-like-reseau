@@ -10,6 +10,7 @@ public:
 	BreakableBloc();
 	~BreakableBloc();
 	EType getType();
+	void destroyTimeAnim(){};
 
 private:
 	static Cube* Breakbloc;

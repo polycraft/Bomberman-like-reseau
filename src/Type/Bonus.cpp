@@ -5,6 +5,11 @@
 Bonus::Bonus(EBonus bonus)
 {
 	this->bonus = bonus;
+	this->timeAnim = 50;
+	this->upAnim = true;
+	this->downAnim = false;
+	Timer::getTimer()->addListener(this,this->timeAnim);
+
 	switch(this->bonus)
 	{
 		case T_Faster:
@@ -23,10 +28,12 @@ Bonus::Bonus(EBonus bonus)
 			this->effect = new EffectPowerPlus();
 		break;
 	}
+
 }
 
 Bonus::~Bonus()
 {
+	 
 }
 
 EType Bonus::getType()
@@ -47,4 +54,27 @@ void Bonus::setEffect(Effect *effect)
 Effect* Bonus::getEffect()
 {
 	return this->effect;
+}
+
+void Bonus::updateTimer(unsigned int delay)
+{
+	if(this->getTransZ()>= 10) this->upAnim = false;
+	if(this->getTransZ()<= 0) this->upAnim = true;
+	switch(this->upAnim)
+	{
+		case true :
+			this->translation(0,0,0.5);
+		break;
+
+		case false :
+			this->translation(0,0,-0.5);
+		break;
+	}
+	this->rotate(0,0,5);
+	
+}
+
+void Bonus::destroyTimeAnim()
+{
+	Timer::getTimer()->removeListener(this,this->timeAnim);
 }

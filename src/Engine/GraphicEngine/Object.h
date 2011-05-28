@@ -34,6 +34,13 @@ namespace Engine
             **/
 			 void scale(double x,double y,double z);
 
+
+			 /**
+            Les getters
+            **/
+			double getXScale();
+			double getYScale();
+			double getZScale();
             /**
             Met à jours l'affichage
             **/

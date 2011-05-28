@@ -119,6 +119,7 @@ namespace GameTypeSpace
                 case C_Kill:
 					object=this->game->getMap()->get(x,y);
                     this->game->getMap()->set(NULL,x,y);
+					object->destroyTimeAnim();
 					object->destroy();
 					flare->nextExplose();
                 break;

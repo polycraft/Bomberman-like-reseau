@@ -11,6 +11,8 @@ public:
 	~StaticBloc();
 	EType getType();
 
+	void destroyTimeAnim(){};
+
 private:
 	static Cube* staticBloc;
 };

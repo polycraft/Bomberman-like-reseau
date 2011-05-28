@@ -31,6 +31,24 @@ namespace Engine
         zScale += z;
     }
 
+	double Object::getXScale()
+	{
+		return this->xScale;
+	}
+
+	double Object::getYScale()
+	{
+		return this->yScale;
+	}
+
+	double Object::getZScale()
+	{
+		return this->zScale;
+	}
+
+
+
+
     bool Object::draw()
     {
         if(!alive)

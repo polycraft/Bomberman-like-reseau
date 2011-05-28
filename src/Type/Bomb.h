@@ -18,6 +18,7 @@ public:
 	void updateTimer(unsigned int);
 	int getIdOwner();
 	void explode();
+	void destroyTimeAnim(){};
 
 private:
 	int idOwner;
@@ -26,6 +27,8 @@ private:
 	int speed;
 	int power;
 	int time;
+	bool upAnim;
+	int timeAnim;
 
 };
 

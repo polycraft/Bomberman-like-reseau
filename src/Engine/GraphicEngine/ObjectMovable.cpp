@@ -43,7 +43,7 @@ namespace Engine
 
 	double ObjectMovable::getTransX()
 	{
-	    return transX;
+		return this->transX;
 	}
 
     double ObjectMovable::getTransY()

@@ -5,6 +5,7 @@
 #include "../Engine/ManagerRessource.h"
 #include "../Engine/Ressource.h"
 #include "../Engine/GraphicEngine/Cube.h"
+#include "../Engine/util/Timer.h"
 
 using namespace Engine;
 
@@ -25,6 +26,8 @@ public:
 	Type();
 	virtual ~Type();
 	virtual EType getType()=0;
+	virtual void destroyTimeAnim()=0;
+
 
 };
 
