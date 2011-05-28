@@ -43,7 +43,7 @@ void Socket::initSocket(const char *address,unsigned int port,ETypeProtocole pro
     this->connection=connection;
     this->protocole=protocole;
 
-    infoConnection= {0};
+    //infoConnection= {0};
 
     switch(protocole)
     {
@@ -164,7 +164,7 @@ void Socket::runThread(bool *close)
             if(this->connection==TC_Server && this->protocole==TP_TCP)
             {
                 SOCKADDR_IN csin = { 0 };
-                size_t sinsize = sizeof csin;
+                int sinsize = sizeof csin;
                 SOCKET csock = accept(sock, (SOCKADDR *)&csin, &sinsize);
 
                 if(csock == SOCKET_ERROR)
@@ -329,7 +329,7 @@ void Socket::notifyAccept(Socket *s)
 unsigned int Socket::nbSocket = 0;
 bool Socket::isInit = false;
 
-static void Socket::init()
+void Socket::init()
 {
     Socket::nbSocket++;
     if(!Socket::isInit)
@@ -338,12 +338,12 @@ static void Socket::init()
         int err = WSAStartup(MAKEWORD(2, 2), &wsa);
         if(err < 0)
         {
-            throw ExceptionInitSocket;
+            throw ExceptionInitSocket();
         }
     }
 }
 
-static void end()
+void Socket::end()
 {
     Socket::nbSocket--;
     if(Socket::isInit && nbSocket==0)

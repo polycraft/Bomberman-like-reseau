@@ -15,8 +15,8 @@ namespace Engine
 
 #include "../util/windows.h"
 #ifdef WINDOWS /* si vous êtes sous Windows */
-
-#include <winsock2.h>
+	#include <windows.h>
+//#include <winsock2.h>
 
 #elif defined (linux) /* si vous êtes sous Linux */
 
