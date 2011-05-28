@@ -158,7 +158,7 @@ unsigned int Timer::getTimePerFrame()
     return ellapsed_time;
 }
 
-unsigned int Timer::setTime(unsigned int time)
+void Timer::setTime(unsigned int time)
 {
     delayTime=time;
 }

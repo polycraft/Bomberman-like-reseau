@@ -28,7 +28,7 @@ class Timer
         virtual ~Timer();
         unsigned int getTime();
         unsigned int getTimePerFrame();
-        unsigned int setTime(unsigned int time);
+        void setTime(unsigned int time);
     protected:
     private:
         Timer();
