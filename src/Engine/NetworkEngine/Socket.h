@@ -16,6 +16,7 @@ namespace Engine
 #include "../util/windows.h"
 #ifdef WINDOWS /* si vous êtes sous Windows */
 	#include <windows.h>
+	typedef socklen_t int;
 //#include <winsock2.h>
 
 #elif defined (linux) /* si vous êtes sous Linux */
@@ -119,11 +120,20 @@ class Socket : public Threadable
         void sendData(const char *data,unsigned int size);
         void sendData(string &data);
         void sendData(Paquet &paquet);
+		template<class T> void sendData(T *data)
+		{
+				this->sendData(reinterpret_cast<char*>(data),sizeof(T));
+		}
 
         /**
         Reçoit une chaine
         **/
-        void recvData();
+        Paquet recvData();
+
+        /**
+        setter isSync
+        **/
+        void setIsSync(bool sync);
 
         /**
         #Gestion des observables
@@ -229,6 +239,11 @@ class Socket : public Threadable
             Type de protocole
             **/
             ETypeProtocole protocole;
+
+            /**
+            Type de connexion (synchrone ou asynchrone)
+            **/
+            bool isSync;
         /**
         #Fin gestion des sockets
         **/

@@ -164,7 +164,7 @@ void Socket::runThread(bool *close)
             if(this->connection==TC_Server && this->protocole==TP_TCP)
             {
                 SOCKADDR_IN csin = { 0 };
-                int sinsize = sizeof csin;
+                socklen_t sinsize = sizeof csin;
                 SOCKET csock = accept(sock, (SOCKADDR *)&csin, &sinsize);
 
                 if(csock == SOCKET_ERROR)
@@ -235,7 +235,7 @@ void Socket::sendData(Paquet &paquet)
     return this->sendData(paquet.getData(),paquet.getSize());
 }
 
-void Socket::recvData()
+Paquet Socket::recvData()
 {
     if(protocole==TP_TCP)
     {
@@ -248,13 +248,24 @@ void Socket::recvData()
             throw ExceptionRecv();
         }
         V();
-
-        this->notifyRecv(bufferRecv,n);
+        if(this->isSync)
+        {
+            return Paquet(bufferRecv,n);
+        }
+        else
+        {
+            this->notifyRecv(bufferRecv,n);
+        }
     }
     else if(protocole==TP_UDP)
     {
         //à faire si necessaire
     }
+}
+
+void Socket::setIsSync(bool sync)
+{
+    this->isSync=sync;
 }
 
 void Socket::addObserverRecv(IObserverSocketRecv* observer)
