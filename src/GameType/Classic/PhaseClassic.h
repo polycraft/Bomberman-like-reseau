@@ -3,7 +3,13 @@
 
 #include "../Phase.h"
 #include "../../Engine/NetworkEngine/IObserverSocketRecv.h"
-#include "Classic.h"
+
+namespace GameTypeSpace
+{
+    class Classic;
+}
+class CollisionDetector;
+class GameType;
 
 namespace GameTypeSpace
 {
@@ -14,7 +20,7 @@ namespace GameTypeSpace
         public:
             PhaseClassic(GameTypeSpace::Classic *gameType,CollisionDetector *collision);
             virtual ~PhaseClassic();
-            virtual void updateRecv(Socket *,Paquet& paquet)=0;
+            virtual void updateRecv(Engine::Socket *,Engine::Paquet& paquet)=0;
         protected:
             Classic *gameType;
         };

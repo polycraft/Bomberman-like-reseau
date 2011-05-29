@@ -1,7 +1,15 @@
 #include "Bonus.h"
+
+#include "Effects/Effect.h"
 #include "Effects/EffectFaster.h"
 #include "Effects/EffectBombPlus.h"
 #include "Effects/EffectPowerPlus.h"
+
+#include "../Engine/ManagerRessource.h"
+#include "../Engine/util/Timer.h"
+
+using namespace Engine;
+
 Bonus::Bonus(EBonus bonus)
 {
 	this->bonus = bonus;
@@ -27,13 +35,16 @@ Bonus::Bonus(EBonus bonus)
 			ManagerRessource::getRessource("src/ressource/texture/bonus/bonusPower.png"));
 			this->effect = new EffectPowerPlus();
 		break;
+		default:
+
+		break;
 	}
 
 }
 
 Bonus::~Bonus()
 {
-	 
+
 }
 
 EType Bonus::getType()
@@ -71,7 +82,7 @@ void Bonus::updateTimer(unsigned int delay)
 		break;
 	}
 	this->rotate(0,0,5);
-	
+
 }
 
 void Bonus::destroyTimeAnim()

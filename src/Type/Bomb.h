@@ -1,14 +1,12 @@
 #ifndef BOMB_H
 #define BOMB_H
-class GameType;
+
 #include "Type.h"
-#include "../Engine/util/Timer.h"
 #include "../Engine/util/IObserverTimer.h"
-#include "../GameType/GameType.h"
 
-//using namespace Engine;
+class GameType;
 
-class Bomb : public Type, public IObserverTimer
+class Bomb : public Type, public Engine::IObserverTimer
 {
 
 public:

@@ -1,15 +1,13 @@
 #ifndef BONUS_H
 #define BONUS_H
 
-class Bonus;
-#include "Effects/Effect.h"
 #include "Type.h"
 #include "../Engine/util/IObserverTimer.h"
 #include "../Engine/util/Timer.h"
 
 
 
-
+class Effect;
 
 
 typedef enum EBonus
@@ -18,9 +16,9 @@ typedef enum EBonus
 	T_Faster,
 	T_BombPlus,
 	T_PowerPlus
-};
+} EBonus;
 
-class Bonus : public Type, IObserverTimer
+class Bonus : public Type, Engine::IObserverTimer
 {
 
 public:

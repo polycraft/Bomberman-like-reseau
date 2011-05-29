@@ -4,14 +4,15 @@
 #include "Type/Bomberman.h"
 #include "Type/Type.h"
 #include <vector>
-#include "Engine/GraphicEngine/Scene.h"
+#include <string>
+
+
 #include "Engine/MainEngine.h"
 #include "Engine/Ressource.h"
-#include "Engine/ManagerRessource.h"
-#include "Type/StaticBloc.h"
-#include "Type/BreakableBloc.h"
+#include "Engine/GraphicEngine/Scene.h"
 
-using namespace Engine;
+class Bomberman;
+class Type;
 
 enum EScene{
 	T_World=0,
@@ -30,7 +31,7 @@ typedef struct SCoordinate
 	int y;
 } SCoordinate;
 
-class Map : public Ressource
+class Map : public Engine::Ressource
 {
 
 public:
@@ -39,23 +40,23 @@ public:
 	void addBomberman(Bomberman *bomberman,SCoordinate coord);
 	void addObject(Type* object, int x, int y, EScene scene);
 	void addSpawn(int x, int y);
-	Scene* getScene(EScene scene);
+	Engine::Scene* getScene(EScene scene);
 	SCoordinate getSpawn(int id);
 	int getWidth();
 	int getHeight();
 	Type* get(int x,int y);
 	void set(Type* object,int x,int y);
-	void setEngine(MainEngine* engine);
+	void setEngine(Engine::MainEngine* engine);
 	void buildScenes();
 
 private:
 	int gameType;
 	int width;
 	int height;
-	vector<Scene*> scene;
+	vector<Engine::Scene*> scene;
 	vector<SCoordinate> spawn;
 	Type ***map;
-	MainEngine* engine;
+	Engine::MainEngine* engine;
 
 };
 

@@ -2,7 +2,13 @@
 #define INITIALISATION_H
 
 #include "PhaseClassic.h"
-#include "Classic.h"
+
+namespace GameTypeSpace
+{
+    class Classic;
+}
+class CollisionDetector;
+
 
 namespace GameTypeSpace
 {
@@ -17,7 +23,7 @@ namespace GameTypeSpace
 			void init();
 			void run();
             void executeAction(Engine::stateEvent &event);
-            virtual void updateRecv(Socket *,Paquet& paquet);
+            virtual void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
 		};
 	}
 }

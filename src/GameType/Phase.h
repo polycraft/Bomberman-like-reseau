@@ -1,11 +1,10 @@
 #ifndef PHASE_H
 #define PHASE_H
 
-#include "../CollisionDetector.h"
 #include "../Engine/EventEngine/IEventListener.h"
-#include "GameType.h"
 
-using namespace Engine;
+class CollisionDetector;
+
 
 typedef enum EEtat
 {
@@ -15,7 +14,7 @@ typedef enum EEtat
     E_Run
 } EEtat;
 
-class Phase : public IEventListener
+class Phase : public Engine::IEventListener
 {
 
 public:

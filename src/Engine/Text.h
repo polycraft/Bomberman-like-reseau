@@ -27,7 +27,7 @@ class Text
         void setCoord(double x,double y,double z);
         void setCoord(double x,double y);
 
-        void setText(char* s);
+        void setText(const char* s);
         void setText(std::string &s);
         void setType(ETypeText);
 

@@ -21,7 +21,7 @@ namespace Engine
     {
 		    xScale = x;
             yScale = y;
-            zScale = y;
+            zScale = z;
     }
 
     void Object::scale(double x,double y,double z)
@@ -67,7 +67,7 @@ namespace Engine
 		}
 
 
-				
+
 
 
 		//Nouveau Repere
@@ -103,7 +103,7 @@ namespace Engine
 		//Prepare la pose de la texture
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-		
+
 
 
 		glDrawElements( GL_TRIANGLES, this->data->nbIndice , GL_UNSIGNED_INT, data->indice );
@@ -158,7 +158,7 @@ namespace Engine
 		Texture *temp = Ressource::getRessource<Texture>(*texture);
 		this->noTexture = temp->getTexture();
 	}
-	
+
 	void Object::setAlpha(int alpha)
 	{
 		this->alphaColor = alpha;

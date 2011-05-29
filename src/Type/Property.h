@@ -10,7 +10,7 @@ class Property
         }
         virtual ~Property()
         {
-            delete value;
+            delete reinterpret_cast<char*>(value);
         }
 
         template <typename T> const T& getValue()

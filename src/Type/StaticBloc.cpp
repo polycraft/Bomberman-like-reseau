@@ -1,5 +1,9 @@
 #include "StaticBloc.h"
 
+#include "../Engine/ManagerRessource.h"
+
+using namespace Engine;
+
 Cube* StaticBloc::staticBloc = NULL;
 
 StaticBloc::StaticBloc()

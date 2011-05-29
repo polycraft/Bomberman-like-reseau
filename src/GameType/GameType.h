@@ -1,10 +1,10 @@
 #ifndef GAMETYPE_H
 #define GAMETYPE_H
+
 class Bomb;
-#include "../Type/Bomb.h"
-#include "../Game.h"
-#include "../Type/ManagerExplosion.h"
-#include "../Type/ExplosionFlare.h"
+class Game;
+class ExplosionFlare;
+class ManagerExplosion;
 
 class GameType
 {

@@ -1,15 +1,21 @@
 #ifndef CLASSIC_H
 #define CLASSIC_H
 
-
-#include "../GameType.h"
-#include "../../CollisionDetector.h"
-#include "../Phase.h"
 #include "../../Engine/NetworkEngine/IObserverSocketRecv.h"
 #include "../../Engine/EventEngine/IEventListener.h"
-#include "../../Type/ManagerExplosion.h"
-#include "../../Type/ExplosionFlare.h"
+#include "../../Engine/GraphicEngine/Text/ManagerFont.h"
+#include "../GameType.h"
+#include "../Phase.h"
 #include "../../Type/Bonus.h"
+
+class CollisionDetector;
+class Game;
+class Bomberman;
+class Bomb;
+class ExplosionFlare;
+class ManagerExplosion;
+
+
 
 namespace GameTypeSpace
 {
@@ -23,7 +29,7 @@ namespace GameTypeSpace
 	        P_Running=3,
 	        P_Dead=4,
 	        P_HurryUp=5
-	    };
+	    } EPhase;
 	}
 
 	class Classic : public GameType, public Engine::IObserverSocketRecv,public Engine::IEventListener
@@ -47,9 +53,9 @@ namespace GameTypeSpace
 		EBonus randomBonus();
 
         void executeAction(Engine::stateEvent &event);
-        void updateRecv(Socket *,Paquet& paquet);
+        void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
 
-        ManagerFont& getFont();
+        Engine::ManagerFont& getFont();
 	private:
 		static const int nbBonus=4;
 		int partTime;
@@ -58,7 +64,7 @@ namespace GameTypeSpace
 		Bomberman *player;
 		vector<Bomberman*> playerNetwork;
 		Phase *phase[4];
-        ManagerFont font;
+        Engine::ManagerFont font;
 	};
 }
 

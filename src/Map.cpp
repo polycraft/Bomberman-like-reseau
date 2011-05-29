@@ -1,6 +1,10 @@
 #include "Map.h"
 
+#include "Type/StaticBloc.h"
+#include "Type/BreakableBloc.h"
+#include "Engine/ManagerRessource.h"
 
+using namespace Engine;
 
 Map::Map(string &name, EGameType gameType, int width, int height)  : Ressource(name)
 {
@@ -153,7 +157,7 @@ void Map::buildScenes()
 	explo->setCoordonnes(5+10*3,5+10*5,0);
 	this->scene[T_Map]->addObject(explo);
 
-	
+
 	Object *explo1= new Object();
 	explo1->attach(ManagerRessource::getRessource<Model>("src/ressource/object/bodyExplosion.obj"),ManagerRessource::getRessource<Texture>("src/ressource/texture/bodyExplosion.png"));
 	explo1->setCoordonnes(5+10*2,5+10*5,0);

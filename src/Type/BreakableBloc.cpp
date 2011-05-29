@@ -1,5 +1,10 @@
 #include "BreakableBloc.h"
 
+#include "../Engine/ManagerRessource.h"
+#include "../Engine/GraphicEngine/Cube.h"
+
+using namespace Engine;
+
 Cube* BreakableBloc::Breakbloc = NULL;
 
 BreakableBloc::BreakableBloc()

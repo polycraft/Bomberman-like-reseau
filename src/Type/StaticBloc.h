@@ -2,6 +2,7 @@
 #define STATICBLOC_H
 
 #include "Type.h"
+#include "../Engine/GraphicEngine/Cube.h"
 
 class StaticBloc : public Type
 {
@@ -14,7 +15,7 @@ public:
 	void destroyTimeAnim(){};
 
 private:
-	static Cube* staticBloc;
+	static Engine::Cube* staticBloc;
 };
 
 

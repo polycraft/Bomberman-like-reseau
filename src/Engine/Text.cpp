@@ -63,7 +63,7 @@ void Text::setCoord(double x,double y)
     this->y=y;
 }
 
-void Text::setText(char* s)
+void Text::setText(const char* s)
 {
     text=s;
 }

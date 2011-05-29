@@ -47,7 +47,7 @@ bool EscapeRead(void);
       // pti netotyage de la surface
       //glClearColor(0, 0, 0, 0);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      
+
       glLoadIdentity();
 
       // grâce aux fonctions opengl
@@ -56,7 +56,7 @@ bool EscapeRead(void);
       // par des glPushMatrix et glPopMatrix si nécessaire.
 
 
-      
+
 	  float wave = 1.5;
 
       // couleur variable:
@@ -81,7 +81,7 @@ bool EscapeRead(void);
 
       // et finalement, voici une ligne d'exemple démontrant la possibilité de revenir
       // à la ligne
-      
+
 
       glLoadIdentity();
 
@@ -106,7 +106,7 @@ bool EscapeRead(void);
 	  glScalef(2, 4, 2);
       // 200 pixels par seconde
 
-      
+
 
 
       // encore!
@@ -126,7 +126,7 @@ bool EscapeRead(void);
       glColor4f(0.5, 0.5, 1, 1);
 
       // pour faire tourner autours du centre:
-      int midlen = iFont.GetStringPixelWidth("ca tooourne") / 2;
+      //int midlen = iFont.GetStringPixelWidth("ca tooourne") / 2;
 
       glTranslatef(380, 550, 0);
 
@@ -153,7 +153,7 @@ int InitializeGL(const ModeParams& mode)
 
    glClearDepth(1.0f);
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // correction de perspective lors de la projection des texels
-   
+
   glViewport(0, 0, mode.resx, mode.resy);
      if (NULL == SDL_SetVideoMode(mode.resx, mode.resy, mode.colorDepth, mode.flags))
    {
@@ -172,7 +172,7 @@ int InitializeGL(const ModeParams& mode)
    glMatrixMode(GL_MODELVIEW);
    glDisable(GL_CULL_FACE);
  glDisable(GL_LIGHTING);
-   
+
    return 0;
 }
 
@@ -188,6 +188,6 @@ bool EscapeRead(void)
             return true;
 		 }
 	  }
-   }   
+   }
    return false;
 }

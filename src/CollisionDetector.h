@@ -1,11 +1,11 @@
 #ifndef COLLISIONDETECTOR_H
 #define COLLISIONDETECTOR_H
 
-#include "Map.h"
+
 #include "Type/Type.h"
 
-namespace Engine
-{
+class Map;
+
     typedef enum ECollision
     {
         C_Kill,
@@ -31,6 +31,5 @@ namespace Engine
         private:
         Map *map;
     };
-}
 
 #endif // COLLISIONDETECTOR_H

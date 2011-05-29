@@ -1,13 +1,16 @@
 #ifndef BOMBERMAN_H
 #define BOMBERMAN_H
-class Bomberman;
+
 #include "Type.h"
-#include "../Map.h"
+
 #include <map>
+#include <string>
 #include "Property.h"
 #include "../Engine/util/IObserverTimer.h"
 #include "../Engine/Text.h"
-#include "Bonus.h"
+
+
+class Bonus;
 
 typedef enum EPropertyBomberman
 {
@@ -25,7 +28,7 @@ typedef enum EPropertyBomberman
     PB_timeInvincible=11
 } EPropertyBomberman;
 
-class Bomberman : public Type, public IObserverTimer
+class Bomberman : public Type, public Engine::IObserverTimer
 {
 
 public:
@@ -64,9 +67,9 @@ public:
 
 	virtual void setCoordonnes(double x,double y,double z);
 
-    void setName(string &name);
+    void setName(std::string &name);
     void setName(char *name);
-    Text* getName();
+    Engine::Text* getName();
 
 	void addBonus(Bonus *bonus);
 	void remove(Bonus *bonus);
@@ -74,8 +77,8 @@ public:
 	void destroyTimeAnim(){};
 
 protected:
-    map<EPropertyBomberman,Property*> property;
-    Text name;
+    std::map<EPropertyBomberman,Property*> property;
+    Engine::Text name;
 	set<Bonus*> bonusList;
 };
 

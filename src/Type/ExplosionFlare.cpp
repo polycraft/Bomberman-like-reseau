@@ -1,6 +1,15 @@
 #include "ExplosionFlare.h"
 
 
+#include "ManagerExplosion.h"
+#include "../Map.h"
+#include "../Game.h"
+#include "../GameType/GameType.h"
+
+#include "../Engine/util/Timer.h"
+
+using namespace Engine;
+
 ExplosionFlare::ExplosionFlare(int x, int y, int id, int speed, int power, EExplose typeExplose, GameType *gametype, ManagerExplosion *manager)
 {
 	this->x=x;
@@ -65,6 +74,9 @@ void ExplosionFlare::nextExplose()
 			break;
         case T_Down:
             y-=powercurrent;
+        break;
+        default:
+
         break;
 		}
 

@@ -2,6 +2,7 @@
 #define BREAKABLEBLOC_H
 
 #include "Type.h"
+#include "../Engine/GraphicEngine/Cube.h"
 
 class BreakableBloc : public Type
 {
@@ -13,7 +14,7 @@ public:
 	void destroyTimeAnim(){};
 
 private:
-	static Cube* Breakbloc;
+	static Engine::Cube* Breakbloc;
 
 
 };

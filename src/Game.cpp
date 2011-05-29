@@ -1,9 +1,14 @@
 #include "Game.h"
 
+#include "Map.h"
 #include "GameType/Classic/Classic.h"
 #include <sstream>
 #include <cmath>
 #include "Loader/LoaderMap.h"
+
+#include "Engine/ManagerRessource.h"
+
+using namespace Engine;
 
 Game::Game()
 {
@@ -23,8 +28,8 @@ Game::Game()
 
 	/////////
 	ManagerFont* font2=new ManagerFont("src/ressource/font/font.ttf",10);
-	double tailleBomber = 10;
-	double test = (map->getHeight()*10.0*10/150);
+	//double tailleBomber = 10;
+	//double test = (map->getHeight()*10.0*10/150);
 	Text text3d(s,0,0,-(map->getHeight()*10.0*10/150)*sqrt(150*150+map->getHeight()*map->getHeight()*100.0)/(map->getHeight()*10.0));
 	///////
 	text.setColor(255,255,255,255);
