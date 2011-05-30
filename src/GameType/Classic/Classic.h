@@ -30,7 +30,7 @@ namespace GameTypeSpace
 	{
 
 	public:
-		Classic(Game *game);
+		Classic(Game *game, Socket *socket);
 		virtual ~Classic();
 		void update();
 
