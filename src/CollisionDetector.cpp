@@ -1,5 +1,7 @@
 #include "CollisionDetector.h"
 
+#include "Map.h"
+
 CollisionDetector::CollisionDetector(Map* map):map(map)
 {
 

@@ -2,12 +2,6 @@
 #define TYPE_H
 
 #include "../Engine/GraphicEngine/Object.h"
-#include "../Engine/ManagerRessource.h"
-#include "../Engine/Ressource.h"
-#include "../Engine/GraphicEngine/Cube.h"
-#include "../Engine/util/Timer.h"
-
-using namespace Engine;
 
 enum EType
 {
@@ -19,7 +13,7 @@ enum EType
 	T_Bonus
 };
 
-class Type : public Object
+class Type : public Engine::Object
 {
 
 public:

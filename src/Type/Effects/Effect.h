@@ -1,8 +1,7 @@
 #ifndef EFFECT_H
 #define EFFECT_H
-class Effect;
 
-#include "../Bomberman.h"
+class Bomberman;
 
 class Effect
 {

@@ -1,5 +1,9 @@
 #include "Explosion.h"
 
+#include "../Engine/ManagerRessource.h"
+
+using namespace Engine;
+
 Explosion::Explosion(EExplose type,int x,int y):x(x),y(y)
 {
 	this->typeExplosion = type;
@@ -78,6 +82,10 @@ void Explosion::changeExplose(EExplose typeExplose)
 			this->attach(ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj"),
 		ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png"));
 			this->setRotation(0,0,90);
+		break;
+
+		default:
+
 		break;
 	}
 }

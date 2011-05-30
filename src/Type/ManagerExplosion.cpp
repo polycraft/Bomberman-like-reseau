@@ -1,5 +1,12 @@
 #include "ManagerExplosion.h"
 
+#include "../GameType/GameType.h"
+#include "../Engine/util/Timer.h"
+#include "Explosion.h"
+#include "ExplosionFlare.h"
+
+using namespace Engine;
+
 ManagerExplosion::ManagerExplosion(int x, int y, int id, int speed, int power, GameType *gametype)
 {
 	this->x=x;

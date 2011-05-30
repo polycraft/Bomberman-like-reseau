@@ -1,9 +1,4 @@
-#include "../Engine/GraphicEngine/GraphicEngine.h"
-#include "../Map.h"
-#include "../Loader/LoaderMap.h"
-#include "../Engine/ManagerRessource.h"
-#include "../Engine/Ressource.h"
-#include "../Engine/MainEngine.h"
+#include <string>
 
-void creerMap(string name);
+void creerMap(std::string name);
 int testMap();

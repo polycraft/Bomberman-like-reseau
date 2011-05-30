@@ -1,16 +1,16 @@
 #ifndef GAMETYPE_H
 #define GAMETYPE_H
+
 class Bomb;
-#include "../Type/Bomb.h"
-#include "../Game.h"
-#include "../Type/ManagerExplosion.h"
-#include "../Type/ExplosionFlare.h"
+class Game;
+class ExplosionFlare;
+class ManagerExplosion;
 
 class GameType
 {
 
 public:
-	GameType(Game *game,int partTime, Socket *socket);
+	GameType(Game *game,int partTime);
 	virtual ~GameType();
 	virtual void update()=0;
     virtual void explode(Bomb* bomb,int speed,int power)=0;
@@ -21,7 +21,6 @@ protected:
     Game* game;
 private:
 	int partTime;
-	Socket *socket;
 
 };
 

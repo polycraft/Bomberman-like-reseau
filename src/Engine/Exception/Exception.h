@@ -17,6 +17,7 @@ Resource
 Network
 **/
 #include "ExceptionConnect.h"
+#include "ExceptionInitSocket.h"
 #include "ExceptionInvalidSocket.h"
 #include "ExceptionListen.h"
 #include "ExceptionRecv.h"

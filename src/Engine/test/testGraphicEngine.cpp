@@ -104,6 +104,9 @@ int testGraphicEngine()
 					case SDLK_SPACE:
 						testFire->moveTexture();
 					break;
+					default:
+
+					break;
 				}
 		}
 		engine.draw(camera);

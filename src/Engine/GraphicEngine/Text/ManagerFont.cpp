@@ -4,7 +4,7 @@ using namespace std;
 
 namespace Engine
 {
-ManagerFont::ManagerFont(char *s,int size) throw(ExceptionNoFileFound)
+ManagerFont::ManagerFont(const char *s,int size) throw(ExceptionNoFileFound)
 {
     font=new GPFont(s, size);
 
@@ -47,7 +47,7 @@ void ManagerFont::draw()
     {
 		glLoadIdentity();
 		//glPushMatrix();
-		
+
         t=*it;
         glColor4ub(t->r, t->g, t->b, t->a);
         glTranslatef(t->x, t->y, t->z);
@@ -71,7 +71,7 @@ void ManagerFont::draw()
             break;
         }
 		//glPopMatrix();
-        
+
     }
 }
 }

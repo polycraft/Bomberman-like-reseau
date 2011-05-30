@@ -1,19 +1,10 @@
 #ifndef LOADERMAP_H
 #define LOADERMAP_H
 
-
-#include "../GameType/GameType.h"
-#include "../Map.h"
-#include "../Type/Type.h"
-#include "../Type/BreakableBloc.h"
-#include "../Type/StaticBloc.h"
-#include "../Type/Type.h"
 #include "../Engine/Loader/Loader.h"
 #include "../Engine/Exception/Exception.h"
+#include "../Engine/Ressource.h"
 #include "../Map.h"
-#include <iostream>
-#include <fstream>
-#include <cstring>
 
 struct SHeader {
 int width;//largeur
@@ -23,34 +14,18 @@ EGameType gameType;
 
 
 
-
-using namespace std;
-
-
-
-
-
-namespace Engine
+class LoaderMap : public Engine::Loader
 {
+    public:
+       LoaderMap();
+        virtual ~LoaderMap();
 
-    class LoaderMap : public Loader
-    {
-        public:
-           LoaderMap();
-			virtual ~LoaderMap();
+        /**
+        Charge et retourne une map
+        **/
+        Engine::Ressource *load(std::string &name) throw(Engine::ExceptionNoFileFound);
 
-			/**
-			Charge et retourne une map
-			**/
-			Ressource *load(string &name) throw(ExceptionNoFileFound);
+        void free(Engine::Ressource &ressource) throw(Engine::ExceptionBadRessource);
+};
 
-			void free(Ressource &ressource) throw(ExceptionBadRessource);
-
-		private:
-
-
-
-
-    };
-}
 #endif // LOADERMAP_H

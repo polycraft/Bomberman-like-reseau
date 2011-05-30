@@ -1,6 +1,13 @@
 #include "Bomberman.h"
 #include "../Engine/util/Timer.h"
 
+#include "Bonus.h"
+#include "../Map.h"
+
+#include "../Engine/ManagerRessource.h"
+
+using namespace Engine;
+
 Bomberman::Bomberman(map<EPropertyBomberman,Property*>& property):name(TT_Text3D)
 {
     this->property=property;

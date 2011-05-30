@@ -1,15 +1,25 @@
 #include "Classic.h"
 
+#include "../../Type/ManagerExplosion.h"
+#include "../../Type/ExplosionFlare.h"
+#include "../../Game.h"
+#include "../../Map.h"
+#include "../../CollisionDetector.h"
+#include "../../Type/Bomb.h"
+#include "../../Type/Bomberman.h"
+
 #include "Initialisation.h"
 #include "Running.h"
 #include "HurryUp.h"
 #include "Dead.h"
 
+using namespace Engine;
+
 namespace GameTypeSpace
 {
     using namespace ClassicSpace;
 
-	Classic::Classic(Game *game, Socket *socket):GameType(game,10,socket),font("src/ressource/font/font.ttf",24)
+	Classic::Classic(Game *game):GameType(game,10),font("src/ressource/font/font.ttf",24)
 	{
 		srand ( time(NULL) );
 		this->player = NULL;
@@ -40,8 +50,7 @@ namespace GameTypeSpace
 
 	void Classic::update()
 	{
-	    Phase* t=getPhase(phaseCurrent);
-        EPhase nextPhase=static_cast<EPhase>(getPhase(phaseCurrent)->update());
+	    EPhase nextPhase=static_cast<EPhase>(getPhase(phaseCurrent)->update());
         int tmp;
         switch(nextPhase)
         {
@@ -92,6 +101,9 @@ namespace GameTypeSpace
                 case T_Down:
                     y-=power;
                 break;
+                default:
+
+                break;
             }
             Type *object;
             switch(this->collision->detect(T_Explosion,x,y))
@@ -129,6 +141,9 @@ namespace GameTypeSpace
                 case C_Nothing:
                     flare->nextExplose();
                 break;
+                default:
+
+                break;
             }
 	    }
 	}
@@ -146,10 +161,7 @@ namespace GameTypeSpace
 
 	Bomberman* Classic::getPlayer()
 	{
-		if(this->player != NULL)
-		{
-			return player;
-		}
+		return player;
 	}
 
 	void Classic::setPlayer(Bomberman* bomber)

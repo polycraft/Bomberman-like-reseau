@@ -1,6 +1,11 @@
 #include "Initialisation.h"
 
+#include "Classic.h"
 #include "../../Map.h"
+#include "../../Type/Bomberman.h"
+#include "../../Game.h"
+
+using namespace Engine;
 
 namespace GameTypeSpace
 {

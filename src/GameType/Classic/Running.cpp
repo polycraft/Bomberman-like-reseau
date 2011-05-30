@@ -1,5 +1,18 @@
 #include "Running.h"
 
+#include "Classic.h"
+#include "../../CollisionDetector.h"
+#include "../GameType.h"
+#include "../../Type/Bomb.h"
+#include "../../Type/Bomberman.h"
+#include "../../Type/Effects/Effect.h"
+#include "../../Game.h"
+#include "../../Map.h"
+
+#include "../../Engine/util/Timer.h"
+
+using namespace Engine;
+
 namespace GameTypeSpace
 {
 	namespace ClassicSpace
@@ -126,7 +139,7 @@ namespace GameTypeSpace
                 int position=tmpX;
                 position=position/10-1;
 
-                if(position==point[0] || collision->detect(T_Bomberman,point[0],point[2])!=C_Block && collision->detect(T_Bomberman,point[0],point[3])!=C_Block)
+                if((position==point[0]) || (collision->detect(T_Bomberman,point[0],point[2])!=C_Block && collision->detect(T_Bomberman,point[0],point[3])!=C_Block))
                 {
                     this->gameType->getPlayer()->translation(-vitesse,0,0);
                 }
@@ -147,7 +160,7 @@ namespace GameTypeSpace
                 int position=tmpX;
                 position=position/10-1;
 
-                if(position==point[1] || collision->detect(T_Bomberman,point[1],point[2])!=C_Block && collision->detect(T_Bomberman,point[1],point[3])!=C_Block)
+                if((position==point[1]) || (collision->detect(T_Bomberman,point[1],point[2])!=C_Block && collision->detect(T_Bomberman,point[1],point[3])!=C_Block))
                 {
                     this->gameType->getPlayer()->translation(vitesse,0,0);
                 }
@@ -166,7 +179,7 @@ namespace GameTypeSpace
                 int position=tmpY;
                 position=position/10-1;
 
-                if(position==point[3] || collision->detect(T_Bomberman,point[0],point[3])!=C_Block && collision->detect(T_Bomberman,point[1],point[3])!=C_Block)
+                if((position==point[3]) || (collision->detect(T_Bomberman,point[0],point[3])!=C_Block && collision->detect(T_Bomberman,point[1],point[3])!=C_Block))
                 {
                     this->gameType->getPlayer()->translation(0,vitesse,0);
                 }
@@ -187,7 +200,7 @@ namespace GameTypeSpace
                 int position=tmpY;
                 position=position/10-1;
 
-                if(position==point[2] || collision->detect(T_Bomberman,point[0],point[2])!=C_Block && collision->detect(T_Bomberman,point[1],point[2])!=C_Block)
+                if((position==point[2]) || (collision->detect(T_Bomberman,point[0],point[2])!=C_Block && collision->detect(T_Bomberman,point[1],point[2])!=C_Block))
                 {
                     this->gameType->getPlayer()->translation(0,-vitesse,0);
                 }

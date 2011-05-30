@@ -1,5 +1,7 @@
 #include "EffectBombPlus.h"
 
+#include "../Bomberman.h"
+
 EffectBombPlus::EffectBombPlus()
 {
 }

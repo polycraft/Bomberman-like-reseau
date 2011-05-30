@@ -1,7 +1,16 @@
 #include "testMap.h"
 
+#include "../Engine/GraphicEngine/GraphicEngine.h"
+#include "../Map.h"
+#include "../Loader/LoaderMap.h"
+#include "../Engine/ManagerRessource.h"
+#include "../Engine/Ressource.h"
+#include "../Engine/MainEngine.h"
+
+#include <fstream>
 
 using namespace Engine;
+using namespace std;
 
 int testMap()
 {
@@ -12,8 +21,8 @@ int testMap()
 
 	MainEngine *engine =  new MainEngine();
 
-			Texture *texture = ManagerRessource::getRessource<Texture>("src/ressource/texture/cube.png");
-	GLuint notext= texture->getTexture();
+    //Texture *texture = ManagerRessource::getRessource<Texture>("src/ressource/texture/cube.png");
+	//GLuint notext= texture->getTexture();
 	double place = 100;
 	Engine::Camera *camera = new Engine::Camera(place, 0, 150, place, 100, 0, 0, 0, 1);
 	engine->getGengine()->addCamera(camera);
@@ -38,12 +47,19 @@ int testMap()
 			case SDL_QUIT:
 				continuer = 0;
 				break;
-				case SDL_KEYDOWN :
-			switch (event.key.keysym.sym)
-			{
-				case SDLK_UP:
-				break;
-			}
+            case SDL_KEYDOWN :
+                switch (event.key.keysym.sym)
+                {
+                    case SDLK_UP:
+                    break;
+                    default:
+
+                    break;
+                }
+			break;
+			default:
+
+			break;
 		}
 		engine->getGengine()->draw(camera);
 

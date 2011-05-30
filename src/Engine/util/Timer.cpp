@@ -84,7 +84,6 @@ void Timer::update()
 	}
 
     //On vérifie les listeners qui doivent etre appellé qu'une seul fois
-	int test = listenerOnce.size();
 
 	for(it=this->listenerOnce.begin(); it!=listenerOnce.end();)
 	{

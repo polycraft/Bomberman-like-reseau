@@ -32,9 +32,16 @@ int testText()
 					case SDLK_UP:
 
 					break;
+					default:
+
+					break;
 				}
+            default:
+
+            break;
 		}
 		engine.draw(camera);
 
 	}
+	return 0;
 }

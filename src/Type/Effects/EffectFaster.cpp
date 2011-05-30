@@ -1,5 +1,7 @@
 #include "EffectFaster.h"
 
+#include "../Bomberman.h"
+
 EffectFaster::EffectFaster()
 {
 	this->bomberman = bomberman;

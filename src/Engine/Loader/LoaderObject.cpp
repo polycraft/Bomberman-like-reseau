@@ -37,8 +37,6 @@ void LoaderObject::parserObject(string file)
 
     if(fichier)  // si l'ouverture a réussi
     {
-        ////ATTENTION IL Y A DES RACCOURCIS, ICI ON TRAITE DES FACES TRIANGULAIRE\\\\
-
         int a,b,c;
         double infoVertice[3];//les coordonnées des points//face <====RACCOURCI
         double infoVerticeTexture[3];
@@ -106,7 +104,6 @@ void LoaderObject::parserObject(string file)
                         tempNoTexturePoint=(double*)realloc(tempNoTexturePoint,sizeof(double)*this->point.size());
 
                         tempNoTexturePoint[nbPoint/3]=b-1;
-                        int test=0;
                     }
                     else
                     {

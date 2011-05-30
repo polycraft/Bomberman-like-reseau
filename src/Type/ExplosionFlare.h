@@ -5,15 +5,15 @@ class ExplosionFlare;
 
 #include "Type.h"
 #include "Explosion.h"
-#include "ManagerExplosion.h"
-#include "../Map.h"
-#include "../Engine/util/Timer.h"
 
 #include "../Engine/util/IObserverTimer.h"
-#include "../GameType/GameType.h"
 
 
-class ExplosionFlare : public IObserverTimer
+class GameType;
+class ManagerExplosion;
+
+
+class ExplosionFlare : public Engine::IObserverTimer
 {
 	public:
 		ExplosionFlare(int x, int y, int id, int speed, int power, EExplose typeExplose, GameType *gametype, ManagerExplosion *manager);

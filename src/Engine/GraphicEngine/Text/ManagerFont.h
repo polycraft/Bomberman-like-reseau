@@ -20,7 +20,7 @@ namespace Engine
 class ManagerFont
 {
     public:
-        ManagerFont(char *s,int size)throw(ExceptionNoFileFound);
+        ManagerFont(const char *s,int size)throw(ExceptionNoFileFound);
         ManagerFont(std::string s,int size)throw(ExceptionNoFileFound);
         virtual ~ManagerFont();
 

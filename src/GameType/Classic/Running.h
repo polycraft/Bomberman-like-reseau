@@ -5,6 +5,13 @@
 
 namespace GameTypeSpace
 {
+    class Classic;
+}
+class CollisionDetector;
+class GameType;
+
+namespace GameTypeSpace
+{
 	namespace ClassicSpace
 	{
 		class Running : public PhaseClassic
@@ -17,7 +24,7 @@ namespace GameTypeSpace
 			virtual void run();
 			virtual void updateTimer(unsigned int delay);
 			void executeAction(Engine::stateEvent &event);
-			virtual void updateRecv(Socket *,Paquet& paquet);
+			virtual void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
         private:
             void eventMove(Engine::stateEvent &event,double tmpX,double tmpY);
 		};

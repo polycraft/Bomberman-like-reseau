@@ -1,5 +1,6 @@
 #include "Phase.h"
 
+#include "../CollisionDetector.h"
 
 Phase::Phase(CollisionDetector *collision)
 {

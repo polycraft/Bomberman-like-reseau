@@ -191,8 +191,12 @@
 		<Unit filename="Type/BreakableBloc.h" />
 		<Unit filename="Type/Effects/Effect.cpp" />
 		<Unit filename="Type/Effects/Effect.h" />
+		<Unit filename="Type/Effects/EffectBombPlus.cpp" />
+		<Unit filename="Type/Effects/EffectBombPlus.h" />
 		<Unit filename="Type/Effects/EffectFaster.cpp" />
 		<Unit filename="Type/Effects/EffectFaster.h" />
+		<Unit filename="Type/Effects/EffectPowerPlus.cpp" />
+		<Unit filename="Type/Effects/EffectPowerPlus.h" />
 		<Unit filename="Type/Explosion.cpp" />
 		<Unit filename="Type/Explosion.h" />
 		<Unit filename="Type/ExplosionFlare.cpp" />
