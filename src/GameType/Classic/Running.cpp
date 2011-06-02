@@ -105,8 +105,6 @@ namespace GameTypeSpace
                 {
                     this->gameType->getPlayer()->setInvincible(5000);
                 }
-
-
             }
 
 			if(collision->detect(T_Bomberman,x,y)==C_Bonus)
@@ -122,8 +120,6 @@ namespace GameTypeSpace
 				//fait disparaitre le bonus
 				bonus->setVisible(false);
 				this->gameType->getGame()->getMap()->set(NULL,x,y);
-
-
             }
 		}
 

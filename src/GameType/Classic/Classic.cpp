@@ -117,13 +117,13 @@ namespace GameTypeSpace
                     else if(object->getType()==T_BreakableBloc)
                     {
 						//créer bonus=> remplace la caisse
-						EBonus random = this->randomBonus();
+						/*EBonus random = this->randomBonus();
 						if(random != T_None)
 						{
 								this->game->getMap()->addObject(new Bonus(random),x,y,T_Map);
 						}
 						else this->game->getMap()->set(NULL,x,y);
-                        object->destroy();
+                        object->destroy();*/
 
                     }
                     flare->endExplose();
@@ -221,7 +221,21 @@ namespace GameTypeSpace
 			{
 				//à definir
 			}
-			
+			case 'u': //Bonus
+			{
+				PaquetBonus *paquetBonus=paquet.getData<PaquetBonus*>();
+				//obtiens lobjet deja présent
+				Object *object = this->game->getMap()->get(paquetBonus->x,paquetBonus->y);
+
+				EBonus typeBonus = static_cast<EBonus>(paquetBonus->bonus);
+				if(typeBonus != T_None)
+				{
+					//remplace la caisse
+					this->game->getMap()->addObject(new Bonus(typeBonus),paquetBonus->x,paquetBonus->y,T_Map);
+				}
+				else this->game->getMap()->set(NULL,paquetBonus->x,paquetBonus->y);
+                object->destroy();
+			}
 
 		}
 

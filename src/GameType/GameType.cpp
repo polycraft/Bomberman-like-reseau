@@ -10,6 +10,7 @@
 
 GameType::GameType(Game *game,int partTime, Engine::Socket *socket):partTime(partTime),game(game),socket(socket)
 {
+
 }
 
 GameType::~GameType()
