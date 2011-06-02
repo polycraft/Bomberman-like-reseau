@@ -27,6 +27,8 @@ namespace GameTypeSpace
 
 		void Running::init()
 		{
+			//ajout d'un timer pour l'envoi de paquet de mouvements
+			Timer::getTimer()->addListener(this->gameType,this->gameType->getTimeServMove());
 		    this->nextEtat();
 		}
 

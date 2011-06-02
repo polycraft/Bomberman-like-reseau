@@ -207,6 +207,18 @@ namespace GameTypeSpace
 
 	void Classic::updateTimer(unsigned int delay)
 	{
+		if(delay == this->timeServerMovement)
+		{
+			PaquetMove paquetMove={'m', Engine::Timer::getTimer()->getTime(),
+				this->player->getProperty<int>(PB_id),
+				this->player->getTransX(),
+				this->player->getTransY()};
+			this->socket->sendData<PaquetMove>(&paquetMove);
+		}
+	}
 
+	int Classic::getTimeServMove()
+	{
+		return this->timeServerMovement; 
 	}
 }

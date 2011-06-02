@@ -26,8 +26,9 @@ public:
     Game* getGame();
 protected:
     Game* game;
-private:
 	Engine::Socket *socket;
+private:
+	
 	int partTime;
 
 };

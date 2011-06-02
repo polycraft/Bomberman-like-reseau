@@ -59,8 +59,11 @@ namespace GameTypeSpace
         void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
 		void updateTimer(unsigned int delay);
 
+		int getTimeServMove();
+
         Engine::ManagerFont& getFont();
 	private:
+		static const int timeServerMovement = 100;
 		static const int nbBonus=4;
 		int partTime;
 		CollisionDetector *collision;
