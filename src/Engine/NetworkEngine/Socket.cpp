@@ -101,7 +101,6 @@ void Socket::initSocket(const char *address,unsigned int port,ETypeProtocole pro
     }
 
     this->isConnect=true;
-
     initBuffer();
 }
 

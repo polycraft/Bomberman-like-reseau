@@ -11,7 +11,7 @@ class Paquet
         template<class T>
         T getData()
         {
-            return static_cast<T>(data);
+            return reinterpret_cast<T>(data);
         }
         char * getData();
         unsigned int getSize();

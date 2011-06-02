@@ -12,7 +12,9 @@ namespace GameTypeSpace
 		{
 		}
 
-
+		void HurryUp::init()
+		{
+		}
 		void HurryUp::run()
 		{
 		}

@@ -1,12 +1,14 @@
 #ifndef CLASSIC_H
 #define CLASSIC_H
 
+#include "../../Type/Paquet.h"
 #include "../../Engine/NetworkEngine/IObserverSocketRecv.h"
 #include "../../Engine/EventEngine/IEventListener.h"
 #include "../../Engine/GraphicEngine/Text/ManagerFont.h"
 #include "../GameType.h"
 #include "../Phase.h"
 #include "../../Type/Bonus.h"
+#include "../../Engine/NetworkEngine/Socket.h"
 
 class CollisionDetector;
 class Game;
@@ -27,8 +29,9 @@ namespace GameTypeSpace
 	        P_Next=1,
 	        P_Initialisation=2,
 	        P_Running=3,
-	        P_Dead=4,
-	        P_HurryUp=5
+	        P_HurryUp=4,
+			P_Ending=5,
+			P_Dead=6
 	    } EPhase;
 	}
 
@@ -36,7 +39,7 @@ namespace GameTypeSpace
 	{
 
 	public:
-		Classic(Game *game);
+		Classic(Game *game, Engine::Socket *socket);
 		virtual ~Classic();
 		void update();
 

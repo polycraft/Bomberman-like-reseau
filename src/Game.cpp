@@ -5,7 +5,6 @@
 #include <sstream>
 #include <cmath>
 #include "Loader/LoaderMap.h"
-
 #include "Engine/ManagerRessource.h"
 
 using namespace Engine;
@@ -42,10 +41,24 @@ Game::Game()
 
 	map->setEngine(engine);
 
-	GameTypeSpace::Classic *gameType=new GameTypeSpace::Classic(this);
+
+	bool continuer=true;
+
+	//creation du socket vers le serveur
+	Engine::Socket *socket= new Engine::Socket("172.16.62.201",5001);
+	//demande de connexion
+	socket->setIsSync(true);
+    {
+        PaquetAsk ask={'a', Engine::Timer::getTimer()->getTime(),'i'};
+        socket->sendData<PaquetAsk>(&ask);
+
+        PaquetId *idAccptConnect=(socket->recvData()).getData<PaquetId*>();
+		if(idAccptConnect->id != -1) {continuer=false;}
+    }
+	socket->setIsSync(false);
 
 
-    bool continuer=true;
+	GameTypeSpace::Classic *gameType=new GameTypeSpace::Classic(this, socket);
 
     std::stringstream out;
 

@@ -5,6 +5,7 @@
 #include "../../Type/Bomberman.h"
 #include "../../Game.h"
 
+
 using namespace Engine;
 
 namespace GameTypeSpace
@@ -21,12 +22,9 @@ namespace GameTypeSpace
 
 		void Initialisation::init()
 		{
-            this->nextEtat();
-		}
-
-		void Initialisation::run()
-		{
-		    Map *map=gameType->getGame()->getMap();
+			//reconstruction de map au changement de round
+			//ajout de tout les bomberman sur la map
+			Map *map=gameType->getGame()->getMap();
 
 		    //Création du bomberman
 		    Bomberman *bomber=new Bomberman(0);
@@ -53,7 +51,14 @@ namespace GameTypeSpace
 		    this->gameType->getPlayerNetwork().push_back(bomber);
 		    map->addBomberman(bomber,map->getSpawn(1));
 
-		    end(P_Next);
+
+			this->nextEtat();
+		}
+
+		void Initialisation::run()
+		{
+		    
+
 		}
 
 		void Initialisation::executeAction(Engine::stateEvent &event)
