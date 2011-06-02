@@ -49,17 +49,20 @@ Game::Game()
 	Thread *thread=socket->run(&continuer);
 	//demande de connexion
 	socket->setIsSync(true);
-    
+
     PaquetAsk ask={'a', Engine::Timer::getTimer()->getTime(),'i'};
     socket->sendData<PaquetAsk>(&ask);
 
     PaquetId *idAccptConnect=(socket->recvData()).getData<PaquetId*>();
 	if(idAccptConnect->id == -1){continuer=false;}
-    
+
 	socket->setIsSync(false);
 
 
 	GameTypeSpace::Classic *gameType=new GameTypeSpace::Classic(this, socket, idAccptConnect->id);
+
+	socket->addObserverRecv(gameType);
+	socket->addObserverRecv(this);
 
     std::stringstream out;
 
