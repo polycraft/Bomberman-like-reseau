@@ -77,8 +77,6 @@ void* Threadable::entryPoint(void* arg)
         }
     }
 
-    delete t->t;
-    delete t;
 	return NULL;
 }
 
@@ -140,10 +138,9 @@ void Threadable::V(pthread_mutex_t &mutex)
 
 void Threadable::join(struct Thread* t)
 {
-    if(t!=NULL)
-    {
-        pthread_join( *(t->t), NULL);
-    }
+    pthread_join( *(t->t), NULL);
+    delete t->t;
+    delete t;
 }
 }
 
