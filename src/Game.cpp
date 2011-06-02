@@ -46,6 +46,7 @@ Game::Game()
 
 	//creation du socket vers le serveur
 	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5001);
+	Thread *thread=socket->run(&continuer);
 	//demande de connexion
 	socket->setIsSync(true);
     {
@@ -53,7 +54,7 @@ Game::Game()
         socket->sendData<PaquetAsk>(&ask);
 
         PaquetId *idAccptConnect=(socket->recvData()).getData<PaquetId*>();
-		if(idAccptConnect->id != -1) {continuer=false;}
+		if(idAccptConnect->id == -1){continuer=false;}
     }
 	socket->setIsSync(false);
 
@@ -89,6 +90,8 @@ Game::Game()
             text.setText(s);
 		}
 	}
+	Threadable::join(thread);
+	delete socket;
 }
 
 Game::~Game()
