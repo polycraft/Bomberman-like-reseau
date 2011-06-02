@@ -20,4 +20,8 @@ Game* GameType::getGame()
     return game;
 }
 
+Engine::Socket* GameType::getSocket()
+{
+	return this->socket;
+}
 

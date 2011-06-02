@@ -18,6 +18,7 @@ public:
     virtual void explode(Bomb* bomb,int speed,int power)=0;
     virtual void updateExplosion(ExplosionFlare *flare,int power,int x,int y)=0;
     virtual void destroyManagerExplosion(ManagerExplosion* manager)=0;
+	Engine::Socket* getSocket();
     Game* getGame();
 protected:
     Game* game;

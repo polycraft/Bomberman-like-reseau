@@ -54,7 +54,22 @@ namespace GameTypeSpace
             if(event.keyState[SDLK_SPACE] && collision->detect(T_Bomberman,x,y)==C_Nothing && this->gameType->getPlayer()->getProperty<int>(PB_nbBomb)>0 &&
                this->gameType->getPlayer()->getProperty<bool>(PB_canPutBomb))
             {
-                Bomberman* bomber=this->gameType->getPlayer();
+				Bomberman* bomber=this->gameType->getPlayer();
+				PaquetBomb paquetBomb =
+				{	'b',
+					Engine::Timer::getTimer()->getTime(),
+					bomber->getProperty<int>(PB_id),
+					x,
+					y,
+					Engine::Timer::getTimer()->getTime(),
+					bomber->getProperty<int>(PB_bombPower),
+					bomber->getProperty<int>(PB_timerBomb),
+					bomber->getProperty<int>(PB_speedExplode)
+				};
+
+				this->gameType->getSocket()->sendData<PaquetBomb>(&paquetBomb);
+				/*
+               
 
                 Bomb* bomb=new Bomb(
                                     this->gameType,
@@ -66,7 +81,7 @@ namespace GameTypeSpace
 
                 bomber->setProperty<int>(PB_nbBomb,bomber->getProperty<int>(PB_nbBomb)-1);
                 bomber->setProperty<bool>(PB_canPutBomb,false);
-                Timer::getTimer()->addListenerOnce(bomber,bomber->getProperty<int>(PB_timerPutBomb));
+                Timer::getTimer()->addListenerOnce(bomber,bomber->getProperty<int>(PB_timerPutBomb));*/
             }
 
             if(collision->detect(T_Bomberman,x,y)==C_Kill && this->gameType->getPlayer()->getProperty<bool>(PB_invincible)==false)

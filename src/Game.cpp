@@ -45,7 +45,7 @@ Game::Game()
 	bool continuer=true;
 
 	//creation du socket vers le serveur
-	Engine::Socket *socket= new Engine::Socket("172.16.62.201",5001);
+	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5001);
 	//demande de connexion
 	socket->setIsSync(true);
     {
