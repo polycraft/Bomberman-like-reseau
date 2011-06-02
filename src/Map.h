@@ -35,7 +35,7 @@ class Map : public Engine::Ressource
 {
 
 public:
-	Map(string &name, EGameType gameType, int width, int lenght);
+	Map(string &name, EGameType gameType, int width, int height);
 	~Map();
 	void addBomberman(Bomberman *bomberman,SCoordinate coord);
 	void addObject(Type* object, int x, int y, EScene scene);
@@ -48,6 +48,8 @@ public:
 	void set(Type* object,int x,int y);
 	void setEngine(Engine::MainEngine* engine);
 	void buildScenes();
+	void setDataMap(char* dataMap);
+	void buildMap();
 
 private:
 	int gameType;
@@ -56,6 +58,9 @@ private:
 	vector<Engine::Scene*> scene;
 	vector<SCoordinate> spawn;
 	Type ***map;
+
+	char *mapData;
+
 	Engine::MainEngine* engine;
 
 };

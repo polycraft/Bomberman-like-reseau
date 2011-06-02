@@ -17,6 +17,35 @@ Game::Game()
 
 	
 
+
+
+
+	bool continuer=true;
+
+	//creation du socket vers le serveur
+	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5001);
+	Thread *thread=socket->run(&continuer);
+	//demande de connexion
+	socket->setIsSync(true);
+
+	//demande de la map
+	PaquetAsk askMap={'a', Engine::Timer::getTimer()->getTime(),'c'};//c = PaquetMap
+	socket->sendData<PaquetAsk>(&askMap);
+	//reception de la map
+	PaquetMap *paquetMap=(socket->recvData()).getData<PaquetMap*>();
+	string path = "src/ressource/map/" + (string)paquetMap->name + ".map";
+	Map *map = ManagerRessource::getRessource<Map>(path);
+	map->buildMap();
+
+	//demande d'un identifiant
+    PaquetAsk askId={'a', Engine::Timer::getTimer()->getTime(),'i'};
+    socket->sendData<PaquetAsk>(&askId);
+	//reception de l'id
+    PaquetId *idAccptConnect=(socket->recvData()).getData<PaquetId*>();
+	if(idAccptConnect->id == -1){continuer=false;}
+
+	socket->setIsSync(false);
+
 	Engine::Camera *camera = new Engine::Camera(map->getWidth()*10/2, 0, 150, map->getWidth()*10/2, map->getHeight()*10, 0, 0, 0, 1);
 	engine->getGengine()->addCamera(camera);
 
@@ -40,34 +69,6 @@ Game::Game()
 	engine->getGengine()->getManagerText().addFont(font2);
 
 	map->setEngine(engine);
-
-
-	bool continuer=true;
-
-	//creation du socket vers le serveur
-	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5001);
-	Thread *thread=socket->run(&continuer);
-	//demande de connexion
-	socket->setIsSync(true);
-
-	//demande de la map
-	PaquetAsk askMap={'a', Engine::Timer::getTimer()->getTime(),'c'};//c = PaquetMap
-	socket->sendData<PaquetAsk>(&askMap);
-	//reception de la map
-	PaquetMap *paquetMap=(socket->recvData()).getData<PaquetMap*>();
-	string path = "src/ressource/map/" + (string)paquetMap->name + ".map";
-	map = ManagerRessource::getRessource<Map>(path);
-
-
-	//demande d'un identifiant
-    PaquetAsk askId={'a', Engine::Timer::getTimer()->getTime(),'i'};
-    socket->sendData<PaquetAsk>(&askId);
-	//reception de l'id
-    PaquetId *idAccptConnect=(socket->recvData()).getData<PaquetId*>();
-	if(idAccptConnect->id == -1){continuer=false;}
-
-	socket->setIsSync(false);
-
 
 	GameTypeSpace::Classic *gameType=new GameTypeSpace::Classic(this, socket, idAccptConnect->id);
 

@@ -107,6 +107,32 @@ void Map::setEngine(MainEngine *engine)
 
 }
 
+void Map::setDataMap(char* dataMap)
+{
+	this->mapData = dataMap;
+}
+
+void Map::buildMap()
+{
+	for( int i=0; i< width*height;i++)
+    {
+
+		switch(this->mapData[i])
+        {
+
+            case 'a':
+                this->addObject(new StaticBloc(), i%(width), height - i/(width)-1, T_Map );
+                break;
+            case 'b':
+                this->addObject(new BreakableBloc(), i%(width), height - i/(width)-1, T_Dyn);
+            break;
+            case 'c':
+                this->addSpawn(i%(width), height - i/(width)-1);
+            break;
+        }
+	}
+}
+
 void Map::buildScenes()
 {
 

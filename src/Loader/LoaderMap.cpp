@@ -38,8 +38,9 @@ Ressource* LoaderMap::load(string &name) throw(ExceptionNoFileFound)
 
 
     Map *map=new Map(name, header.gameType ,header.width,header.height);
+	map->setDataMap(element);
 
-    ///////////////
+    /* Tests
     char** temp = new char*[header.width];
     for(int x=0; x<header.width;x++)
     {
@@ -48,13 +49,12 @@ Ressource* LoaderMap::load(string &name) throw(ExceptionNoFileFound)
         {
             temp[x][y] = '0';
         }
-    }
+    }*/
 
-    ////////
+	//Envoi les data de la map
+	
 
-
-
-
+	/*
     for( int i=0; i< header.width*header.height;i++)
     {
 
@@ -73,7 +73,7 @@ Ressource* LoaderMap::load(string &name) throw(ExceptionNoFileFound)
                 map->addSpawn(i%(header.width), header.height - i/(header.width)-1);
             break;
         }
-    }
+    }*/
 
     return map;
 }
