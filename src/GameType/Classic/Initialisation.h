@@ -18,12 +18,14 @@ namespace GameTypeSpace
 		{
 
 		public:
-			Initialisation(GameTypeSpace::Classic *gameType,CollisionDetector *collision);
+			Initialisation(GameTypeSpace::Classic *gameType,CollisionDetector *collision, int idBomber);
 			virtual ~Initialisation();
 			void init();
 			void run();
             void executeAction(Engine::stateEvent &event);
             virtual void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
+		private:
+			int idBomber;
 		};
 	}
 }

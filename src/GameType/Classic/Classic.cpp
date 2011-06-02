@@ -19,7 +19,7 @@ namespace GameTypeSpace
 {
     using namespace ClassicSpace;
 
-	Classic::Classic(Game *game, Engine::Socket *socket):GameType(game,10, socket),font("src/ressource/font/font.ttf",24)
+	Classic::Classic(Game *game, Engine::Socket *socket, int idBomber):GameType(game,10, socket),font("src/ressource/font/font.ttf",24)
 	{
 		srand ( time(NULL) );
 		this->player = NULL;
@@ -27,7 +27,7 @@ namespace GameTypeSpace
 
 	    collision=new CollisionDetector(game->getMap());
 
-	    phase[P_Initialisation-2]=new Initialisation(this,collision);
+	    phase[P_Initialisation-2]=new Initialisation(this,collision, idBomber);
 	    phase[P_Running-2]=new Running(this,collision);
 	    phase[P_Dead-2]=new Dead(this,collision);
 	    phase[P_HurryUp-2]=new HurryUp(this,collision);
@@ -204,4 +204,9 @@ namespace GameTypeSpace
     {
         return font;
     }
+
+	void Classic::updateTimer(unsigned int delay)
+	{
+
+	}
 }

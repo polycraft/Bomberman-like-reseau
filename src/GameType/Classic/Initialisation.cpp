@@ -12,8 +12,9 @@ namespace GameTypeSpace
 {
 	namespace ClassicSpace
 	{
-		Initialisation::Initialisation(GameTypeSpace::Classic *gameType,CollisionDetector *collision)  : PhaseClassic(gameType,collision)
+		Initialisation::Initialisation(GameTypeSpace::Classic *gameType,CollisionDetector *collision, int idBomber)  : PhaseClassic(gameType,collision)
 		{
+			this->idBomber = idBomber;
 		}
 
 		Initialisation::~Initialisation()
@@ -27,7 +28,7 @@ namespace GameTypeSpace
 			Map *map=gameType->getGame()->getMap();
 
 		    //Création du bomberman
-		    Bomberman *bomber=new Bomberman(0);
+			Bomberman *bomber=new Bomberman(this->idBomber);
 		    bomber->setProperty<int>(PB_bombPower,2);
 		    bomber->setProperty<double>(PB_speed,0.05);
 		    bomber->setProperty<int>(PB_nbBomb,2);

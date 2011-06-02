@@ -39,7 +39,7 @@ namespace GameTypeSpace
 	{
 
 	public:
-		Classic(Game *game, Engine::Socket *socket);
+		Classic(Game *game, Engine::Socket *socket, int idBomber);
 		virtual ~Classic();
 		void update();
 
@@ -57,6 +57,7 @@ namespace GameTypeSpace
 
         void executeAction(Engine::stateEvent &event);
         void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
+		void updateTimer(unsigned int delay);
 
         Engine::ManagerFont& getFont();
 	private:
