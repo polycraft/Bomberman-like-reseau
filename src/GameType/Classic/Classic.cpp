@@ -197,7 +197,34 @@ namespace GameTypeSpace
 
     void Classic::updateRecv(Socket *socket,Paquet& paquet)
     {
-        dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,paquet);
+        //dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,paquet);
+		char type=(paquet.getData())[0];
+		switch(type)
+		{
+			case 'b'://Bombe
+			{
+				PaquetBomb *paquetBomb=paquet.getData<PaquetBomb*>();
+				Bomb* bomb=new Bomb(
+                                    this,
+                                    paquetBomb->idBomber,
+									paquetBomb->explodeTime,
+									paquetBomb->vitesseExplode,
+									paquetBomb->power);
+				this->getGame()->getMap()->addObject(bomb,paquetBomb->x,paquetBomb->y,T_Dyn);
+
+				this->getPlayer()->setProperty<int>(PB_nbBomb,this->getPlayer()->getProperty<int>(PB_nbBomb)-1);
+				this->getPlayer()->setProperty<bool>(PB_canPutBomb,false);
+				Timer::getTimer()->addListenerOnce(this->getPlayer(),this->getPlayer()->getProperty<int>(PB_timerPutBomb));
+
+			}
+			case 'm'://Movements
+			{
+				//à definir
+			}
+			
+
+		}
+
     }
 
     ManagerFont& Classic::getFont()

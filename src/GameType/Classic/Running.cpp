@@ -56,20 +56,24 @@ namespace GameTypeSpace
             if(event.keyState[SDLK_SPACE] && collision->detect(T_Bomberman,x,y)==C_Nothing && this->gameType->getPlayer()->getProperty<int>(PB_nbBomb)>0 &&
                this->gameType->getPlayer()->getProperty<bool>(PB_canPutBomb))
             {
-				Bomberman* bomber=this->gameType->getPlayer();
-				PaquetBomb paquetBomb =
-				{	'b',
-					Engine::Timer::getTimer()->getTime(),
-					bomber->getProperty<int>(PB_id),
-					x,
-					y,
-					Engine::Timer::getTimer()->getTime(),
-					bomber->getProperty<int>(PB_bombPower),
-					bomber->getProperty<int>(PB_timerBomb),
-					bomber->getProperty<int>(PB_speedExplode)
-				};
+				//on regarde si le joueur peut encore poser des bombes
+				if(this->gameType->getPlayer()->getProperty<int>(PB_nbBomb)>0)
+				{
+					Bomberman* bomber=this->gameType->getPlayer();
+					PaquetBomb paquetBomb =
+					{	'b',
+						Engine::Timer::getTimer()->getTime(),
+						bomber->getProperty<int>(PB_id),
+						x,
+						y,
+						Engine::Timer::getTimer()->getTime(),
+						bomber->getProperty<int>(PB_bombPower),
+						bomber->getProperty<int>(PB_timerBomb),
+						bomber->getProperty<int>(PB_speedExplode)
+					};
 
-				this->gameType->getSocket()->sendData<PaquetBomb>(&paquetBomb);
+					this->gameType->getSocket()->sendData<PaquetBomb>(&paquetBomb);
+				}
 				/*
                
 
