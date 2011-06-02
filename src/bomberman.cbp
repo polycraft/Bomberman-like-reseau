@@ -54,6 +54,8 @@
 		<Unit filename="Engine/Exception/ExceptionBadRessource.h" />
 		<Unit filename="Engine/Exception/ExceptionConnect.cpp" />
 		<Unit filename="Engine/Exception/ExceptionConnect.h" />
+		<Unit filename="Engine/Exception/ExceptionInitSocket.cpp" />
+		<Unit filename="Engine/Exception/ExceptionInitSocket.h" />
 		<Unit filename="Engine/Exception/ExceptionInvalidSocket.cpp" />
 		<Unit filename="Engine/Exception/ExceptionInvalidSocket.h" />
 		<Unit filename="Engine/Exception/ExceptionListen.cpp" />
@@ -165,6 +167,8 @@
 		<Unit filename="GameType/Classic/Classic.h" />
 		<Unit filename="GameType/Classic/Dead.cpp" />
 		<Unit filename="GameType/Classic/Dead.h" />
+		<Unit filename="GameType/Classic/Ending.cpp" />
+		<Unit filename="GameType/Classic/Ending.h" />
 		<Unit filename="GameType/Classic/HurryUp.cpp" />
 		<Unit filename="GameType/Classic/HurryUp.h" />
 		<Unit filename="GameType/Classic/Initialisation.cpp" />
@@ -203,6 +207,7 @@
 		<Unit filename="Type/ExplosionFlare.h" />
 		<Unit filename="Type/ManagerExplosion.cpp" />
 		<Unit filename="Type/ManagerExplosion.h" />
+		<Unit filename="Type/Paquet.h" />
 		<Unit filename="Type/Property.h" />
 		<Unit filename="Type/StaticBloc.cpp" />
 		<Unit filename="Type/StaticBloc.h" />
