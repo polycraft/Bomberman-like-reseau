@@ -15,7 +15,7 @@ Game::Game()
     Loader *loaderMap=new LoaderMap();
     ManagerRessource::addLoader("map",loaderMap);
 
-	
+
 
 
 
@@ -23,7 +23,7 @@ Game::Game()
 	bool continuer=true;
 
 	//creation du socket vers le serveur
-	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5001);
+	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5000);
 	Thread *thread=socket->run(&continuer);
 	//demande de connexion
 	socket->setIsSync(true);
@@ -34,7 +34,7 @@ Game::Game()
 	//reception de la map
 	PaquetMap *paquetMap=(socket->recvData()).getData<PaquetMap*>();
 	string path = "src/ressource/map/" + (string)paquetMap->name + ".map";
-	Map *map = ManagerRessource::getRessource<Map>(path);
+	map = ManagerRessource::getRessource<Map>(path);
 	map->buildMap();
 
 	//demande d'un identifiant
