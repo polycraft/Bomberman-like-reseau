@@ -20,11 +20,11 @@ Game::Game()
 
 
 
-	bool continuer=true;
+	bool stop=false;
 
 	//creation du socket vers le serveur
 	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5000);
-	Thread *thread=socket->run(&continuer);
+	Thread *thread=socket->run(&stop);
 	//demande de connexion
 	socket->setIsSync(true);
 
@@ -42,7 +42,7 @@ Game::Game()
     socket->sendData<PaquetAsk>(&askId);
 	//reception de l'id
     PaquetId *idAccptConnect=(socket->recvData()).getData<PaquetId*>();
-	if(idAccptConnect->id == -1){continuer=false;}
+	if(idAccptConnect->id == -1){stop=true;}
 
 	socket->setIsSync(false);
 
@@ -77,12 +77,12 @@ Game::Game()
 
     std::stringstream out;
 
-	while(continuer)
+	while(!stop)
 	{
         //cout << "fps:" << Timer::getTimePerFrame() << endl;
 
         gameType->update();
-        continuer=engine->run(camera);
+        stop=!(engine->run(camera));
 
 		//Calculs de position du texte
 		double b =(map->getHeight()*10.0);

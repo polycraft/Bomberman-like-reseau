@@ -70,7 +70,7 @@ namespace GameTypeSpace
 		ClassicSpace::EPhase phaseCurrent;
 		Bomberman *player;
 		vector<Bomberman*> playerNetwork;
-		Phase *phase[4];
+		Phase *phase[5];
         Engine::ManagerFont font;
 	};
 }

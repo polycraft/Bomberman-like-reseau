@@ -157,7 +157,7 @@ void Socket::runThread(bool *close)
         }
 
         //un paquet est arrivé
-        if(FD_ISSET(sock, &rdfs))
+        if(FD_ISSET(sock, &rdfs) && !isSync)
         {
             //Nouvelle connexion
             if(this->connection==TC_Server && this->protocole==TP_TCP)

@@ -12,6 +12,7 @@
 #include "Running.h"
 #include "HurryUp.h"
 #include "Dead.h"
+#include "Ending.h"
 
 using namespace Engine;
 
@@ -22,7 +23,7 @@ namespace GameTypeSpace
 	Classic::Classic(Game *game, Engine::Socket *socket, int idBomber):GameType(game,10, socket),font("src/ressource/font/font.ttf",24)
 	{
 		srand ( time(NULL) );
-		this->player = NULL;
+		this->player = new Bomberman(idBomber);
 	    phaseCurrent=P_Initialisation;
 
 	    collision=new CollisionDetector(game->getMap());
@@ -31,12 +32,14 @@ namespace GameTypeSpace
 	    phase[P_Running-2]=new Running(this,collision);
 	    phase[P_Dead-2]=new Dead(this,collision);
 	    phase[P_HurryUp-2]=new HurryUp(this,collision);
-
+        phase[P_Ending-2]=new Ending(this,collision);
 
 
         game->getEngine()->getGengine()->getManagerText().addFont(&font);
 
 	    this->game->getEngine()->getEventEngine()->addListener(this);
+
+	    socket->addObserverRecv(this);
 	}
 
 	Classic::~Classic()
@@ -197,7 +200,7 @@ namespace GameTypeSpace
 
     void Classic::updateRecv(Socket *socket,Paquet& paquet)
     {
-        //dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,paquet);
+        dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,paquet);
 		char type=(paquet.getData())[0];
 		switch(type)
 		{
@@ -236,7 +239,13 @@ namespace GameTypeSpace
 				else this->game->getMap()->set(NULL,paquetBonus->x,paquetBonus->y);
                 object->destroy();
 			}
-
+			break;
+            case 'p':
+            {
+                PaquetPhase *paquetPhase=paquet.getData<PaquetPhase*>();
+                phaseCurrent = static_cast<EPhase>(paquetPhase->phase);
+            }
+            break;
 		}
 
     }
@@ -260,6 +269,6 @@ namespace GameTypeSpace
 
 	int Classic::getTimeServMove()
 	{
-		return this->timeServerMovement; 
+		return this->timeServerMovement;
 	}
 }
