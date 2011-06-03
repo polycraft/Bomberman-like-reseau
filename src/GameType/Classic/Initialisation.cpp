@@ -69,7 +69,16 @@ namespace GameTypeSpace
 
 		void Initialisation::updateRecv(Socket *socket,Paquet& paquet)
 		{
-
+			char type=(paquet.getData())[0];
+			switch(type)
+			{
+				case 's'://Spawn
+				{
+					PaquetSpawn *paquetSpawn=paquet.getData<PaquetSpawn*>();
+					Bomberman *bomber = new Bomberman(paquetSpawn->idBomber);
+					this->gameType->getGame()->getMap()->addBomberman(bomber,this->gameType->getGame()->getMap()->getSpawn(paquetSpawn->idSpawn));
+				}
+			}
 		}
 	}
 }
