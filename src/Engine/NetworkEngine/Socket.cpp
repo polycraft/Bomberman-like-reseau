@@ -308,7 +308,7 @@ void Socket::notifyRecv(char* s,int size)
     Paquet paquet(s,size);
     for (vector<IObserverSocketRecv*>::iterator it = observerRecv.begin(); it!=observerRecv.end(); ++it)
     {
-        std::cout << observerRecv.size() <<std::endl;
+        //std::cout << observerRecv.size() <<std::endl;
         if(*it!=NULL)
         {
             (*it)->updateRecv(this,paquet);
