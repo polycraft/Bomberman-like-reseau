@@ -31,8 +31,8 @@ Game::Game()
 	socket->setIsSync(true);
 	//synchronisation du Timer
 	int holdTime = Engine::Timer::getTimer()->getTime();
-	PaquetAsk askTime={'a', holdTime, 'g'};
-	socket->sendData<PaquetAsk>(&askTime);
+	PaquetPing askTime={'g', holdTime};
+	socket->sendData<PaquetPing>(&askTime);
 	PaquetPing *paquetTimer=(socket->recvData()).getData<PaquetPing*>();
 	int newTime = Engine::Timer::getTimer()->getTime();
 	//Synchronisation
