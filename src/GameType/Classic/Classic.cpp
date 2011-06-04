@@ -218,7 +218,21 @@ namespace GameTypeSpace
 			break;
 			case 'm'://Movements
 			{
-				//à definir
+				PaquetMove *paquetMove=paquet.getData<PaquetMove*>();
+
+				//On cherche le Bomberman concerné
+				vector<Bomberman*>::iterator it;
+
+                for ( it=playerNetwork.begin() ; it < playerNetwork.end(); it++ )
+                {
+                    if((*it)->getProperty<int>(PB_id)==paquetMove->idBomber)
+                    {
+                        //On le déplace
+                        (*it)->setTransX(paquetMove->x);
+                        (*it)->setTransY(paquetMove->y);
+                        (*it)->setRotation(0,0,paquetMove->rotation);
+                    }
+                }
 			}
 			break;
 			case 'u': //Bonus

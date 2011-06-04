@@ -63,7 +63,7 @@ namespace GameTypeSpace
 
         Engine::ManagerFont& getFont();
 	private:
-		static const int timeServerMovement = 100;
+		static const int timeServerMovement = 50;
 		static const int nbBonus=4;
 		int partTime;
 		CollisionDetector *collision;
