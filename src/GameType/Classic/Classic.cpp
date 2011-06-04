@@ -38,8 +38,6 @@ namespace GameTypeSpace
         game->getEngine()->getGengine()->getManagerText().addFont(&font);
 
 	    this->game->getEngine()->getEventEngine()->addListener(this);
-
-	    socket->addObserverRecv(this);
 	}
 
 	Classic::~Classic()
