@@ -17,16 +17,17 @@ Game::Game()
 
 
 
-
+ManagerRessource::getRessource("src/ressource/object/bomb.obj");
+		ManagerRessource::getRessource("src/ressource/texture/bomb.jpg");
 
 
 	bool stop=false;
 
 	//creation du socket vers le serveur
-	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5000);
+	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5001);
 	Thread *thread=socket->run(&stop);
-	
-	
+
+
 	//demande de connexion
 	socket->setIsSync(true);
 	//synchronisation du Timer
