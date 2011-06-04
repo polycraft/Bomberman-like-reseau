@@ -24,7 +24,7 @@ ManagerRessource::getRessource("src/ressource/object/bomb.obj");
 	bool stop=false;
 
 	//creation du socket vers le serveur
-	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5001);
+	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5000);
 	Thread *thread=socket->run(&stop);
 
 

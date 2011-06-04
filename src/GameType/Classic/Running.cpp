@@ -73,9 +73,12 @@ namespace GameTypeSpace
 					};
 
 					this->gameType->getSocket()->sendData<PaquetBomb>(&paquetBomb);
+
+					gameType->getPlayer()->setProperty<bool>(PB_canPutBomb,false);
+                    Timer::getTimer()->addListenerOnce(gameType->getPlayer(),gameType->getPlayer()->getProperty<int>(PB_timerPutBomb));
 				}
 				/*
-               
+
 
                 Bomb* bomb=new Bomb(
                                     this->gameType,

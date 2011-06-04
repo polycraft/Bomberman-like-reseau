@@ -216,14 +216,14 @@ namespace GameTypeSpace
 				this->getGame()->getMap()->addObject(bomb,paquetBomb->x,paquetBomb->y,T_Dyn);
 
 				this->getPlayer()->setProperty<int>(PB_nbBomb,this->getPlayer()->getProperty<int>(PB_nbBomb)-1);
-				this->getPlayer()->setProperty<bool>(PB_canPutBomb,false);
-				Timer::getTimer()->addListenerOnce(this->getPlayer(),this->getPlayer()->getProperty<int>(PB_timerPutBomb));
-
+				cout << "bombe posé!" << endl;
 			}
+			break;
 			case 'm'://Movements
 			{
 				//à definir
 			}
+			break;
 			case 'u': //Bonus
 			{
 				PaquetBonus *paquetBonus=paquet.getData<PaquetBonus*>();
