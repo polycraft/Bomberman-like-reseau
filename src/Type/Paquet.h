@@ -8,6 +8,7 @@ Déclaration des différents types de paquet
 Chaque type de paquet contient un caractère d'identification nommé type ainsi que l'heure de départ du paquet
 **/
 
+
 //Paquet concernant les bombes
 typedef struct PaquetBomb
 {
@@ -30,6 +31,7 @@ typedef struct PaquetMove
     int idBomber;//id du bomberman déplacé
     double x;//x absolue du bomberman
     double y;//y absolue du bomberman
+	double rotation;//valeur de l'angle
 }PaquetMove;
 
 //Paquet d'un nouveau bonus
@@ -49,6 +51,8 @@ typedef struct PaquetPhase
     int timePaquet;
     int phase;//numéro de la phase actuelle
 }PaquetPhase;
+
+
 
 //Paquet de modification d'état d'un bomberman (l'état mort par exemple)
 typedef struct PaquetEtat
@@ -100,6 +104,22 @@ typedef struct PaquetAsk
     char paquet;//type du paquet à demander
 }PaquetAsk;
 
-//Paquet d'autorisation de connexion
+//Paquet d'erreur
+typedef struct PaquetError
+{
+    char type;//r
+    int timePaquet;
+    char error;//type de l'erreur
+}PaquetError;
+
+//Paquet de deconnexion
+typedef struct PaquetDeconnect
+{
+    char type;//d
+    int timePaquet;
+    int idBomber;//id du Bomber qui deconnecte
+}PaquetDeconnect;
+
+
 
 #endif // PAQUET2_H
