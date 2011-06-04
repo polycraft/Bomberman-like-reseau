@@ -37,9 +37,9 @@ namespace Engine
 			/**
 			Setter coordonnée
 			**/
-			void setTransX(double x);
-			void setTransY(double y);
-			void setTransZ(double z);
+			virtual void setTransX(double x);
+            virtual void setTransY(double y);
+			virtual void setTransZ(double z);
 
 
 			/**

@@ -1,4 +1,5 @@
 #include "ManagerText.h"
+
 using namespace std;
 namespace Engine
 {

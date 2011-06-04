@@ -5,12 +5,14 @@
 #include "../Map.h"
 
 #include "../Engine/ManagerRessource.h"
+#include <cmath>
 
 using namespace Engine;
 
 Bomberman::Bomberman(map<EPropertyBomberman,Property*>& property):name(TT_Text3D)
 {
     this->property=property;
+    name.setColor(255,255,255,255);
 }
 
 Bomberman::Bomberman(int id):name(TT_Text3D)
@@ -21,6 +23,8 @@ Bomberman::Bomberman(int id):name(TT_Text3D)
 		ManagerRessource::getRessource("src/ressource/texture/bomberman.jpg"));
 	//chargement de sa position courir
 	ManagerRessource::getRessource("src/ressource/object/bombermanRun.obj");
+
+	name.setColor(255,255,255,255);
 }
 
 Bomberman::~Bomberman()
@@ -93,26 +97,65 @@ void Bomberman::lostLife(int nb)
     setProperty<int>(PB_life,getProperty<int>(PB_life)-nb);
 }
 
-void Bomberman::setName(string &name)
+void Bomberman::setName(string &name,double mapWidth,double mapHeight)
 {
     this->name.setText(name);
+    this->mapWidth=mapWidth;
+    this->mapHeight=mapHeight;
 }
 
-void Bomberman::setName(char *name)
+void Bomberman::setName(char *name,double mapWidth,double mapHeight)
 {
     this->name.setText(name);
+    this->mapWidth=mapWidth;
+    this->mapHeight=mapHeight;
 }
 
 Text* Bomberman::getName()
 {
-    return &this->name;
+    return &(this->name);
 }
 
 void Bomberman::setCoordonnes(double x,double y,double z)
 {
     ObjectMovable::setCoordonnes(x,y,z);
-    this->name.setCoord(x,y,z+2.5);
+    this->moveName();
 }
+
+void Bomberman::translation(double x,double y,double z)
+{
+    ObjectMovable::translation(x,y,z);
+    this->moveName();
+}
+
+void Bomberman::setTransX(double x)
+{
+    ObjectMovable::setTransX(x);
+    this->moveName();
+}
+
+void Bomberman::setTransY(double y)
+{
+    ObjectMovable::setTransY(y);
+    this->moveName();
+}
+void Bomberman::setTransZ(double z)
+{
+    ObjectMovable::setTransZ(z);
+    this->moveName();
+}
+
+void Bomberman::moveName()
+{
+    double b =(mapHeight*10.0);
+    double Y = 	this->getTransY();
+    double X = 	this->getTransX();
+    double H = sqrt(150*150+b*b);
+    double I1 = 150*H/b;
+    double I2 = 150*150/b;
+    name.setCoord(X-mapWidth*10/2-10,10*H/b-I1*((b-Y)/(b+I2)),-H*(1-(b-Y)/(b+I2)));
+}
+
 
 void Bomberman::addBonus(Bonus *bonus)
 {
