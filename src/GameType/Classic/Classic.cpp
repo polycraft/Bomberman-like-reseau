@@ -262,7 +262,9 @@ namespace GameTypeSpace
 			PaquetMove paquetMove={'m', Engine::Timer::getTimer()->getTime(),
 				this->player->getProperty<int>(PB_id),
 				this->player->getTransX(),
-				this->player->getTransY()};
+				this->player->getTransY(),
+				this->player->getRotateZ()
+				};
 			this->socket->sendData<PaquetMove>(&paquetMove);
 		}
 	}
