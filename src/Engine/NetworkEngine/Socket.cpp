@@ -28,6 +28,7 @@ Socket::Socket(SOCKET sock,SOCKADDR_IN csin,ETypeConnection connection)
     this->infoConnection=csin;
 
     this->isConnect=true;
+	this->isSync = false;
 
     initBuffer();
 
@@ -42,7 +43,7 @@ void Socket::initSocket(const char *address,unsigned int port,ETypeProtocole pro
 
     this->connection=connection;
     this->protocole=protocole;
-
+	this->isSync = false;
     //infoConnection= {0};
 
     switch(protocole)
@@ -138,20 +139,29 @@ V();
 
 void Socket::runThread(bool *close)
 {
-    fd_set rdfs;
-    struct timeval tv;
-
-
-
     while(*close!=true && sock!=-1)
     {
-        tv.tv_sec = 1;
-        tv.tv_usec = 0;
+		//Nouvelle connexion
+        if(this->connection==TC_Server && this->protocole==TP_TCP)
+        {
 
-        FD_ZERO(&rdfs);
-        FD_SET(sock, &rdfs);
+            SOCKADDR_IN csin = { 0 };
+            socklen_t sinsize = sizeof csin;
+            SOCKET csock = accept(sock, (SOCKADDR *)&csin, &sinsize);
 
-        if(select(sock + 1, &rdfs, NULL, NULL, &tv) == -1)
+            if(csock == SOCKET_ERROR)
+            {
+                continue;
+            }
+            notifyAccept(new Socket(csock,csin,TC_Client));
+        }
+        else
+        {
+			cout << "DDDDD" << endl;
+            this->recvData();
+        }
+		/*
+		if(this->connection == TC_Server && this->protocole == TP_TCP)
         {
             throw ExceptionSelect();
         }
@@ -159,6 +169,7 @@ void Socket::runThread(bool *close)
         //un paquet est arrivé
         if(FD_ISSET(sock, &rdfs) && !isSync)
         {
+					cout << "Salut" << endl;
             //Nouvelle connexion
             if(this->connection==TC_Server && this->protocole==TP_TCP)
             {
@@ -176,7 +187,8 @@ void Socket::runThread(bool *close)
             {
                 this->recvData();
             }
-        }
+			}*/
+        
     }
 }
 
@@ -240,13 +252,13 @@ Paquet Socket::recvData()
     {
         int n = 0;
 
-        P();
+        
         if((n = recv(sock, bufferRecv, sizeBufferRecv - 1, 0)) < 0)
         {
             V();
             throw ExceptionRecv();
         }
-        V();
+        
         if(this->isSync)
         {
             return Paquet(bufferRecv,n);
