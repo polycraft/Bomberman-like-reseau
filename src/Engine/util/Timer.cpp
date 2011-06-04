@@ -69,16 +69,14 @@ void Timer::update()
     set< struct SObserverTimer* >::iterator it;
     struct SObserverTimer* sObserver=NULL;
 
-
-
 	for(it=this->listener.begin(); it!=listener.end();)
 	{
 		sObserver=*it;
 
-		if(sObserver->start+sObserver->delay <= SDL_GetTicks())
+		if(sObserver->start+sObserver->delay <= getTime())
         {
             sObserver->observer->updateTimer(sObserver->delay);
-            sObserver->start=SDL_GetTicks();
+            sObserver->start=getTime();
         }
 		it++;
 	}
@@ -89,7 +87,7 @@ void Timer::update()
 	{
 		sObserver=*it;
 
-		if(sObserver->start+sObserver->delay <= SDL_GetTicks())
+		if(sObserver->start+sObserver->delay <= getTime())
         {
             sObserver->observer->updateTimer(sObserver->delay);
             listenerOnce.erase(it++);

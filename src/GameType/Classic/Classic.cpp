@@ -216,7 +216,6 @@ namespace GameTypeSpace
 				this->getGame()->getMap()->addObject(bomb,paquetBomb->x,paquetBomb->y,T_Dyn);
 
 				this->getPlayer()->setProperty<int>(PB_nbBomb,this->getPlayer()->getProperty<int>(PB_nbBomb)-1);
-				cout << "bombe posé!" << endl;
 			}
 			break;
 			case 'm'://Movements
