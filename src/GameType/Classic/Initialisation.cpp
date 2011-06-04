@@ -100,6 +100,8 @@ namespace GameTypeSpace
                     bomber->setProperty<bool>(PB_canPutBomb,true);
                     bomber->setProperty<int>(PB_timeInvincible,2000);
                     bomber->setProperty<bool>(PB_invincible,false);
+                    bomber->setName(paquetSpawn->name,gameType->getGame()->getMap()->getWidth(),gameType->getGame()->getMap()->getHeight());
+                    this->gameType->getFont().addText(bomber->getName());
                     //bomber->setInvincible(5000);
 
 					this->gameType->getGame()->getMap()->addBomberman(bomber,this->gameType->getGame()->getMap()->getSpawn(paquetSpawn->idSpawn));

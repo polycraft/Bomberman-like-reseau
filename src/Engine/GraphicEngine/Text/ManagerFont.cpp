@@ -1,5 +1,5 @@
 #include "ManagerFont.h"
-
+#include <iostream>
 using namespace std;
 
 namespace Engine

@@ -66,9 +66,13 @@ public:
 	void lostLife(int nb=1);
 
 	virtual void setCoordonnes(double x,double y,double z);
+	virtual void translation(double x,double y,double z);
+	virtual void setTransX(double x);
+    virtual void setTransY(double y);
+    virtual void setTransZ(double z);
 
-    void setName(std::string &name);
-    void setName(char *name);
+    void setName(std::string &name,double mapWidth,double mapHeight);
+    void setName(char *name,double mapWidth,double mapHeight);
     Engine::Text* getName();
 
 	void addBonus(Bonus *bonus);
@@ -77,9 +81,14 @@ public:
 	void destroyTimeAnim(){};
 
 protected:
+    void moveName();
+
     std::map<EPropertyBomberman,Property*> property;
     Engine::Text name;
 	set<Bonus*> bonusList;
+
+	double mapWidth;
+	double mapHeight;
 };
 
 

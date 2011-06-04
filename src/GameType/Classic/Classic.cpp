@@ -20,7 +20,7 @@ namespace GameTypeSpace
 {
     using namespace ClassicSpace;
 
-	Classic::Classic(Game *game, Engine::Socket *socket, int idBomber):GameType(game,10, socket),font("src/ressource/font/font.ttf",24)
+	Classic::Classic(Game *game, Engine::Socket *socket, int idBomber):GameType(game,10, socket),font("src/ressource/font/font.ttf",10)
 	{
 		srand ( time(NULL) );
 		this->player = new Bomberman(idBomber);

@@ -79,6 +79,7 @@ typedef struct PaquetSpawn
     int timePaquet;
     int idBomber;//id du bomberman à placer
     int idSpawn;//id du spawn où placer le bomberman
+    char name[100];
 }PaquetSpawn;
 
 //Paquet de chargement de map
@@ -121,5 +122,12 @@ typedef struct PaquetDeconnect
 }PaquetDeconnect;
 
 
+//Paquet pour attribuer un nom à un bomberman
+typedef struct PaquetName
+{
+    char type;//n
+    int timePaquet;
+    char name[100];
+}PaquetName;
 
 #endif // PAQUET2_H
