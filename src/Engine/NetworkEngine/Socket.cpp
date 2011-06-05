@@ -155,10 +155,9 @@ void Socket::runThread(bool *close)
             }
             notifyAccept(new Socket(csock,csin,TC_Client));
         }
-        else
+        else if(!isSync)
         {
-			cout << "DDDDD" << endl;
-            this->recvData();
+			this->recvData();
         }
 		/*
 		if(this->connection == TC_Server && this->protocole == TP_TCP)
@@ -188,7 +187,7 @@ void Socket::runThread(bool *close)
                 this->recvData();
             }
 			}*/
-        
+
     }
 }
 
@@ -252,13 +251,12 @@ Paquet Socket::recvData()
     {
         int n = 0;
 
-        
+
         if((n = recv(sock, bufferRecv, sizeBufferRecv - 1, 0)) < 0)
         {
-            V();
             throw ExceptionRecv();
         }
-        
+
         if(this->isSync)
         {
             return Paquet(bufferRecv,n);

@@ -27,11 +27,14 @@ Game::Game()
 
 	//creation du socket vers le serveur
 	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5000);
-	Thread *thread=socket->run(&stop);
-
 
 	//demande de connexion
 	socket->setIsSync(true);
+
+	Thread *thread=socket->run(&stop);
+
+
+
 	//synchronisation du Timer
 	int holdTime = Engine::Timer::getTimer()->getTime();
 	PaquetPing askTime={'g', holdTime};
