@@ -48,6 +48,12 @@ void Map::addBomberman(Bomberman *bomberman,SCoordinate coord)
 
 void Map::addObject(Type* object, int x, int y,EScene scene)
 {
+    if(this->map[x][y]!=NULL)
+    {
+
+        this->map[x][y]->destroy();
+    }
+
 	double x1,y1,z1;
 	x1=15;
 	y1=15;
@@ -93,6 +99,11 @@ Type* Map::get(int x,int y)
 
 void Map::set(Type* object,int x,int y)
 {
+    if(this->map[x][y]!=NULL)
+    {
+
+        this->map[x][y]->destroy();
+    }
     map[x][y]=object;
 }
 
@@ -116,10 +127,13 @@ void Map::buildMap()
 {
 	for( int i=0; i< width*height;i++)
     {
+        if(map[i%(width)][height - i/(width)-1]!=NULL)
+        {
+            map[i%(width)][height - i/(width)-1]->destroy();
+        }
 
 		switch(this->mapData[i])
         {
-
             case 'a':
                 this->addObject(new StaticBloc(), i%(width), height - i/(width)-1, T_Map );
                 break;

@@ -190,7 +190,7 @@ void Socket::runThread(bool *close)
 			}*/
 
     }
-	
+
 	cout << "yop " << endl;
 }
 
@@ -257,8 +257,7 @@ Paquet Socket::recvData()
 
         if((n = recv(sock, bufferRecv, sizeBufferRecv - 1, 0)) < 0)
         {
-			cout<< sizeBufferRecv << "|" << n << "|" << WSAGetLastError() << endl;
-            throw ExceptionRecv();
+			throw ExceptionRecv();
         }
 
         if(this->isSync)

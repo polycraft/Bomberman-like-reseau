@@ -239,11 +239,9 @@ namespace GameTypeSpace
 			{
 				PaquetBonus *paquetBonus=paquet.getData<PaquetBonus*>();
 				//obtiens lobjet deja présent
-				
+
 				Object *object = this->game->getMap()->get(paquetBonus->x,paquetBonus->y);
-				cout <<  paquetBonus->x << endl;
-                object->destroy();
-				cout <<  paquetBonus->x << endl;
+
 				EBonus typeBonus = static_cast<EBonus>(paquetBonus->bonus);
 				if(typeBonus != T_None)
 				{
