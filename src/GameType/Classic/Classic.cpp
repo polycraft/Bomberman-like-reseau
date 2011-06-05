@@ -239,16 +239,23 @@ namespace GameTypeSpace
 			{
 				PaquetBonus *paquetBonus=paquet.getData<PaquetBonus*>();
 				//obtiens lobjet deja présent
+				
 				Object *object = this->game->getMap()->get(paquetBonus->x,paquetBonus->y);
+				cout <<  paquetBonus->x << endl;
                 object->destroy();
-
+				cout <<  paquetBonus->x << endl;
 				EBonus typeBonus = static_cast<EBonus>(paquetBonus->bonus);
 				if(typeBonus != T_None)
 				{
 					//remplace la caisse
 					this->game->getMap()->addObject(new Bonus(typeBonus),paquetBonus->x,paquetBonus->y,T_Map);
 				}
-				else this->game->getMap()->set(NULL,paquetBonus->x,paquetBonus->y);
+
+				else
+				{
+						cout <<  paquetBonus->x << endl;
+						this->game->getMap()->set(NULL,paquetBonus->x,paquetBonus->y);
+				}
 
 			}
 			break;

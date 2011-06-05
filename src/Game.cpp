@@ -49,7 +49,7 @@ Game::Game()
 	PaquetMap *paquetMap=(socket->recvData()).getData<PaquetMap*>();
 	string path = "src/ressource/map/" + (string)paquetMap->name + ".map";
 	map = ManagerRessource::getRessource<Map>(path);
-	map->buildMap();
+	//map->buildMap();
 
 	//Envoie du pseudo
 	PaquetName paquetName={'n', Engine::Timer::getTimer()->getTime(),""};//c = PaquetMap
@@ -95,7 +95,7 @@ Game::Game()
         out << static_cast<int>(1000/Timer::getTimer()->getTimePerFrame());
         s=out.str();
         text.setText(s);
-	}
+	} 
 	Threadable::join(thread);
 	delete socket;
 }
