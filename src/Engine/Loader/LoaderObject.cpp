@@ -77,7 +77,7 @@ void LoaderObject::parserObject(string file)
             {
                 if(tempNoTexturePoint==NULL)
                 {
-                    tempNoTexturePoint=(double*)malloc(sizeof(double)*this->point.size());
+                    tempNoTexturePoint=(double*)malloc(sizeof(double)*this->point.size()/3);
                 }
 
                 iss >> infoFace[0] >> infoFace[1] >> infoFace[2];
@@ -101,7 +101,7 @@ void LoaderObject::parserObject(string file)
 
                         this->indice.push_back(nbPoint/3);
 
-                        tempNoTexturePoint=(double*)realloc(tempNoTexturePoint,sizeof(double)*this->point.size());
+                        tempNoTexturePoint=(double*)realloc(tempNoTexturePoint,sizeof(double)*this->point.size()/3);
 
                         tempNoTexturePoint[nbPoint/3]=b-1;
                     }
@@ -139,9 +139,8 @@ void LoaderObject::parserObject(string file)
         throw new ExceptionNoFileFound();
     }
 
-
     //trie du tableau des textures
-    for(int i=0; i<tempTexture.size(); i++)
+    for(int i=0; i<this->point.size()/3; i++)
     {
         this->texture.push_back(tempTexture[2*tempNoTexturePoint[i]]);
         this->texture.push_back(tempTexture[2*tempNoTexturePoint[i]+1]);
