@@ -130,4 +130,14 @@ typedef struct PaquetName
     char name[100];
 }PaquetName;
 
+//Paquet d'éttribution des effets
+typedef struct PaquetEffect
+{
+    char type;//f
+    int timePaquet;
+    int idBomber;
+    int x;
+    int y;
+}
+
 #endif // PAQUET2_H

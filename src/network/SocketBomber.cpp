@@ -4,12 +4,12 @@
 using namespace Engine;
 
 SocketBomber::SocketBomber(const char *address,unsigned int port,ETypeProtocole protocole,ETypeConnection connection):
-Socket(address,port,protocole,connection)
+    Socket(address,port,protocole,connection)
 {
 
 }
 SocketBomber::SocketBomber(unsigned int port,ETypeProtocole protocole):
-Socket(port,protocole)
+    Socket(port,protocole)
 {
 
 }
@@ -80,11 +80,13 @@ Paquet SocketBomber::recvData()
                 case 'n':
                     size=sizeof(PaquetName);
                     break;
+                case 'f':
+                    size=sizeof(PaquetEffect);
                 default:
                     throw ExceptionRecv();
-                break;
+                    break;
                 }
-               waiting.push(Paquet(&(bufferRecv[i]),size));
+                waiting.push(Paquet(&(bufferRecv[i]),size));
                 i+=size;
             }
         }
