@@ -17,10 +17,7 @@ Game::Game()
     Loader *loaderMap=new LoaderMap();
     ManagerRessource::addLoader("map",loaderMap);
 
-
-
-    ManagerRessource::getRessource("src/ressource/object/bomb.obj");
-    ManagerRessource::getRessource("src/ressource/texture/bomb.jpg");
+    preload();
 
 
 	bool stop=false;
@@ -126,4 +123,30 @@ MainEngine* Game::getEngine()
 void Game::updateRecv(Socket *sock,Paquet& paquet)
 {
 
+}
+
+void Game::preload()
+{
+    ManagerRessource::getRessource("src/ressource/object/bomb.obj");
+    ManagerRessource::getRessource("src/ressource/texture/bomb.jpg");
+
+    ManagerRessource::getRessource("src/ressource/object/bombermanPause.obj");
+    ManagerRessource::getRessource("src/ressource/texture/bomberman.jpg");
+    ManagerRessource::getRessource("src/ressource/object/bombermanRun.obj");
+
+    ManagerRessource::getRessource("src/ressource/object/bonus.obj");
+	ManagerRessource::getRessource("src/ressource/texture/bonus/bonusFaster.png");
+
+	ManagerRessource::getRessource("src/ressource/object/bonus.obj");
+	ManagerRessource::getRessource("src/ressource/texture/bonus/bonusBomb.png");
+
+	ManagerRessource::getRessource("src/ressource/object/bonus.obj");
+	ManagerRessource::getRessource("src/ressource/texture/bonus/bonusPower.png");
+
+	ManagerRessource::getRessource("src/ressource/texture/box2.jpg");
+
+	ManagerRessource::getRessource("src/ressource/object/bodyExplosion.obj");
+    ManagerRessource::getRessource("src/ressource/texture/bodyExplosion.png");
+
+    ManagerRessource::getRessource("src/ressource/texture/steel2.jpg");
 }

@@ -24,6 +24,8 @@ class Game : public Engine::IObserverTimer, public Engine::IObserverSocketRecv
     private:
     Map *map;
     Engine::MainEngine* engine;
+
+    void preload();
 };
 
 #endif // GAME_H

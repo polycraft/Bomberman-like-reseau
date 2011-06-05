@@ -240,6 +240,7 @@ namespace GameTypeSpace
 				PaquetBonus *paquetBonus=paquet.getData<PaquetBonus*>();
 				//obtiens lobjet deja présent
 				Object *object = this->game->getMap()->get(paquetBonus->x,paquetBonus->y);
+                object->destroy();
 
 				EBonus typeBonus = static_cast<EBonus>(paquetBonus->bonus);
 				if(typeBonus != T_None)
@@ -248,7 +249,7 @@ namespace GameTypeSpace
 					this->game->getMap()->addObject(new Bonus(typeBonus),paquetBonus->x,paquetBonus->y,T_Map);
 				}
 				else this->game->getMap()->set(NULL,paquetBonus->x,paquetBonus->y);
-                object->destroy();
+
 			}
 			break;
             case 'p':
