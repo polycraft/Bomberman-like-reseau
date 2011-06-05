@@ -213,7 +213,10 @@ namespace GameTypeSpace
 									paquetBomb->power);
 				this->getGame()->getMap()->addObject(bomb,paquetBomb->x,paquetBomb->y,T_Dyn);
 
-				this->getPlayer()->setProperty<int>(PB_nbBomb,this->getPlayer()->getProperty<int>(PB_nbBomb)-1);
+                if(this->getPlayer()->getProperty<int>(PB_id)==paquetBomb->idBomber)
+                {
+                    this->getPlayer()->setProperty<int>(PB_nbBomb,this->getPlayer()->getProperty<int>(PB_nbBomb)-1);
+                }
 			}
 			break;
 			case 'm'://Movements
