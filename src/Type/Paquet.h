@@ -138,6 +138,6 @@ typedef struct PaquetEffect
     int idBomber;
     int x;
     int y;
-}
+}PaquetEffect;
 
 #endif // PAQUET2_H

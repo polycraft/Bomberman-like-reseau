@@ -106,7 +106,7 @@ namespace GameTypeSpace
                 }
             }
 
-			if(collision->detect(T_Bomberman,x,y)==C_Bonus)
+			/*if(collision->detect(T_Bomberman,x,y)==C_Bonus)
             {
 				Bonus *bonus = dynamic_cast<Bonus*>(this->gameType->getGame()->getMap()->get(x,y));
 				Bomberman *bomber=this->gameType->getPlayer();
@@ -119,7 +119,7 @@ namespace GameTypeSpace
 				//fait disparaitre le bonus
 				bonus->setVisible(false);
 				this->gameType->getGame()->getMap()->set(NULL,x,y);
-            }
+            }*/
 		}
 
 		void Running::eventMove(Engine::stateEvent &event,double tmpX,double tmpY)
@@ -234,7 +234,34 @@ namespace GameTypeSpace
 
 		void Running::updateRecv(Socket *socket,Paquet& paquet)
 		{
+        char type=(paquet.getData())[0];
+		switch(type)
+		{
+			case 'f'://Effect
+			{
+				PaquetEffect *paquetEffect=paquet.getData<PaquetEffect*>();
+                Bomberman *bomber=this->gameType->getPlayer();
 
+                Bonus *bonus = dynamic_cast<Bonus*>(this->gameType->getGame()->getMap()->get(paquetEffect->x,paquetEffect->y));
+
+                if(paquetEffect->idBomber==bomber->getProperty<int>(PB_id))
+                {
+
+
+                    //Active l'effet du bonus:
+                    bonus->getEffect()->enableEffect(bomber);
+                    //Ajoute le bonus au bomberman
+                    bomber->addBonus(bonus);
+                }
+
+                //arrete l'animation du bonus
+                bonus->destroyTimeAnim();
+
+				//fait disparaitre le bonus
+				this->gameType->getGame()->getMap()->set(NULL,paquetEffect->x,paquetEffect->y);
+			}
+			break;
+		}
 		}
 	}
 }

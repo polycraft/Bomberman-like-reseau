@@ -82,6 +82,7 @@ Paquet SocketBomber::recvData()
                     break;
                 case 'f':
                     size=sizeof(PaquetEffect);
+                    break;
                 default:
                     throw ExceptionRecv();
                     break;
