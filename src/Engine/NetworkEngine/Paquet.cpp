@@ -1,16 +1,33 @@
 #include "Paquet.h"
-
+#include <cstring>
+#include <iostream>
+using namespace std;
 namespace Engine
 {
 
-Paquet::Paquet(char*data,unsigned int size):data(data),size(size)
+Paquet::Paquet(char*data,unsigned int size):size(size)
 {
-    //ctor
+    this->data=new char[size];
+    memcpy(this->data,data,size);
+}
+
+Paquet::Paquet(const Paquet& paquet)
+{
+    this->data=new char[paquet.size];
+    memcpy(this->data,paquet.data,paquet.size);
+    size=paquet.size;
+}
+
+void Paquet::operator=(const Paquet& paquet)
+{
+    this->data=new char[paquet.size];
+    memcpy(this->data,paquet.data,paquet.size);
+    size=paquet.size;
 }
 
 Paquet::~Paquet()
 {
-    //dtor
+    delete[] data;
 }
 
 char * Paquet::getData()

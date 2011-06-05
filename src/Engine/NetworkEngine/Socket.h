@@ -128,7 +128,8 @@ class Socket : public Threadable
         /**
         Reçoit une chaine
         **/
-        Paquet recvData();
+        int recept();
+        virtual Paquet recvData();
 
         /**
         setter isSync
@@ -162,6 +163,7 @@ class Socket : public Threadable
             Notifie tous les observateurs de l'action recevoir
             **/
             void notifyRecv(char*,int size);
+            void notifyRecv(Paquet paquet);
 
             /**
             Notifie tous les observateurs de l'action Accept
@@ -172,7 +174,7 @@ class Socket : public Threadable
         #Fin gestion des observables
         **/
 
-    private:
+    protected:
         /**
         #Gestion des sockets
         **/
@@ -191,10 +193,7 @@ class Socket : public Threadable
             **/
             void initBuffer();
 
-            /**
-            Identifiant de socket
-            **/
-            SOCKET sock;
+
             /**
             Etat de la connexion
             **/
@@ -204,6 +203,11 @@ class Socket : public Threadable
             Etat de la configuration
             **/
             bool isConfig;
+
+            /**
+            Identifiant de socket
+            **/
+            SOCKET sock;
 
             /**
             Buffer de reception

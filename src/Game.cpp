@@ -6,6 +6,7 @@
 #include <cmath>
 #include "Loader/LoaderMap.h"
 #include "Engine/ManagerRessource.h"
+#include "network/SocketBomber.h"
 
 using namespace Engine;
 
@@ -23,7 +24,7 @@ Game::Game()
 	bool stop=false;
 
 	//creation du socket vers le serveur
-	Engine::Socket *socket= new Engine::Socket("127.0.0.1",5000);
+	Engine::Socket *socket= new SocketBomber("127.0.0.1",5001);
 
 	//demande de connexion
 	socket->setIsSync(true);
@@ -36,7 +37,8 @@ Game::Game()
 	int holdTime = Engine::Timer::getTimer()->getTime();
 	PaquetPing askTime={'g', holdTime};
 	socket->sendData<PaquetPing>(&askTime);
-	PaquetPing *paquetTimer=(socket->recvData()).getData<PaquetPing*>();
+	Paquet paquet=socket->recvData();
+	PaquetPing *paquetTimer=paquet.getData<PaquetPing*>();
 	int newTime = Engine::Timer::getTimer()->getTime();
 	//Synchronisation
 	int elapsedTime = (newTime-holdTime)/2;
@@ -46,8 +48,11 @@ Game::Game()
 	PaquetAsk askMap={'a', Engine::Timer::getTimer()->getTime(),'c'};//c = PaquetMap
 	socket->sendData<PaquetAsk>(&askMap);
 	//reception de la map
-	PaquetMap *paquetMap=(socket->recvData()).getData<PaquetMap*>();
+
+    paquet=socket->recvData();
+	PaquetMap *paquetMap=paquet.getData<PaquetMap*>();
 	string path = "src/ressource/map/" + (string)paquetMap->name + ".map";
+	cout << path << endl;
 	map = ManagerRessource::getRessource<Map>(path);
 	//map->buildMap();
 
@@ -60,7 +65,8 @@ Game::Game()
     PaquetAsk askId={'a', Engine::Timer::getTimer()->getTime(),'i'};
     socket->sendData<PaquetAsk>(&askId);
 	//reception de l'id
-    PaquetId *idAccptConnect=(socket->recvData()).getData<PaquetId*>();
+	paquet=socket->recvData();
+    PaquetId *idAccptConnect=paquet.getData<PaquetId*>();
 	if(idAccptConnect->id == -1){stop=true;}
 	socket->setIsSync(false);
 
@@ -95,7 +101,7 @@ Game::Game()
         out << static_cast<int>(1000/Timer::getTimer()->getTimePerFrame());
         s=out.str();
         text.setText(s);
-	} 
+	}
 	Threadable::join(thread);
 	delete socket;
 }

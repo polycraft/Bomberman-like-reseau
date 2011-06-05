@@ -7,6 +7,8 @@ class Paquet
 {
     public:
         Paquet(char*data,unsigned int size);
+        Paquet(const Paquet& paquet);
+        void operator=(const Paquet& paquet);
         virtual ~Paquet();
         template<class T>
         T getData()

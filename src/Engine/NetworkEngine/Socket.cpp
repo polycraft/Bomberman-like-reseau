@@ -248,17 +248,25 @@ void Socket::sendData(Paquet &paquet)
     return this->sendData(paquet.getData(),paquet.getSize());
 }
 
+int Socket::recept()
+{
+    int n = 0;
+
+    if((n = recv(sock, bufferRecv, sizeBufferRecv - 1, 0)) < 0)
+    {
+        throw ExceptionRecv();
+    }
+    return n;
+}
+
 Paquet Socket::recvData()
 {
     if(protocole==TP_TCP)
     {
-        int n = 0;
+        int n = recept();
 
-
-        if((n = recv(sock, bufferRecv, sizeBufferRecv - 1, 0)) < 0)
-        {
-			throw ExceptionRecv();
-        }
+        if(this->bufferRecv[0]=='u')
+            cout << n << endl;
 
         if(this->isSync)
         {
@@ -316,9 +324,13 @@ void Socket::removeObserverAccept(IObserverSocketAccept* observer)
 
 void Socket::notifyRecv(char* s,int size)
 {
+    this->notifyRecv(Paquet(s,size));
+}
+
+void Socket::notifyRecv(Paquet paquet)
+{
     P(mutex1);
 
-    Paquet paquet(s,size);
     for (vector<IObserverSocketRecv*>::iterator it = observerRecv.begin(); it!=observerRecv.end(); ++it)
     {
         //std::cout << observerRecv.size() <<std::endl;
