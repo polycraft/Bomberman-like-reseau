@@ -57,7 +57,7 @@ cout << *it << sock << endl;
 
         for(vector<Socket*>::iterator it = clients.begin(); it!=clients.end(); ++it)
         {
-            if(*it!=sock and *it!=NULL)
+            if(*it!=sock && *it!=NULL)
             {
                 cout << "send" << endl;
                 (*it)->sendData(paquet);
@@ -65,7 +65,7 @@ cout << *it << sock << endl;
         }
     }
 
-    Serveur():socket(5000,TP_TCP)
+    Serveur():socket(5001,TP_TCP)
     {
         socket.addObserverAccept(this);
         stopLoc=false;
@@ -82,7 +82,7 @@ cout << *it << sock << endl;
 class Client : public IObserverSocketRecv
 {
 public:
-    Client(const char *s):socket("127.0.0.1",5000,TP_TCP),nom(s)
+    Client(const char *s):socket("127.0.0.1",5001,TP_TCP),nom(s)
     {
         this->stop=false;
         socket.addObserverRecv(this);

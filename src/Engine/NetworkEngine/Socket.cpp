@@ -141,6 +141,7 @@ void Socket::runThread(bool *close)
 {
     while(*close!=true && sock!=-1)
     {
+
 		//Nouvelle connexion
         if(this->connection==TC_Server && this->protocole==TP_TCP)
         {
@@ -189,6 +190,8 @@ void Socket::runThread(bool *close)
 			}*/
 
     }
+	
+	cout << "yop " << endl;
 }
 
 bool Socket::hasConnect()
@@ -254,6 +257,7 @@ Paquet Socket::recvData()
 
         if((n = recv(sock, bufferRecv, sizeBufferRecv - 1, 0)) < 0)
         {
+			cout<< sizeBufferRecv << "|" << n << "|" << WSAGetLastError() << endl;
             throw ExceptionRecv();
         }
 
