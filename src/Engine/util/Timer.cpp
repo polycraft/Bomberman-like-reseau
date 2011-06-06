@@ -65,6 +65,9 @@ void Timer::removeListenerOnce(IObserverTimer*observer,int delay)
 
 void Timer::update()
 {
+    //Suppresion des timers
+    updateListener();
+
     //On verifie les listeners
     set< struct SObserverTimer* >::iterator it;
     struct SObserverTimer* sObserver=NULL;
@@ -98,11 +101,30 @@ void Timer::update()
         }
 	}
 
+	//Suppresion des timers
+	updateListener();
+
+    //Mise à jours du temps passé
+    int tmp=getTime();
+    ellapsed_time=tmp-last_time;
+    last_time=tmp;
+
+    if(ellapsed_time<8)
+    {
+        SDL_Delay(8-ellapsed_time);
+        ellapsed_time=8;
+    }
+}
+
+void Timer::updateListener()
+{
+    set< struct SObserverTimer* >::iterator it;
+    struct SObserverTimer* sObserver=NULL;
+
     //Suppresion des timers
     set< struct SObserverTimer* >::iterator itDelete;
     for(it=this->listenerRemoved.begin(); it!=listenerRemoved.end();)
 	{
-
 		for(itDelete=this->listener.begin(); itDelete!=listener.end();)
 		{
             sObserver=*itDelete;
@@ -132,17 +154,6 @@ void Timer::update()
 		it++;
 	}
 	listenerOnceRemoved.clear();
-
-    //Mise à jours du temps passé
-    int tmp=getTime();
-    ellapsed_time=tmp-last_time;
-    last_time=tmp;
-
-    if(ellapsed_time<8)
-    {
-        SDL_Delay(8-ellapsed_time);
-        ellapsed_time=8;
-    }
 }
 
 unsigned int Timer::getTime()

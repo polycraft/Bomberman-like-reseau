@@ -33,6 +33,7 @@ class Timer
     private:
         Timer();
         struct SObserverTimer* createSObserverTime(IObserverTimer* observer,int delay);
+        void updateListener();
         static Timer* instance;
         set<struct SObserverTimer*> listener;
         set<struct SObserverTimer*> listenerOnce;
