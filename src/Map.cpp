@@ -64,6 +64,17 @@ void Map::addObject(Type* object, int x, int y,EScene scene)
 	this->scene[scene]->addObject(object);
 }
 
+void Map::addObjectToScene(Type* object, int x, int y,double z, EScene scene)//ajoute seulement sur la scene
+{
+	double x1,y1,z1;
+	x1=15;
+	y1=15;
+	z1=5;
+
+	object->setCoordonnes(x*10+x1,y*10+y1,z+z1);
+	this->scene[scene]->addObject(object);
+}
+
 void Map::addSpawn(int x, int y)
 {
 	SCoordinate temp;

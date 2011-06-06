@@ -17,6 +17,7 @@ public:
 	int getIdOwner();
 	void explode();
 	void destroyTimeAnim(){};
+	void destroy();
 
 private:
 	int idOwner;

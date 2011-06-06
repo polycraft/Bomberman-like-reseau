@@ -39,6 +39,7 @@ public:
 	~Map();
 	void addBomberman(Bomberman *bomberman,SCoordinate coord);
 	void addObject(Type* object, int x, int y, EScene scene);
+	void addObjectToScene(Type* object, int x, int y,double z, EScene scene);
 	void addSpawn(int x, int y);
 	Engine::Scene* getScene(EScene scene);
 	SCoordinate getSpawn(int id);
