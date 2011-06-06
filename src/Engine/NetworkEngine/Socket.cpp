@@ -154,44 +154,18 @@ void Socket::runThread(bool *close)
             {
                 continue;
             }
-            notifyAccept(new Socket(csock,csin,TC_Client));
+            notifyAccept(createSocketAccept(csock,csin,TC_Client));
         }
         else if(!isSync)
         {
 			this->recvData();
         }
-		/*
-		if(this->connection == TC_Server && this->protocole == TP_TCP)
-        {
-            throw ExceptionSelect();
-        }
-
-        //un paquet est arrivé
-        if(FD_ISSET(sock, &rdfs) && !isSync)
-        {
-					cout << "Salut" << endl;
-            //Nouvelle connexion
-            if(this->connection==TC_Server && this->protocole==TP_TCP)
-            {
-                SOCKADDR_IN csin = { 0 };
-                socklen_t sinsize = sizeof csin;
-                SOCKET csock = accept(sock, (SOCKADDR *)&csin, &sinsize);
-
-                if(csock == SOCKET_ERROR)
-                {
-                    continue;
-                }
-                notifyAccept(new Socket(csock,csin,TC_Client));
-            }
-            else
-            {
-                this->recvData();
-            }
-			}*/
-
     }
+}
 
-	cout << "yop " << endl;
+Socket* Socket::createSocketAccept(SOCKET sock,SOCKADDR_IN csin,ETypeConnection connection)
+{
+    return new Socket(sock,csin,connection);
 }
 
 bool Socket::hasConnect()
@@ -259,20 +233,30 @@ int Socket::recept()
     return n;
 }
 
-Paquet Socket::recvData()
+Paquet Socket::recvDataSync()
 {
     if(protocole==TP_TCP)
     {
         int n = recept();
 
-        if(this->bufferRecv[0]=='u')
-            cout << n << endl;
-
         if(this->isSync)
         {
             return Paquet(bufferRecv,n);
         }
-        else
+    }
+    else if(protocole==TP_UDP)
+    {
+        //à faire si necessaire
+    }
+}
+
+void Socket::recvData()
+{
+    if(protocole==TP_TCP)
+    {
+        int n = recept();
+
+        if(!this->isSync)
         {
             this->notifyRecv(bufferRecv,n);
         }

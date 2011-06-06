@@ -14,14 +14,38 @@ SocketBomber::SocketBomber(unsigned int port,ETypeProtocole protocole):
 
 }
 
+SocketBomber::SocketBomber(SOCKET sock,SOCKADDR_IN csin,ETypeConnection connection):
+    Socket(sock,csin,connection)
+{
+
+}
+
 SocketBomber::~SocketBomber()
 {
     //dtor
 }
 
-Paquet SocketBomber::recvData()
+Socket* SocketBomber::createSocketAccept(SOCKET sock,SOCKADDR_IN csin,ETypeConnection connection)
 {
-    if(waiting.size()>0)
+    return new SocketBomber(sock,csin,connection);
+}
+
+void SocketBomber::recvData()
+{
+    annalysePaquet();
+
+    this->notifyRecv(waiting.front());
+}
+
+Engine::Paquet SocketBomber::recvDataSync()
+{
+    annalysePaquet();
+    return waiting.front();
+}
+
+void SocketBomber::annalysePaquet()
+{
+        if(waiting.size()>0)
     {
         waiting.pop();
     }
@@ -96,13 +120,6 @@ Paquet SocketBomber::recvData()
             //à faire si necessaire
         }
     }
-
-    if(this->isSync)
-    {
-        return waiting.front();
-    }
-    else
-    {
-        this->notifyRecv(waiting.front());
-    }
 }
+
+

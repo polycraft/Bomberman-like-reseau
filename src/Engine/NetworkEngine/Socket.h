@@ -89,6 +89,8 @@ class Socket : public Threadable
         **/
         void runThread(bool *close);
 
+        virtual Socket* createSocketAccept(SOCKET sock,SOCKADDR_IN csin,ETypeConnection connection);
+
         /**
         Vérifie si la connexion est établit
         **/
@@ -129,7 +131,8 @@ class Socket : public Threadable
         Reçoit une chaine
         **/
         int recept();
-        virtual Paquet recvData();
+        virtual void recvData();
+        virtual Paquet recvDataSync();
 
         /**
         setter isSync

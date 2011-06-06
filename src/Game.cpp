@@ -37,7 +37,7 @@ Game::Game()
 	int holdTime = Engine::Timer::getTimer()->getTime();
 	PaquetPing askTime={'g', holdTime};
 	socket->sendData<PaquetPing>(&askTime);
-	Paquet paquet=socket->recvData();
+	Paquet paquet=socket->recvDataSync();
 	PaquetPing *paquetTimer=paquet.getData<PaquetPing*>();
 	int newTime = Engine::Timer::getTimer()->getTime();
 	//Synchronisation
@@ -49,7 +49,7 @@ Game::Game()
 	socket->sendData<PaquetAsk>(&askMap);
 	//reception de la map
 
-    paquet=socket->recvData();
+    paquet=socket->recvDataSync();
 	PaquetMap *paquetMap=paquet.getData<PaquetMap*>();
 	string path = "src/ressource/map/" + (string)paquetMap->name + ".map";
 	cout << path << endl;
@@ -65,7 +65,7 @@ Game::Game()
     PaquetAsk askId={'a', Engine::Timer::getTimer()->getTime(),'i'};
     socket->sendData<PaquetAsk>(&askId);
 	//reception de l'id
-	paquet=socket->recvData();
+	paquet=socket->recvDataSync();
     PaquetId *idAccptConnect=paquet.getData<PaquetId*>();
 	if(idAccptConnect->id == -1){stop=true;}
 	socket->setIsSync(false);
