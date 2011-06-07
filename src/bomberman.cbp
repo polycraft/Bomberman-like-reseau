@@ -214,6 +214,8 @@
 		<Unit filename="Type/Type.cpp" />
 		<Unit filename="Type/Type.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="network/SocketBomber.cpp" />
+		<Unit filename="network/SocketBomber.h" />
 		<Unit filename="test/testMap.cpp" />
 		<Unit filename="test/testMap.h" />
 		<Extensions>
