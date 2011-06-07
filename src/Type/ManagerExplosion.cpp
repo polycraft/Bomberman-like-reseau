@@ -36,6 +36,7 @@ ManagerExplosion::~ManagerExplosion()
 		delete *it;
 		it++;
 	}
+	Timer::getTimer()->removeListener(this,500);
 }
 
 

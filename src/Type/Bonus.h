@@ -29,7 +29,6 @@ public:
 	EBonus getTypeBonus();
 	void setEffect(Effect *effect);
 	Effect* getEffect();
-	void destroyTimeAnim();
 
 private:
 	EBonus bonus;

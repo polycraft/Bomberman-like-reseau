@@ -23,6 +23,8 @@ Bomb::Bomb(GameType* gameType,int idOwner, int time, int speed, int power):gameT
 
 Bomb::~Bomb()
 {
+    Timer::getTimer()->removeListenerOnce(this,time);
+	Timer::getTimer()->removeListener(this,this->timeAnim);
 }
 
 void Bomb::explode()
@@ -35,8 +37,7 @@ void Bomb::explode()
 void Bomb::destroy()
 {
 	Object::destroy();
-	Timer::getTimer()->removeListenerOnce(this,time);
-	Timer::getTimer()->removeListener(this,this->timeAnim);	
+
 }
 
 void Bomb::updateTimer(unsigned int delay)

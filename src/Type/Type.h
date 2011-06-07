@@ -20,9 +20,6 @@ public:
 	Type();
 	virtual ~Type();
 	virtual EType getType()=0;
-	virtual void destroyTimeAnim()=0;
-
-
 };
 
 

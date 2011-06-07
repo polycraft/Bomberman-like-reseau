@@ -130,10 +130,10 @@ namespace GameTypeSpace
                     flare->endExplose();
                 break;
                 case C_Kill:
-					object=this->game->getMap()->get(x,y);
+					/*object=this->game->getMap()->get(x,y);
                     this->game->getMap()->set(NULL,x,y);
 					object->destroyTimeAnim();
-					object->destroy();
+					object->destroy();*/
 					flare->nextExplose();
                 break;
                 case C_Block:

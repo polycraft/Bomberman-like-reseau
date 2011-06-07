@@ -28,8 +28,6 @@ public:
 	int getX();
 	int getY();
 
-	void destroyTimeAnim(){};
-
 private:
 	EExplose typeExplosion;
     int x;

@@ -12,8 +12,6 @@ public:
 	~StaticBloc();
 	EType getType();
 
-	void destroyTimeAnim(){};
-
 private:
 	static Engine::Cube* staticBloc;
 };

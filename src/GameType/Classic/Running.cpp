@@ -244,7 +244,7 @@ namespace GameTypeSpace
 
                 Bonus *bonus = dynamic_cast<Bonus*>(this->gameType->getGame()->getMap()->get(paquetEffect->x,paquetEffect->y));
 
-                if(paquetEffect->idBomber==bomber->getProperty<int>(PB_id))
+                if(paquetEffect->idBomber==bomber->getProperty<int>(PB_id) && bonus!= NULL)
                 {
 
 
@@ -253,9 +253,6 @@ namespace GameTypeSpace
                     //Ajoute le bonus au bomberman
                     bomber->addBonus(bonus);
                 }
-
-                //arrete l'animation du bonus
-                bonus->destroyTimeAnim();
 
 				//fait disparaitre le bonus
 				this->gameType->getGame()->getMap()->set(NULL,paquetEffect->x,paquetEffect->y);

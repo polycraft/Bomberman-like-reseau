@@ -44,7 +44,7 @@ Bonus::Bonus(EBonus bonus)
 
 Bonus::~Bonus()
 {
-
+    Timer::getTimer()->removeListener(this,this->timeAnim);
 }
 
 EType Bonus::getType()
@@ -83,9 +83,4 @@ void Bonus::updateTimer(unsigned int delay)
 	}
 	this->rotate(0,0,5);
 
-}
-
-void Bonus::destroyTimeAnim()
-{
-	Timer::getTimer()->removeListener(this,this->timeAnim);
 }

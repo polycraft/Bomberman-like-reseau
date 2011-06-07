@@ -78,8 +78,6 @@ public:
 	void addBonus(Bonus *bonus);
 	void remove(Bonus *bonus);
 
-	void destroyTimeAnim(){};
-
 protected:
     void moveName();
 

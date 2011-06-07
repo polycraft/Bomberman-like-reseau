@@ -16,7 +16,6 @@ public:
 	void updateTimer(unsigned int);
 	int getIdOwner();
 	void explode();
-	void destroyTimeAnim(){};
 	void destroy();
 
 private:

@@ -43,6 +43,8 @@ Bomberman::~Bomberman()
 		//delete (*it);
 	}
 
+    Timer::getTimer()->removeListener(this,100);
+    Timer::getTimer()->removeListenerOnce(this,this->getProperty<int>(PB_timeInvincible));
 }
 
 EType Bomberman::getType()

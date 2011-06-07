@@ -50,6 +50,8 @@ ExplosionFlare::~ExplosionFlare()
 		this->gameType->getGame()->getMap()->set(NULL,(*it)->getX(),(*it)->getY());
 		it++;
 	}
+
+	Timer::getTimer()->removeListener(this,100/this->speed);
 }
 
 void ExplosionFlare::nextExplose()

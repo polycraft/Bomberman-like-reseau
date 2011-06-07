@@ -11,7 +11,6 @@ public:
 	BreakableBloc();
 	~BreakableBloc();
 	EType getType();
-	void destroyTimeAnim(){};
 
 private:
 	static Engine::Cube* Breakbloc;
