@@ -12,7 +12,7 @@ namespace GameTypeSpace
 		HurryUp::HurryUp(GameTypeSpace::Classic *gameType,CollisionDetector *collision)  : Running(gameType,collision)
 		{
 			this->timeBetweenBloc = 1000;//inutilisé
-			this->actuTime = 100;
+			this->actuTime = 50;
 			this->blocx = 0;
 			this->blocy = 0;
 			this->blocz = 50;
@@ -45,7 +45,7 @@ namespace GameTypeSpace
 				if(blocz>=0)
 					{
 						this->bloc->setCoordonnes(this->blocx*10+15,this->blocy*10+15,this->blocz+5);
-						this->blocz -= 5;
+						this->blocz -= 3;
 					}
 				else
 				{
