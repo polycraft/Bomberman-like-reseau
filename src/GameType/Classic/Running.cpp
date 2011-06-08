@@ -234,31 +234,31 @@ namespace GameTypeSpace
 
 		void Running::updateRecv(Socket *socket,Paquet& paquet)
 		{
-        char type=(paquet.getData())[0];
-		switch(type)
-		{
-			case 'f'://Effect
+			char type=(paquet.getData())[0];
+			switch(type)
 			{
-				PaquetEffect *paquetEffect=paquet.getData<PaquetEffect*>();
-                Bomberman *bomber=this->gameType->getPlayer();
+				case 'f'://Effect
+				{
+					PaquetEffect *paquetEffect=paquet.getData<PaquetEffect*>();
+					Bomberman *bomber=this->gameType->getPlayer();
 
-                Bonus *bonus = dynamic_cast<Bonus*>(this->gameType->getGame()->getMap()->get(paquetEffect->x,paquetEffect->y));
+					Bonus *bonus = dynamic_cast<Bonus*>(this->gameType->getGame()->getMap()->get(paquetEffect->x,paquetEffect->y));
 
-                if(paquetEffect->idBomber==bomber->getProperty<int>(PB_id) && bonus!= NULL)
-                {
+					if(paquetEffect->idBomber==bomber->getProperty<int>(PB_id) && bonus!= NULL)
+					{
 
 
-                    //Active l'effet du bonus:
-                    bonus->getEffect()->enableEffect(bomber);
-                    //Ajoute le bonus au bomberman
-                    bomber->addBonus(bonus);
-                }
+						//Active l'effet du bonus:
+						bonus->getEffect()->enableEffect(bomber);
+						//Ajoute le bonus au bomberman
+						bomber->addBonus(bonus);
+					}
 
-				//fait disparaitre le bonus
-				this->gameType->getGame()->getMap()->set(NULL,paquetEffect->x,paquetEffect->y);
+					//fait disparaitre le bonus
+					this->gameType->getGame()->getMap()->set(NULL,paquetEffect->x,paquetEffect->y);
+				}
+				break;
 			}
-			break;
-		}
 		}
 	}
 }

@@ -140,4 +140,13 @@ typedef struct PaquetEffect
     int y;
 }PaquetEffect;
 
+//Paquet pour le HurryUp/bloc qui tombe
+typedef struct PaquetHurry
+{
+    char type;//h
+    int timePaquet;
+    int x;
+    int y;
+}PaquetHurry;
+
 #endif // PAQUET2_H

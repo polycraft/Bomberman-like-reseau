@@ -24,7 +24,9 @@ namespace GameTypeSpace
 			void init();
 			void run();
 			void updateTimer(unsigned int delay);
+			void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
 		private:
+			bool blocDown;
 			int actuTime;
 			int blocx;
 			int blocy;
