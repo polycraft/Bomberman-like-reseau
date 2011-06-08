@@ -2,7 +2,7 @@
 #define SOCKET_H
 
 #include <string>
-#include <vector>
+#include <set>
 #include "../util/Threadable.h"
 
 namespace Engine
@@ -274,14 +274,14 @@ class Socket : public Threadable
             /**
             Observeur de l'action recevoir
             **/
-            vector<IObserverSocketRecv*> observerRecv;
+            set<IObserverSocketRecv*> observerRecv;
 
-            vector<vector<IObserverSocketRecv*>::iterator> observerRecvSupr;
+            set<IObserverSocketRecv*> observerRecvSupr;
 
             /**
             Observateur de l'action accept
             **/
-            vector<IObserverSocketAccept*> observerAccept;
+            set<IObserverSocketAccept*> observerAccept;
         /**
         #Fin gestion des observables
         **/
