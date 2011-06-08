@@ -15,6 +15,7 @@ class IObserverSocketRecv
 {
     public:
         virtual void updateRecv(Socket *,Paquet &)=0;
+        virtual void updateDisconnect(Socket* socket){};
         virtual ~IObserverSocketRecv(){};
     protected:
     private:

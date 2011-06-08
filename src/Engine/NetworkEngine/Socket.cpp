@@ -139,13 +139,12 @@ V();
 
 void Socket::runThread(bool *close)
 {
+    this->closeThread=close;
     while(*close!=true && sock!=-1)
     {
-
 		//Nouvelle connexion
         if(this->connection==TC_Server && this->protocole==TP_TCP)
         {
-
             SOCKADDR_IN csin = { 0 };
             socklen_t sinsize = sizeof csin;
             SOCKET csock = accept(sock, (SOCKADDR *)&csin, &sinsize);
@@ -224,13 +223,7 @@ void Socket::sendData(Paquet &paquet)
 
 int Socket::recept()
 {
-    int n = 0;
-
-    if((n = recv(sock, bufferRecv, sizeBufferRecv - 1, 0)) < 0)
-    {
-        throw ExceptionRecv();
-    }
-    return n;
+    return recv(sock, bufferRecv, sizeBufferRecv - 1, 0);
 }
 
 Paquet Socket::recvDataSync()
@@ -239,7 +232,18 @@ Paquet Socket::recvDataSync()
     {
         int n = recept();
 
-        if(this->isSync)
+                //Erreur
+        if(n<0)
+        {
+            notifyDisconnect();
+            throw ExceptionRecv();
+        }
+        //Deconnexion
+        else if(n==0)
+        {
+            notifyDisconnect();
+        }
+        else if(this->isSync)
         {
             return Paquet(bufferRecv,n);
         }
@@ -256,7 +260,18 @@ void Socket::recvData()
     {
         int n = recept();
 
-        if(!this->isSync)
+        //Erreur
+        if(n<0)
+        {
+            notifyDisconnect();
+            throw ExceptionRecv();
+        }
+        //Deconnexion
+        else if(n==0)
+        {
+            notifyDisconnect();
+        }
+        else if(!this->isSync)
         {
             this->notifyRecv(bufferRecv,n);
         }
@@ -317,10 +332,31 @@ void Socket::notifyRecv(Paquet paquet)
 
     for (vector<IObserverSocketRecv*>::iterator it = observerRecv.begin(); it!=observerRecv.end(); ++it)
     {
-        //std::cout << observerRecv.size() <<std::endl;
         if(*it!=NULL)
         {
             (*it)->updateRecv(this,paquet);
+        }
+    }
+
+    vector<vector<IObserverSocketRecv*>::iterator>::iterator it = observerRecvSupr.begin();
+    while(observerRecvSupr.size()!=0)
+    {
+        it=observerRecvSupr.begin();
+        observerRecvSupr.erase(it);
+    }
+    V(mutex1);
+}
+
+void Socket::notifyDisconnect()
+{
+    P(mutex1);
+    *closeThread=true;
+
+    for (vector<IObserverSocketRecv*>::iterator it = observerRecv.begin(); it!=observerRecv.end(); ++it)
+    {
+        if(*it!=NULL)
+        {
+            (*it)->updateDisconnect(this);
         }
     }
 

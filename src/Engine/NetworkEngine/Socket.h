@@ -169,6 +169,11 @@ class Socket : public Threadable
             void notifyRecv(Paquet paquet);
 
             /**
+            Notifie tous les observateurs de l'action de deconnexion
+            **/
+            void notifyDisconnect();
+
+            /**
             Notifie tous les observateurs de l'action Accept
             **/
             void notifyAccept(Socket *);
@@ -251,6 +256,12 @@ class Socket : public Threadable
             Type de connexion (synchrone ou asynchrone)
             **/
             bool isSync;
+
+            /**
+            Fermer la connexion
+            **/
+            bool* closeThread;
+
         /**
         #Fin gestion des sockets
         **/
