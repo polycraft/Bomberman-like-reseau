@@ -19,13 +19,13 @@ class Threadable
         void stop();
         static void *entryPoint(void*);
         static void join(struct Thread*);
+        static void initMutex(pthread_mutex_t &mutex);
+        static void stopMutex(pthread_mutex_t &mutex);
+        static void P(pthread_mutex_t &mutex);
+        static void V(pthread_mutex_t &mutex);
     protected:
         void P();
         void V();
-        void initMutex(pthread_mutex_t &mutex);
-        void stopMutex(pthread_mutex_t &mutex);
-        void P(pthread_mutex_t &mutex);
-        void V(pthread_mutex_t &mutex);
         virtual void runThread(bool *stop)=0;
         bool hasRun;
     private:
