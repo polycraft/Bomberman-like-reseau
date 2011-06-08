@@ -88,7 +88,7 @@ Game::Game()
 
 	socket->addObserverRecv(gameType);
 	socket->addObserverRecv(this);
-
+	cout << sizeof(int) << endl;
     std::stringstream out;
 	while(!stop)
 	{

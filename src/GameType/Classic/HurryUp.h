@@ -3,7 +3,7 @@
 
 #include "Running.h"
 #include "../../Engine/util/IObserverTimer.h"
-#include "../../Type/StaticBloc.h"
+class StaticBloc;
 
 namespace GameTypeSpace
 {
@@ -25,7 +25,6 @@ namespace GameTypeSpace
 			void run();
 			void updateTimer(unsigned int delay);
 		private:
-			int timeBetweenBloc;
 			int actuTime;
 			int blocx;
 			int blocy;

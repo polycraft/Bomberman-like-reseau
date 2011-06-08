@@ -1,11 +1,13 @@
 #include "Explosion.h"
 
 #include "../Engine/ManagerRessource.h"
+#include "ExplosionFlare.h"
 
 using namespace Engine;
 
-Explosion::Explosion(EExplose type,int x,int y):x(x),y(y)
+Explosion::Explosion(EExplose type,int x,int y, ExplosionFlare *explosionOwner):x(x),y(y)
 {
+	this->explosionOwner = explosionOwner;
 	this->typeExplosion = type;
 	switch(this->typeExplosion)
 	{
@@ -47,7 +49,7 @@ Explosion::Explosion(EExplose type,int x,int y):x(x),y(y)
 
 Explosion::~Explosion()
 {
-
+	
 }
 
 
@@ -55,6 +57,12 @@ EType Explosion::getType()
 {
 	return T_Explosion;
 }
+
+ExplosionFlare* Explosion::getExplosionFlare()
+{
+	return this->explosionOwner;
+}
+
 
 void Explosion::changeExplose(EExplose typeExplose)
 {

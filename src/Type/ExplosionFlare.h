@@ -21,6 +21,7 @@ class ExplosionFlare : public Engine::IObserverTimer
 		void nextExplose();
 		void endExplose();
 		EExplose getType();
+		void removeExplosion(Explosion *explosion);
 		void updateTimer(unsigned int delay);
 		int getID();
 

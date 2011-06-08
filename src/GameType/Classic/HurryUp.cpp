@@ -2,8 +2,9 @@
 #include "Classic.h"
 #include "../../Map.h"
 #include "../../Game.h"
-
-
+#include "../../Type/StaticBloc.h"
+#include "../../Type/Explosion.h"
+#include "../../Type/ExplosionFlare.h"
 
 namespace GameTypeSpace
 {
@@ -11,8 +12,7 @@ namespace GameTypeSpace
 	{
 		HurryUp::HurryUp(GameTypeSpace::Classic *gameType,CollisionDetector *collision)  : Running(gameType,collision)
 		{
-			this->timeBetweenBloc = 1000;//inutilisé
-			this->actuTime = 50;
+			this->actuTime = 20;
 			this->blocx = 0;
 			this->blocy = 0;
 			this->blocz = 50;
@@ -45,7 +45,7 @@ namespace GameTypeSpace
 				if(blocz>=0)
 					{
 						this->bloc->setCoordonnes(this->blocx*10+15,this->blocy*10+15,this->blocz+5);
-						this->blocz -= 3;
+						this->blocz -= Engine::Timer::getTimer()->getTimePerFrame()/4;
 					}
 				else
 				{
@@ -54,16 +54,25 @@ namespace GameTypeSpace
 						if(this->gameType->getGame()->getMap()->get(this->blocx,this->blocy) != NULL)
 						{
 							type = this->gameType->getGame()->getMap()->get(this->blocx,this->blocy)->getType();
+							if(type == T_BreakableBloc || type == T_Bonus)
+							{
+								this->gameType->getGame()->getMap()->addObject(new StaticBloc(), this->blocx, this->blocy, T_Dyn);
+							}
+							else if( type == T_Bomb)
+							{
+								this->gameType->getGame()->getMap()->addObject(new StaticBloc(), this->blocx, this->blocy, T_Dyn);
+								this->gameType->getPlayer()->setProperty<int>(PB_nbBomb, this->gameType->getPlayer()->getProperty<int>(PB_nbBomb)+1);
+							}
+							else if(type == T_Explosion)
+							{
+								Explosion* explosion = dynamic_cast<Explosion*>(this->gameType->getGame()->getMap()->get(this->blocx,this->blocy));
+								explosion->getExplosionFlare()->removeExplosion(explosion);
+								this->gameType->getGame()->getMap()->addObject(new StaticBloc(), this->blocx, this->blocy, T_Dyn);
+							}
 						}
-				
-						if(this->gameType->getGame()->getMap()->get(this->blocx,this->blocy) == NULL  || type == T_BreakableBloc || type == T_Bonus)
+						else
 						{
 							this->gameType->getGame()->getMap()->addObject(new StaticBloc(), this->blocx, this->blocy, T_Dyn);
-						}
-						else if( type == T_Bomb)
-						{
-							this->gameType->getGame()->getMap()->addObject(new StaticBloc(), this->blocx, this->blocy, T_Dyn);
-							this->gameType->getPlayer()->setProperty<int>(PB_nbBomb, this->gameType->getPlayer()->getProperty<int>(PB_nbBomb)+1);
 						}
 						switch(this->direction)
 						{

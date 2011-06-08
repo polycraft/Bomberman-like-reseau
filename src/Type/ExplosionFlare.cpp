@@ -29,7 +29,7 @@ ExplosionFlare::ExplosionFlare(int x, int y, int id, int speed, int power, EExpl
 	if(this->typeExplosion == T_Emitter)
 	{
 	    this->powercurrent=0;
-		this->listeExplosions.push_back(new Explosion(T_Emitter,x,y));
+		this->listeExplosions.push_back(new Explosion(T_Emitter,x,y, this));
 		this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),this->x,this->y, T_Dyn);
 	}
 	else
@@ -46,12 +46,31 @@ ExplosionFlare::~ExplosionFlare()
 	vector<Explosion*>::iterator it=this->listeExplosions.begin();
 	while(it < this->listeExplosions.end())
 	{
-		(*it)->destroy();
-		this->gameType->getGame()->getMap()->set(NULL,(*it)->getX(),(*it)->getY());
-		it++;
+		
+		if( this->gameType->getGame()->getMap()->get((*it)->getX(),(*it)->getY())->getType() == T_Explosion)
+		{
+			(*it)->destroy();
+			this->gameType->getGame()->getMap()->set(NULL,(*it)->getX(),(*it)->getY());
+			it++;
+		}
+		
 	}
 
 	Timer::getTimer()->removeListener(this,100/this->speed);
+}
+void ExplosionFlare::removeExplosion(Explosion *explosion)
+{
+	vector<Explosion*>::iterator it=this->listeExplosions.begin();
+	while(it < this->listeExplosions.end())
+	{
+		
+		if( (*it) == explosion)
+		{
+			this->listeExplosions.erase(it);
+			break;
+		}
+		it++;		
+	}
 }
 
 void ExplosionFlare::nextExplose()
@@ -87,7 +106,7 @@ void ExplosionFlare::nextExplose()
 		    this->listeExplosions.back()->changeExplose(this->typeExplosion);
 		}
 
-        this->listeExplosions.push_back(new Explosion(T_End,x,y));
+        this->listeExplosions.push_back(new Explosion(T_End,x,y, this));
         this->gameType->getGame()->getMap()->addObject(this->listeExplosions.back(),x,y, T_Dyn);
 
 
