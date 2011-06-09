@@ -31,22 +31,23 @@ Bomberman::Bomberman(int id):name(TT_Text3D)
 
 Bomberman::~Bomberman()
 {
+	//destruction des bonus
+	set<Bonus*>::iterator it2;
+	for(it2 = this->bonusList.begin() ; it2 != this->bonusList.end() ; it2++)
+	{
+		//delete (*it);
+	}
+
+    Timer::getTimer()->removeListener(this,100);
+    int test=this->getProperty<int>(PB_timeInvincible);
+    Timer::getTimer()->removeListenerOnce(this,this->getProperty<int>(PB_timeInvincible));
+
     map<EPropertyBomberman,Property*>::iterator it;
 
     for ( it=property.begin() ; it != property.end(); it++ )
     {
         delete (*it).second;
     }
-
-	//destruction des bonus
-	set<Bonus*>::iterator it2;
-	for(it2 = this->bonusList.begin() ; it2 != this->bonusList.end() ; it++)
-	{
-		//delete (*it);
-	}
-
-    Timer::getTimer()->removeListener(this,100);
-    Timer::getTimer()->removeListenerOnce(this,this->getProperty<int>(PB_timeInvincible));
 }
 
 EType Bomberman::getType()

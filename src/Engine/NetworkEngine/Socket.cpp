@@ -226,7 +226,20 @@ void Socket::sendData(Paquet &paquet)
 
 int Socket::recept()
 {
-    return recv(sock, bufferRecv, sizeBufferRecv - 1, 0);
+    int n=recv(sock, bufferRecv, sizeBufferRecv - 1, 0);
+
+    //Erreur
+    if(n<0)
+    {
+        notifyDisconnect();
+        throw ExceptionRecv();
+    }
+    //Deconnexion
+    else if(n==0)
+    {
+        this->notifyDisconnect();
+    }
+    return n;
 }
 
 Paquet Socket::recvDataSync()
@@ -235,18 +248,7 @@ Paquet Socket::recvDataSync()
     {
         int n = recept();
 
-                //Erreur
-        if(n<0)
-        {
-            notifyDisconnect();
-            throw ExceptionRecv();
-        }
-        //Deconnexion
-        else if(n==0)
-        {
-            notifyDisconnect();
-        }
-        else if(this->isSync)
+        if(n>0 && this->isSync)
         {
             return Paquet(bufferRecv,n);
         }
@@ -263,18 +265,7 @@ void Socket::recvData()
     {
         int n = recept();
 
-        //Erreur
-        if(n<0)
-        {
-            notifyDisconnect();
-            throw ExceptionRecv();
-        }
-        //Deconnexion
-        else if(n==0)
-        {
-            notifyDisconnect();
-        }
-        else if(!this->isSync)
+        if(n>0 && !this->isSync)
         {
             this->notifyRecv(bufferRecv,n);
         }
@@ -343,7 +334,7 @@ void Socket::notifyDisconnect()
     for (set<IObserverSocketRecv*>::iterator it = observerRecv.begin(); it!=observerRecv.end(); ++it)
     {
         //On vérifie que l'object n'ai pas été supprimé
-        for (itDelete = observerRecvSupr.begin(); it!=observerRecvSupr.end(); ++it)
+        for (itDelete = observerRecvSupr.begin(); itDelete!=observerRecvSupr.end(); ++itDelete)
         {
             if(*it==*itDelete)
             {

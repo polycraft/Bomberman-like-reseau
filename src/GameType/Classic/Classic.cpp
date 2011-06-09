@@ -257,13 +257,32 @@ namespace GameTypeSpace
 						cout <<  paquetBonus->x << endl;
 						this->game->getMap()->set(NULL,paquetBonus->x,paquetBonus->y);
 				}
-
 			}
 			break;
             case 'p':
             {
                 PaquetPhase *paquetPhase=paquet.getData<PaquetPhase*>();
                 phaseCurrent = static_cast<EPhase>(paquetPhase->phase);
+            }
+            break;
+            case 'd':
+            {
+                PaquetDeconnect *paquetDeconnect=paquet.getData<PaquetDeconnect*>();
+                vector<Bomberman*>::iterator it;
+
+                for ( it=playerNetwork.begin() ; it < playerNetwork.end(); it++ )
+                {
+                    if((*it)->getProperty<int>(PB_id)==paquetDeconnect->idBomber)
+                    {
+                        Bomberman* bomberman=*it;
+                        playerNetwork.erase(it);
+
+
+                        font.removeText(bomberman->getName());
+                        bomberman->destroy();
+                        break;
+                    }
+                }
             }
             break;
 		}

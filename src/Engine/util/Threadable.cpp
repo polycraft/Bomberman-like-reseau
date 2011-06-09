@@ -23,10 +23,9 @@ Threadable::~Threadable()
 
 void Threadable::stop()
 {
-    vector<Thread*>::iterator it = threads.begin();
-    while(threads.size()!=0)
+    for (vector<Thread*>::iterator it = threads.begin(); it!=threads.end(); ++it)
     {
-        Threadable::join(*(threads.begin()));
+         Threadable::join(*it);
     }
     /*for (vector<Thread*>::iterator it = threads.begin(); it!=threads.end(); ++it)
     {

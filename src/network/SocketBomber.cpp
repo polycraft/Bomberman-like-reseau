@@ -56,66 +56,69 @@ void SocketBomber::annalysePaquet()
         {
             int n = recept();
 
-            int i=0;
-            int size=0;
-
-            while(i<n)
+            if(n>0)
             {
-                char type=bufferRecv[i];
+                int i=0;
+                int size=0;
 
-                switch(type)
+                while(i<n)
                 {
-                case 'b':
-                    size=sizeof(PaquetBomb);
-                    break;
-                case 'm':
-                    size=sizeof(PaquetMove);
-                    break;
-                case 'u':
-                    size=sizeof(PaquetBonus);
-                    break;
-                case 'p':
-                    size=sizeof(PaquetPhase);
-                    break;
-                case 'e':
-                    size=sizeof(PaquetEtat);
-                    break;
-                case 'i':
-                    size=sizeof(PaquetId);
-                    break;
-                case 's':
-                    size=sizeof(PaquetSpawn);
-                    break;
-                case 'c':
-                    size=sizeof(PaquetMap);
-                    break;
-                case 'g':
-                    size=sizeof(PaquetPing);
-                    break;
-                case 'a':
-                    size=sizeof(PaquetAsk);
-                    break;
-                case 'r':
-                    size=sizeof(PaquetError);
-                    break;
-                case 'd':
-                    size=sizeof(PaquetDeconnect);
-                    break;
-                case 'n':
-                    size=sizeof(PaquetName);
-                    break;
-                case 'f':
-                    size=sizeof(PaquetEffect);
-                    break;
-				 case 'h':
-                    size=sizeof(PaquetHurry);
-                    break;
-                default:
-                    throw ExceptionRecv();
-                    break;
+                    char type=bufferRecv[i];
+
+                    switch(type)
+                    {
+                    case 'b':
+                        size=sizeof(PaquetBomb);
+                        break;
+                    case 'm':
+                        size=sizeof(PaquetMove);
+                        break;
+                    case 'u':
+                        size=sizeof(PaquetBonus);
+                        break;
+                    case 'p':
+                        size=sizeof(PaquetPhase);
+                        break;
+                    case 'e':
+                        size=sizeof(PaquetEtat);
+                        break;
+                    case 'i':
+                        size=sizeof(PaquetId);
+                        break;
+                    case 's':
+                        size=sizeof(PaquetSpawn);
+                        break;
+                    case 'c':
+                        size=sizeof(PaquetMap);
+                        break;
+                    case 'g':
+                        size=sizeof(PaquetPing);
+                        break;
+                    case 'a':
+                        size=sizeof(PaquetAsk);
+                        break;
+                    case 'r':
+                        size=sizeof(PaquetError);
+                        break;
+                    case 'd':
+                        size=sizeof(PaquetDeconnect);
+                        break;
+                    case 'n':
+                        size=sizeof(PaquetName);
+                        break;
+                    case 'f':
+                        size=sizeof(PaquetEffect);
+                        break;
+                    case 'h':
+                        size=sizeof(PaquetHurry);
+                        break;
+                    default:
+                        throw ExceptionRecv();
+                        break;
+                    }
+                    waiting.push(Paquet(&(bufferRecv[i]),size));
+                    i+=size;
                 }
-                waiting.push(Paquet(&(bufferRecv[i]),size));
-                i+=size;
             }
         }
         else if(protocole==TP_UDP)

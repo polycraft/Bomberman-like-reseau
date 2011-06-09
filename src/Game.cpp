@@ -103,6 +103,11 @@ Game::Game()
         s=out.str();
         text.setText(s);
 	}
+
+	//Envoie un paquet pour forcer la deconnexion
+	PaquetPing deconnect={'g', Engine::Timer::getTimer()->getTime()};
+	socket->sendData<PaquetPing>(&deconnect);
+
 	Threadable::join(thread);
 	delete socket;
 }
