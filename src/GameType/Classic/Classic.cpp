@@ -117,6 +117,9 @@ namespace GameTypeSpace
                     }
                     else if(object->getType()==T_BreakableBloc)
                     {
+                        this->game->getMap()->set(NULL,x,y);
+                        /*PaquetBonus paquetBonus={'u', Engine::Timer::getTimer()->getTime(),0,x,y};
+                        this->socket->sendData<PaquetBonus>(&paquetBonus);*/
 						//créer bonus=> remplace la caisse
 						/*EBonus random = this->randomBonus();
 						if(random != T_None)
@@ -145,6 +148,26 @@ namespace GameTypeSpace
                 default:
 
                 break;
+            }
+
+            for(std::set<Bonus*>::iterator it=waitingBonus.begin(); it!=waitingBonus.end(); ++it)
+            {
+                int tmpX=(*it)->getTransX();
+                int tmpY=(*it)->getTransY();
+
+                if(tmpX==x && tmpY==y)
+                {
+                    if((*it)->getTypeBonus()!=T_None)
+                    {
+                        this->game->getMap()->addObject(*it,x,y,T_Map);
+                    }
+                    else
+                    {
+                        this->game->getMap()->set(NULL,x,y);
+                    }
+                    waitingBonus.erase(it);
+                    break;
+                }
             }
 	    }
 	}
@@ -240,23 +263,29 @@ namespace GameTypeSpace
 			break;
 			case 'u': //Bonus
 			{
+
 				PaquetBonus *paquetBonus=paquet.getData<PaquetBonus*>();
 				//obtiens lobjet deja présent
 
 				Object *object = this->game->getMap()->get(paquetBonus->x,paquetBonus->y);
-
 				EBonus typeBonus = static_cast<EBonus>(paquetBonus->bonus);
-				if(typeBonus != T_None)
-				{
-					//remplace la caisse
-					this->game->getMap()->addObject(new Bonus(typeBonus),paquetBonus->x,paquetBonus->y,T_Map);
-				}
+				Bonus* bonus=new Bonus(typeBonus);
 
-				else
-				{
-						cout <<  paquetBonus->x << endl;
-						this->game->getMap()->set(NULL,paquetBonus->x,paquetBonus->y);
-				}
+                if(object==NULL)
+                {
+                    //On affiche le bonus
+                    if(typeBonus != T_None)
+                    {
+                        this->game->getMap()->addObject(bonus,paquetBonus->x,paquetBonus->y,T_Map);
+                    }
+                }
+                else
+                {
+                    bonus->setTransX(paquetBonus->x);
+                    bonus->setTransY(paquetBonus->y);
+                    //On l'ajoute dans le tampon
+                    waitingBonus.insert(bonus);
+                }
 			}
 			break;
             case 'p':

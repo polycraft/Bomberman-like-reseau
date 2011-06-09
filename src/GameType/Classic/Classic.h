@@ -72,6 +72,7 @@ namespace GameTypeSpace
 		vector<Bomberman*> playerNetwork;
 		Phase *phase[5];
         Engine::ManagerFont font;
+        std::set<Bonus*> waitingBonus;
 	};
 }
 

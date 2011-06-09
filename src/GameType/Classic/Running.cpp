@@ -239,7 +239,7 @@ namespace GameTypeSpace
 			{
 				case 'f'://Effect
 				{
-					PaquetEffect *paquetEffect=paquet.getData<PaquetEffect*>();
+				    PaquetEffect *paquetEffect=paquet.getData<PaquetEffect*>();
 					Bomberman *bomber=this->gameType->getPlayer();
 
 					Bonus *bonus = dynamic_cast<Bonus*>(this->gameType->getGame()->getMap()->get(paquetEffect->x,paquetEffect->y));
@@ -285,6 +285,9 @@ namespace GameTypeSpace
 							bomberman->setProperty<int>(PB_life, paquetEtat->etat);
 							break;
 						}
+						default:
+
+						break;
 					}
 				}
 				break;
