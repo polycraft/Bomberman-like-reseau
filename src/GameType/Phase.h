@@ -24,6 +24,7 @@ public:
 	virtual void run()=0;
 	void end( int next=1);
 	void nextEtat();
+	void setEtat(EEtat etat);
 	virtual void executeAction(Engine::stateEvent &event)=0;
 	void setCollisionDetector(CollisionDetector *collision);
 

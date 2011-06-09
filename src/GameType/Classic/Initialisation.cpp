@@ -104,6 +104,8 @@ namespace GameTypeSpace
                     this->gameType->getFont().addText(bomber->getName());
                     //bomber->setInvincible(5000);
 
+					bomber->setVisible(true);
+
 					this->gameType->getGame()->getMap()->addBomberman(bomber,this->gameType->getGame()->getMap()->getSpawn(paquetSpawn->idSpawn));
 				}
 			}

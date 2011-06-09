@@ -285,6 +285,20 @@ namespace GameTypeSpace
                 }
             }
             break;
+			case 'o':
+            {
+				PaquetRound *paquetRound=paquet.getData<PaquetRound*>();
+				phase[P_Initialisation-2]->setEtat(E_Init);
+				phase[P_Initialisation-2]->end(P_Initialisation);
+				phase[P_Running-2]->setEtat(E_Init);
+				phase[P_Running-2]->end(P_Running);
+				phase[P_HurryUp-2]->setEtat(E_Init);
+				phase[P_HurryUp-2]->end(P_HurryUp);
+				phase[P_Ending-2]->setEtat(E_Init);
+				phase[P_Ending-2]->end(P_Ending);
+                phaseCurrent = P_Initialisation;
+            }
+            break;
 		}
 
     }

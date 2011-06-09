@@ -46,3 +46,8 @@ void Phase::setCollisionDetector(CollisionDetector *collision)
 {
     this->collision=collision;
 }
+
+void Phase::setEtat(EEtat etat)
+{
+	this->etat = etat;
+}
