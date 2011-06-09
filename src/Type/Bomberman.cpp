@@ -74,10 +74,10 @@ void Bomberman::updateTimer(unsigned int delay)
         this->setProperty<int>(PB_invincible,false);
         Timer::getTimer()->removeListener(this,100);
     }
-    else if(delay==100)
+    /*else if(delay==100)
     {
         this->setVisible(!this->getVisible());
-    }
+    }*/
     else
     {
         this->setProperty<bool>(PB_canPutBomb,true);

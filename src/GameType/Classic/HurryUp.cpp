@@ -37,7 +37,11 @@ namespace GameTypeSpace
 		}
 		void HurryUp::run()
 		{
-			
+			if(this->gameType->getPhaseCurrent() == P_Ending)
+			{
+				Engine::Timer::getTimer()->removeListener(this,this->actuTime);
+				this->bloc->destroy();
+			}
 		}
 
 		void HurryUp::updateTimer(unsigned int delay)
@@ -60,8 +64,16 @@ namespace GameTypeSpace
 		void HurryUp::updateRecv(Engine::Socket * socket,Engine::Paquet& paquet)
 		{
 			char type=(paquet.getData())[0];
+			//cout << type << endl;
 			switch(type)
 			{
+				case 'p'://phase
+				{
+					Engine::Timer::getTimer()->removeListener(this,this->actuTime);
+					
+				}
+				break;
+
 				case 'h'://HurryBloc
 				{
 					
@@ -113,6 +125,11 @@ namespace GameTypeSpace
 			
 			Running::updateRecv(socket, paquet);
 
+		}
+
+		StaticBloc* HurryUp::getBloc()
+		{
+			return this->bloc;
 		}
 
 	}

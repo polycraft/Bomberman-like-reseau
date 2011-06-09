@@ -12,7 +12,7 @@ using namespace Engine;
 
 Game::Game()
 {
-    char nameBomber[]="Saucisse";
+    char nameBomber[]="Pseudo";
 
     engine =  new MainEngine(Engine_Graphic|Engine_Event);
     Loader *loaderMap=new LoaderMap();

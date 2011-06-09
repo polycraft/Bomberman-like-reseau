@@ -7,6 +7,7 @@
 #include "../../CollisionDetector.h"
 #include "../../Type/Bomb.h"
 #include "../../Type/Bomberman.h"
+#include "../../Type/StaticBloc.h"
 
 #include "Initialisation.h"
 #include "Running.h"
@@ -222,7 +223,9 @@ namespace GameTypeSpace
     void Classic::updateRecv(Socket *socket,Paquet& paquet)
     {
         dynamic_cast<PhaseClassic*>(this->phase[phaseCurrent-2])->updateRecv(socket,paquet);
+		
 		char type=(paquet.getData())[0];
+		//cout << type << endl << endl;
 		switch(type)
 		{
 			case 'b'://Bombe
@@ -349,6 +352,11 @@ namespace GameTypeSpace
 				};
 			this->socket->sendData<PaquetMove>(&paquetMove);
 		}
+	}
+	
+	ClassicSpace::EPhase Classic::getPhaseCurrent()
+	{
+		return this->phaseCurrent;
 	}
 
 	int Classic::getTimeServMove()

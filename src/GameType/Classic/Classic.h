@@ -59,6 +59,7 @@ namespace GameTypeSpace
         void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
 		void updateTimer(unsigned int delay);
 
+		ClassicSpace::EPhase getPhaseCurrent();
 		int getTimeServMove();
 
         Engine::ManagerFont& getFont();
