@@ -4,6 +4,7 @@
 
 #include "../GameType.h"
 #include "../../Engine/util/Timer.h"
+#include "../../Type/Bomberman.h"
 
 namespace GameTypeSpace
 {
@@ -22,6 +23,12 @@ namespace GameTypeSpace
 	{
 		Engine::Timer::getTimer()->addListener(this,this->waitTime);
 		cout << "End Of Round ... Wait" << endl;
+		//efface les bomberman
+		for(vector<Bomberman*>::iterator it = this->gameType->getPlayerNetwork().begin() ; it < this->gameType->getPlayerNetwork().end() ; it++)
+		{
+			(*it)->destroy();
+		}
+		this->gameType->getPlayerNetwork().clear();
 		this->nextEtat();
 	}
 

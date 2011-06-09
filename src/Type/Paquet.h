@@ -149,4 +149,12 @@ typedef struct PaquetHurry
     int y;
 }PaquetHurry;
 
+//Paquet pour les rounds
+typedef struct PaquetRound
+{
+    char type;//o
+    int timePaquet;
+
+}PaquetRound;
+
 #endif // PAQUET2_H

@@ -112,6 +112,9 @@ void SocketBomber::annalysePaquet()
                     case 'h':
                         size=sizeof(PaquetHurry);
                         break;
+					case 'o':
+                        size=sizeof(PaquetRound);
+                        break;
                     default:
                         throw ExceptionRecv();
                         break;
