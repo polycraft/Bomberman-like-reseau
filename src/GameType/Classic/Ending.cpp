@@ -9,7 +9,7 @@
 namespace GameTypeSpace
 {
     using namespace ClassicSpace;
-	Ending::Ending(GameTypeSpace::Classic *gameType,CollisionDetector *collision)  : Running(gameType,collision)
+	Ending::Ending(GameTypeSpace::Classic *gameType,CollisionDetector *collision)  : PhaseClassic(gameType,collision)
 	{
 		this->waitTime = 4000;
 	}
@@ -43,4 +43,14 @@ namespace GameTypeSpace
 			Engine::Timer::getTimer()->removeListener(this,this->waitTime);
 			end(P_Next);
 	}
+
+    void Ending::executeAction(Engine::stateEvent &event)
+    {
+
+    }
+
+    void Ending::updateRecv(Engine::Socket *,Engine::Paquet& paquet)
+    {
+
+    }
 }

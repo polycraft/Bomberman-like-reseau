@@ -10,7 +10,7 @@ namespace GameTypeSpace
 {
 	namespace ClassicSpace
 	{
-		class Ending : public Running, Engine::IObserverTimer
+		class Ending : public PhaseClassic, Engine::IObserverTimer
 		{
 
 		public:
@@ -19,6 +19,8 @@ namespace GameTypeSpace
 			void init();
 			void run();
 			void updateTimer(unsigned int delay);
+			void executeAction(Engine::stateEvent &event);
+			void updateRecv(Engine::Socket *,Engine::Paquet& paquet);
 		private:
 			int waitTime;
 		};
