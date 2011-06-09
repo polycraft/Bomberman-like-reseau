@@ -78,11 +78,11 @@ namespace Engine
 
     double ObjectMovable::getRotateY()
     {
-        return rotateX;
+        return rotateY;
     }
 
     double ObjectMovable::getRotateZ()
     {
-        return rotateX;
+        return rotateZ;
     }
 }
