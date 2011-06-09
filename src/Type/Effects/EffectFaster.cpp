@@ -15,5 +15,5 @@ void EffectFaster::enableEffect(Bomberman *bomberman)
 {
 	this->bomberman = bomberman;
 	double speed = this->bomberman->getProperty<double>(PB_speed);
-	this->bomberman->setProperty<double>(PB_speed, speed+0.01);
+	this->bomberman->setProperty<double>(PB_speed, 0.08);
 }

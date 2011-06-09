@@ -61,7 +61,7 @@ typedef struct PaquetEtat
     int timePaquet;
     int idBomber;//Numéro du bomberman à modifier
     int property;//etat à modifier
-    bool etat;//valeur de l'état
+    int etat;//valeur de l'état
 }PaquetEtat;
 
 //Paquet d'atribution d'id

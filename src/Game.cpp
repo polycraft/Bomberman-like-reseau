@@ -78,6 +78,7 @@ Game::Game()
 	string s("0");
 	Text text(s,20,550);
 	text.setColor(255,255,255,255);
+	text.setRotate(0,0,0);
 	font->addText(&text);
 
 	engine->getGengine()->getManagerText().addFont(font);

@@ -13,6 +13,7 @@ Bomberman::Bomberman(map<EPropertyBomberman,Property*>& property):name(TT_Text3D
 {
     this->property=property;
     name.setColor(255,255,255,255);
+	name.setRotate(0,0,0);
 }
 
 Bomberman::Bomberman(int id):name(TT_Text3D)
@@ -25,6 +26,7 @@ Bomberman::Bomberman(int id):name(TT_Text3D)
 	ManagerRessource::getRessource("src/ressource/object/bombermanRun.obj");
 
 	name.setColor(255,255,255,255);
+	name.setRotate(0,0,0);
 }
 
 Bomberman::~Bomberman()

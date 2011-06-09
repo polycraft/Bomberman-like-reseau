@@ -98,7 +98,7 @@ namespace GameTypeSpace
 
                 if(this->gameType->getPlayer()->getProperty<int>(PB_life)<=0)
                 {
-                    end(P_Next);
+                    //end(P_Next);
                 }
                 else
                 {
@@ -256,6 +256,36 @@ namespace GameTypeSpace
 
 					//fait disparaitre le bonus
 					this->gameType->getGame()->getMap()->set(NULL,paquetEffect->x,paquetEffect->y);
+				}
+				break;
+
+				case 'e'://EtatBomber
+				{
+					PaquetEtat *paquetEtat=paquet.getData<PaquetEtat*>();
+					//recuperation du bomberman
+					Bomberman *bomberman;
+					int idBomber = paquetEtat->idBomber;
+					for(vector<Bomberman*>::iterator it = this->gameType->getPlayerNetwork().begin() ; it!= this->gameType->getPlayerNetwork().end() ; it++)
+					{
+						if( idBomber == (*it)->getProperty<int>(PB_id))
+						{
+							bomberman = (*it);
+							break;
+						}
+					}
+					//choix de la property à modif
+					switch(static_cast<EPropertyBomberman>(paquetEtat->property))
+					{
+					case PB_life:
+						{
+							if(paquetEtat->etat == 0)//si bomberman mort
+							{
+								bomberman->setVisible(false);
+							}
+							bomberman->setProperty<int>(PB_life, paquetEtat->etat);
+							break;
+						}
+					}
 				}
 				break;
 			}
